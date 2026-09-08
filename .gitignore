@@ -1,0 +1,43 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.toc
+
+# Datasets and third-party baselines are NOT vendored -- see DATA.md.
+# In this working tree they are symlinks to sibling directories.
+/E-MLB
+/DVSCLEAN
+/ECCV2024_datasets
+/DVSGesture
+/DVSD22
+/cuke-emlb
+/EDformer
+/EDmamba
+*.aedat
+*.aedat4
+*.hdf5
+*.npy
+*.npz
+*.rar
+*.zip
+*.pt
+*.pth
+
+# The manuscript, its figures and the research record are not part of this release.
+# They live in this working tree but are deliberately not published.
+/paper/
+/audit/
+/docs/
+/NUMBERS.md
+/results/figures/

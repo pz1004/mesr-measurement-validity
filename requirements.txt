@@ -1,0 +1,11 @@
+# Versions are the ones the shipped artifacts were produced with.
+# torch is needed only by dataset_assessment.downstream_gesture (Tier 3).
+numpy>=2.0,<3          # 2.3.5
+scipy>=1.11            # 1.16.3
+pandas>=2.0            # 2.3.3
+scikit-learn>=1.3      # 1.7.2
+h5py>=3.8              # 3.15.1
+matplotlib>=3.7        # 3.10.6
+dv-processing==2.0.3   # AEDAT-4 reading; must match the cuke-emlb build
+pytest>=7.0
+# torch>=2.0           # uncomment for the downstream probe (CUDA build recommended)

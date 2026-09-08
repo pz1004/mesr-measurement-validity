@@ -1,0 +1,100 @@
+{
+  "checks": [
+    {
+      "paper": "EDmamba",
+      "table": "Table 2 (MESR)",
+      "claim": "the ESR computation is commented out in the released tester",
+      "verified": true,
+      "evidence": {
+        "file": "EDmamba/pointcept/engines/test.py",
+        "line": 481,
+        "text": "# ESR = self.compute_average_esr(X,Y)"
+      }
+    },
+    {
+      "paper": "EDmamba",
+      "table": "Table 2 (MESR)",
+      "claim": "compute_average_esr is not defined anywhere in the repo",
+      "verified": true,
+      "evidence": null
+    },
+    {
+      "paper": "EDmamba",
+      "table": "Table 2 (MESR)",
+      "claim": "the E-MLB reader evaluates ND00 only, not 4 ND levels",
+      "verified": true,
+      "evidence": {
+        "file": "EDmamba/pointcept/datasets/denoise_emlb.py",
+        "line": 43,
+        "text": "test = [\"ND00\"]"
+      }
+    },
+    {
+      "paper": "EDmamba",
+      "table": "Table 2 (MESR)",
+      "claim": "the E-MLB reader substitutes polarity for labels",
+      "verified": true,
+      "evidence": {
+        "file": "EDmamba/pointcept/datasets/denoise_emlb.py",
+        "line": 105,
+        "text": "labels = events_slice[:,3]"
+      }
+    },
+    {
+      "paper": "EDformer",
+      "table": "Table 3 (MESR)",
+      "claim": "the operating point IS stated in the released code (0.005)",
+      "verified": true,
+      "evidence": {
+        "file": "EDformer/eval_mesr.py",
+        "line": 75,
+        "text": "predictions[predictions >= 0.005] = 1"
+      }
+    },
+    {
+      "paper": "EDformer",
+      "table": "Table 3 (MESR)",
+      "claim": "the repo ships an unused ESR variant that median-filters and rescales by 1000 - a silent-error hazard",
+      "verified": true,
+      "evidence": {
+        "file": "EDformer/metrics.py",
+        "line": 12,
+        "text": "def median_filter(data, size=3):"
+      }
+    },
+    {
+      "paper": "E-MLB (cuke-emlb)",
+      "table": "metric definition",
+      "claim": "cuke-emlb ships a median-filtering V2 variant beside the official EventStructuralRatio, in python/src/utils/metric.py",
+      "verified": true,
+      "evidence": {
+        "file": "cuke-emlb/python/src/utils/metric.py",
+        "line": 24,
+        "text": "class EventStructuralRatioV2(object):"
+      }
+    },
+    {
+      "paper": "E-MLB (cuke-emlb)",
+      "table": "metric definition",
+      "claim": "the official ln subtracts from K, so empty pixels contribute 1 each and K cancels; ESR carries no W*H term",
+      "verified": true,
+      "evidence": {
+        "file": "cuke-emlb/python/src/utils/metric.py",
+        "line": 188,
+        "text": "ln = K - ((1 - M / N) ** n).sum()"
+      }
+    },
+    {
+      "paper": "E-MLB (cuke-emlb)",
+      "table": "learned baselines",
+      "claim": "EDnCNN/MLPF weights are not in the release",
+      "verified": true,
+      "evidence": {
+        "dir": "cuke-emlb/modules/net",
+        "contents": [
+          ".gitkeep"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,4853 @@
+{
+  "cap_events": 300000,
+  "profiles": [
+    {
+      "name": "DND21/1hz_hotel-bar",
+      "synthetic": true,
+      "spatial_autocorr": 0.34906188542715894,
+      "local_global_coupling": -0.6076311887810676,
+      "event_rate_per_px": 1.7351885390796993,
+      "hot_pixel_share": 0.009603333333333334,
+      "events": 300000,
+      "corpus": "DND21"
+    },
+    {
+      "name": "DND21/1hz_driving",
+      "synthetic": true,
+      "spatial_autocorr": 0.3935769830549363,
+      "local_global_coupling": 0.9333865758320321,
+      "event_rate_per_px": 7.943876382022257,
+      "hot_pixel_share": 0.00747,
+      "events": 300000,
+      "corpus": "DND21"
+    },
+    {
+      "name": "DND21/3hz_hotel-bar",
+      "synthetic": true,
+      "spatial_autocorr": 0.22214022686263887,
+      "local_global_coupling": 0.004642134858224643,
+      "event_rate_per_px": 3.328315273814039,
+      "hot_pixel_share": 0.011933333333333334,
+      "events": 300000,
+      "corpus": "DND21"
+    },
+    {
+      "name": "DND21/3hz_driving",
+      "synthetic": true,
+      "spatial_autocorr": 0.3575690444300448,
+      "local_global_coupling": 0.6451356765304785,
+      "event_rate_per_px": 8.652554067947188,
+      "hot_pixel_share": 0.007013333333333333,
+      "events": 300000,
+      "corpus": "DND21"
+    },
+    {
+      "name": "DND21/5hz_hotel-bar",
+      "synthetic": true,
+      "spatial_autocorr": 0.35783340648946504,
+      "local_global_coupling": -0.8552142435423742,
+      "event_rate_per_px": 4.652384808451761,
+      "hot_pixel_share": 0.012656666666666667,
+      "events": 300000,
+      "corpus": "DND21"
+    },
+    {
+      "name": "DND21/5hz_driving",
+      "synthetic": true,
+      "spatial_autocorr": 0.33125405728063123,
+      "local_global_coupling": 0.3730199678795475,
+      "event_rate_per_px": 9.440944751262771,
+      "hot_pixel_share": 0.006333333333333333,
+      "events": 300000,
+      "corpus": "DND21"
+    },
+    {
+      "name": "DND21/7hz_hotel-bar",
+      "synthetic": true,
+      "spatial_autocorr": 0.31260084282282447,
+      "local_global_coupling": -0.9561908908289578,
+      "event_rate_per_px": 5.949227134871709,
+      "hot_pixel_share": 0.009543333333333332,
+      "events": 300000,
+      "corpus": "DND21"
+    },
+    {
+      "name": "DND21/7hz_driving",
+      "synthetic": true,
+      "spatial_autocorr": 0.3117730917452531,
+      "local_global_coupling": 0.1274155351727601,
+      "event_rate_per_px": 10.256457846374664,
+      "hot_pixel_share": 0.006386666666666666,
+      "events": 300000,
+      "corpus": "DND21"
+    },
+    {
+      "name": "DND21/10hz_hotel-bar",
+      "synthetic": true,
+      "spatial_autocorr": 0.31216748706502767,
+      "local_global_coupling": -0.9595904845984081,
+      "event_rate_per_px": 7.868322700585609,
+      "hot_pixel_share": 0.011696666666666666,
+      "events": 300000,
+      "corpus": "DND21"
+    },
+    {
+      "name": "DND21/10hz_driving",
+      "synthetic": true,
+      "spatial_autocorr": 0.2941431398363084,
+      "local_global_coupling": -0.10423042704111517,
+      "event_rate_per_px": 11.536678890839326,
+      "hot_pixel_share": 0.00559,
+      "events": 300000,
+      "corpus": "DND21"
+    },
+    {
+      "name": "DVSCLEAN/MAH00446_50",
+      "synthetic": true,
+      "spatial_autocorr": 0.18350628124200888,
+      "local_global_coupling": 0.7135519042459865,
+      "event_rate_per_px": 0.5161126584326456,
+      "hot_pixel_share": 0.007462868655603077,
+      "events": 286887,
+      "corpus": "DVSCLEAN"
+    },
+    {
+      "name": "DVSCLEAN/MAH00446_100",
+      "synthetic": true,
+      "spatial_autocorr": 0.1416386316559245,
+      "local_global_coupling": 0.752956860143458,
+      "event_rate_per_px": 0.7009371788025472,
+      "hot_pixel_share": 0.006353333333333333,
+      "events": 300000,
+      "corpus": "DVSCLEAN"
+    },
+    {
+      "name": "DVSCLEAN/MAH00454_50",
+      "synthetic": true,
+      "spatial_autocorr": 0.09789253613977651,
+      "local_global_coupling": 0.5255424838588164,
+      "event_rate_per_px": 0.36631898253831147,
+      "hot_pixel_share": 0.01091087056655919,
+      "events": 277888,
+      "corpus": "DVSCLEAN"
+    },
+    {
+      "name": "DVSCLEAN/MAH00454_100",
+      "synthetic": true,
+      "spatial_autocorr": 0.0706364488706752,
+      "local_global_coupling": 0.5450391603476461,
+      "event_rate_per_px": 0.47522538305142814,
+      "hot_pixel_share": 0.010993333333333334,
+      "events": 300000,
+      "corpus": "DVSCLEAN"
+    },
+    {
+      "name": "DVSCLEAN/MAH00455_50",
+      "synthetic": true,
+      "spatial_autocorr": 0.10427302015682004,
+      "local_global_coupling": 0.07510292786523669,
+      "event_rate_per_px": 0.5454481625780139,
+      "hot_pixel_share": 0.009918911091804228,
+      "events": 276240,
+      "corpus": "DVSCLEAN"
+    },
+    {
+      "name": "DVSCLEAN/MAH00455_100",
+      "synthetic": true,
+      "spatial_autocorr": 0.07865896779022019,
+      "local_global_coupling": 0.07416443455246263,
+      "event_rate_per_px": 0.7181800063834137,
+      "hot_pixel_share": 0.007946666666666666,
+      "events": 300000,
+      "corpus": "DVSCLEAN"
+    },
+    {
+      "name": "DVSCLEAN/MAH00456_50",
+      "synthetic": true,
+      "spatial_autocorr": 0.07092097513695121,
+      "local_global_coupling": 0.2541188860673247,
+      "event_rate_per_px": 0.3680014102593863,
+      "hot_pixel_share": 0.010724333826861629,
+      "events": 277593,
+      "corpus": "DVSCLEAN"
+    },
+    {
+      "name": "DVSCLEAN/MAH00456_100",
+      "synthetic": true,
+      "spatial_autocorr": 0.05222149619145862,
+      "local_global_coupling": 0.22158746782498304,
+      "event_rate_per_px": 0.4648424967846287,
+      "hot_pixel_share": 0.00963,
+      "events": 300000,
+      "corpus": "DVSCLEAN"
+    },
+    {
+      "name": "DVSCLEAN/MAH00465_50",
+      "synthetic": true,
+      "spatial_autocorr": 0.11946948291244353,
+      "local_global_coupling": 0.38696536103631046,
+      "event_rate_per_px": 0.23517105390454504,
+      "hot_pixel_share": 0.010485468662747065,
+      "events": 281151,
+      "corpus": "DVSCLEAN"
+    },
+    {
+      "name": "DVSCLEAN/MAH00465_100",
+      "synthetic": true,
+      "spatial_autocorr": 0.0882387984947335,
+      "local_global_coupling": 0.400484366869876,
+      "event_rate_per_px": 0.3196074561791075,
+      "hot_pixel_share": 0.010226666666666667,
+      "events": 300000,
+      "corpus": "DVSCLEAN"
+    },
+    {
+      "name": "E-MLB/D-END/Architecture-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2603146770744119,
+      "local_global_coupling": 0.9487105257730144,
+      "event_rate_per_px": 6.885519526315697,
+      "hot_pixel_share": 0.007663333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Architecture-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3389469940973696,
+      "local_global_coupling": 0.9674265033459929,
+      "event_rate_per_px": 13.537285303596194,
+      "hot_pixel_share": 0.00753,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Architecture-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4432021184295614,
+      "local_global_coupling": 0.9532562424306575,
+      "event_rate_per_px": 17.064426115101945,
+      "hot_pixel_share": 0.00703,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Architecture-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.30370566328418347,
+      "local_global_coupling": 0.9645777282647846,
+      "event_rate_per_px": 12.230853065928486,
+      "hot_pixel_share": 0.00572,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Bicycle-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.18301408338308928,
+      "local_global_coupling": 0.7806807493532583,
+      "event_rate_per_px": 6.2742644472110385,
+      "hot_pixel_share": 0.006033333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Bicycle-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.16603623245498916,
+      "local_global_coupling": 0.9339333530500333,
+      "event_rate_per_px": 6.527258387147141,
+      "hot_pixel_share": 0.00711,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Bicycle-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.24086145124863328,
+      "local_global_coupling": 0.742572202294485,
+      "event_rate_per_px": 11.772900966397883,
+      "hot_pixel_share": 0.00538,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Bicycle-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.18401172446218692,
+      "local_global_coupling": 0.9550635291934007,
+      "event_rate_per_px": 10.798853261996936,
+      "hot_pixel_share": 0.008146666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Boat-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.25864320658724466,
+      "local_global_coupling": 0.7068525352861865,
+      "event_rate_per_px": 2.452654510003705,
+      "hot_pixel_share": 0.008826666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Boat-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.216786567824021,
+      "local_global_coupling": 0.6721876518580465,
+      "event_rate_per_px": 1.9613308107383347,
+      "hot_pixel_share": 0.009926666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Boat-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.10799843341490754,
+      "local_global_coupling": 0.4673027198725661,
+      "event_rate_per_px": 1.3010892977216209,
+      "hot_pixel_share": 0.009003333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Boat-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.08829362964582319,
+      "local_global_coupling": 0.40614666430767504,
+      "event_rate_per_px": 1.0422089782267208,
+      "hot_pixel_share": 0.014673333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Books-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.12638327544145006,
+      "local_global_coupling": 0.9241979932552802,
+      "event_rate_per_px": 4.6424625395101655,
+      "hot_pixel_share": 0.006806666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Books-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.14101849425102564,
+      "local_global_coupling": 0.9395086050866299,
+      "event_rate_per_px": 6.005862971479663,
+      "hot_pixel_share": 0.007983333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Books-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.12061897352865844,
+      "local_global_coupling": 0.9404832729317448,
+      "event_rate_per_px": 6.888677101563098,
+      "hot_pixel_share": 0.007733333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Books-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.10485717312271817,
+      "local_global_coupling": 0.9231380568986287,
+      "event_rate_per_px": 5.1697435813249495,
+      "hot_pixel_share": 0.00921,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Bubble-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4692421733678616,
+      "local_global_coupling": 0.657740237086199,
+      "event_rate_per_px": 1.9343566986063725,
+      "hot_pixel_share": 0.00631,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Bubble-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3881217915489354,
+      "local_global_coupling": 0.43015583164308985,
+      "event_rate_per_px": 0.7079905825766077,
+      "hot_pixel_share": 0.008313333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Bubble-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3829909929913525,
+      "local_global_coupling": 0.4421328468151316,
+      "event_rate_per_px": 0.6708165332020855,
+      "hot_pixel_share": 0.006316666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Bubble-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4091647960201347,
+      "local_global_coupling": 0.4907129880551831,
+      "event_rate_per_px": 0.8838499809024295,
+      "hot_pixel_share": 0.00831,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Camera-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.26560580755559593,
+      "local_global_coupling": 0.6918611805346704,
+      "event_rate_per_px": 4.160998337434833,
+      "hot_pixel_share": 0.006673333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Camera-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3231456008300076,
+      "local_global_coupling": 0.9031824653583079,
+      "event_rate_per_px": 5.556007106657577,
+      "hot_pixel_share": 0.006676666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Camera-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2257865526504346,
+      "local_global_coupling": 0.8505269419828388,
+      "event_rate_per_px": 2.3271209189696997,
+      "hot_pixel_share": 0.007983333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Camera-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2883081217784303,
+      "local_global_coupling": 0.9110903484525277,
+      "event_rate_per_px": 5.878108384468592,
+      "hot_pixel_share": 0.00622,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Car_Day-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3385102208716844,
+      "local_global_coupling": 0.5337389154050678,
+      "event_rate_per_px": 2.9681535314915792,
+      "hot_pixel_share": 0.006713333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Car_Day-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4742548273112914,
+      "local_global_coupling": 0.8178235343157079,
+      "event_rate_per_px": 7.006209238925579,
+      "hot_pixel_share": 0.005736666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Car_Day-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3721532860173365,
+      "local_global_coupling": 0.7878480018073698,
+      "event_rate_per_px": 3.1003225755426307,
+      "hot_pixel_share": 0.004993333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Car_Day-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.48065545991218717,
+      "local_global_coupling": 0.40792609974216143,
+      "event_rate_per_px": 6.289766772621869,
+      "hot_pixel_share": 0.00462,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Checker_Highlight-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2816471105011144,
+      "local_global_coupling": 0.9055417928284674,
+      "event_rate_per_px": 3.8017589078872307,
+      "hot_pixel_share": 0.0047666666666666664,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Checker_Highlight-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3076117879798156,
+      "local_global_coupling": 0.90476821463615,
+      "event_rate_per_px": 3.1540028009698005,
+      "hot_pixel_share": 0.004396666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Checker_Highlight-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2933820725160687,
+      "local_global_coupling": 0.8858130169558018,
+      "event_rate_per_px": 2.9471659010773856,
+      "hot_pixel_share": 0.00366,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Checker_Highlight-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2707152988691962,
+      "local_global_coupling": 0.7441008385390349,
+      "event_rate_per_px": 2.4734987023936763,
+      "hot_pixel_share": 0.0037733333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Checker_Shadow-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3860186589568622,
+      "local_global_coupling": 0.3403912035178368,
+      "event_rate_per_px": 4.329703374296365,
+      "hot_pixel_share": 0.004003333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Checker_Shadow-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.411551429779654,
+      "local_global_coupling": 0.6184574632988553,
+      "event_rate_per_px": 4.859348641556648,
+      "hot_pixel_share": 0.0046,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Checker_Shadow-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.48014519697547015,
+      "local_global_coupling": -0.04581513355947654,
+      "event_rate_per_px": 6.032502195235592,
+      "hot_pixel_share": 0.0063,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Checker_Shadow-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.48511507468921916,
+      "local_global_coupling": 0.08042926047258375,
+      "event_rate_per_px": 6.57905057871978,
+      "hot_pixel_share": 0.00444,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Consturcture-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.27484193288483555,
+      "local_global_coupling": 0.7169129333133388,
+      "event_rate_per_px": 10.190421615107097,
+      "hot_pixel_share": 0.007493333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Consturcture-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2978659661027035,
+      "local_global_coupling": 0.6653941999996255,
+      "event_rate_per_px": 15.345537461950615,
+      "hot_pixel_share": 0.00513,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Consturcture-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.26454516134025635,
+      "local_global_coupling": 0.7135897714078935,
+      "event_rate_per_px": 9.878651670262272,
+      "hot_pixel_share": 0.00629,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Consturcture-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.29591170057939964,
+      "local_global_coupling": 0.7207025010595898,
+      "event_rate_per_px": 10.145098060137133,
+      "hot_pixel_share": 0.00612,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Corridor-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1443081188075754,
+      "local_global_coupling": 0.856743598362813,
+      "event_rate_per_px": 8.117184735303791,
+      "hot_pixel_share": 0.011553333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Corridor-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1585307191857249,
+      "local_global_coupling": 0.6408725221760113,
+      "event_rate_per_px": 6.471813495775715,
+      "hot_pixel_share": 0.01404,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Corridor-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1700678265160192,
+      "local_global_coupling": 0.4494672886015773,
+      "event_rate_per_px": 4.909475847345567,
+      "hot_pixel_share": 0.016103333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Corridor-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.0788962411498001,
+      "local_global_coupling": 0.25801235646188597,
+      "event_rate_per_px": 2.196292554152176,
+      "hot_pixel_share": 0.02489,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Courtyard-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.07906781428191098,
+      "local_global_coupling": 0.28323857983170786,
+      "event_rate_per_px": 2.9522039386826484,
+      "hot_pixel_share": 0.0057933333333333335,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Courtyard-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.07397840735146737,
+      "local_global_coupling": 0.37751392559330715,
+      "event_rate_per_px": 3.115502771450324,
+      "hot_pixel_share": 0.006403333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Courtyard-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.07196883326617616,
+      "local_global_coupling": 0.6481767226583072,
+      "event_rate_per_px": 4.245900885569246,
+      "hot_pixel_share": 0.007476666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Courtyard-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.04138693543735115,
+      "local_global_coupling": 0.7363083733956461,
+      "event_rate_per_px": 2.8293061695385195,
+      "hot_pixel_share": 0.011766666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Dance-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4084082019867057,
+      "local_global_coupling": 0.6515189837039762,
+      "event_rate_per_px": 2.9286240971424338,
+      "hot_pixel_share": 0.00642,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Dance-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.39465264800541405,
+      "local_global_coupling": 0.7114777149702153,
+      "event_rate_per_px": 2.63377137721389,
+      "hot_pixel_share": 0.006026666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Dance-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3071989578415926,
+      "local_global_coupling": 0.6918038714134571,
+      "event_rate_per_px": 1.5660116166190483,
+      "hot_pixel_share": 0.005666666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Dance-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3939146575390602,
+      "local_global_coupling": 0.6221903163523996,
+      "event_rate_per_px": 3.0757255780274955,
+      "hot_pixel_share": 0.0059,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Decoration-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1394011191120949,
+      "local_global_coupling": 0.7511244395348231,
+      "event_rate_per_px": 4.333951695590038,
+      "hot_pixel_share": 0.00462,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Decoration-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1298843245341627,
+      "local_global_coupling": 0.9052203585316564,
+      "event_rate_per_px": 3.806997355553041,
+      "hot_pixel_share": 0.00647,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Decoration-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.24732542367802182,
+      "local_global_coupling": 0.9215287921888514,
+      "event_rate_per_px": 11.557870439132564,
+      "hot_pixel_share": 0.004203333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Decoration-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2902651217529125,
+      "local_global_coupling": 0.9715486841266826,
+      "event_rate_per_px": 17.808762682002797,
+      "hot_pixel_share": 0.004966666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Drop_Balls-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.42042686146276337,
+      "local_global_coupling": 0.23719043260538047,
+      "event_rate_per_px": 0.06907757735756848,
+      "hot_pixel_share": 0.016495601173020527,
+      "events": 95480,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Drop_Balls-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4370679940025257,
+      "local_global_coupling": 0.3785131018250494,
+      "event_rate_per_px": 0.28683182488792947,
+      "hot_pixel_share": 0.019804120454280916,
+      "events": 180417,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Drop_Balls-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.25794727159138514,
+      "local_global_coupling": 0.6376531776350866,
+      "event_rate_per_px": 0.330141563446916,
+      "hot_pixel_share": 0.0431065527722159,
+      "events": 277684,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Drop_Balls-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.11514942119358426,
+      "local_global_coupling": 0.5132465127343585,
+      "event_rate_per_px": 1.0083452285982522,
+      "hot_pixel_share": 0.032336666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Dump-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4767671803873835,
+      "local_global_coupling": 0.6214160207894981,
+      "event_rate_per_px": 1.6640397203778536,
+      "hot_pixel_share": 0.00579,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Dump-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.592224525382108,
+      "local_global_coupling": 0.5351480334260477,
+      "event_rate_per_px": 11.444273337807648,
+      "hot_pixel_share": 0.00617,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Dump-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.6603633935932076,
+      "local_global_coupling": -0.2100265062973246,
+      "event_rate_per_px": 4.6603753571202144,
+      "hot_pixel_share": 0.006223333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Dump-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.5785845132490283,
+      "local_global_coupling": 0.1611404055237348,
+      "event_rate_per_px": 4.059570615535318,
+      "hot_pixel_share": 0.006783333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Fence-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.34154291400833614,
+      "local_global_coupling": 0.9548055189075347,
+      "event_rate_per_px": 5.104366692193174,
+      "hot_pixel_share": 0.0056366666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Fence-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.21810638637706944,
+      "local_global_coupling": 0.9765460525250522,
+      "event_rate_per_px": 2.7471641054242792,
+      "hot_pixel_share": 0.00551,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Fence-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.20901886720873392,
+      "local_global_coupling": 0.9393935376897683,
+      "event_rate_per_px": 2.4841041858494295,
+      "hot_pixel_share": 0.006026666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Fence-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1925582955660074,
+      "local_global_coupling": 0.9740325594479069,
+      "event_rate_per_px": 2.5221698316245393,
+      "hot_pixel_share": 0.00737,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Ferriswheel-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.18634508221909282,
+      "local_global_coupling": 0.5943635665619664,
+      "event_rate_per_px": 2.5690587122439545,
+      "hot_pixel_share": 0.017843333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Ferriswheel-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.14765423181589063,
+      "local_global_coupling": 0.8461710846210313,
+      "event_rate_per_px": 2.460956788479426,
+      "hot_pixel_share": 0.008353333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Ferriswheel-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.15659830185511261,
+      "local_global_coupling": 0.9251737850763128,
+      "event_rate_per_px": 2.4630798056487766,
+      "hot_pixel_share": 0.007076666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Ferriswheel-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.14841687880379414,
+      "local_global_coupling": 0.9019147105392619,
+      "event_rate_per_px": 2.9866069672339868,
+      "hot_pixel_share": 0.006,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Food-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.33956463220119804,
+      "local_global_coupling": 0.795198362433394,
+      "event_rate_per_px": 8.906283813819785,
+      "hot_pixel_share": 0.004923333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Food-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.24614799020312655,
+      "local_global_coupling": 0.8800206054765893,
+      "event_rate_per_px": 5.878585030978945,
+      "hot_pixel_share": 0.005723333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Food-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3394319325225256,
+      "local_global_coupling": 0.8291735246113957,
+      "event_rate_per_px": 11.3193086304535,
+      "hot_pixel_share": 0.006,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Food-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2747454981852281,
+      "local_global_coupling": 0.9141782999485188,
+      "event_rate_per_px": 10.095589401750395,
+      "hot_pixel_share": 0.006586666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Hall-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3578453532566357,
+      "local_global_coupling": 0.9727625278701386,
+      "event_rate_per_px": 15.566592167931498,
+      "hot_pixel_share": 0.004683333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Hall-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.37879289284302525,
+      "local_global_coupling": 0.9528880101081258,
+      "event_rate_per_px": 17.77317021373645,
+      "hot_pixel_share": 0.004763333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Hall-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.5177050859216674,
+      "local_global_coupling": 0.9424589523093111,
+      "event_rate_per_px": 32.439523677238526,
+      "hot_pixel_share": 0.006636666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Hall-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.5178034319682306,
+      "local_global_coupling": 0.9034500630201547,
+      "event_rate_per_px": 32.774277142669824,
+      "hot_pixel_share": 0.00638,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Hands-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.10921668126747501,
+      "local_global_coupling": 0.7993368619311276,
+      "event_rate_per_px": 3.312489295690841,
+      "hot_pixel_share": 0.014103333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Hands-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.04765288153009711,
+      "local_global_coupling": 0.509125663068971,
+      "event_rate_per_px": 2.2836243593300614,
+      "hot_pixel_share": 0.020806666666666668,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Hands-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.033309832608103614,
+      "local_global_coupling": 0.33605809378869966,
+      "event_rate_per_px": 1.6393373631034778,
+      "hot_pixel_share": 0.025486666666666668,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Hands-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.02890992204123685,
+      "local_global_coupling": 0.34712467426550914,
+      "event_rate_per_px": 1.415882569730788,
+      "hot_pixel_share": 0.028413333333333332,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Leaf-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.24509589946021654,
+      "local_global_coupling": 0.8856113302241397,
+      "event_rate_per_px": 8.178398204684132,
+      "hot_pixel_share": 0.006333333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Leaf-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.22134216643638566,
+      "local_global_coupling": 0.8834584148281898,
+      "event_rate_per_px": 8.514219593602359,
+      "hot_pixel_share": 0.0054533333333333335,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Leaf-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.27178684207575826,
+      "local_global_coupling": 0.7538869141905493,
+      "event_rate_per_px": 8.10481545892271,
+      "hot_pixel_share": 0.006183333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Leaf-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.16971953755761546,
+      "local_global_coupling": 0.9362351296548421,
+      "event_rate_per_px": 6.3641273765058095,
+      "hot_pixel_share": 0.00732,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Lockers-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.25203046105000787,
+      "local_global_coupling": 0.8668309179565159,
+      "event_rate_per_px": 5.839039286641426,
+      "hot_pixel_share": 0.00838,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Lockers-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4412567629039362,
+      "local_global_coupling": 0.9120489476180091,
+      "event_rate_per_px": 15.291917412399277,
+      "hot_pixel_share": 0.0047866666666666665,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Lockers-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.19446858916314852,
+      "local_global_coupling": 0.9413860752374664,
+      "event_rate_per_px": 6.236225731219314,
+      "hot_pixel_share": 0.008393333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Lockers-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2731897350855088,
+      "local_global_coupling": 0.8514149857887606,
+      "event_rate_per_px": 10.849197484355786,
+      "hot_pixel_share": 0.00969,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Meeting_Room-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3854391916767861,
+      "local_global_coupling": 0.8897303658657526,
+      "event_rate_per_px": 12.397452242236934,
+      "hot_pixel_share": 0.010343333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Meeting_Room-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3868040904865724,
+      "local_global_coupling": 0.8182092450352755,
+      "event_rate_per_px": 9.045308991138084,
+      "hot_pixel_share": 0.010456666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Meeting_Room-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4023169991976792,
+      "local_global_coupling": 0.8302041805021549,
+      "event_rate_per_px": 9.474203664159385,
+      "hot_pixel_share": 0.01152,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Meeting_Room-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2900131729844976,
+      "local_global_coupling": 0.8331164283577643,
+      "event_rate_per_px": 5.5210988398325815,
+      "hot_pixel_share": 0.011126666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Minions-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1924103243952227,
+      "local_global_coupling": 0.5992571834368223,
+      "event_rate_per_px": 0.5167357220102081,
+      "hot_pixel_share": 0.00625,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Minions-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.18380595374911957,
+      "local_global_coupling": 0.6554860490162862,
+      "event_rate_per_px": 0.5969825335879521,
+      "hot_pixel_share": 0.007696666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Minions-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.17596959635113366,
+      "local_global_coupling": 0.7466641816954476,
+      "event_rate_per_px": 0.8576957631198185,
+      "hot_pixel_share": 0.014816666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Minions-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.11437059618987706,
+      "local_global_coupling": 0.8415842076410388,
+      "event_rate_per_px": 1.3849954018697423,
+      "hot_pixel_share": 0.02085,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Mirror-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.304925776303072,
+      "local_global_coupling": 0.852959537618309,
+      "event_rate_per_px": 2.6967769294697588,
+      "hot_pixel_share": 0.005823333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Mirror-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3183663027086191,
+      "local_global_coupling": 0.8676995596223976,
+      "event_rate_per_px": 3.3637945637101603,
+      "hot_pixel_share": 0.007373333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Mirror-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2660625037141169,
+      "local_global_coupling": 0.6605816273659179,
+      "event_rate_per_px": 4.108570167473598,
+      "hot_pixel_share": 0.01073,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Mirror-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.15716964472886105,
+      "local_global_coupling": 0.6379699536818159,
+      "event_rate_per_px": 3.855670257255995,
+      "hot_pixel_share": 0.01171,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Newton-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.5117390577531226,
+      "local_global_coupling": 0.8628054555103406,
+      "event_rate_per_px": 3.8761915136857437,
+      "hot_pixel_share": 0.0055966666666666665,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Newton-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.48279001069990685,
+      "local_global_coupling": 0.8667813369345732,
+      "event_rate_per_px": 3.8421879141742497,
+      "hot_pixel_share": 0.006266666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Newton-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4241082001818768,
+      "local_global_coupling": 0.8644188883149392,
+      "event_rate_per_px": 3.9227308346572127,
+      "hot_pixel_share": 0.007916666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Newton-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.27283095748674047,
+      "local_global_coupling": 0.8986642467857263,
+      "event_rate_per_px": 4.139866292353793,
+      "hot_pixel_share": 0.010126666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Pedestrians-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.30825223518091727,
+      "local_global_coupling": 0.5142553413688001,
+      "event_rate_per_px": 2.730060632429837,
+      "hot_pixel_share": 0.00571,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Pedestrians-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3320690815698849,
+      "local_global_coupling": 0.7922202464998199,
+      "event_rate_per_px": 3.121057374988229,
+      "hot_pixel_share": 0.00669,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Pedestrians-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2762481928999158,
+      "local_global_coupling": 0.8655517590552905,
+      "event_rate_per_px": 2.2650795562669406,
+      "hot_pixel_share": 0.00579,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Pedestrians-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.5288951014387264,
+      "local_global_coupling": 0.8943869372580261,
+      "event_rate_per_px": 6.482922771274879,
+      "hot_pixel_share": 0.005003333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Pendulum-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.20453367230877456,
+      "local_global_coupling": 0.6026717515050991,
+      "event_rate_per_px": 1.352095650772601,
+      "hot_pixel_share": 0.006753333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Pendulum-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.7073643161129605,
+      "local_global_coupling": 0.8209860249929376,
+      "event_rate_per_px": 32.81975665331953,
+      "hot_pixel_share": 0.0034866666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Pendulum-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.22412130205465497,
+      "local_global_coupling": 0.8758357568717177,
+      "event_rate_per_px": 2.2615618820923875,
+      "hot_pixel_share": 0.00475,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Pendulum-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3515973888248544,
+      "local_global_coupling": 0.7874218344611685,
+      "event_rate_per_px": 3.3363602083202495,
+      "hot_pixel_share": 0.005476666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Poker-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.6471921481555883,
+      "local_global_coupling": 0.7924806153348549,
+      "event_rate_per_px": 1.7907212809836341,
+      "hot_pixel_share": 0.008116666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Poker-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.7591576686791586,
+      "local_global_coupling": 0.6624148271890435,
+      "event_rate_per_px": 1.9052626285873753,
+      "hot_pixel_share": 0.005996666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Poker-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.8482308137676259,
+      "local_global_coupling": 0.4848429362386516,
+      "event_rate_per_px": 3.111999426598753,
+      "hot_pixel_share": 0.006536666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Poker-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.21028956164162585,
+      "local_global_coupling": 0.9012917965880072,
+      "event_rate_per_px": 1.6851413214683713,
+      "hot_pixel_share": 0.00997,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Punch-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3565970458487009,
+      "local_global_coupling": 0.7062641521638293,
+      "event_rate_per_px": 2.019685283246282,
+      "hot_pixel_share": 0.004756666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Punch-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.36397755039424085,
+      "local_global_coupling": 0.791439824388038,
+      "event_rate_per_px": 2.3182524855987867,
+      "hot_pixel_share": 0.004726666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Punch-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.40177898841004506,
+      "local_global_coupling": 0.8604368801959773,
+      "event_rate_per_px": 2.849782493200989,
+      "hot_pixel_share": 0.005626666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Punch-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.39425913667490753,
+      "local_global_coupling": 0.9149200899422786,
+      "event_rate_per_px": 3.50320397921261,
+      "hot_pixel_share": 0.0056,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Reflact-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2019497739285165,
+      "local_global_coupling": 0.9690331239221731,
+      "event_rate_per_px": 7.478573259411632,
+      "hot_pixel_share": 0.0044,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Reflact-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.23856084512190776,
+      "local_global_coupling": 0.9546748731157298,
+      "event_rate_per_px": 9.82240773802262,
+      "hot_pixel_share": 0.006503333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Reflact-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2841799776140068,
+      "local_global_coupling": 0.934805828821944,
+      "event_rate_per_px": 13.916519106722019,
+      "hot_pixel_share": 0.00755,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Reflact-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.18408431287948449,
+      "local_global_coupling": 0.9001645995430041,
+      "event_rate_per_px": 9.529541709536634,
+      "hot_pixel_share": 0.006506666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Ride-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4933570820233953,
+      "local_global_coupling": 0.1793327014565914,
+      "event_rate_per_px": 4.994982982482588,
+      "hot_pixel_share": 0.00527,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Ride-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.21917383176031624,
+      "local_global_coupling": 0.8121184369922138,
+      "event_rate_per_px": 1.9995691685611943,
+      "hot_pixel_share": 0.014236666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Ride-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.14383323411299204,
+      "local_global_coupling": 0.9088866612795069,
+      "event_rate_per_px": 2.4984307889213357,
+      "hot_pixel_share": 0.01839,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Ride-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.06874908833446478,
+      "local_global_coupling": 0.8265376610261764,
+      "event_rate_per_px": 2.196965367416705,
+      "hot_pixel_share": 0.02493,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Ruler-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4486758532117668,
+      "local_global_coupling": 0.9649882173626456,
+      "event_rate_per_px": 11.010352197384433,
+      "hot_pixel_share": 0.00479,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Ruler-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3020634018962852,
+      "local_global_coupling": 0.947748494599408,
+      "event_rate_per_px": 7.345004071458174,
+      "hot_pixel_share": 0.00662,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Ruler-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2882664616043267,
+      "local_global_coupling": 0.8676739847978994,
+      "event_rate_per_px": 7.533377926645005,
+      "hot_pixel_share": 0.0049766666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Ruler-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.17167461943370665,
+      "local_global_coupling": 0.5711954949662287,
+      "event_rate_per_px": 4.965700483261309,
+      "hot_pixel_share": 0.009026666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Shapes_Day-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.23233169000172496,
+      "local_global_coupling": 0.9190994449253441,
+      "event_rate_per_px": 2.2280823891868873,
+      "hot_pixel_share": 0.00465,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Shapes_Day-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.24519346247305118,
+      "local_global_coupling": 0.9322370409655845,
+      "event_rate_per_px": 2.751622782835687,
+      "hot_pixel_share": 0.007063333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Shapes_Day-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.233601250145752,
+      "local_global_coupling": 0.9234963371320214,
+      "event_rate_per_px": 3.2042795338921013,
+      "hot_pixel_share": 0.00824,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Shapes_Day-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.11736382437922827,
+      "local_global_coupling": 0.8018596488465469,
+      "event_rate_per_px": 2.969625747272911,
+      "hot_pixel_share": 0.01302,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Shuttlecock-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2338020578473001,
+      "local_global_coupling": 0.3940786124863114,
+      "event_rate_per_px": 0.4762822554182136,
+      "hot_pixel_share": 0.0071066666666666665,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Shuttlecock-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.26498788717376653,
+      "local_global_coupling": 0.6406323156692806,
+      "event_rate_per_px": 0.8921303790396341,
+      "hot_pixel_share": 0.005086666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Shuttlecock-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2457904015846768,
+      "local_global_coupling": 0.36567026642644695,
+      "event_rate_per_px": 0.5236696012437798,
+      "hot_pixel_share": 0.008963333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Shuttlecock-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.23886126749437775,
+      "local_global_coupling": 0.5029122888664432,
+      "event_rate_per_px": 0.5386269330538991,
+      "hot_pixel_share": 0.009753333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Snackery-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.14233895904774105,
+      "local_global_coupling": 0.9588428042057894,
+      "event_rate_per_px": 3.910962881376685,
+      "hot_pixel_share": 0.004856666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Snackery-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.23021376234010604,
+      "local_global_coupling": 0.9926651738753224,
+      "event_rate_per_px": 19.556855679096152,
+      "hot_pixel_share": 0.0048066666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Snackery-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.14524403035952396,
+      "local_global_coupling": 0.9737963610227335,
+      "event_rate_per_px": 11.005192604971906,
+      "hot_pixel_share": 0.006123333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Snackery-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.14335513689189402,
+      "local_global_coupling": 0.9484807064931083,
+      "event_rate_per_px": 10.810545560927514,
+      "hot_pixel_share": 0.00592,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Snow-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2807389472420679,
+      "local_global_coupling": 0.4492263890777633,
+      "event_rate_per_px": 0.19168061527510113,
+      "hot_pixel_share": 0.008782435129740519,
+      "events": 90180,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Snow-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3236080176240392,
+      "local_global_coupling": 0.5723167032300613,
+      "event_rate_per_px": 0.27948097474165107,
+      "hot_pixel_share": 0.006866433754367106,
+      "events": 148840,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Snow-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3183968480880462,
+      "local_global_coupling": 0.5829654109583856,
+      "event_rate_per_px": 0.3967911043989085,
+      "hot_pixel_share": 0.007475112324905294,
+      "events": 227020,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Snow-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2897321995345741,
+      "local_global_coupling": 0.4721989625254365,
+      "event_rate_per_px": 0.5706072698436958,
+      "hot_pixel_share": 0.01395,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Spinning-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.7875284214710337,
+      "local_global_coupling": 0.40610402945476237,
+      "event_rate_per_px": 3.8713272288862233,
+      "hot_pixel_share": 0.0037233333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Spinning-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.7129798506286569,
+      "local_global_coupling": 0.4898955805092855,
+      "event_rate_per_px": 2.8316509256179647,
+      "hot_pixel_share": 0.007043333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Spinning-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.6476639549237132,
+      "local_global_coupling": 0.5024817823898291,
+      "event_rate_per_px": 2.5338059366094035,
+      "hot_pixel_share": 0.012883333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Spinning-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3672042569702394,
+      "local_global_coupling": 0.1624488566648982,
+      "event_rate_per_px": 2.0876599471037185,
+      "hot_pixel_share": 0.03229666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Stacks-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2198918096907451,
+      "local_global_coupling": 0.830554909192053,
+      "event_rate_per_px": 7.440014710278045,
+      "hot_pixel_share": 0.00556,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Stacks-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2728914129171456,
+      "local_global_coupling": 0.8008324466558847,
+      "event_rate_per_px": 11.842174228240966,
+      "hot_pixel_share": 0.0075766666666666664,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Stacks-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.26640474145375104,
+      "local_global_coupling": 0.9126820874783722,
+      "event_rate_per_px": 10.607864165841097,
+      "hot_pixel_share": 0.00602,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Stacks-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.23426378395381936,
+      "local_global_coupling": 0.7940150912056011,
+      "event_rate_per_px": 11.385664104473252,
+      "hot_pixel_share": 0.008463333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Stairs-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.14838609933171654,
+      "local_global_coupling": 0.7877493671983371,
+      "event_rate_per_px": 2.7734013791626584,
+      "hot_pixel_share": 0.007893333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Stairs-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1415193215374187,
+      "local_global_coupling": 0.8998086141346828,
+      "event_rate_per_px": 3.466018123594338,
+      "hot_pixel_share": 0.009776666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Stairs-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.142917663235323,
+      "local_global_coupling": 0.9153727974248668,
+      "event_rate_per_px": 6.2489515300824445,
+      "hot_pixel_share": 0.00833,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Stairs-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.05841686585237661,
+      "local_global_coupling": 0.7544992758645921,
+      "event_rate_per_px": 2.7316483879464957,
+      "hot_pixel_share": 0.013656666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Study_Lounge-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.30955135655912874,
+      "local_global_coupling": 0.8747655099076704,
+      "event_rate_per_px": 8.673776366861993,
+      "hot_pixel_share": 0.010916666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Study_Lounge-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3559992369001282,
+      "local_global_coupling": 0.8954377076152967,
+      "event_rate_per_px": 8.864757710357049,
+      "hot_pixel_share": 0.011363333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Study_Lounge-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.35292762150652734,
+      "local_global_coupling": 0.877058587047828,
+      "event_rate_per_px": 10.029821869962397,
+      "hot_pixel_share": 0.012206666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Study_Lounge-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.23834371145251954,
+      "local_global_coupling": 0.9308865357740851,
+      "event_rate_per_px": 5.883770962281436,
+      "hot_pixel_share": 0.011496666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Swan-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1639555160467969,
+      "local_global_coupling": 0.37083087822403976,
+      "event_rate_per_px": 3.146450092317139,
+      "hot_pixel_share": 0.00921,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Swan-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.16714356427605592,
+      "local_global_coupling": 0.556029760564127,
+      "event_rate_per_px": 6.922424027732324,
+      "hot_pixel_share": 0.009626666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Swan-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.12131490840565962,
+      "local_global_coupling": 0.5620286010026008,
+      "event_rate_per_px": 6.393544891579412,
+      "hot_pixel_share": 0.012293333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Swan-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.07629157728181975,
+      "local_global_coupling": 0.39478963576834525,
+      "event_rate_per_px": 3.653147054747434,
+      "hot_pixel_share": 0.018303333333333335,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Temple-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2316931721197811,
+      "local_global_coupling": 0.9058197965977404,
+      "event_rate_per_px": 4.85746586992603,
+      "hot_pixel_share": 0.005433333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Temple-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.27179255300615957,
+      "local_global_coupling": 0.9094214023205102,
+      "event_rate_per_px": 6.199555826127318,
+      "hot_pixel_share": 0.00673,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Temple-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2088334850733273,
+      "local_global_coupling": 0.8993634963759752,
+      "event_rate_per_px": 3.91785037746647,
+      "hot_pixel_share": 0.0069566666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Temple-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.246736687421582,
+      "local_global_coupling": 0.9569753466104736,
+      "event_rate_per_px": 6.740486945862502,
+      "hot_pixel_share": 0.0044466666666666665,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Toys-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4076668417692847,
+      "local_global_coupling": 0.6485520708907465,
+      "event_rate_per_px": 2.086402145167692,
+      "hot_pixel_share": 0.0038133333333333335,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Toys-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3388833641099015,
+      "local_global_coupling": 0.6284487947997942,
+      "event_rate_per_px": 2.0564475037562597,
+      "hot_pixel_share": 0.005883333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Toys-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3861911388440789,
+      "local_global_coupling": 0.6246170461460021,
+      "event_rate_per_px": 1.5718850671817948,
+      "hot_pixel_share": 0.005076666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Toys-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.17678640372141405,
+      "local_global_coupling": 0.8222067700857404,
+      "event_rate_per_px": 1.822760721702218,
+      "hot_pixel_share": 0.010763333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Tree-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.17191170101554196,
+      "local_global_coupling": 0.7614704707560322,
+      "event_rate_per_px": 2.491246890284046,
+      "hot_pixel_share": 0.006056666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Tree-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.15206542321009536,
+      "local_global_coupling": 0.8520870235137357,
+      "event_rate_per_px": 1.9785400909667366,
+      "hot_pixel_share": 0.007126666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Tree-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3759155202560599,
+      "local_global_coupling": 0.06724515654492345,
+      "event_rate_per_px": 2.4973624397951055,
+      "hot_pixel_share": 0.00508,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Tree-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.08299751013025979,
+      "local_global_coupling": 0.8008116979985758,
+      "event_rate_per_px": 1.6554446658938167,
+      "hot_pixel_share": 0.00924,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/UAV-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3364351684448833,
+      "local_global_coupling": 0.8207176705245587,
+      "event_rate_per_px": 0.6816057585779869,
+      "hot_pixel_share": 0.00428,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/UAV-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4717865745304849,
+      "local_global_coupling": 0.6597141611514855,
+      "event_rate_per_px": 0.8640134605832082,
+      "hot_pixel_share": 0.014093333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/UAV-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4753721166458364,
+      "local_global_coupling": 0.8256977997473256,
+      "event_rate_per_px": 0.9019825980872576,
+      "hot_pixel_share": 0.00579,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/UAV-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3449683872264579,
+      "local_global_coupling": 0.7798135550424253,
+      "event_rate_per_px": 0.3962904565359604,
+      "hot_pixel_share": 0.0049970255800118974,
+      "events": 218530,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Windows-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.28137580967676584,
+      "local_global_coupling": 0.9192214692250542,
+      "event_rate_per_px": 4.047680888601655,
+      "hot_pixel_share": 0.005056666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Windows-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.29819639466961406,
+      "local_global_coupling": 0.9152069574890643,
+      "event_rate_per_px": 4.4873633344553,
+      "hot_pixel_share": 0.005083333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Windows-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2766894217738903,
+      "local_global_coupling": 0.908401657795379,
+      "event_rate_per_px": 3.4671532457820526,
+      "hot_pixel_share": 0.006016666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/D-END/Windows-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.26107783673984436,
+      "local_global_coupling": 0.8880678664308301,
+      "event_rate_per_px": 4.195153321580128,
+      "hot_pixel_share": 0.005803333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Bat-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.383316425653831,
+      "local_global_coupling": 0.6316651627055009,
+      "event_rate_per_px": 1.9451135423228785,
+      "hot_pixel_share": 0.0066,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Bat-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2741990554165259,
+      "local_global_coupling": 0.863574581469505,
+      "event_rate_per_px": 1.9557532374602287,
+      "hot_pixel_share": 0.011423333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Bat-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.12427186775812304,
+      "local_global_coupling": 0.7149197316889665,
+      "event_rate_per_px": 1.8633085438367156,
+      "hot_pixel_share": 0.011816666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Bat-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.06279494018450563,
+      "local_global_coupling": 0.5123698106234831,
+      "event_rate_per_px": 1.4732646096709812,
+      "hot_pixel_share": 0.014883333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Beams-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.18936455459400786,
+      "local_global_coupling": 0.7220045493862488,
+      "event_rate_per_px": 1.48080879881946,
+      "hot_pixel_share": 0.007593333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Beams-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2218961655420889,
+      "local_global_coupling": 0.8221634955992227,
+      "event_rate_per_px": 2.1539006641897895,
+      "hot_pixel_share": 0.008473333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Beams-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.15916689981320836,
+      "local_global_coupling": 0.8481730012386842,
+      "event_rate_per_px": 2.388389759180982,
+      "hot_pixel_share": 0.010156666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Beams-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2034783030198785,
+      "local_global_coupling": 0.9459851758276558,
+      "event_rate_per_px": 5.387180343286245,
+      "hot_pixel_share": 0.01093,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Bed-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1687866373699626,
+      "local_global_coupling": 0.7814011444136632,
+      "event_rate_per_px": 2.0628371076024226,
+      "hot_pixel_share": 0.008146666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Bed-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.19214198148313527,
+      "local_global_coupling": 0.8338684552227453,
+      "event_rate_per_px": 3.9966005725507605,
+      "hot_pixel_share": 0.008243333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Bed-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.11661939457150437,
+      "local_global_coupling": 0.8150216090826062,
+      "event_rate_per_px": 3.394860368888325,
+      "hot_pixel_share": 0.010763333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Bed-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.07040887490902713,
+      "local_global_coupling": 0.6183202781377235,
+      "event_rate_per_px": 2.1979181390306595,
+      "hot_pixel_share": 0.013806666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Bridge-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.43493644942897575,
+      "local_global_coupling": 0.9240111230832593,
+      "event_rate_per_px": 6.536585290093041,
+      "hot_pixel_share": 0.053483333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Bridge-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1266694550639998,
+      "local_global_coupling": 0.7089698161983694,
+      "event_rate_per_px": 2.9243609444619514,
+      "hot_pixel_share": 0.06976666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Bridge-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.035641070039296535,
+      "local_global_coupling": 0.3304126313607993,
+      "event_rate_per_px": 1.9410083986253275,
+      "hot_pixel_share": 0.030406666666666665,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Bridge-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.03081778617411446,
+      "local_global_coupling": 0.31899167458987804,
+      "event_rate_per_px": 1.8012661271087984,
+      "hot_pixel_share": 0.03241666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Car_Night-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3375490293795542,
+      "local_global_coupling": -0.040489942116328614,
+      "event_rate_per_px": 5.999531297416546,
+      "hot_pixel_share": 0.017646666666666668,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Car_Night-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.07583091857751306,
+      "local_global_coupling": 0.4905479818005285,
+      "event_rate_per_px": 2.373963316887037,
+      "hot_pixel_share": 0.029013333333333332,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Car_Night-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.10001331890732096,
+      "local_global_coupling": 0.4727263268006415,
+      "event_rate_per_px": 2.8023847837160227,
+      "hot_pixel_share": 0.023223333333333332,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Car_Night-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1626756843052205,
+      "local_global_coupling": 0.09170274847091416,
+      "event_rate_per_px": 2.7014344507795687,
+      "hot_pixel_share": 0.022143333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Ceiling-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.05842551176738544,
+      "local_global_coupling": 0.8258581322011189,
+      "event_rate_per_px": 2.1011555883396094,
+      "hot_pixel_share": 0.018226666666666665,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Ceiling-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.05107488503831039,
+      "local_global_coupling": 0.7653631896312793,
+      "event_rate_per_px": 2.4372246357801437,
+      "hot_pixel_share": 0.017163333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Ceiling-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.040123132510265884,
+      "local_global_coupling": 0.4153456417740707,
+      "event_rate_per_px": 1.9374606958650487,
+      "hot_pixel_share": 0.019886666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Ceiling-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.027968419033131,
+      "local_global_coupling": 0.331557553891395,
+      "event_rate_per_px": 1.3132705449778888,
+      "hot_pixel_share": 0.023793333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Checker_Blur-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1773685831779923,
+      "local_global_coupling": 0.8766480434935403,
+      "event_rate_per_px": 5.0382923452150905,
+      "hot_pixel_share": 0.0067733333333333335,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Checker_Blur-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.09949565593510157,
+      "local_global_coupling": 0.7451348912865822,
+      "event_rate_per_px": 3.624271544735655,
+      "hot_pixel_share": 0.00858,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Checker_Blur-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.06676584297217829,
+      "local_global_coupling": 0.6858969972993989,
+      "event_rate_per_px": 2.787985561485211,
+      "hot_pixel_share": 0.010333333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Checker_Blur-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.024585388370002265,
+      "local_global_coupling": 0.24429417475755744,
+      "event_rate_per_px": 0.9254723149254883,
+      "hot_pixel_share": 0.021066666666666668,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Checker_Lowlight-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.22319278455475935,
+      "local_global_coupling": 0.8647203161599599,
+      "event_rate_per_px": 6.691525618912677,
+      "hot_pixel_share": 0.00923,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Checker_Lowlight-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.09299829894636236,
+      "local_global_coupling": 0.6800072362197078,
+      "event_rate_per_px": 3.8200715183806553,
+      "hot_pixel_share": 0.015706666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Checker_Lowlight-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.048260259136120406,
+      "local_global_coupling": 0.5142637792411758,
+      "event_rate_per_px": 2.456804970125365,
+      "hot_pixel_share": 0.022246666666666668,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Checker_Lowlight-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.03231556029558238,
+      "local_global_coupling": 0.3122596793912416,
+      "event_rate_per_px": 1.6485442689741618,
+      "hot_pixel_share": 0.02987333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Cloth-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.15546496259652984,
+      "local_global_coupling": 0.9296539556340013,
+      "event_rate_per_px": 14.09277435329729,
+      "hot_pixel_share": 0.006263333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Cloth-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.12908690374298792,
+      "local_global_coupling": 0.87808453581512,
+      "event_rate_per_px": 10.962683634433597,
+      "hot_pixel_share": 0.005483333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Cloth-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.10113769588408629,
+      "local_global_coupling": 0.8792661033493308,
+      "event_rate_per_px": 7.297316962974839,
+      "hot_pixel_share": 0.006836666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Cloth-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.06659250487082187,
+      "local_global_coupling": 0.5190795423578933,
+      "event_rate_per_px": 3.558218203447232,
+      "hot_pixel_share": 0.010466666666666668,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Cola_Can-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3343278444365881,
+      "local_global_coupling": 0.7465630473938032,
+      "event_rate_per_px": 0.6666315213758842,
+      "hot_pixel_share": 0.009349035030351444,
+      "events": 227831,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Cola_Can-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.17352461458941806,
+      "local_global_coupling": 0.853870784861798,
+      "event_rate_per_px": 1.1891296742045843,
+      "hot_pixel_share": 0.017963333333333335,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Cola_Can-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.14351068953973486,
+      "local_global_coupling": 0.9285614138478732,
+      "event_rate_per_px": 1.4907014746664164,
+      "hot_pixel_share": 0.022656666666666665,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Cola_Can-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.06598064141688681,
+      "local_global_coupling": 0.8786805341798718,
+      "event_rate_per_px": 1.7393580206542838,
+      "hot_pixel_share": 0.026536666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Dark_Building-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1662186787178923,
+      "local_global_coupling": 0.8436829698591977,
+      "event_rate_per_px": 7.738719579565395,
+      "hot_pixel_share": 0.007653333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Dark_Building-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.0703447918370036,
+      "local_global_coupling": 0.38370432497047463,
+      "event_rate_per_px": 2.4837619072949164,
+      "hot_pixel_share": 0.01556,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Dark_Building-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.0332904070666552,
+      "local_global_coupling": 0.3084959695876252,
+      "event_rate_per_px": 1.4540042587214768,
+      "hot_pixel_share": 0.021946666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Dark_Building-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.02861498786003173,
+      "local_global_coupling": 0.2889618694574534,
+      "event_rate_per_px": 1.2344767430013317,
+      "hot_pixel_share": 0.02451,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Fire-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.5278421573968566,
+      "local_global_coupling": 0.741513765722067,
+      "event_rate_per_px": 8.118311087387553,
+      "hot_pixel_share": 0.010586666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Fire-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.38105766054844614,
+      "local_global_coupling": 0.5225373748728126,
+      "event_rate_per_px": 4.937322111164439,
+      "hot_pixel_share": 0.019946666666666668,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Fire-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.27358273561483804,
+      "local_global_coupling": 0.5327421655107292,
+      "event_rate_per_px": 3.639059001351816,
+      "hot_pixel_share": 0.02228,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Fire-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.07941779151619992,
+      "local_global_coupling": 0.37774646424684555,
+      "event_rate_per_px": 1.9732075500481627,
+      "hot_pixel_share": 0.02588,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Flip_Chariot-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.7745416899298819,
+      "local_global_coupling": 0.6458466365533815,
+      "event_rate_per_px": 4.667204285869551,
+      "hot_pixel_share": 0.00577,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Flip_Chariot-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4188449271689675,
+      "local_global_coupling": 0.7967422385147901,
+      "event_rate_per_px": 5.47031835166792,
+      "hot_pixel_share": 0.006416666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Flip_Chariot-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.29980933964964535,
+      "local_global_coupling": 0.8958499134128249,
+      "event_rate_per_px": 4.383808160701813,
+      "hot_pixel_share": 0.0064266666666666665,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Flip_Chariot-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.22338287477171662,
+      "local_global_coupling": 0.9181466159147981,
+      "event_rate_per_px": 3.418580962877177,
+      "hot_pixel_share": 0.007333333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Fly_Soccer-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.6511432603112177,
+      "local_global_coupling": 0.8696752906690509,
+      "event_rate_per_px": 10.466927617406498,
+      "hot_pixel_share": 0.013326666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Fly_Soccer-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3015634723547537,
+      "local_global_coupling": 0.9130586385788575,
+      "event_rate_per_px": 4.019307572437471,
+      "hot_pixel_share": 0.030863333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Fly_Soccer-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2165489051005288,
+      "local_global_coupling": 0.9255846808779075,
+      "event_rate_per_px": 3.986719929733966,
+      "hot_pixel_share": 0.01524,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Fly_Soccer-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.07268032531535201,
+      "local_global_coupling": 0.8459979133212994,
+      "event_rate_per_px": 2.356485267473261,
+      "hot_pixel_share": 0.02389,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Garage-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.15382087563969887,
+      "local_global_coupling": 0.8829311292409909,
+      "event_rate_per_px": 4.978347057826361,
+      "hot_pixel_share": 0.009643333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Garage-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1470140738343138,
+      "local_global_coupling": 0.6510549621160081,
+      "event_rate_per_px": 6.9340830047216695,
+      "hot_pixel_share": 0.010433333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Garage-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.14261525039292203,
+      "local_global_coupling": 0.875292308820172,
+      "event_rate_per_px": 5.317183942561346,
+      "hot_pixel_share": 0.011923333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Garage-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.07508137486023857,
+      "local_global_coupling": 0.7246210323374827,
+      "event_rate_per_px": 3.0978543951499846,
+      "hot_pixel_share": 0.01704666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Gas_Tank-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.10447801616836831,
+      "local_global_coupling": 0.9716194936078861,
+      "event_rate_per_px": 6.491150279015777,
+      "hot_pixel_share": 0.008723333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Gas_Tank-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.14157844091384794,
+      "local_global_coupling": 0.965882160579547,
+      "event_rate_per_px": 8.27195904606458,
+      "hot_pixel_share": 0.00777,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Gas_Tank-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.19064270516791787,
+      "local_global_coupling": 0.7423859021952414,
+      "event_rate_per_px": 8.22061423475971,
+      "hot_pixel_share": 0.008193333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Gas_Tank-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.12079285399265602,
+      "local_global_coupling": 0.41767466560108,
+      "event_rate_per_px": 4.0122714605762555,
+      "hot_pixel_share": 0.012563333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Gun-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.49241053905222854,
+      "local_global_coupling": 0.9489256452362659,
+      "event_rate_per_px": 6.599530731655945,
+      "hot_pixel_share": 0.0045,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Gun-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4021219123390173,
+      "local_global_coupling": 0.9545149414868407,
+      "event_rate_per_px": 6.574446116217005,
+      "hot_pixel_share": 0.005796666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Gun-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.34603677674121397,
+      "local_global_coupling": 0.92858171497231,
+      "event_rate_per_px": 4.831672421350651,
+      "hot_pixel_share": 0.007366666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Gun-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.18364288277086638,
+      "local_global_coupling": 0.8154386643445068,
+      "event_rate_per_px": 2.902570482439824,
+      "hot_pixel_share": 0.0077933333333333335,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Hall_Lowlight-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.04756647584260885,
+      "local_global_coupling": 0.8048791858452423,
+      "event_rate_per_px": 2.0576567413698874,
+      "hot_pixel_share": 0.031136666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Hall_Lowlight-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.03741252115155132,
+      "local_global_coupling": 0.7378889516668267,
+      "event_rate_per_px": 1.7793853463077163,
+      "hot_pixel_share": 0.02734,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Hall_Lowlight-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.04075493123901923,
+      "local_global_coupling": 0.564822281560646,
+      "event_rate_per_px": 1.7378624170203194,
+      "hot_pixel_share": 0.026456666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Hall_Lowlight-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.031938475040191275,
+      "local_global_coupling": 0.34723036094057663,
+      "event_rate_per_px": 1.505394201967728,
+      "hot_pixel_share": 0.028603333333333335,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Keyboard-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.42266423234655914,
+      "local_global_coupling": 0.7198404541574133,
+      "event_rate_per_px": 10.410172482983178,
+      "hot_pixel_share": 0.018756666666666668,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Keyboard-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.32231333745044527,
+      "local_global_coupling": 0.8302305028860989,
+      "event_rate_per_px": 11.927819193383709,
+      "hot_pixel_share": 0.00812,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Keyboard-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2528821588034739,
+      "local_global_coupling": 0.8771389668325306,
+      "event_rate_per_px": 7.454333752551149,
+      "hot_pixel_share": 0.01028,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Keyboard-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3236132338927356,
+      "local_global_coupling": 0.8881134916772345,
+      "event_rate_per_px": 9.345224910238274,
+      "hot_pixel_share": 0.010286666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/LED-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.09626505693296583,
+      "local_global_coupling": 0.731579265633973,
+      "event_rate_per_px": 0.24996112405850923,
+      "hot_pixel_share": 0.02386310959428683,
+      "events": 148849,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/LED-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.03099759497381519,
+      "local_global_coupling": 0.8337697206648429,
+      "event_rate_per_px": 0.6576546507815968,
+      "hot_pixel_share": 0.025233333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/LED-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.03330784097943013,
+      "local_global_coupling": 0.9259300985519102,
+      "event_rate_per_px": 1.0230502676931676,
+      "hot_pixel_share": 0.019606666666666668,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/LED-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.029514383140981534,
+      "local_global_coupling": 0.8211940773254833,
+      "event_rate_per_px": 0.9472298380967659,
+      "hot_pixel_share": 0.020656666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/LEGO-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3705077931991288,
+      "local_global_coupling": 0.9456009668683156,
+      "event_rate_per_px": 15.967667746609004,
+      "hot_pixel_share": 0.008,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/LEGO-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2868497287666075,
+      "local_global_coupling": 0.8814002976441117,
+      "event_rate_per_px": 11.17445673903535,
+      "hot_pixel_share": 0.006983333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/LEGO-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.24465772655671184,
+      "local_global_coupling": 0.9216633510268668,
+      "event_rate_per_px": 10.11721287533993,
+      "hot_pixel_share": 0.006986666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/LEGO-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.18781555207314796,
+      "local_global_coupling": 0.5945061989529397,
+      "event_rate_per_px": 6.635471539601725,
+      "hot_pixel_share": 0.009853333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Landmark-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.7612469203062286,
+      "local_global_coupling": 0.8770610867604844,
+      "event_rate_per_px": 61.14551923474573,
+      "hot_pixel_share": 0.005883333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Landmark-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.6028682061849642,
+      "local_global_coupling": 0.9119147929924092,
+      "event_rate_per_px": 21.49718602408203,
+      "hot_pixel_share": 0.007003333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Landmark-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.12178297182243122,
+      "local_global_coupling": 0.9324433930905496,
+      "event_rate_per_px": 4.288881438396548,
+      "hot_pixel_share": 0.013813333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Landmark-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.11137364549578477,
+      "local_global_coupling": 0.9175406775437065,
+      "event_rate_per_px": 3.2476738877867044,
+      "hot_pixel_share": 0.013046666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Lantern-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4842344556873553,
+      "local_global_coupling": 0.7557863449656761,
+      "event_rate_per_px": 22.308845585773707,
+      "hot_pixel_share": 0.016086666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Lantern-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.46777585469710187,
+      "local_global_coupling": 0.2781045497683755,
+      "event_rate_per_px": 12.772275059723924,
+      "hot_pixel_share": 0.02732,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Lantern-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.34153344064322316,
+      "local_global_coupling": 0.6501810023415836,
+      "event_rate_per_px": 16.38118183648268,
+      "hot_pixel_share": 0.020833333333333332,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Lantern-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4051147129229425,
+      "local_global_coupling": 0.79689676131277,
+      "event_rate_per_px": 24.845705765445025,
+      "hot_pixel_share": 0.0074266666666666665,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Light_Board-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2582248008053494,
+      "local_global_coupling": 0.941597910902113,
+      "event_rate_per_px": 10.8794241042127,
+      "hot_pixel_share": 0.011156666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Light_Board-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3315727047637649,
+      "local_global_coupling": 0.9409945201026858,
+      "event_rate_per_px": 16.20896122535736,
+      "hot_pixel_share": 0.01282,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Light_Board-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.45569720317956064,
+      "local_global_coupling": 0.9302085034652428,
+      "event_rate_per_px": 25.39573444982102,
+      "hot_pixel_share": 0.007436666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Light_Board-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.39283969360988674,
+      "local_global_coupling": 0.9739644161051259,
+      "event_rate_per_px": 15.01905284001368,
+      "hot_pixel_share": 0.006723333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Lounge-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.07128289668950365,
+      "local_global_coupling": 0.9225605601778936,
+      "event_rate_per_px": 3.448591401047145,
+      "hot_pixel_share": 0.015133333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Lounge-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.06172956380968546,
+      "local_global_coupling": 0.9282811226284063,
+      "event_rate_per_px": 3.40462735750953,
+      "hot_pixel_share": 0.01666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Lounge-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.04475905268953606,
+      "local_global_coupling": 0.7536496102224038,
+      "event_rate_per_px": 2.3527346310967574,
+      "hot_pixel_share": 0.0224,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Lounge-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.08667013124401747,
+      "local_global_coupling": 0.6178311780283046,
+      "event_rate_per_px": 3.107119539453562,
+      "hot_pixel_share": 0.01836,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Machine-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.5229149712163788,
+      "local_global_coupling": -0.3594433854401248,
+      "event_rate_per_px": 14.708441275642167,
+      "hot_pixel_share": 0.026416666666666668,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Machine-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4800206397510093,
+      "local_global_coupling": 0.912679830507752,
+      "event_rate_per_px": 21.70580962622153,
+      "hot_pixel_share": 0.012376666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Machine-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4318463478634065,
+      "local_global_coupling": 0.9420598893199184,
+      "event_rate_per_px": 21.375378006459744,
+      "hot_pixel_share": 0.008646666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Machine-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3878955847100335,
+      "local_global_coupling": 0.6950558863898494,
+      "event_rate_per_px": 18.037437046909655,
+      "hot_pixel_share": 0.00778,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Mall-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.08352070109426857,
+      "local_global_coupling": 0.8697512521015653,
+      "event_rate_per_px": 2.6537323994838644,
+      "hot_pixel_share": 0.021793333333333335,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Mall-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.10784232254775454,
+      "local_global_coupling": 0.8538748197020392,
+      "event_rate_per_px": 4.231682492736962,
+      "hot_pixel_share": 0.016206666666666668,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Mall-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.0684057191436915,
+      "local_global_coupling": 0.6279697645700641,
+      "event_rate_per_px": 3.1226647528967453,
+      "hot_pixel_share": 0.0205,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Mall-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.04881391102571338,
+      "local_global_coupling": 0.5180205963693612,
+      "event_rate_per_px": 2.2995571459805153,
+      "hot_pixel_share": 0.02537,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Office-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.19421346279018567,
+      "local_global_coupling": 0.7815698305614214,
+      "event_rate_per_px": 2.773809689943113,
+      "hot_pixel_share": 0.007703333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Office-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.13044313669749355,
+      "local_global_coupling": 0.8961163450356959,
+      "event_rate_per_px": 2.351293087833798,
+      "hot_pixel_share": 0.00838,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Office-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.18279770230025624,
+      "local_global_coupling": 0.827153278457036,
+      "event_rate_per_px": 4.914330410916456,
+      "hot_pixel_share": 0.008863333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Office-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.11366860812116404,
+      "local_global_coupling": 0.8644702706780747,
+      "event_rate_per_px": 3.446620392454633,
+      "hot_pixel_share": 0.00971,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Party-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3499253946898216,
+      "local_global_coupling": 0.4710700601120017,
+      "event_rate_per_px": 5.329786562670886,
+      "hot_pixel_share": 0.010543333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Party-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.34255409331103076,
+      "local_global_coupling": 0.12898430664911387,
+      "event_rate_per_px": 9.813476174279904,
+      "hot_pixel_share": 0.010113333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Party-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.23998046220531632,
+      "local_global_coupling": 0.232819491410013,
+      "event_rate_per_px": 8.79385760161963,
+      "hot_pixel_share": 0.007556666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Party-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1393791073285201,
+      "local_global_coupling": 0.37349316237517277,
+      "event_rate_per_px": 6.323399529262363,
+      "hot_pixel_share": 0.009843333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Pedestrian-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.36053999649320473,
+      "local_global_coupling": 0.5872288907133748,
+      "event_rate_per_px": 8.045936694261124,
+      "hot_pixel_share": 0.00868,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Pedestrian-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.20409132820339765,
+      "local_global_coupling": 0.4285722189878132,
+      "event_rate_per_px": 3.7526632707522483,
+      "hot_pixel_share": 0.016026666666666668,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Pedestrian-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.10084266599043518,
+      "local_global_coupling": 0.5352357818405127,
+      "event_rate_per_px": 2.5295104186277824,
+      "hot_pixel_share": 0.024613333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Pedestrian-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.05366217262565957,
+      "local_global_coupling": 0.42612474696439784,
+      "event_rate_per_px": 2.1517923283189586,
+      "hot_pixel_share": 0.02598,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Rain-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2501937246085683,
+      "local_global_coupling": 0.8545483607171436,
+      "event_rate_per_px": 3.1756245885446432,
+      "hot_pixel_share": 0.018333333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Rain-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.09081646080034116,
+      "local_global_coupling": 0.6781787471023835,
+      "event_rate_per_px": 2.337188779992695,
+      "hot_pixel_share": 0.025153333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Rain-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.036663179403762534,
+      "local_global_coupling": 0.3891129491245535,
+      "event_rate_per_px": 1.9090691662509405,
+      "hot_pixel_share": 0.030446666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Rain-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.033129599718218807,
+      "local_global_coupling": 0.3691748885206195,
+      "event_rate_per_px": 1.9227454481708102,
+      "hot_pixel_share": 0.03052,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Rowing-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3674726102556445,
+      "local_global_coupling": 0.9375018880818186,
+      "event_rate_per_px": 5.2308861682757,
+      "hot_pixel_share": 0.00987,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Rowing-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2275159924947726,
+      "local_global_coupling": 0.9353068053910729,
+      "event_rate_per_px": 3.857588097315846,
+      "hot_pixel_share": 0.01407,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Rowing-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.21102700774986047,
+      "local_global_coupling": 0.841807027064561,
+      "event_rate_per_px": 3.5248954612940806,
+      "hot_pixel_share": 0.016136666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Rowing-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1393440857697499,
+      "local_global_coupling": 0.5963298712425444,
+      "event_rate_per_px": 2.2825396068501864,
+      "hot_pixel_share": 0.02189,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/School-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2701179889571586,
+      "local_global_coupling": 0.9813195388595867,
+      "event_rate_per_px": 15.823335722593734,
+      "hot_pixel_share": 0.007003333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/School-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.18449856383718755,
+      "local_global_coupling": 0.9676767227869161,
+      "event_rate_per_px": 10.258824226142831,
+      "hot_pixel_share": 0.00681,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/School-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.12274913442151789,
+      "local_global_coupling": 0.8828475900935985,
+      "event_rate_per_px": 5.439641067474525,
+      "hot_pixel_share": 0.010886666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/School-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.08774267351640266,
+      "local_global_coupling": 0.8029371486362894,
+      "event_rate_per_px": 3.1751680252349828,
+      "hot_pixel_share": 0.014063333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Screen-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.7620409161354138,
+      "local_global_coupling": 0.8119498185920858,
+      "event_rate_per_px": 7.1880163071248235,
+      "hot_pixel_share": 0.003843333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Screen-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.7567700964023535,
+      "local_global_coupling": 0.5513563842645538,
+      "event_rate_per_px": 4.917634971176489,
+      "hot_pixel_share": 0.004666666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Screen-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.6696301753286786,
+      "local_global_coupling": 0.753806493743961,
+      "event_rate_per_px": 7.124806323896015,
+      "hot_pixel_share": 0.00428,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Screen-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.40680018916635,
+      "local_global_coupling": 0.6193873618486462,
+      "event_rate_per_px": 7.150011628349913,
+      "hot_pixel_share": 0.00569,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Shapes_Night-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.22509947354419604,
+      "local_global_coupling": 0.9475598262412364,
+      "event_rate_per_px": 2.8789608176733923,
+      "hot_pixel_share": 0.009756666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Shapes_Night-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.12520858312683447,
+      "local_global_coupling": 0.724462805593023,
+      "event_rate_per_px": 3.1577269864184636,
+      "hot_pixel_share": 0.011713333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Shapes_Night-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.05662902287896325,
+      "local_global_coupling": 0.5303753966256118,
+      "event_rate_per_px": 2.067852553361793,
+      "hot_pixel_share": 0.017946666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Shapes_Night-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.028189987588573842,
+      "local_global_coupling": 0.2974079862216986,
+      "event_rate_per_px": 1.301883198626368,
+      "hot_pixel_share": 0.02247,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Signage-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1528782222249086,
+      "local_global_coupling": 0.7779159728639822,
+      "event_rate_per_px": 4.168811158710857,
+      "hot_pixel_share": 0.013766666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Signage-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.054725096193794086,
+      "local_global_coupling": 0.6431719087327626,
+      "event_rate_per_px": 2.52458137591908,
+      "hot_pixel_share": 0.02404,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Signage-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.03851466542165945,
+      "local_global_coupling": 0.3987672785831016,
+      "event_rate_per_px": 2.149332041864858,
+      "hot_pixel_share": 0.028396666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Signage-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.031846996251270396,
+      "local_global_coupling": 0.2842873340646367,
+      "event_rate_per_px": 1.7661290524147246,
+      "hot_pixel_share": 0.03014,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Ski_Walker-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3279706004997119,
+      "local_global_coupling": 0.8425156268869279,
+      "event_rate_per_px": 4.424621993702754,
+      "hot_pixel_share": 0.00949,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Ski_Walker-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2603112350301804,
+      "local_global_coupling": 0.7761577798234036,
+      "event_rate_per_px": 4.5203065486990655,
+      "hot_pixel_share": 0.01,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Ski_Walker-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.13500343093017972,
+      "local_global_coupling": 0.6750098118943708,
+      "event_rate_per_px": 2.960322798271287,
+      "hot_pixel_share": 0.01503,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Ski_Walker-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.04614625772249737,
+      "local_global_coupling": 0.4682249905317835,
+      "event_rate_per_px": 1.7453534777340223,
+      "hot_pixel_share": 0.023423333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Snowball-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.0375410117162045,
+      "local_global_coupling": 0.9054898780066637,
+      "event_rate_per_px": 1.048913684738483,
+      "hot_pixel_share": 0.031643333333333336,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Snowball-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.04376221226530511,
+      "local_global_coupling": 0.7476892781144446,
+      "event_rate_per_px": 1.5104856484798044,
+      "hot_pixel_share": 0.03121,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Snowball-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.030701905631159127,
+      "local_global_coupling": 0.3731978603066549,
+      "event_rate_per_px": 1.6543860640616692,
+      "hot_pixel_share": 0.03121,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Snowball-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.03136121415597936,
+      "local_global_coupling": 0.35962840570659005,
+      "event_rate_per_px": 1.794877224973693,
+      "hot_pixel_share": 0.031073333333333335,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Sparkler-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.6178304649364253,
+      "local_global_coupling": -0.12476024369075715,
+      "event_rate_per_px": 5.555053835437703,
+      "hot_pixel_share": 0.022756666666666668,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Sparkler-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4565184568140433,
+      "local_global_coupling": -0.06493783926938244,
+      "event_rate_per_px": 15.298792422865494,
+      "hot_pixel_share": 0.016793333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Sparkler-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.47815768525706387,
+      "local_global_coupling": -0.17648636846701662,
+      "event_rate_per_px": 8.262265183944793,
+      "hot_pixel_share": 0.018176666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Sparkler-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3943922837067851,
+      "local_global_coupling": 0.606500756144318,
+      "event_rate_per_px": 12.217231365561977,
+      "hot_pixel_share": 0.01823,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Squating-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.3589109945305083,
+      "local_global_coupling": 0.9530820636387145,
+      "event_rate_per_px": 6.5602712257542715,
+      "hot_pixel_share": 0.01043,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Squating-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.4167650112430705,
+      "local_global_coupling": 0.7167647505751508,
+      "event_rate_per_px": 8.18429920003877,
+      "hot_pixel_share": 0.00874,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Squating-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2244593671883045,
+      "local_global_coupling": 0.9177512555705213,
+      "event_rate_per_px": 4.951985319251886,
+      "hot_pixel_share": 0.01052,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Squating-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.0991113818954971,
+      "local_global_coupling": 0.7019432113571524,
+      "event_rate_per_px": 2.786669268434856,
+      "hot_pixel_share": 0.017486666666666668,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Station-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.03227553301994824,
+      "local_global_coupling": 0.33639882731047377,
+      "event_rate_per_px": 1.85160544659963,
+      "hot_pixel_share": 0.03238333333333333,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Station-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.03162595507562466,
+      "local_global_coupling": 0.3174364721409834,
+      "event_rate_per_px": 1.9810353478699259,
+      "hot_pixel_share": 0.02991,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Station-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.029250373378913185,
+      "local_global_coupling": 0.3016921062243282,
+      "event_rate_per_px": 1.7176657786214737,
+      "hot_pixel_share": 0.03137,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Station-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.030303700533644107,
+      "local_global_coupling": 0.3139656431203178,
+      "event_rate_per_px": 1.659852090057955,
+      "hot_pixel_share": 0.03225,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/String-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.25065242067070526,
+      "local_global_coupling": 0.9197137674113126,
+      "event_rate_per_px": 3.527509190588907,
+      "hot_pixel_share": 0.00443,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/String-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.28075718305282976,
+      "local_global_coupling": 0.9277543934652964,
+      "event_rate_per_px": 4.4961055956271405,
+      "hot_pixel_share": 0.00599,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/String-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.21392423413627765,
+      "local_global_coupling": 0.9505808558487004,
+      "event_rate_per_px": 4.108276600922963,
+      "hot_pixel_share": 0.006326666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/String-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.14152898142333406,
+      "local_global_coupling": 0.6891104872628026,
+      "event_rate_per_px": 3.905535244333495,
+      "hot_pixel_share": 0.008096666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Tyre-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.7777185571966535,
+      "local_global_coupling": 0.41644472197916854,
+      "event_rate_per_px": 26.283845563370807,
+      "hot_pixel_share": 0.007066666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Tyre-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.6044760512626439,
+      "local_global_coupling": 0.7678065472633226,
+      "event_rate_per_px": 12.074046689659186,
+      "hot_pixel_share": 0.012296666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Tyre-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.43858297354680265,
+      "local_global_coupling": 0.12773415998087898,
+      "event_rate_per_px": 7.342869257864125,
+      "hot_pixel_share": 0.01258,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Tyre-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1767809337858953,
+      "local_global_coupling": 0.40754652978446626,
+      "event_rate_per_px": 3.9702641991454204,
+      "hot_pixel_share": 0.02017,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Wall-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.15742887418629264,
+      "local_global_coupling": 0.9279920744386386,
+      "event_rate_per_px": 10.849303372884666,
+      "hot_pixel_share": 0.008206666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Wall-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.12509520462041562,
+      "local_global_coupling": 0.6448213124424309,
+      "event_rate_per_px": 8.080483337881748,
+      "hot_pixel_share": 0.010476666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Wall-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.054102804954506596,
+      "local_global_coupling": 0.6578514669804224,
+      "event_rate_per_px": 3.239575202175053,
+      "hot_pixel_share": 0.019496666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Wall-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.040085717720724404,
+      "local_global_coupling": 0.4300220740476816,
+      "event_rate_per_px": 2.082225596834965,
+      "hot_pixel_share": 0.025096666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Water-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.31599258624610715,
+      "local_global_coupling": 0.6008655956281016,
+      "event_rate_per_px": 2.051816603310405,
+      "hot_pixel_share": 0.008793333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Water-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.29543597317362524,
+      "local_global_coupling": 0.7605601246355612,
+      "event_rate_per_px": 3.3745473945674345,
+      "hot_pixel_share": 0.009383333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Water-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.22649383649555946,
+      "local_global_coupling": 0.4861800551314011,
+      "event_rate_per_px": 3.16254830483133,
+      "hot_pixel_share": 0.008993333333333334,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Water-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.10402633357051601,
+      "local_global_coupling": 0.5483483934506007,
+      "event_rate_per_px": 1.7193093889508526,
+      "hot_pixel_share": 0.013286666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Water_Cooler-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1954961197866084,
+      "local_global_coupling": 0.720873815503083,
+      "event_rate_per_px": 4.034068869108449,
+      "hot_pixel_share": 0.02143,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Water_Cooler-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.1422766411414052,
+      "local_global_coupling": 0.6964384533734003,
+      "event_rate_per_px": 3.853046355283006,
+      "hot_pixel_share": 0.01424,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Water_Cooler-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.08646221643788089,
+      "local_global_coupling": 0.4797051519427488,
+      "event_rate_per_px": 2.399648468776793,
+      "hot_pixel_share": 0.01471,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Water_Cooler-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.05194616034534837,
+      "local_global_coupling": 0.23737489046878316,
+      "event_rate_per_px": 1.3235984156994989,
+      "hot_pixel_share": 0.0201,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Wheelchair-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.2984241743200756,
+      "local_global_coupling": 0.8539992282351747,
+      "event_rate_per_px": 2.593945678561465,
+      "hot_pixel_share": 0.0053033333333333335,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Wheelchair-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.291393278761645,
+      "local_global_coupling": 0.7843015207377679,
+      "event_rate_per_px": 2.536492504986782,
+      "hot_pixel_share": 0.00743,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Wheelchair-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.15901784827293536,
+      "local_global_coupling": 0.8680422600338377,
+      "event_rate_per_px": 2.2814730535555308,
+      "hot_pixel_share": 0.011856666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Wheelchair-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.10072838018720856,
+      "local_global_coupling": 0.8051238184914004,
+      "event_rate_per_px": 2.059055544194221,
+      "hot_pixel_share": 0.014336666666666666,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Windmill-ND00-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.41963758084322716,
+      "local_global_coupling": 0.6537813673737367,
+      "event_rate_per_px": 2.1442449226767555,
+      "hot_pixel_share": 0.011496666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Windmill-ND04-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.26641601377561014,
+      "local_global_coupling": 0.547944275634273,
+      "event_rate_per_px": 2.4494046725209313,
+      "hot_pixel_share": 0.010616666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Windmill-ND16-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.19069835337330787,
+      "local_global_coupling": 0.5111888152380609,
+      "event_rate_per_px": 2.488395283162069,
+      "hot_pixel_share": 0.010046666666666667,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "E-MLB/N-END/Windmill-ND64-1",
+      "synthetic": false,
+      "spatial_autocorr": 0.09700851199022752,
+      "local_global_coupling": 0.4908070286819038,
+      "event_rate_per_px": 2.099705630509307,
+      "hot_pixel_share": 0.01143,
+      "events": 300000,
+      "corpus": "E-MLB"
+    },
+    {
+      "name": "DVSD22/HDD/2x100Hz",
+      "synthetic": false,
+      "spatial_autocorr": 0.005549159731613599,
+      "local_global_coupling": 0.8777363475347377,
+      "event_rate_per_px": 0.5226424814061879,
+      "hot_pixel_share": 0.38737666666666665,
+      "events": 300000,
+      "corpus": "DVSD22"
+    },
+    {
+      "name": "DVSD22/HDD/2x110Hz",
+      "synthetic": false,
+      "spatial_autocorr": 0.0021370413499056935,
+      "local_global_coupling": 0.09094420158990213,
+      "event_rate_per_px": 0.5123787371406636,
+      "hot_pixel_share": 0.24624666666666667,
+      "events": 300000,
+      "corpus": "DVSD22"
+    },
+    {
+      "name": "DVSD22/HDD/2x30Hz_a",
+      "synthetic": false,
+      "spatial_autocorr": 0.022559565211506996,
+      "local_global_coupling": 0.9371881269081443,
+      "event_rate_per_px": 1.4047248855386196,
+      "hot_pixel_share": 0.13837,
+      "events": 300000,
+      "corpus": "DVSD22"
+    },
+    {
+      "name": "DVSD22/HDD/2x30Hz_b",
+      "synthetic": false,
+      "spatial_autocorr": 0.00414482995379096,
+      "local_global_coupling": 0.9233274175537706,
+      "event_rate_per_px": 0.6143185731295631,
+      "hot_pixel_share": 0.24589,
+      "events": 300000,
+      "corpus": "DVSD22"
+    },
+    {
+      "name": "DVSD22/HDD/2x30Hz_c",
+      "synthetic": false,
+      "spatial_autocorr": 0.08605241601947146,
+      "local_global_coupling": 0.921182636537665,
+      "event_rate_per_px": 1.9176186134555833,
+      "hot_pixel_share": 0.12362666666666666,
+      "events": 300000,
+      "corpus": "DVSD22"
+    },
+    {
+      "name": "DVSD22/HDD/2x45Hz",
+      "synthetic": false,
+      "spatial_autocorr": 0.10988454238324408,
+      "local_global_coupling": 0.9302968780901625,
+      "event_rate_per_px": 3.255673311026065,
+      "hot_pixel_share": 0.09036,
+      "events": 300000,
+      "corpus": "DVSD22"
+    },
+    {
+      "name": "DVSD22/HDD/2x50Hz",
+      "synthetic": false,
+      "spatial_autocorr": 0.42149443077511123,
+      "local_global_coupling": 0.9194821326064536,
+      "event_rate_per_px": 7.471318348520547,
+      "hot_pixel_share": 0.03281,
+      "events": 300000,
+      "corpus": "DVSD22"
+    },
+    {
+      "name": "DVSD22/HDD/2x60Hz",
+      "synthetic": false,
+      "spatial_autocorr": 0.28735118397329396,
+      "local_global_coupling": 0.9124575247515068,
+      "event_rate_per_px": 4.795273588075137,
+      "hot_pixel_share": 0.04071333333333333,
+      "events": 300000,
+      "corpus": "DVSD22"
+    },
+    {
+      "name": "DVSD22/HDD/2x70Hz",
+      "synthetic": false,
+      "spatial_autocorr": 0.014916806321579186,
+      "local_global_coupling": 0.9430902216351791,
+      "event_rate_per_px": 0.6418978811085059,
+      "hot_pixel_share": 0.27902333333333335,
+      "events": 300000,
+      "corpus": "DVSD22"
+    },
+    {
+      "name": "DVSD22/HDD/2x80Hz",
+      "synthetic": false,
+      "spatial_autocorr": 0.007652409870685023,
+      "local_global_coupling": 0.848814671376473,
+      "event_rate_per_px": 0.5887539605902832,
+      "hot_pixel_share": 0.32410666666666665,
+      "events": 300000,
+      "corpus": "DVSD22"
+    },
+    {
+      "name": "DVSD22/HDD/2x90Hz",
+      "synthetic": false,
+      "spatial_autocorr": 0.02766752527133241,
+      "local_global_coupling": 0.9503669069492575,
+      "event_rate_per_px": 0.870315427473476,
+      "hot_pixel_share": 0.25771666666666665,
+      "events": 300000,
+      "corpus": "DVSD22"
+    },
+    {
+      "name": "DVSD22/IV/staircase",
+      "synthetic": false,
+      "spatial_autocorr": 0.1820586109599207,
+      "local_global_coupling": 0.854753287319767,
+      "event_rate_per_px": 0.46080291281469116,
+      "hot_pixel_share": 0.027826666666666666,
+      "events": 300000,
+      "corpus": "DVSD22"
+    },
+    {
+      "name": "Pure_BA/0.0",
+      "synthetic": false,
+      "spatial_autocorr": NaN,
+      "local_global_coupling": NaN,
+      "event_rate_per_px": 0.0009197993074913465,
+      "hot_pixel_share": 0.04142416980486135,
+      "events": 5842,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/0.1",
+      "synthetic": false,
+      "spatial_autocorr": NaN,
+      "local_global_coupling": NaN,
+      "event_rate_per_px": 0.0008632625377803372,
+      "hot_pixel_share": 0.04134908536585366,
+      "events": 5248,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/0.2",
+      "synthetic": false,
+      "spatial_autocorr": NaN,
+      "local_global_coupling": NaN,
+      "event_rate_per_px": 0.0009536631667172344,
+      "hot_pixel_share": 0.03912392362411082,
+      "events": 5342,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/0.3",
+      "synthetic": false,
+      "spatial_autocorr": NaN,
+      "local_global_coupling": NaN,
+      "event_rate_per_px": 0.0009341076922490913,
+      "hot_pixel_share": 0.0430193188607847,
+      "events": 5021,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/0.4",
+      "synthetic": false,
+      "spatial_autocorr": NaN,
+      "local_global_coupling": NaN,
+      "event_rate_per_px": 0.0009455131911001533,
+      "hot_pixel_share": 0.04985909386516367,
+      "events": 4613,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/0.5",
+      "synthetic": false,
+      "spatial_autocorr": NaN,
+      "local_global_coupling": NaN,
+      "event_rate_per_px": 0.0008800953366867425,
+      "hot_pixel_share": 0.055868167202572344,
+      "events": 4976,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/0.6",
+      "synthetic": false,
+      "spatial_autocorr": NaN,
+      "local_global_coupling": NaN,
+      "event_rate_per_px": 0.0008800539519848898,
+      "hot_pixel_share": 0.06204379562043796,
+      "events": 4932,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/0.7",
+      "synthetic": false,
+      "spatial_autocorr": NaN,
+      "local_global_coupling": NaN,
+      "event_rate_per_px": 0.0008024440973869539,
+      "hot_pixel_share": 0.08028734417916755,
+      "events": 4733,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/0.8",
+      "synthetic": false,
+      "spatial_autocorr": NaN,
+      "local_global_coupling": NaN,
+      "event_rate_per_px": 0.0007491595493322284,
+      "hot_pixel_share": 0.09357972044539209,
+      "events": 4221,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/0.9",
+      "synthetic": false,
+      "spatial_autocorr": NaN,
+      "local_global_coupling": NaN,
+      "event_rate_per_px": 0.0008339114894999447,
+      "hot_pixel_share": 0.12372254838008262,
+      "events": 4599,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/1.0",
+      "synthetic": false,
+      "spatial_autocorr": NaN,
+      "local_global_coupling": NaN,
+      "event_rate_per_px": 0.0009332300262228244,
+      "hot_pixel_share": 0.16708038953599388,
+      "events": 5237,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/1.1",
+      "synthetic": false,
+      "spatial_autocorr": NaN,
+      "local_global_coupling": NaN,
+      "event_rate_per_px": 0.0013036069264741725,
+      "hot_pixel_share": 0.25954514128187456,
+      "events": 7255,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/1.2",
+      "synthetic": false,
+      "spatial_autocorr": NaN,
+      "local_global_coupling": NaN,
+      "event_rate_per_px": 0.0018826627080953864,
+      "hot_pixel_share": 0.3323059680582796,
+      "events": 10707,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/1.3",
+      "synthetic": false,
+      "spatial_autocorr": NaN,
+      "local_global_coupling": NaN,
+      "event_rate_per_px": 0.0029427340591477026,
+      "hot_pixel_share": 0.3945435466946485,
+      "events": 16201,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/1.4",
+      "synthetic": false,
+      "spatial_autocorr": NaN,
+      "local_global_coupling": NaN,
+      "event_rate_per_px": 0.005031086668499834,
+      "hot_pixel_share": 0.4298204414899382,
+      "events": 27679,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/1.5",
+      "synthetic": false,
+      "spatial_autocorr": 0.0,
+      "local_global_coupling": NaN,
+      "event_rate_per_px": 0.009743228364995594,
+      "hot_pixel_share": 0.4177971818318093,
+      "events": 53368,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/1.6",
+      "synthetic": false,
+      "spatial_autocorr": 0.08125,
+      "local_global_coupling": 0.4064413742547972,
+      "event_rate_per_px": 0.018247872879197918,
+      "hot_pixel_share": 0.34936360716293263,
+      "events": 99624,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/1.7",
+      "synthetic": false,
+      "spatial_autocorr": 0.008387123788909502,
+      "local_global_coupling": 0.004785717439709186,
+      "event_rate_per_px": 0.032629581347021666,
+      "hot_pixel_share": 0.26176480319389456,
+      "events": 181346,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/1.8",
+      "synthetic": false,
+      "spatial_autocorr": 0.007074416611624693,
+      "local_global_coupling": 0.03319909844133251,
+      "event_rate_per_px": 0.05880249029443018,
+      "hot_pixel_share": 0.19365,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/1.9",
+      "synthetic": false,
+      "spatial_autocorr": 0.006135719246062824,
+      "local_global_coupling": 0.03584600250293081,
+      "event_rate_per_px": 0.10048618035304804,
+      "hot_pixel_share": 0.14592666666666668,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/2.0",
+      "synthetic": false,
+      "spatial_autocorr": 0.007404758851625105,
+      "local_global_coupling": 0.05715442800481734,
+      "event_rate_per_px": 0.16316487671386043,
+      "hot_pixel_share": 0.10997,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/2.1",
+      "synthetic": false,
+      "spatial_autocorr": 0.009083349531290818,
+      "local_global_coupling": 0.061133964539007504,
+      "event_rate_per_px": 0.24249774966679602,
+      "hot_pixel_share": 0.08582333333333333,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/2.2",
+      "synthetic": false,
+      "spatial_autocorr": 0.010740890106527365,
+      "local_global_coupling": 0.08250659615704448,
+      "event_rate_per_px": 0.34025569804679334,
+      "hot_pixel_share": 0.06902666666666667,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/2.3",
+      "synthetic": false,
+      "spatial_autocorr": 0.012921373329968636,
+      "local_global_coupling": 0.0794468832879143,
+      "event_rate_per_px": 0.4909636306912675,
+      "hot_pixel_share": 0.054746666666666666,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/2.4",
+      "synthetic": false,
+      "spatial_autocorr": 0.014445773574052094,
+      "local_global_coupling": 0.08508188592807374,
+      "event_rate_per_px": 0.5584710466634318,
+      "hot_pixel_share": 0.05045,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/2.5",
+      "synthetic": false,
+      "spatial_autocorr": 0.01531749931200124,
+      "local_global_coupling": 0.07366611226022843,
+      "event_rate_per_px": 0.6508033863054409,
+      "hot_pixel_share": 0.047433333333333334,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/2.6",
+      "synthetic": false,
+      "spatial_autocorr": 0.017518270770199896,
+      "local_global_coupling": 0.09330847642143016,
+      "event_rate_per_px": 0.7848432553154708,
+      "hot_pixel_share": 0.0417,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/2.7",
+      "synthetic": false,
+      "spatial_autocorr": 0.018016642391720062,
+      "local_global_coupling": 0.08691846683722566,
+      "event_rate_per_px": 0.8608210218043181,
+      "hot_pixel_share": 0.03826,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/2.8",
+      "synthetic": false,
+      "spatial_autocorr": 0.018970279204465385,
+      "local_global_coupling": 0.10797312222582231,
+      "event_rate_per_px": 0.9246214314274996,
+      "hot_pixel_share": 0.03797333333333333,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/2.9",
+      "synthetic": false,
+      "spatial_autocorr": 0.019124972975981976,
+      "local_global_coupling": 0.11218653661849252,
+      "event_rate_per_px": 0.9661085640322931,
+      "hot_pixel_share": 0.03524666666666667,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/3.0",
+      "synthetic": false,
+      "spatial_autocorr": 0.02212969291459332,
+      "local_global_coupling": 0.11435807431761003,
+      "event_rate_per_px": 1.2121827925743416,
+      "hot_pixel_share": 0.030636666666666666,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/3.1",
+      "synthetic": false,
+      "spatial_autocorr": 0.022111915364444082,
+      "local_global_coupling": 0.10854710778667262,
+      "event_rate_per_px": 1.1815468219747263,
+      "hot_pixel_share": 0.03283666666666667,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/3.2",
+      "synthetic": false,
+      "spatial_autocorr": 0.02220830766530804,
+      "local_global_coupling": 0.049342097354990656,
+      "event_rate_per_px": 1.2140114773367,
+      "hot_pixel_share": 0.03176333333333333,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/3.3",
+      "synthetic": false,
+      "spatial_autocorr": 0.023917767997187207,
+      "local_global_coupling": 0.0836232924168425,
+      "event_rate_per_px": 1.3383341266972089,
+      "hot_pixel_share": 0.02925,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/3.4",
+      "synthetic": false,
+      "spatial_autocorr": 0.02333880289980613,
+      "local_global_coupling": 0.13562398442799925,
+      "event_rate_per_px": 1.3734485447409854,
+      "hot_pixel_share": 0.029283333333333335,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/3.5",
+      "synthetic": false,
+      "spatial_autocorr": 0.02453330135509715,
+      "local_global_coupling": 0.11956569629407611,
+      "event_rate_per_px": 1.3860603547529111,
+      "hot_pixel_share": 0.028696666666666665,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/3.6",
+      "synthetic": false,
+      "spatial_autocorr": 0.024186149411849617,
+      "local_global_coupling": 0.14657977028670494,
+      "event_rate_per_px": 1.3741440889554308,
+      "hot_pixel_share": 0.02912,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/3.7",
+      "synthetic": false,
+      "spatial_autocorr": 0.025160978627914797,
+      "local_global_coupling": 0.1159051586382295,
+      "event_rate_per_px": 1.430228632035548,
+      "hot_pixel_share": 0.02787,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/3.8",
+      "synthetic": false,
+      "spatial_autocorr": 0.02638657383450785,
+      "local_global_coupling": 0.10981684155522176,
+      "event_rate_per_px": 1.5599534624200202,
+      "hot_pixel_share": 0.0264,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/3.9",
+      "synthetic": false,
+      "spatial_autocorr": 0.02667264662190454,
+      "local_global_coupling": 0.09520282025931802,
+      "event_rate_per_px": 1.5319067545638405,
+      "hot_pixel_share": 0.02738,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    },
+    {
+      "name": "Pure_BA/4.0",
+      "synthetic": false,
+      "spatial_autocorr": 0.025252473129528497,
+      "local_global_coupling": 0.12099097408251568,
+      "event_rate_per_px": 1.528832101815215,
+      "hot_pixel_share": 0.02674,
+      "events": 300000,
+      "corpus": "Pure_BA"
+    }
+  ],
+  "per_corpus": {
+    "DND21": {
+      "n": 10,
+      "synthetic": true,
+      "spatial_autocorr": 0.32421201650142883,
+      "local_global_coupling": -0.139925734451888,
+      "hot_pixel_share": 0.008822666666666666,
+      "event_rate_per_px": 7.136395039524902
+    },
+    "DVSD22": {
+      "n": 12,
+      "synthetic": false,
+      "spatial_autocorr": 0.0976223768184546,
+      "local_global_coupling": 0.8424700294044184,
+      "hot_pixel_share": 0.18283888888888886,
+      "event_rate_per_px": 1.9213098933566102
+    },
+    "DVSCLEAN": {
+      "n": 10,
+      "synthetic": true,
+      "spatial_autocorr": 0.10074566385910122,
+      "local_global_coupling": 0.39495138528121004,
+      "hot_pixel_share": 0.009465245280357519,
+      "event_rate_per_px": 0.47098447889140277
+    },
+    "E-MLB": {
+      "n": 384,
+      "synthetic": false,
+      "spatial_autocorr": 0.25050632577842785,
+      "local_global_coupling": 0.7011096412765117,
+      "hot_pixel_share": 0.01212538044916627,
+      "event_rate_per_px": 5.5441893773182676
+    },
+    "Pure_BA": {
+      "n": 41,
+      "synthetic": false,
+      "spatial_autocorr": 0.0197034492121758,
+      "local_global_coupling": 0.10076817929356027,
+      "hot_pixel_share": 0.10908979463246661,
+      "event_rate_per_px": 0.5208284024995479
+    }
+  },
+  "verdict": {
+    "spatial_autocorr": {
+      "synthetic_mean": 0.21247884018026508,
+      "real_mean": 0.23193883246505761,
+      "synthetic_n": 20,
+      "real_n": 422,
+      "p_value": 0.9778469520963445,
+      "rank_biserial": 0.0037914691943128354,
+      "separates": false
+    },
+    "local_global_coupling": {
+      "synthetic_mean": 0.127512825414661,
+      "real_mean": 0.6694891854759442,
+      "synthetic_n": 20,
+      "real_n": 421,
+      "p_value": 1.3942220218595551e-06,
+      "rank_biserial": 0.638479809976247,
+      "separates": false
+    },
+    "hot_pixel_share": {
+      "synthetic_mean": 0.009143955973512094,
+      "real_mean": 0.025910513361733743,
+      "synthetic_n": 20,
+      "real_n": 437,
+      "p_value": 0.24814895119455838,
+      "rank_biserial": 0.152745995423341,
+      "separates": false
+    },
+    "event_rate_per_px": {
+      "synthetic_mean": 3.803689759208152,
+      "real_mean": 4.973405959068593,
+      "synthetic_n": 20,
+      "real_n": 437,
+      "p_value": 0.14039996318071643,
+      "rank_biserial": 0.1949656750572082,
+      "separates": false
+    }
+  },
+  "leave_one_corpus_out": {
+    "DND21": {
+      "spatial_autocorr": {
+        "synthetic_mean": 0.10074566385910122,
+        "real_mean": 0.23193883246505761,
+        "synthetic_n": 10,
+        "real_n": 422,
+        "p_value": 0.011723054321811026,
+        "rank_biserial": 0.466350710900474,
+        "separates": false
+      },
+      "local_global_coupling": {
+        "synthetic_mean": 0.39495138528121004,
+        "real_mean": 0.6694891854759442,
+        "synthetic_n": 10,
+        "real_n": 421,
+        "p_value": 0.0017333112793507164,
+        "rank_biserial": 0.5795724465558194,
+        "separates": false
+      },
+      "hot_pixel_share": {
+        "synthetic_mean": 0.009465245280357519,
+        "real_mean": 0.025910513361733743,
+        "synthetic_n": 10,
+        "real_n": 437,
+        "p_value": 0.6442735144533986,
+        "rank_biserial": 0.08558352402745995,
+        "separates": false
+      },
+      "event_rate_per_px": {
+        "synthetic_mean": 0.47098447889140277,
+        "real_mean": 4.973405959068593,
+        "synthetic_n": 10,
+        "real_n": 437,
+        "p_value": 5.3841628537016455e-06,
+        "rank_biserial": 0.8411899313501144,
+        "separates": true
+      }
+    },
+    "DVSD22": {
+      "spatial_autocorr": {
+        "synthetic_mean": 0.21247884018026508,
+        "real_mean": 0.23587004580105575,
+        "synthetic_n": 20,
+        "real_n": 410,
+        "p_value": 0.8762657785582374,
+        "rank_biserial": 0.02073170731707319,
+        "separates": false
+      },
+      "local_global_coupling": {
+        "synthetic_mean": 0.127512825414661,
+        "real_mean": 0.6644139528912456,
+        "synthetic_n": 20,
+        "real_n": 409,
+        "p_value": 1.7594690313127619e-06,
+        "rank_biserial": 0.6327628361858191,
+        "separates": false
+      },
+      "hot_pixel_share": {
+        "synthetic_mean": 0.009143955973512094,
+        "real_mean": 0.02147959452331995,
+        "synthetic_n": 20,
+        "real_n": 425,
+        "p_value": 0.33045477601107276,
+        "rank_biserial": 0.12882352941176467,
+        "separates": false
+      },
+      "event_rate_per_px": {
+        "synthetic_mean": 3.803689759208152,
+        "real_mean": 5.0595827891592835,
+        "synthetic_n": 20,
+        "real_n": 425,
+        "p_value": 0.12533947588231872,
+        "rank_biserial": 0.20282352941176474,
+        "separates": false
+      }
+    },
+    "DVSCLEAN": {
+      "spatial_autocorr": {
+        "synthetic_mean": 0.32421201650142883,
+        "real_mean": 0.23193883246505761,
+        "synthetic_n": 10,
+        "real_n": 422,
+        "p_value": 0.01316145270779932,
+        "rank_biserial": -0.4587677725118484,
+        "separates": false
+      },
+      "local_global_coupling": {
+        "synthetic_mean": -0.139925734451888,
+        "real_mean": 0.6694891854759442,
+        "synthetic_n": 10,
+        "real_n": 421,
+        "p_value": 0.00016356316909581464,
+        "rank_biserial": 0.6973871733966746,
+        "separates": false
+      },
+      "hot_pixel_share": {
+        "synthetic_mean": 0.008822666666666666,
+        "real_mean": 0.025910513361733743,
+        "synthetic_n": 10,
+        "real_n": 437,
+        "p_value": 0.23468689680531285,
+        "rank_biserial": 0.21990846681922194,
+        "separates": false
+      },
+      "event_rate_per_px": {
+        "synthetic_mean": 7.136395039524902,
+        "real_mean": 4.973405959068593,
+        "synthetic_n": 10,
+        "real_n": 437,
+        "p_value": 0.014692356409166513,
+        "rank_biserial": -0.45125858123569795,
+        "separates": false
+      }
+    },
+    "E-MLB": {
+      "spatial_autocorr": {
+        "synthetic_mean": 0.21247884018026508,
+        "real_mean": 0.044309426351000686,
+        "synthetic_n": 20,
+        "real_n": 38,
+        "p_value": 1.1052589415136066e-07,
+        "rank_biserial": -0.855263157894737,
+        "separates": true
+      },
+      "local_global_coupling": {
+        "synthetic_mean": 0.127512825414661,
+        "real_mean": 0.3413201306808656,
+        "synthetic_n": 20,
+        "real_n": 37,
+        "p_value": 0.467004826473444,
+        "rank_biserial": 0.11891891891891893,
+        "separates": false
+      },
+      "hot_pixel_share": {
+        "synthetic_mean": 0.009143955973512094,
+        "real_mean": 0.12578770276599618,
+        "synthetic_n": 20,
+        "real_n": 53,
+        "p_value": 5.784879544213858e-11,
+        "rank_biserial": 1.0,
+        "separates": true
+      },
+      "event_rate_per_px": {
+        "synthetic_mean": 3.803689759208152,
+        "real_mean": 0.837918551372845,
+        "synthetic_n": 20,
+        "real_n": 53,
+        "p_value": 0.002493479042101718,
+        "rank_biserial": -0.46226415094339623,
+        "separates": false
+      }
+    },
+    "Pure_BA": {
+      "spatial_autocorr": {
+        "synthetic_mean": 0.21247884018026508,
+        "real_mean": 0.24587347884024682,
+        "synthetic_n": 20,
+        "real_n": 396,
+        "p_value": 0.6047909653903325,
+        "rank_biserial": 0.06868686868686869,
+        "separates": false
+      },
+      "local_global_coupling": {
+        "synthetic_mean": 0.127512825414661,
+        "real_mean": 0.7053932894015997,
+        "synthetic_n": 20,
+        "real_n": 396,
+        "p_value": 1.6991595221420773e-07,
+        "rank_biserial": 0.692929292929293,
+        "separates": false
+      },
+      "hot_pixel_share": {
+        "synthetic_mean": 0.009143955973512094,
+        "real_mean": 0.017298517068551802,
+        "synthetic_n": 20,
+        "real_n": 396,
+        "p_value": 0.6242158271456009,
+        "rank_biserial": 0.06502525252525249,
+        "separates": false
+      },
+      "event_rate_per_px": {
+        "synthetic_mean": 3.803689759208152,
+        "real_mean": 5.43440515053155,
+        "synthetic_n": 20,
+        "real_n": 396,
+        "p_value": 0.03835450181773092,
+        "rank_biserial": 0.27449494949494946,
+        "separates": false
+      }
+    }
+  },
+  "separation_bar": {
+    "p_value": 0.01,
+    "abs_rank_biserial": 0.8,
+    "registered": "before the run, in the task plan"
+  },
+  "wall_seconds": 210.90813370002434
+}

@@ -1,0 +1,599 @@
+{
+  "retention_dependence": {
+    "recording": "DND21/1hz_hotel-bar",
+    "fixed_ranking_auc": 0.93,
+    "curve": [
+      {
+        "r": 0.05,
+        "mesr": 0.8078828171592914,
+        "kept_events": 44868,
+        "evaluable": true
+      },
+      {
+        "r": 0.1,
+        "mesr": 0.8874309367224726,
+        "kept_events": 89735,
+        "evaluable": true
+      },
+      {
+        "r": 0.15,
+        "mesr": 1.0062333788266105,
+        "kept_events": 134603,
+        "evaluable": true
+      },
+      {
+        "r": 0.2,
+        "mesr": 1.0238922876140701,
+        "kept_events": 179470,
+        "evaluable": true
+      },
+      {
+        "r": 0.25,
+        "mesr": 1.0988711616893334,
+        "kept_events": 224338,
+        "evaluable": true
+      },
+      {
+        "r": 0.3,
+        "mesr": 1.1080400294553727,
+        "kept_events": 269205,
+        "evaluable": true
+      },
+      {
+        "r": 0.35,
+        "mesr": 1.1412632035242418,
+        "kept_events": 314073,
+        "evaluable": true
+      },
+      {
+        "r": 0.4,
+        "mesr": 1.1420356139571146,
+        "kept_events": 358940,
+        "evaluable": true
+      },
+      {
+        "r": 0.45,
+        "mesr": 1.1814438346823364,
+        "kept_events": 403808,
+        "evaluable": true
+      },
+      {
+        "r": 0.5,
+        "mesr": 1.1936522615113474,
+        "kept_events": 448676,
+        "evaluable": true
+      },
+      {
+        "r": 0.55,
+        "mesr": 1.2080691925174876,
+        "kept_events": 493543,
+        "evaluable": true
+      },
+      {
+        "r": 0.6,
+        "mesr": 1.2171173912821975,
+        "kept_events": 538411,
+        "evaluable": true
+      },
+      {
+        "r": 0.65,
+        "mesr": 1.2255214516599024,
+        "kept_events": 583278,
+        "evaluable": true
+      },
+      {
+        "r": 0.7,
+        "mesr": 1.2334484414752145,
+        "kept_events": 628146,
+        "evaluable": true
+      },
+      {
+        "r": 0.75,
+        "mesr": 1.2330372147404747,
+        "kept_events": 673013,
+        "evaluable": true
+      },
+      {
+        "r": 0.8,
+        "mesr": 1.2289046190667565,
+        "kept_events": 717881,
+        "evaluable": true
+      },
+      {
+        "r": 0.85,
+        "mesr": 1.220776304842663,
+        "kept_events": 762748,
+        "evaluable": true
+      },
+      {
+        "r": 0.9,
+        "mesr": 1.2069594142514608,
+        "kept_events": 807616,
+        "evaluable": true
+      },
+      {
+        "r": 0.95,
+        "mesr": 1.194147049967647,
+        "kept_events": 852483,
+        "evaluable": true
+      },
+      {
+        "r": 1.0,
+        "mesr": 1.175420654517643,
+        "kept_events": 897351,
+        "evaluable": true
+      }
+    ],
+    "min_mesr": 0.8078828171592914,
+    "max_mesr": 1.2334484414752145,
+    "spread": 0.42556562431592304,
+    "argmax_r": 0.7,
+    "per_recording": [
+      {
+        "recording": "DND21/1hz_hotel-bar",
+        "min_mesr": 0.8078828171592914,
+        "max_mesr": 1.2334484414752145,
+        "spread": 0.42556562431592304,
+        "argmax_r": 0.7,
+        "argmin_r": 0.05
+      },
+      {
+        "recording": "DND21/1hz_driving",
+        "min_mesr": 0.6007482672601455,
+        "max_mesr": 0.8026334794336537,
+        "spread": 0.2018852121735082,
+        "argmax_r": 0.85,
+        "argmin_r": 0.05
+      },
+      {
+        "recording": "DND21/3hz_hotel-bar",
+        "min_mesr": 0.8855890605327696,
+        "max_mesr": 1.206166902741171,
+        "spread": 0.32057784220840135,
+        "argmax_r": 0.35,
+        "argmin_r": 0.05
+      },
+      {
+        "recording": "DND21/3hz_driving",
+        "min_mesr": 0.6143927756471732,
+        "max_mesr": 0.7871068612284187,
+        "spread": 0.17271408558124546,
+        "argmax_r": 0.55,
+        "argmin_r": 0.05
+      },
+      {
+        "recording": "DND21/5hz_hotel-bar",
+        "min_mesr": 0.7512359588942936,
+        "max_mesr": 1.1808566288225892,
+        "spread": 0.4296206699282956,
+        "argmax_r": 0.2,
+        "argmin_r": 1.0
+      },
+      {
+        "recording": "DND21/5hz_driving",
+        "min_mesr": 0.6346931594027038,
+        "max_mesr": 0.7733739847841701,
+        "spread": 0.1386808253814663,
+        "argmax_r": 0.4,
+        "argmin_r": 0.05
+      },
+      {
+        "recording": "DND21/7hz_hotel-bar",
+        "min_mesr": 0.6677958179460362,
+        "max_mesr": 1.158016852582899,
+        "spread": 0.49022103463686295,
+        "argmax_r": 0.15,
+        "argmin_r": 1.0
+      },
+      {
+        "recording": "DND21/7hz_driving",
+        "min_mesr": 0.6311197279224376,
+        "max_mesr": 0.7650302531187896,
+        "spread": 0.13391052519635194,
+        "argmax_r": 0.3,
+        "argmin_r": 1.0
+      },
+      {
+        "recording": "DND21/10hz_hotel-bar",
+        "min_mesr": 0.5944097006320028,
+        "max_mesr": 1.1442159410829655,
+        "spread": 0.5498062404509627,
+        "argmax_r": 0.1,
+        "argmin_r": 1.0
+      },
+      {
+        "recording": "DND21/10hz_driving",
+        "min_mesr": 0.5882862554317799,
+        "max_mesr": 0.7545677530793106,
+        "spread": 0.16628149764753064,
+        "argmax_r": 0.25,
+        "argmin_r": 1.0
+      }
+    ],
+    "spread_over_recordings": {
+      "mean": 0.30292635575205484,
+      "sd": 0.1594475528854232,
+      "min": 0.13391052519635194,
+      "max": 0.5498062404509627,
+      "lo": 0.21067028360263376,
+      "hi": 0.3978742276844336,
+      "n": 10,
+      "draws": 10000
+    },
+    "note": "Spread is an upper bound on how far an unstated operating point can move a published MESR for a FIXED denoiser quality. `spread_over_recordings` is the quantity the paper quotes; the single-recording `spread` above is kept for continuity with the curve stored beside it."
+  },
+  "resolution_dependence": {
+    "declared_sensor_rows": [
+      {
+        "width": 346,
+        "height": 260,
+        "K": 89960,
+        "mesr": 1.202179789703358,
+        "events": 120000
+      },
+      {
+        "width": 640,
+        "height": 480,
+        "K": 307200,
+        "mesr": 1.2021797897033564,
+        "events": 120000
+      },
+      {
+        "width": 1280,
+        "height": 720,
+        "K": 921600,
+        "mesr": 1.2021797897033593,
+        "events": 120000
+      },
+      {
+        "width": 4096,
+        "height": 4096,
+        "K": 16777216,
+        "mesr": 1.2021797897033386,
+        "events": 120000
+      }
+    ],
+    "declared_sensor_spread": 2.0650148258027912e-14,
+    "declared_sensor_invariant": true,
+    "occupancy_rows": [
+      {
+        "stream": "DND21/1hz_hotel-bar",
+        "sensor": [
+          346,
+          260
+        ],
+        "esr": 1.2338806462023295,
+        "ntss": 0.00015479182639421314,
+        "ln": 9835.54160796177,
+        "occupied_px": 13021,
+        "n_events": 30000,
+        "occupied_px_share_of_K": 0.14474210760337927,
+        "ln_over_occupied": 0.7553599268843998
+      },
+      {
+        "stream": "DVSCLEAN/MAH00446_50",
+        "sensor": [
+          1280,
+          720
+        ],
+        "esr": 0.4907069912062627,
+        "ntss": 1.3787126237541252e-05,
+        "ln": 17465.086419753086,
+        "occupied_px": 24546,
+        "n_events": 30000,
+        "occupied_px_share_of_K": 0.026634114583333333,
+        "ln_over_occupied": 0.7115247461807662
+      }
+    ],
+    "note": "2a: same events, same denoising, four declared sensor sizes. Any nonzero spread would be a metric artefact. Measured spread is reported above; K cancels analytically because empty pixels contribute (1-M/N)^0 = 1. 2b: real 346x260 vs real 1280x720 slices of 30,000 events, decomposed. The cross-sensor gap lives in ntss/ln/occupancy, i.e. in the data, not in a W*H term in the metric."
+  },
+  "slice_dependence": {
+    "recording": "DND21/1hz_hotel-bar",
+    "rows": [
+      {
+        "slice": 10000,
+        "mesr": 0.9104533586356929
+      },
+      {
+        "slice": 20000,
+        "mesr": 1.0724834862737458
+      },
+      {
+        "slice": 30000,
+        "mesr": 1.175420654517643
+      },
+      {
+        "slice": 50000,
+        "mesr": 1.3090218515889083
+      },
+      {
+        "slice": 100000,
+        "mesr": 1.4402107513894322
+      }
+    ],
+    "per_recording": [
+      {
+        "recording": "DND21/1hz_hotel-bar",
+        "rows": [
+          {
+            "slice": 10000,
+            "mesr": 0.9104533586356929
+          },
+          {
+            "slice": 20000,
+            "mesr": 1.0724834862737458
+          },
+          {
+            "slice": 30000,
+            "mesr": 1.175420654517643
+          },
+          {
+            "slice": 50000,
+            "mesr": 1.3090218515889083
+          },
+          {
+            "slice": 100000,
+            "mesr": 1.4402107513894322
+          }
+        ],
+        "spread": 0.5297573927537393,
+        "monotone_increasing": true
+      },
+      {
+        "recording": "DND21/1hz_driving",
+        "rows": [
+          {
+            "slice": 10000,
+            "mesr": 0.5231207122274877
+          },
+          {
+            "slice": 20000,
+            "mesr": 0.6937569428521717
+          },
+          {
+            "slice": 30000,
+            "mesr": 0.7835168743783788
+          },
+          {
+            "slice": 50000,
+            "mesr": 0.8885736603128215
+          },
+          {
+            "slice": 100000,
+            "mesr": 1.0219287424225825
+          }
+        ],
+        "spread": 0.4988080301950948,
+        "monotone_increasing": true
+      },
+      {
+        "recording": "DND21/3hz_hotel-bar",
+        "rows": [
+          {
+            "slice": 10000,
+            "mesr": 0.6524303924972883
+          },
+          {
+            "slice": 20000,
+            "mesr": 0.8050002657837154
+          },
+          {
+            "slice": 30000,
+            "mesr": 0.9014446356260362
+          },
+          {
+            "slice": 50000,
+            "mesr": 1.0314474641566551
+          },
+          {
+            "slice": 100000,
+            "mesr": 1.210572999112074
+          }
+        ],
+        "spread": 0.5581426066147857,
+        "monotone_increasing": true
+      },
+      {
+        "recording": "DND21/3hz_driving",
+        "rows": [
+          {
+            "slice": 10000,
+            "mesr": 0.4554878762585996
+          },
+          {
+            "slice": 20000,
+            "mesr": 0.627014299151297
+          },
+          {
+            "slice": 30000,
+            "mesr": 0.7189339401504892
+          },
+          {
+            "slice": 50000,
+            "mesr": 0.8318887545201761
+          },
+          {
+            "slice": 100000,
+            "mesr": 0.9782497588031684
+          }
+        ],
+        "spread": 0.5227618825445688,
+        "monotone_increasing": true
+      },
+      {
+        "recording": "DND21/5hz_hotel-bar",
+        "rows": [
+          {
+            "slice": 10000,
+            "mesr": 0.5173065505459319
+          },
+          {
+            "slice": 20000,
+            "mesr": 0.6611857487984414
+          },
+          {
+            "slice": 30000,
+            "mesr": 0.7512359588942936
+          },
+          {
+            "slice": 50000,
+            "mesr": 0.8758595278265175
+          },
+          {
+            "slice": 100000,
+            "mesr": 1.0472737737567248
+          }
+        ],
+        "spread": 0.5299672232107929,
+        "monotone_increasing": true
+      },
+      {
+        "recording": "DND21/5hz_driving",
+        "rows": [
+          {
+            "slice": 10000,
+            "mesr": 0.40582986044205793
+          },
+          {
+            "slice": 20000,
+            "mesr": 0.5759656171720634
+          },
+          {
+            "slice": 30000,
+            "mesr": 0.6688034145895164
+          },
+          {
+            "slice": 50000,
+            "mesr": 0.7845336421593148
+          },
+          {
+            "slice": 100000,
+            "mesr": 0.9382805578848469
+          }
+        ],
+        "spread": 0.532450697442789,
+        "monotone_increasing": true
+      },
+      {
+        "recording": "DND21/7hz_hotel-bar",
+        "rows": [
+          {
+            "slice": 10000,
+            "mesr": 0.43991872777947993
+          },
+          {
+            "slice": 20000,
+            "mesr": 0.5800175132251206
+          },
+          {
+            "slice": 30000,
+            "mesr": 0.6677958179460362
+          },
+          {
+            "slice": 50000,
+            "mesr": 0.7863799758417432
+          },
+          {
+            "slice": 100000,
+            "mesr": 0.956922162555106
+          }
+        ],
+        "spread": 0.517003434775626,
+        "monotone_increasing": true
+      },
+      {
+        "recording": "DND21/7hz_driving",
+        "rows": [
+          {
+            "slice": 10000,
+            "mesr": 0.3699949616132064
+          },
+          {
+            "slice": 20000,
+            "mesr": 0.5368839026812747
+          },
+          {
+            "slice": 30000,
+            "mesr": 0.6311197279224376
+          },
+          {
+            "slice": 50000,
+            "mesr": 0.7481975736068892
+          },
+          {
+            "slice": 100000,
+            "mesr": 0.904807305228473
+          }
+        ],
+        "spread": 0.5348123436152665,
+        "monotone_increasing": true
+      },
+      {
+        "recording": "DND21/10hz_hotel-bar",
+        "rows": [
+          {
+            "slice": 10000,
+            "mesr": 0.3715139249868063
+          },
+          {
+            "slice": 20000,
+            "mesr": 0.5084937243352188
+          },
+          {
+            "slice": 30000,
+            "mesr": 0.5944097006320028
+          },
+          {
+            "slice": 50000,
+            "mesr": 0.7115932188570374
+          },
+          {
+            "slice": 100000,
+            "mesr": 0.879626956342971
+          }
+        ],
+        "spread": 0.5081130313561646,
+        "monotone_increasing": true
+      },
+      {
+        "recording": "DND21/10hz_driving",
+        "rows": [
+          {
+            "slice": 10000,
+            "mesr": 0.3330870229808847
+          },
+          {
+            "slice": 20000,
+            "mesr": 0.49373815625410605
+          },
+          {
+            "slice": 30000,
+            "mesr": 0.5882862554317799
+          },
+          {
+            "slice": 50000,
+            "mesr": 0.7073328126649575
+          },
+          {
+            "slice": 100000,
+            "mesr": 0.8681286294752579
+          }
+        ],
+        "spread": 0.5350416064943733,
+        "monotone_increasing": true
+      }
+    ],
+    "spread_over_recordings": {
+      "mean": 0.5266858249003201,
+      "sd": 0.01636422407938534,
+      "min": 0.4988080301950948,
+      "max": 0.5581426066147857,
+      "lo": 0.5172116396184284,
+      "hi": 0.5363256858984937,
+      "n": 10,
+      "draws": 10000
+    },
+    "monotone_increasing_share": 1.0,
+    "spread": 0.5297573927537393
+  }
+}

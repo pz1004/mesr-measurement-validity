@@ -201,6 +201,13 @@ def _benchmark(out: Callable[[str], None]) -> None:
                 f"recording's measurable floor "
                 f"({elig['ineligible_because_native_is_below_the_floor']} of "
                 f"{elig['ineligible']})")
+            agg = elig.get("delta_vs_native_retention_over_eligible_rows", {})
+            if "spearman" in agg:
+                out(f"  - **rank correlation between delta-over-raw and native retention "
+                    f"over the {agg['methods']} eligible classical rows: spearman "
+                    f"{agg['spearman']:+.2f}, kendall {agg['kendall']:+.2f}** -- positive "
+                    f"means the rows that keep MORE events score higher; on emlb this is "
+                    f"the value S VI-D item (iii) quotes")
             for m, v in sorted(elig["by_method"].items(),
                                key=lambda kv: -kv[1]["ineligible"]):
                 if not v["ineligible"]:

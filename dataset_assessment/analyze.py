@@ -17,7 +17,7 @@ from typing import Dict, List, Optional, Sequence
 
 import numpy as np
 
-from .denoisors import has_native_operating_point
+from .denoisors import CLASSICAL, has_native_operating_point
 from .protocol import native_point_is_eligible, rank_agreement, rank_methods
 
 RESULTS = Path(__file__).resolve().parents[1] / "results"
@@ -248,9 +248,19 @@ def native_eligibility(dataset: str) -> Dict:
         entry["mean_scored_at_r_all_cells"] = float(np.mean(
             cell.get("eligible_grid", []) + cell.get("ineligible_grid", [])))
         out[method] = entry
+    rows = [{"delta": e["eligible_mean_delta"], "r": e["eligible_mean_native_r"]}
+            for m, e in out.items()
+            if m in CLASSICAL and "eligible_mean_delta" in e]
+    if len(rows) >= 3:
+        rho, tau = rank_agreement(rows, "delta", "r")
+        aggressiveness = {"methods": len(rows), "spearman": rho, "kendall": tau}
+    else:
+        aggressiveness = {"methods": len(rows)}
+
     return {"dataset": dataset, "cells": total, "ineligible": bad,
             "share_ineligible": bad / total if total else float("nan"),
             "ineligible_because_native_is_below_the_floor": below,
+            "delta_vs_native_retention_over_eligible_rows": aggressiveness,
             "by_method": out}
 
 

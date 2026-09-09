@@ -565,6 +565,11 @@
       "ineligible": 5,
       "share_ineligible": 0.08333333333333333,
       "ineligible_because_native_is_below_the_floor": 5,
+      "delta_vs_native_retention_over_eligible_rows": {
+        "methods": 6,
+        "spearman": 0.7714285714285715,
+        "kendall": 0.6
+      },
       "by_method": {
         "dwf": {
           "eligible": 10,
@@ -1409,6 +1414,11 @@
       "ineligible": 30,
       "share_ineligible": 0.5,
       "ineligible_because_native_is_below_the_floor": 30,
+      "delta_vs_native_retention_over_eligible_rows": {
+        "methods": 4,
+        "spearman": 0.7999999999999999,
+        "kendall": 0.6666666666666669
+      },
       "by_method": {
         "dwf": {
           "eligible": 10,
@@ -2231,6 +2241,11 @@
       "ineligible": 445,
       "share_ineligible": 0.1931423611111111,
       "ineligible_because_native_is_below_the_floor": 445,
+      "delta_vs_native_retention_over_eligible_rows": {
+        "methods": 6,
+        "spearman": 0.6,
+        "kendall": 0.3333333333333333
+      },
       "by_method": {
         "dwf": {
           "eligible": 384,
@@ -3180,6 +3195,11 @@
       "ineligible": 3,
       "share_ineligible": 0.041666666666666664,
       "ineligible_because_native_is_below_the_floor": 3,
+      "delta_vs_native_retention_over_eligible_rows": {
+        "methods": 6,
+        "spearman": 0.4285714285714286,
+        "kendall": 0.2
+      },
       "by_method": {
         "dwf": {
           "eligible": 12,
@@ -4008,6 +4028,11 @@
       "ineligible": 125,
       "share_ineligible": 0.8012820512820513,
       "ineligible_because_native_is_below_the_floor": 125,
+      "delta_vs_native_retention_over_eligible_rows": {
+        "methods": 3,
+        "spearman": -0.5,
+        "kendall": -0.33333333333333337
+      },
       "by_method": {
         "dwf": {
           "eligible": 25,

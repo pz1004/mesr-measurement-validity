@@ -559,6 +559,150 @@
         }
       }
     },
+    "native_eligibility": {
+      "dataset": "dnd21",
+      "cells": 60,
+      "ineligible": 5,
+      "share_ineligible": 0.08333333333333333,
+      "ineligible_because_native_is_below_the_floor": 5,
+      "by_method": {
+        "dwf": {
+          "eligible": 10,
+          "ineligible": 0,
+          "eligible_mean_delta": 0.24309478587166716,
+          "eligible_mean_native_r": 0.3432351361003665,
+          "eligible_mean_scored_at_r": 0.3449999999999999,
+          "mean_native_r_all_cells": 0.3432351361003665,
+          "mean_scored_at_r_all_cells": 0.3449999999999999
+        },
+        "evflow": {
+          "eligible": 5,
+          "ineligible": 5,
+          "eligible_mean_delta": 0.10995438766600693,
+          "eligible_mean_native_r": 0.0642552,
+          "eligible_mean_scored_at_r": 0.06999999999999999,
+          "ineligible_mean_delta": 0.036096221824534,
+          "ineligible_mean_native_r": 0.011712692226341756,
+          "ineligible_mean_scored_at_r": 0.05,
+          "mean_native_r_all_cells": 0.03798394611317087,
+          "mean_scored_at_r_all_cells": 0.06000000000000001
+        },
+        "knoise": {
+          "eligible": 10,
+          "ineligible": 0,
+          "eligible_mean_delta": 0.1726665929123798,
+          "eligible_mean_native_r": 0.15005028765956688,
+          "eligible_mean_scored_at_r": 0.155,
+          "mean_native_r_all_cells": 0.15005028765956688,
+          "mean_scored_at_r_all_cells": 0.155
+        },
+        "red": {
+          "eligible": 10,
+          "ineligible": 0,
+          "eligible_mean_delta": 0.2983497308877953,
+          "eligible_mean_native_r": 0.17203320170735864,
+          "eligible_mean_scored_at_r": 0.17500000000000002,
+          "mean_native_r_all_cells": 0.17203320170735864,
+          "mean_scored_at_r_all_cells": 0.17500000000000002
+        },
+        "ts": {
+          "eligible": 10,
+          "ineligible": 0,
+          "eligible_mean_delta": 0.20459774388951688,
+          "eligible_mean_native_r": 0.16050974937488227,
+          "eligible_mean_scored_at_r": 0.16,
+          "mean_native_r_all_cells": 0.16050974937488227,
+          "mean_scored_at_r_all_cells": 0.16
+        },
+        "ynoise": {
+          "eligible": 10,
+          "ineligible": 0,
+          "eligible_mean_delta": 0.23307845957880327,
+          "eligible_mean_native_r": 0.37457285510262983,
+          "eligible_mean_scored_at_r": 0.37,
+          "mean_native_r_all_cells": 0.37457285510262983,
+          "mean_scored_at_r_all_cells": 0.37
+        }
+      }
+    },
+    "delta_at_common_floor": {
+      "dataset": "dnd21",
+      "retention": 0.05,
+      "by_method": {
+        "dwf": {
+          "n": 10,
+          "mean": -0.04551416129276836,
+          "median": -0.02422622909294836,
+          "lo": -0.052567884390796,
+          "hi": -0.03846043819474072,
+          "n_scenes": 2
+        },
+        "evflow": {
+          "n": 10,
+          "mean": 0.08329060600693494,
+          "median": 0.13104378305228837,
+          "lo": 0.036096221824534,
+          "hi": 0.1304849901893359,
+          "n_scenes": 2
+        },
+        "knoise": {
+          "n": 10,
+          "mean": 0.02486700882677485,
+          "median": -0.005147488247569443,
+          "lo": -0.06716485657202691,
+          "hi": 0.11689887422557661,
+          "n_scenes": 2
+        },
+        "label_oracle": {
+          "n": 10,
+          "mean": -0.010980211981387756,
+          "median": -0.03181346467077101,
+          "lo": -0.07581786980540905,
+          "hi": 0.05385744584263354,
+          "n_scenes": 2
+        },
+        "random_null": {
+          "n": 10,
+          "mean": -0.21825826433511047,
+          "median": -0.16823171681932603,
+          "lo": -0.2942724601781895,
+          "hi": -0.1422440684920316,
+          "n_scenes": 2
+        },
+        "raw": {
+          "n": 10,
+          "mean": -0.23402565832334626,
+          "median": -0.1779955697258705,
+          "lo": -0.3147841333788701,
+          "hi": -0.15326718326782238,
+          "n_scenes": 2
+        },
+        "red": {
+          "n": 10,
+          "mean": 0.14849552366423746,
+          "median": 0.12646776546206873,
+          "lo": 0.0981670150559539,
+          "hi": 0.19882403227252105,
+          "n_scenes": 2
+        },
+        "ts": {
+          "n": 10,
+          "mean": 0.11613580858688292,
+          "median": 0.03989020843946961,
+          "lo": -0.01492721310591696,
+          "hi": 0.2471988302796828,
+          "n_scenes": 2
+        },
+        "ynoise": {
+          "n": 10,
+          "mean": -0.0059999831366408405,
+          "median": -0.02648191537389566,
+          "lo": -0.07071431426531771,
+          "hi": 0.05871434799203603,
+          "n_scenes": 2
+        }
+      }
+    },
     "spearman_auc_vs_native": 1.0,
     "kendall_auc_vs_native": 1.0,
     "rankings_differ_auc_vs_native": false,
@@ -658,6 +802,57 @@
         "lo": 0.12765467638679778,
         "hi": 0.3472029036866895,
         "n": 10,
+        "draws": 10000
+      }
+    },
+    "delta_over_raw_at_native_eligible": {
+      "dwf": {
+        "n": 10,
+        "mean": 0.24309478587166716,
+        "lo": 0.16456827232661378,
+        "hi": 0.32427239718943146,
+        "draws": 10000
+      },
+      "evflow": {
+        "n": 5,
+        "mean": 0.10995438766600693,
+        "lo": 0.06908678852009761,
+        "hi": 0.15082198681191625,
+        "draws": 10000
+      },
+      "knoise": {
+        "n": 10,
+        "mean": 0.1726665929123798,
+        "lo": 0.07001071033109163,
+        "hi": 0.2820507555366984,
+        "draws": 10000
+      },
+      "raw": {
+        "n": 10,
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "draws": 10000
+      },
+      "red": {
+        "n": 10,
+        "mean": 0.2983497308877953,
+        "lo": 0.19928442833456628,
+        "hi": 0.4019708392998656,
+        "draws": 10000
+      },
+      "ts": {
+        "n": 10,
+        "mean": 0.20459774388951688,
+        "lo": 0.09980116694044079,
+        "hi": 0.31220607708554104,
+        "draws": 10000
+      },
+      "ynoise": {
+        "n": 10,
+        "mean": 0.23307845957880327,
+        "lo": 0.12765467638679778,
+        "hi": 0.3472029036866895,
         "draws": 10000
       }
     },
@@ -1208,6 +1403,153 @@
         }
       }
     },
+    "native_eligibility": {
+      "dataset": "dvsclean",
+      "cells": 60,
+      "ineligible": 30,
+      "share_ineligible": 0.5,
+      "ineligible_because_native_is_below_the_floor": 30,
+      "by_method": {
+        "dwf": {
+          "eligible": 10,
+          "ineligible": 0,
+          "eligible_mean_delta": 0.24056872453430297,
+          "eligible_mean_native_r": 0.15509632339509044,
+          "eligible_mean_scored_at_r": 0.15999999999999998,
+          "mean_native_r_all_cells": 0.15509632339509044,
+          "mean_scored_at_r_all_cells": 0.15999999999999998
+        },
+        "evflow": {
+          "eligible": 0,
+          "ineligible": 10,
+          "ineligible_mean_delta": -0.06802833230751058,
+          "ineligible_mean_native_r": 0.0010125527396327922,
+          "ineligible_mean_scored_at_r": 0.125,
+          "mean_native_r_all_cells": 0.0010125527396327922,
+          "mean_scored_at_r_all_cells": 0.125
+        },
+        "knoise": {
+          "eligible": 8,
+          "ineligible": 2,
+          "eligible_mean_delta": 0.13901560593010062,
+          "eligible_mean_native_r": 0.11221969446869506,
+          "eligible_mean_scored_at_r": 0.1375,
+          "ineligible_mean_delta": 0.1279645165061882,
+          "ineligible_mean_native_r": 0.07426880360816016,
+          "ineligible_mean_scored_at_r": 0.125,
+          "mean_native_r_all_cells": 0.10462951629658808,
+          "mean_scored_at_r_all_cells": 0.135
+        },
+        "red": {
+          "eligible": 0,
+          "ineligible": 10,
+          "ineligible_mean_delta": -0.05598781655758167,
+          "ineligible_mean_native_r": 0.0037629492624107266,
+          "ineligible_mean_scored_at_r": 0.125,
+          "mean_native_r_all_cells": 0.0037629492624107266,
+          "mean_scored_at_r_all_cells": 0.125
+        },
+        "ts": {
+          "eligible": 2,
+          "ineligible": 8,
+          "eligible_mean_delta": 0.03451178076015912,
+          "eligible_mean_native_r": 0.1122950848243385,
+          "eligible_mean_scored_at_r": 0.125,
+          "ineligible_mean_delta": -0.015390595208473808,
+          "ineligible_mean_native_r": 0.03240823366877246,
+          "ineligible_mean_scored_at_r": 0.125,
+          "mean_native_r_all_cells": 0.04838560389988567,
+          "mean_scored_at_r_all_cells": 0.125
+        },
+        "ynoise": {
+          "eligible": 10,
+          "ineligible": 0,
+          "eligible_mean_delta": 0.19747694588411746,
+          "eligible_mean_native_r": 0.15347729558362108,
+          "eligible_mean_scored_at_r": 0.15999999999999998,
+          "mean_native_r_all_cells": 0.15347729558362108,
+          "mean_scored_at_r_all_cells": 0.15999999999999998
+        }
+      }
+    },
+    "delta_at_common_floor": {
+      "dataset": "dvsclean",
+      "retention": 0.15,
+      "by_method": {
+        "dwf": {
+          "n": 10,
+          "mean": 0.21127585580425157,
+          "median": 0.23075106713760152,
+          "lo": 0.17288277580610384,
+          "hi": 0.23831831260172195,
+          "n_scenes": 5
+        },
+        "evflow": {
+          "n": 10,
+          "mean": -0.05845802099297972,
+          "median": -0.0406388767756182,
+          "lo": -0.11951572732362889,
+          "hi": 0.0009825264520542498,
+          "n_scenes": 5
+        },
+        "knoise": {
+          "n": 10,
+          "mean": 0.11725081670148296,
+          "median": 0.11843976345421131,
+          "lo": 0.09437087563278082,
+          "hi": 0.1510259022078595,
+          "n_scenes": 5
+        },
+        "label_oracle": {
+          "n": 10,
+          "mean": 0.15519394153847627,
+          "median": 0.15413723118134867,
+          "lo": 0.10227405083521617,
+          "hi": 0.20811383224173627,
+          "n_scenes": 5
+        },
+        "random_null": {
+          "n": 10,
+          "mean": -0.060825465930695176,
+          "median": -0.059842954877429216,
+          "lo": -0.11931882460776029,
+          "hi": -0.002332107253630078,
+          "n_scenes": 5
+        },
+        "raw": {
+          "n": 10,
+          "mean": -0.06011070282622703,
+          "median": -0.04157961771490665,
+          "lo": -0.12160806079416617,
+          "hi": 0.0002627138283843644,
+          "n_scenes": 5
+        },
+        "red": {
+          "n": 10,
+          "mean": -0.04756050579936522,
+          "median": -0.03741910240506316,
+          "lo": -0.10397651177438469,
+          "hi": 0.005325304162982064,
+          "n_scenes": 5
+        },
+        "ts": {
+          "n": 10,
+          "mean": -0.0012133849865751944,
+          "median": 0.007202567031154322,
+          "lo": -0.058988148011342424,
+          "hi": 0.04532041774623986,
+          "n_scenes": 5
+        },
+        "ynoise": {
+          "n": 10,
+          "mean": 0.17875519718687088,
+          "median": 0.18007301790379712,
+          "lo": 0.13285044500220838,
+          "hi": 0.23915320810519872,
+          "n_scenes": 5
+        }
+      }
+    },
     "spearman_auc_vs_native": 0.7857142857142859,
     "kendall_auc_vs_native": 0.7142857142857143,
     "rankings_differ_auc_vs_native": true,
@@ -1307,6 +1649,43 @@
         "lo": 0.15256123589370738,
         "hi": 0.24501366316945766,
         "n": 10,
+        "draws": 10000
+      }
+    },
+    "delta_over_raw_at_native_eligible": {
+      "dwf": {
+        "n": 10,
+        "mean": 0.24056872453430297,
+        "lo": 0.19963634369521555,
+        "hi": 0.27909624516371134,
+        "draws": 10000
+      },
+      "knoise": {
+        "n": 8,
+        "mean": 0.13901560593010062,
+        "lo": 0.0945842581350519,
+        "hi": 0.18177228794393951,
+        "draws": 10000
+      },
+      "raw": {
+        "n": 10,
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "draws": 10000
+      },
+      "ts": {
+        "n": 2,
+        "mean": 0.03451178076015912,
+        "lo": -0.015355996825750728,
+        "hi": 0.08437955834606897,
+        "draws": 10000
+      },
+      "ynoise": {
+        "n": 10,
+        "mean": 0.19747694588411746,
+        "lo": 0.15256123589370738,
+        "hi": 0.24501366316945766,
         "draws": 10000
       }
     },
@@ -1846,6 +2225,154 @@
         }
       }
     },
+    "native_eligibility": {
+      "dataset": "emlb",
+      "cells": 2304,
+      "ineligible": 445,
+      "share_ineligible": 0.1931423611111111,
+      "ineligible_because_native_is_below_the_floor": 445,
+      "by_method": {
+        "dwf": {
+          "eligible": 384,
+          "ineligible": 0,
+          "eligible_mean_delta": 0.11167373759106973,
+          "eligible_mean_native_r": 0.42107542014079374,
+          "eligible_mean_scored_at_r": 0.4190104166666666,
+          "mean_native_r_all_cells": 0.42107542014079374,
+          "mean_scored_at_r_all_cells": 0.4190104166666666
+        },
+        "evflow": {
+          "eligible": 123,
+          "ineligible": 261,
+          "eligible_mean_delta": 0.099437284525073,
+          "eligible_mean_native_r": 0.1312986852170062,
+          "eligible_mean_scored_at_r": 0.13252032520325208,
+          "ineligible_mean_delta": -0.012830870220891551,
+          "ineligible_mean_native_r": 0.010721037368668373,
+          "ineligible_mean_scored_at_r": 0.058812260536398465,
+          "mean_native_r_all_cells": 0.04934356519508908,
+          "mean_scored_at_r_all_cells": 0.08242187500000002
+        },
+        "knoise": {
+          "eligible": 376,
+          "ineligible": 8,
+          "eligible_mean_delta": 0.05255280911585193,
+          "eligible_mean_native_r": 0.1759117204579407,
+          "eligible_mean_scored_at_r": 0.17632978723404258,
+          "ineligible_mean_delta": -0.07739732286070347,
+          "ineligible_mean_native_r": 0.04148264970552633,
+          "ineligible_mean_scored_at_r": 0.08750000000000001,
+          "mean_native_r_all_cells": 0.1731111148172654,
+          "mean_scored_at_r_all_cells": 0.17447916666666666
+        },
+        "red": {
+          "eligible": 311,
+          "ineligible": 73,
+          "eligible_mean_delta": 0.4550334449780912,
+          "eligible_mean_native_r": 0.2619324830447375,
+          "eligible_mean_scored_at_r": 0.26173633440514465,
+          "ineligible_mean_delta": 2.7179556364032322,
+          "ineligible_mean_native_r": 0.022293348203764773,
+          "ineligible_mean_scored_at_r": 0.07808219178082192,
+          "mean_native_r_all_cells": 0.2163760850150734,
+          "mean_scored_at_r_all_cells": 0.22682291666666668
+        },
+        "ts": {
+          "eligible": 284,
+          "ineligible": 100,
+          "eligible_mean_delta": 0.09462082050880273,
+          "eligible_mean_native_r": 0.21800796228807953,
+          "eligible_mean_scored_at_r": 0.21954225352112677,
+          "ineligible_mean_delta": 0.12493850341207899,
+          "ineligible_mean_native_r": 0.018397117420904257,
+          "ineligible_mean_scored_at_r": 0.05549999999999999,
+          "mean_native_r_all_cells": 0.16602597143725262,
+          "mean_scored_at_r_all_cells": 0.17682291666666664
+        },
+        "ynoise": {
+          "eligible": 381,
+          "ineligible": 3,
+          "eligible_mean_delta": 0.21263675362533221,
+          "eligible_mean_native_r": 0.412886783574377,
+          "eligible_mean_scored_at_r": 0.413254593175853,
+          "ineligible_mean_delta": 0.513858570737713,
+          "ineligible_mean_native_r": 0.041298473578446335,
+          "ineligible_mean_scored_at_r": 0.10000000000000002,
+          "mean_native_r_all_cells": 0.4099837499025338,
+          "mean_scored_at_r_all_cells": 0.4108072916666667
+        }
+      }
+    },
+    "delta_at_common_floor": {
+      "dataset": "emlb",
+      "retention": 0.35,
+      "by_method": {
+        "dwf": {
+          "n": 384,
+          "mean": 0.08039689185569918,
+          "median": 0.06374280737597793,
+          "lo": 0.06068090849035258,
+          "hi": 0.10172894136704798,
+          "n_scenes": 96
+        },
+        "evflow": {
+          "n": 384,
+          "mean": -0.0050113487896391,
+          "median": -0.01217221898657217,
+          "lo": -0.018564796861093195,
+          "hi": 0.009693696000213687,
+          "n_scenes": 96
+        },
+        "knoise": {
+          "n": 384,
+          "mean": 0.015168642946755476,
+          "median": 0.004247165663758268,
+          "lo": 0.0034861361735443663,
+          "hi": 0.02781632268347589,
+          "n_scenes": 96
+        },
+        "random_null": {
+          "n": 384,
+          "mean": -0.040871972227677016,
+          "median": -0.03557225116637275,
+          "lo": -0.04997352058780075,
+          "hi": -0.032000684886093755,
+          "n_scenes": 96
+        },
+        "raw": {
+          "n": 384,
+          "mean": -0.04955684667777327,
+          "median": -0.04952678524209414,
+          "lo": -0.05961010090048835,
+          "hi": -0.03964112866578743,
+          "n_scenes": 96
+        },
+        "red": {
+          "n": 384,
+          "mean": 0.1799481977091034,
+          "median": 0.14402945617134943,
+          "lo": 0.15188679628444782,
+          "hi": 0.20851475113123324,
+          "n_scenes": 96
+        },
+        "ts": {
+          "n": 384,
+          "mean": 0.04370625823428215,
+          "median": 0.01956392848196803,
+          "lo": 0.025163983528701226,
+          "hi": 0.0644289783262951,
+          "n_scenes": 96
+        },
+        "ynoise": {
+          "n": 384,
+          "mean": 0.0864329796724367,
+          "median": 0.08138897567824682,
+          "lo": 0.06731845338419816,
+          "hi": 0.1062021781040719,
+          "n_scenes": 96
+        }
+      }
+    },
     "spearman_auc_vs_native": 1.0,
     "kendall_auc_vs_native": 1.0,
     "rankings_differ_auc_vs_native": false,
@@ -1945,6 +2472,57 @@
         "lo": 0.1753416399365684,
         "hi": 0.2583397524802448,
         "n": 384,
+        "draws": 10000
+      }
+    },
+    "delta_over_raw_at_native_eligible": {
+      "dwf": {
+        "n": 384,
+        "mean": 0.11167373759106973,
+        "lo": 0.09885996115379302,
+        "hi": 0.12551496021485992,
+        "draws": 10000
+      },
+      "evflow": {
+        "n": 123,
+        "mean": 0.099437284525073,
+        "lo": 0.061164241939316195,
+        "hi": 0.1424875720944494,
+        "draws": 10000
+      },
+      "knoise": {
+        "n": 376,
+        "mean": 0.05255280911585193,
+        "lo": 0.03645799809367053,
+        "hi": 0.07022202944217514,
+        "draws": 10000
+      },
+      "raw": {
+        "n": 384,
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "draws": 10000
+      },
+      "red": {
+        "n": 311,
+        "mean": 0.4550334449780912,
+        "lo": 0.3739467509819346,
+        "hi": 0.5429210356512721,
+        "draws": 10000
+      },
+      "ts": {
+        "n": 284,
+        "mean": 0.09462082050880273,
+        "lo": 0.07012023586436193,
+        "hi": 0.12120936999825815,
+        "draws": 10000
+      },
+      "ynoise": {
+        "n": 381,
+        "mean": 0.21263675362533221,
+        "lo": 0.17276354436995317,
+        "hi": 0.2571759534039537,
         "draws": 10000
       }
     },
@@ -2596,6 +3174,145 @@
         }
       }
     },
+    "native_eligibility": {
+      "dataset": "dvsd22",
+      "cells": 72,
+      "ineligible": 3,
+      "share_ineligible": 0.041666666666666664,
+      "ineligible_because_native_is_below_the_floor": 3,
+      "by_method": {
+        "dwf": {
+          "eligible": 12,
+          "ineligible": 0,
+          "eligible_mean_delta": 0.2595751328740171,
+          "eligible_mean_native_r": 0.6286900000000001,
+          "eligible_mean_scored_at_r": 0.6333333333333334,
+          "mean_native_r_all_cells": 0.6286900000000001,
+          "mean_scored_at_r_all_cells": 0.6333333333333334
+        },
+        "evflow": {
+          "eligible": 10,
+          "ineligible": 2,
+          "eligible_mean_delta": 0.21070383611856594,
+          "eligible_mean_native_r": 0.12317710000000001,
+          "eligible_mean_scored_at_r": 0.125,
+          "ineligible_mean_delta": 1.0395904847918842,
+          "ineligible_mean_native_r": 0.0210345,
+          "ineligible_mean_scored_at_r": 0.05,
+          "mean_native_r_all_cells": 0.10615333333333336,
+          "mean_scored_at_r_all_cells": 0.1125
+        },
+        "knoise": {
+          "eligible": 11,
+          "ineligible": 1,
+          "eligible_mean_delta": 0.009151670416029852,
+          "eligible_mean_native_r": 0.19466436363636364,
+          "eligible_mean_scored_at_r": 0.19090909090909092,
+          "ineligible_mean_delta": 0.7606560411028722,
+          "ineligible_mean_native_r": 0.026357,
+          "ineligible_mean_scored_at_r": 0.05,
+          "mean_native_r_all_cells": 0.18063875,
+          "mean_scored_at_r_all_cells": 0.17916666666666667
+        },
+        "red": {
+          "eligible": 12,
+          "ineligible": 0,
+          "eligible_mean_delta": 0.5726830702481819,
+          "eligible_mean_native_r": 0.3815093333333333,
+          "eligible_mean_scored_at_r": 0.37916666666666665,
+          "mean_native_r_all_cells": 0.3815093333333333,
+          "mean_scored_at_r_all_cells": 0.37916666666666665
+        },
+        "ts": {
+          "eligible": 12,
+          "ineligible": 0,
+          "eligible_mean_delta": 0.6874684668995971,
+          "eligible_mean_native_r": 0.3813384166666666,
+          "eligible_mean_scored_at_r": 0.3916666666666666,
+          "mean_native_r_all_cells": 0.3813384166666666,
+          "mean_scored_at_r_all_cells": 0.3916666666666666
+        },
+        "ynoise": {
+          "eligible": 12,
+          "ineligible": 0,
+          "eligible_mean_delta": 0.6761713684952061,
+          "eligible_mean_native_r": 0.4573272499999999,
+          "eligible_mean_scored_at_r": 0.4541666666666666,
+          "mean_native_r_all_cells": 0.4573272499999999,
+          "mean_scored_at_r_all_cells": 0.4541666666666666
+        }
+      }
+    },
+    "delta_at_common_floor": {
+      "dataset": "dvsd22",
+      "retention": 0.05,
+      "by_method": {
+        "dwf": {
+          "n": 12,
+          "mean": 2.61915128749845,
+          "median": 3.143915593923996,
+          "lo": 1.438523038835291,
+          "hi": 3.4734325334431855,
+          "n_scenes": 10
+        },
+        "evflow": {
+          "n": 12,
+          "mean": 0.40431244495787205,
+          "median": 0.40877539878436775,
+          "lo": -0.1652718878389416,
+          "hi": 0.8376293636851858,
+          "n_scenes": 10
+        },
+        "knoise": {
+          "n": 12,
+          "mean": 0.2867797794721553,
+          "median": 0.29469317577424226,
+          "lo": -0.23437666259360806,
+          "hi": 0.6849192772093647,
+          "n_scenes": 10
+        },
+        "random_null": {
+          "n": 12,
+          "mean": 0.7786071814437169,
+          "median": 0.8217394151124937,
+          "lo": 0.29932371253167916,
+          "hi": 1.1448491636559537,
+          "n_scenes": 10
+        },
+        "raw": {
+          "n": 12,
+          "mean": 0.8095664151224214,
+          "median": 0.807735325731268,
+          "lo": 0.326634506120804,
+          "hi": 1.1724820768745001,
+          "n_scenes": 10
+        },
+        "red": {
+          "n": 12,
+          "mean": 2.799176434993717,
+          "median": 2.5874969902339746,
+          "lo": 2.0416278267287096,
+          "hi": 3.8151284193681203,
+          "n_scenes": 10
+        },
+        "ts": {
+          "n": 12,
+          "mean": 4.755033287462536,
+          "median": 5.479276760550039,
+          "lo": 2.642001129471652,
+          "hi": 6.513325796385037,
+          "n_scenes": 10
+        },
+        "ynoise": {
+          "n": 12,
+          "mean": 5.297372216708507,
+          "median": 6.3449885343020345,
+          "lo": 3.3304861737380067,
+          "hi": 6.780359146902178,
+          "n_scenes": 10
+        }
+      }
+    },
     "spearman_auc_vs_native": 0.5714285714285715,
     "kendall_auc_vs_native": 0.4285714285714286,
     "rankings_differ_auc_vs_native": true,
@@ -2695,6 +3412,57 @@
         "lo": 0.12305364691132674,
         "hi": 1.4114136175274636,
         "n": 12,
+        "draws": 10000
+      }
+    },
+    "delta_over_raw_at_native_eligible": {
+      "dwf": {
+        "n": 12,
+        "mean": 0.2595751328740171,
+        "lo": 0.05806802035218365,
+        "hi": 0.5102508601814291,
+        "draws": 10000
+      },
+      "evflow": {
+        "n": 10,
+        "mean": 0.21070383611856594,
+        "lo": -0.11835037200000717,
+        "hi": 0.6346378626104338,
+        "draws": 10000
+      },
+      "knoise": {
+        "n": 11,
+        "mean": 0.009151670416029852,
+        "lo": -0.18400441174475674,
+        "hi": 0.24377056186379234,
+        "draws": 10000
+      },
+      "raw": {
+        "n": 12,
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "draws": 10000
+      },
+      "red": {
+        "n": 12,
+        "mean": 0.5726830702481819,
+        "lo": 0.11992115156333698,
+        "hi": 0.9816594967580607,
+        "draws": 10000
+      },
+      "ts": {
+        "n": 12,
+        "mean": 0.6874684668995971,
+        "lo": 0.19312448860564538,
+        "hi": 1.2701017034833442,
+        "draws": 10000
+      },
+      "ynoise": {
+        "n": 12,
+        "mean": 0.6761713684952061,
+        "lo": 0.12305364691132674,
+        "hi": 1.4114136175274636,
         "draws": 10000
       }
     },
@@ -3234,6 +4002,148 @@
         }
       }
     },
+    "native_eligibility": {
+      "dataset": "pure_ba",
+      "cells": 156,
+      "ineligible": 125,
+      "share_ineligible": 0.8012820512820513,
+      "ineligible_because_native_is_below_the_floor": 125,
+      "by_method": {
+        "dwf": {
+          "eligible": 25,
+          "ineligible": 1,
+          "eligible_mean_delta": 3.168651461262974,
+          "eligible_mean_native_r": 0.24230892318041503,
+          "eligible_mean_scored_at_r": 0.242,
+          "ineligible_mean_delta": 4.921655834591785,
+          "ineligible_mean_native_r": 0.4875206116024584,
+          "ineligible_mean_scored_at_r": 0.6,
+          "mean_native_r_all_cells": 0.25174014196587824,
+          "mean_scored_at_r_all_cells": 0.25576923076923075
+        },
+        "evflow": {
+          "eligible": 0,
+          "ineligible": 26,
+          "ineligible_mean_delta": 0.08539616945818365,
+          "ineligible_mean_native_r": 1.9966035905463995e-05,
+          "ineligible_mean_scored_at_r": 0.09230769230769229,
+          "mean_native_r_all_cells": 1.9966035905463995e-05,
+          "mean_scored_at_r_all_cells": 0.09230769230769229
+        },
+        "knoise": {
+          "eligible": 0,
+          "ineligible": 26,
+          "ineligible_mean_delta": 0.0015087756620156224,
+          "ineligible_mean_native_r": 0.015869119235109957,
+          "ineligible_mean_scored_at_r": 0.09230769230769229,
+          "mean_native_r_all_cells": 0.015869119235109957,
+          "mean_scored_at_r_all_cells": 0.09230769230769229
+        },
+        "red": {
+          "eligible": 4,
+          "ineligible": 22,
+          "eligible_mean_delta": 20.0757073096998,
+          "eligible_mean_native_r": 0.06215782253051867,
+          "eligible_mean_scored_at_r": 0.075,
+          "ineligible_mean_delta": 13.384979421287339,
+          "ineligible_mean_native_r": 0.040671485938180374,
+          "ineligible_mean_scored_at_r": 0.09545454545454544,
+          "mean_native_r_all_cells": 0.043977076183155495,
+          "mean_scored_at_r_all_cells": 0.09230769230769229
+        },
+        "ts": {
+          "eligible": 0,
+          "ineligible": 26,
+          "ineligible_mean_delta": 1.8043650240843983,
+          "ineligible_mean_native_r": 0.006031094112733681,
+          "ineligible_mean_scored_at_r": 0.09230769230769229,
+          "mean_native_r_all_cells": 0.006031094112733681,
+          "mean_scored_at_r_all_cells": 0.09230769230769229
+        },
+        "ynoise": {
+          "eligible": 2,
+          "ineligible": 24,
+          "eligible_mean_delta": 17.927336924086525,
+          "eligible_mean_native_r": 0.035055176273160044,
+          "eligible_mean_scored_at_r": 0.05,
+          "ineligible_mean_delta": 11.461748276070104,
+          "ineligible_mean_native_r": 0.03836356378905748,
+          "ineligible_mean_scored_at_r": 0.09583333333333333,
+          "mean_native_r_all_cells": 0.038109072441680755,
+          "mean_scored_at_r_all_cells": 0.09230769230769229
+        }
+      }
+    },
+    "delta_at_common_floor": {
+      "dataset": "pure_ba",
+      "retention": 0.6,
+      "by_method": {
+        "dwf": {
+          "n": 26,
+          "mean": 1.1949900756648322,
+          "median": 0.2469112656231235,
+          "lo": 0.5601261596328123,
+          "hi": 1.941456366147987,
+          "n_scenes": 26
+        },
+        "evflow": {
+          "n": 26,
+          "mean": 0.03530699888644646,
+          "median": 0.005028850166263976,
+          "lo": 0.007891920081701028,
+          "hi": 0.07773901698598018,
+          "n_scenes": 26
+        },
+        "knoise": {
+          "n": 26,
+          "mean": 0.032361730064253795,
+          "median": 0.0014729528438652828,
+          "lo": 0.005401940391838923,
+          "hi": 0.07404707092810278,
+          "n_scenes": 26
+        },
+        "random_null": {
+          "n": 26,
+          "mean": 0.045516749633522396,
+          "median": -0.0007332358215085266,
+          "lo": 0.012113024517604142,
+          "hi": 0.08989038913272615,
+          "n_scenes": 26
+        },
+        "raw": {
+          "n": 26,
+          "mean": 0.03475992823837763,
+          "median": 0.00430437735273248,
+          "lo": 0.007458598738577911,
+          "hi": 0.07694688585371541,
+          "n_scenes": 26
+        },
+        "red": {
+          "n": 26,
+          "mean": 1.3507360583951902,
+          "median": 0.43069811994657625,
+          "lo": 0.7190528216531513,
+          "hi": 2.1019544226698814,
+          "n_scenes": 26
+        },
+        "ts": {
+          "n": 26,
+          "mean": 0.10635228539630227,
+          "median": 0.027740996927846484,
+          "lo": 0.03876769975716132,
+          "hi": 0.20702989298284039,
+          "n_scenes": 26
+        },
+        "ynoise": {
+          "n": 26,
+          "mean": 0.7047150035546056,
+          "median": 0.26894319693310254,
+          "lo": 0.41457098808348525,
+          "hi": 1.0443113573535376,
+          "n_scenes": 26
+        }
+      }
+    },
     "spearman_auc_vs_native": 0.9642857142857145,
     "kendall_auc_vs_native": 0.9047619047619049,
     "rankings_differ_auc_vs_native": true,
@@ -3333,6 +4243,36 @@
         "lo": 9.695280689085873,
         "hi": 14.493420194984868,
         "n": 26,
+        "draws": 10000
+      }
+    },
+    "delta_over_raw_at_native_eligible": {
+      "dwf": {
+        "n": 25,
+        "mean": 3.168651461262974,
+        "lo": 2.0374701705898963,
+        "hi": 4.466865680911438,
+        "draws": 10000
+      },
+      "raw": {
+        "n": 26,
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "draws": 10000
+      },
+      "red": {
+        "n": 4,
+        "mean": 20.0757073096998,
+        "lo": 14.68933386517132,
+        "hi": 25.462080754228282,
+        "draws": 10000
+      },
+      "ynoise": {
+        "n": 2,
+        "mean": 17.927336924086525,
+        "lo": 7.423261847042108,
+        "hi": 28.43141200113094,
         "draws": 10000
       }
     },

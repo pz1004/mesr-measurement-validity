@@ -70,7 +70,12 @@ def test_sign_consistency_is_reported_separately_from_the_mean():
 
 
 def test_published_contrasts_match_the_artifact():
-    """The numbers the E-MLB table now quotes come from `results/paired_contrasts.json`."""
+    """The numbers the E-MLB table now quotes come from `results/paired_contrasts.json`.
+
+    Regenerated under `protocol.native_point_is_eligible`, which drops the 445 of 2304 cells
+    whose native retention lies below the recording's measurable floor. Every row is now its
+    own cohort, so `n` is per pair and the marginals are not comparable across rows.
+    """
 
     from pathlib import Path
 
@@ -78,16 +83,77 @@ def test_published_contrasts_match_the_artifact():
     if not path.is_file():
         pytest.skip("paired_contrasts.json not generated")
     r = json.loads(path.read_text())
-    assert r["ranked_by_mean"] == ["red", "ynoise", "dwf", "ts", "knoise", "evflow"]
-    assert r["n_recordings"] == 384 and r["n_scenes"] == 96
-    assert r["pairs_resolved"] == 14 and r["pairs_total"] == 15
+    assert r["ranked_by_mean"] == ["red", "ynoise", "dwf", "evflow", "ts", "knoise"]
+    assert r["pairs_resolved"] == 10 and r["pairs_total"] == 15
 
     by = {(p["a"], p["b"]): p for p in r["pairs"]}
-    # The overlap rule called this pair unresolvable and it is; that half of the old claim
-    # survives, and the difference is 0.0092 -- the published gap, to four decimals.
+    # The five unresolved pairs are exactly the four middle methods against each other.
+    unresolved = {frozenset((p["a"], p["b"])) for p in r["pairs"] if not p["excludes_zero"]}
+    middle = {"ynoise", "dwf", "evflow", "ts"}
+    assert unresolved == {frozenset(pair) for pair in
+                          [("ynoise", "dwf"), ("ynoise", "evflow"), ("ynoise", "ts"),
+                           ("dwf", "evflow"), ("dwf", "ts"), ("evflow", "ts")]} - {
+                              frozenset(("ynoise", "dwf"))}
+    assert all(a in middle and b in middle for p in unresolved for a, b in [tuple(p)])
+    # DWF over TS still fails to separate, on the 284 recordings where both are measurable.
     assert not by[("dwf", "ts")]["excludes_zero"]
-    assert by[("dwf", "ts")]["mean_difference"] == pytest.approx(0.0092, abs=5e-5)
-    # The overlap rule called this pair unresolvable and it is not. This is the claim the
-    # old reasoning got wrong.
-    assert by[("knoise", "evflow")]["excludes_zero"]
-    assert by[("knoise", "evflow")]["lo"] > 0
+    assert by[("dwf", "ts")]["n_recordings"] == 284
+    # Each pair carries its own cohort size, and no pair is scored on all 384 any more
+    # except where both methods are measurable everywhere.
+    assert {p["n_recordings"] for p in r["pairs"]} != {384}
+    # RED separates from every other method; KNoise sits below every other method.
+    for p in r["pairs"]:
+        if p["a"] == "red" or p["b"] == "knoise":
+            assert p["excludes_zero"], (p["a"], p["b"])
+
+
+def test_the_blank_response_is_read_at_a_selection_free_retention():
+    """Section VII quotes Pure_BA at its common-support floor, not at native operating points.
+
+    Native is not available there: Pure_BA's filters keep a few per cent while its measurable
+    floor is r = 0.60, so `native_point_is_eligible` leaves RED with 4 of 26 recordings and TS
+    with none. Fixing r keeps all 26 and puts the nonselective controls at the same retained
+    count, which is what makes the comparison a blank-sample check rather than a raw number.
+    """
+
+    from dataset_assessment.analyze import common_support_floor, delta_at_fixed_retention
+
+    floor = common_support_floor("pure_ba")
+    assert floor == pytest.approx(0.60)
+    by = delta_at_fixed_retention("pure_ba", floor)["by_method"]
+
+    assert {v["n"] for v in by.values()} == {26}, "every recording must be evaluable here"
+    controls = max(by["raw"]["mean"], by["random_null"]["mean"])
+    assert by["red"]["mean"] == pytest.approx(1.3507, abs=5e-4)
+    assert by["raw"]["mean"] == pytest.approx(0.0348, abs=5e-4)
+    # The claim: selecting which noise to drop is worth far more than dropping the amount.
+    assert by["red"]["mean"] / controls > 25
+    for method in ("red", "dwf", "ynoise"):
+        assert by[method]["lo"] > controls
+
+
+def test_table_iv_prints_the_eligible_cohort_and_says_what_it_dropped():
+    """Every value and every count in the E-MLB table traces to `native_eligibility`."""
+
+    from dataset_assessment.analyze import native_eligibility
+
+    r = native_eligibility("emlb")
+    assert r["cells"] == 2304 and r["ineligible"] == 445
+    assert r["share_ineligible"] == pytest.approx(0.193, abs=5e-4)
+    # Every ineligible cell has the same cause, which is what lets the paper state one.
+    assert r["ineligible_because_native_is_below_the_floor"] == r["ineligible"]
+
+    by = r["by_method"]
+    printed = {"red": (311, 0.4550), "ynoise": (381, 0.2126), "dwf": (384, 0.1117),
+               "evflow": (123, 0.0994), "ts": (284, 0.0946), "knoise": (376, 0.0526)}
+    for method, (n, mean) in printed.items():
+        assert by[method]["eligible"] == n, method
+        assert by[method]["eligible_mean_delta"] == pytest.approx(mean, abs=5e-5), method
+
+    # The claim that made the restriction necessary: the dropped cells are not a random
+    # sample, and they were carrying the table's top row.
+    assert by["red"]["ineligible_mean_delta"] == pytest.approx(2.7180, abs=5e-4)
+    assert by["red"]["ineligible_mean_delta"] > 5 * by["red"]["eligible_mean_delta"]
+    # EvFlow's printed native retention is not where EvFlow was scored.
+    assert by["evflow"]["mean_native_r_all_cells"] == pytest.approx(0.0493, abs=5e-5)
+    assert by["evflow"]["mean_scored_at_r_all_cells"] == pytest.approx(0.0824, abs=5e-5)

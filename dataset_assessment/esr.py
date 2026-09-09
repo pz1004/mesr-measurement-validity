@@ -7,7 +7,11 @@ float32 accumulator precision).
 
 Do NOT substitute the `EventStructuralRatioV2` variant that lives at `:24` in the same
 cuke-emlb file (and again as `EDformer/metrics.py`): it median-filters the potential surface,
-divides `ln` by K, and returns 1000*sqrt(ntss*ln), i.e. numbers ~1000x off.
+divides `ln` by K, sums n^2 rather than n(n-1), and returns 1000*sqrt(ntss*ln). This was once
+described here as "numbers ~1000x off", which is wrong -- the /K cancels most of the 1000,
+and what is left is the median filter. `esr_variant.py` measures it: the variant runs from
+3.4x the official value on E-MLB down to *zero* on the sparse DVSD22 slices, where the size-3
+median empties the surface. It is not a rescaling and there is no factor to divide out.
 
 On K: `ln = K - sum_all_px (1-M/N)^n`. An empty pixel has n = 0 and therefore contributes
 exactly 1, so K cancels and

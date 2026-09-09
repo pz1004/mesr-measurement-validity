@@ -189,9 +189,47 @@ def _benchmark(out: Callable[[str], None]) -> None:
         intervals = entry.get("delta_over_raw_at_native_ci")
         if intervals:
             ordered = sorted(intervals.items(), key=lambda kv: -kv[1]["mean"])
-            out("- delta-over-raw at native, 95% bootstrap CI over recordings: "
+            out("- delta-over-raw at native, ALL cells snapped to the nearest grid point "
+                "(not what the paper prints), 95% CI over recordings: "
                 + ", ".join(f"{m} {v['mean']:+.4f} [{v['lo']:+.4f},{v['hi']:+.4f}]"
                             for m, v in ordered))
+        elig = entry.get("native_eligibility")
+        if elig and elig["ineligible"]:
+            out(f"- **native eligibility: {elig['ineligible']} of {elig['cells']} cells "
+                f"({elig['share_ineligible']:.1%}) cannot be scored at the method's own "
+                f"operating point**, all of them because the native retention is below the "
+                f"recording's measurable floor "
+                f"({elig['ineligible_because_native_is_below_the_floor']} of "
+                f"{elig['ineligible']})")
+            for m, v in sorted(elig["by_method"].items(),
+                               key=lambda kv: -kv[1]["ineligible"]):
+                if not v["ineligible"]:
+                    continue
+                out(f"  - {m}: {v['ineligible']} ineligible cells averaging "
+                    f"{v['ineligible_mean_delta']:+.4f} against "
+                    f"{v.get('eligible_mean_delta', float('nan')):+.4f} on its "
+                    f"{v['eligible']} eligible ones; mean native r "
+                    f"{v['mean_native_r_all_cells']:.4f} but mean r actually scored at "
+                    f"{v['mean_scored_at_r_all_cells']:.4f}")
+        floor = entry.get("delta_at_common_floor")
+        if floor:
+            # S VII reads the blank-sample response here: one retention, every recording,
+            # nothing selected, and the nonselective controls at the same retained count.
+            ordered = sorted(floor["by_method"].items(), key=lambda kv: -kv[1]["mean"])
+            out(f"- **delta-over-raw at the common-support floor r = {floor['retention']:.2f}"
+                f"** (one r, every recording, nothing selected; Pure_BA's row is where "
+                f"S VII's blank-sample numbers come from): "
+                + ", ".join(f"{m} {v['mean']:+.4f} [{v['lo']:+.3f},{v['hi']:+.3f}] "
+                            f"(n={v['n']})" for m, v in ordered))
+        eligible = entry.get("delta_over_raw_at_native_eligible")
+        if eligible:
+            # This is the cohort tab:emlb prints. A cell counts only where the grid can
+            # stand in for the filter's own operating point; the scene-clustered intervals
+            # the table shows are in results/paired_contrasts.json under "marginals".
+            ordered = sorted(eligible.items(), key=lambda kv: -kv[1]["mean"])
+            out("- **delta-over-raw at native, ELIGIBLE cells only -- the cohort tab:emlb "
+                "prints**: " + ", ".join(f"{m} {v['mean']:+.4f} (n={v['n']})"
+                                         for m, v in ordered))
         reference = entry.get("edformer_reference")
         if reference:
             out(f"- EDformer: mean delta-over-raw "
@@ -404,9 +442,9 @@ def _cap_sensitivity(out: Callable[[str], None]) -> None:
         f"{m} " + "/".join(f"{d:+.4f}" for d in v["mean_by_cap"].values())
         for m, v in r["per_method"].items() if m != "raw"))
     ov = r["means_over_all_recordings"]
-    out(f"- per-method mean by cap over ALL {ov['recordings']} recordings -- **this is the "
-        f"cohort the E-MLB table (tab:emlb) prints**, and the 1M column reproduces it "
-        f"to the printed digit: "
+    out(f"- per-method mean by cap over ALL {ov['recordings']} recordings -- the *unrestricted* "
+        f"native cohort, which tab:emlb no longer prints (it prints the eligible cells only, "
+        f"see the E-MLB block above); the 1M column here reproduces the unrestricted means: "
         + "; ".join(
             f"{m} " + "/".join(f"{d:+.4f}" for d in v["mean_by_cap"].values())
             + f" (moves {v['spread_across_caps']:.4f}, {v['spread_in_units_of_scale']:.1f}x)"

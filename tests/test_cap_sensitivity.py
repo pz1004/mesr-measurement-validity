@@ -181,7 +181,7 @@ def test_the_clean_pair_moves_a_corpus_mean_past_the_unit_of_scale():
 
 
 def test_the_1m_column_reproduces_the_published_emlb_table():
-    """`means_over_all_recordings` is only quotable beside Table V if it *is* Table V at 1M.
+    """`means_over_all_recordings` is only quotable beside the E-MLB table if it *reproduces* it.
 
     These six values are transcribed from the article's E-MLB table. If the pipeline drifts,
     the cap columns stop being comparable with the printed ones and the appendix's framing

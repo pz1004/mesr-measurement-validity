@@ -100,9 +100,9 @@ shrinking sample at low retention visible.
 
 ### Paired contrasts on the E-MLB ranking
 
-What Table IV's ranking can carry. Every classical row is scored on the same 384 recordings,
-so the comparison is paired; this differences within each recording and bootstraps the 96
-scene clusters. Reads `results/benchmark_emlb.json`; a few seconds.
+What the E-MLB ranking table (`tab:emlb`) can carry. Every classical row is scored on the
+same 384 recordings, so the comparison is paired; this differences within each recording
+and bootstraps the 96 scene clusters. Reads `results/benchmark_emlb.json`; a few seconds.
 
 ```bash
 python -m dataset_assessment.paired_contrasts --dataset emlb   # results/paired_contrasts.json

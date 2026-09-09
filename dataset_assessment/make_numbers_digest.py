@@ -405,7 +405,8 @@ def _cap_sensitivity(out: Callable[[str], None]) -> None:
         for m, v in r["per_method"].items() if m != "raw"))
     ov = r["means_over_all_recordings"]
     out(f"- per-method mean by cap over ALL {ov['recordings']} recordings -- **this is the "
-        f"cohort Table V prints**, and the 1M column reproduces it to the printed digit: "
+        f"cohort the E-MLB table (tab:emlb) prints**, and the 1M column reproduces it "
+        f"to the printed digit: "
         + "; ".join(
             f"{m} " + "/".join(f"{d:+.4f}" for d in v["mean_by_cap"].values())
             + f" (moves {v['spread_across_caps']:.4f}, {v['spread_in_units_of_scale']:.1f}x)"

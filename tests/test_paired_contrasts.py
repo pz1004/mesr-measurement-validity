@@ -1,4 +1,4 @@
-"""Table IV reasoned about its ranking from whether two marginal intervals overlap.
+"""The E-MLB table reasoned about its ranking from whether two marginal intervals overlap.
 
 That is invalid in both directions the table used it, and the repair is available: every
 classical row is scored on the same 384 E-MLB recordings, so the differences are paired.
@@ -70,7 +70,7 @@ def test_sign_consistency_is_reported_separately_from_the_mean():
 
 
 def test_published_contrasts_match_the_artifact():
-    """The numbers Table IV now quotes come from `results/paired_contrasts.json`."""
+    """The numbers the E-MLB table now quotes come from `results/paired_contrasts.json`."""
 
     from pathlib import Path
 

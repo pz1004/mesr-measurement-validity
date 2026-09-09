@@ -649,7 +649,7 @@ def figures(report: Dict) -> List[Path]:
             ys = [p["local_global_coupling"] for p in payload["profiles"]
                   if p["synthetic"] is synthetic]
             axis.scatter(xs, ys, c=colour, label=label, alpha=0.7, s=25)
-        axis.set_xlabel("spatial autocorrelation (share of events with an occupied neighbour)")
+        axis.set_xlabel("neighbour occupancy (share of events with an occupied neighbour)")
         axis.set_ylabel("local-global coupling (corr)")
         axis.grid(alpha=0.3)
         axis.legend()

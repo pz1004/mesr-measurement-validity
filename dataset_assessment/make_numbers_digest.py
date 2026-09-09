@@ -146,9 +146,37 @@ def _benchmark(out: Callable[[str], None]) -> None:
             out("- native retention (paper quotes the 2 dp form): " + ", ".join(
                 f"{r['method']} {r['native_retention']:.4f}={r['native_retention']:.2f}"
                 for r in sorted(retentions, key=lambda r: -r["native_retention"])))
+        # The matched-retention result comes first: it is what the paper quotes. The
+        # `mesr_star`-vs-`mesr_star` count below is unmatched and metric-oracle-selected,
+        # and is kept only so the two can be compared.
+        lq = RESULTS / f"label_quality_{dataset}.json"
+        if lq.is_file():
+            s = json.loads(lq.read_text())["summary"]
+            n = s["at_native"]
+            out(f"- **label quality at MATCHED retention, at each method's own operating "
+                f"point: {n['mesr_wins']}/{n['eligible_pairs']} cells score above the label "
+                f"oracle** ({n['mesr_wins'] / n['eligible_pairs']:.0%}), of "
+                f"{n['total_pairs']} (recording, method) pairs")
+            out(f"  - of those wins: **{n['strict_reversals']} strict reversals** "
+                f"(strictly less signal AND more noise retained at the identical count), "
+                f"{n['ties']} ties, {n['impossible']} impossible")
+            out(f"  - all-retention view: {s['all_matched']['mesr_wins']}/"
+                f"{s['all_matched']['cells']} matched cells, "
+                f"{s['all_matched']['strict_reversals']} strict")
+            w = s.get("largest_signal_deficit")
+            if w:
+                out(f"  - largest deficit: {w['method']} on {w['recording']} at r={w['r']}: "
+                    f"signal {w['signal_retention']:.3f} vs oracle "
+                    f"{w['oracle_signal_retention']:.3f}, noise {w['noise_retention']:.3f} "
+                    f"vs {w['oracle_noise_retention']:.3f}, MESR {w['mesr']:.4f} vs "
+                    f"{w['oracle_mesr']:.4f} at the same {w['kept']} retained")
+            out(f"  - per method (wins/cells at native): " + ", ".join(
+                f"{m} {v['mesr_wins']}/{v['cells']}" for m, v in s["by_method"].items()))
+
         violations = entry["oracle_violations"]
         if violations.get("comparable_cells"):
-            out(f"- oracle violations {violations['cells_beating_oracle']}/"
+            out(f"- superseded, unmatched (each side at its own argmax): "
+                f"oracle violations {violations['cells_beating_oracle']}/"
                 f"{violations['comparable_cells']} "
                 f"({100 * violations['share_beating_oracle']:.0f}%) "
                 f"max margin {violations['max_margin_over_oracle']:+.4f} "
@@ -194,7 +222,9 @@ def _benchmark(out: Callable[[str], None]) -> None:
                     f"{error['max'] - error['min']:.4f} > 0.0092, the gap the table claims)")
             sets = reference.get("recording_sets")
             if sets:
-                verdict = ("matched on recordings; Delta-over-Raw is cap-invariant"
+                # Matched on recordings is not matched on the cap. Delta-over-Raw moves
+                # with the cap (S5.3), so the EDformer row stays descriptive either way.
+                verdict = ("matched on recordings but NOT on the event cap"
                            if sets["matched_on_recordings"] else "NOT matched")
                 out(f"  - recording sets: EDformer "
                     f"{sets['edformer_recordings']} recordings uncapped; classical rows "
@@ -345,6 +375,141 @@ def _architectures(out: Callable[[str], None]) -> None:
     out("  differing accuracy-retention relationships and nothing else.")
 
 
+def _cap_sensitivity(out: Callable[[str], None]) -> None:
+    """The measurement that replaced the unmeasured cap-invariance assertion."""
+
+    path = RESULTS / "cap_sensitivity.json"
+    if not path.is_file():
+        return
+    r = json.loads(path.read_text())
+    s = r["spread"]
+    caps = ", ".join(f"{c/1e6:g}M" for c in r["caps"])
+    out(f"\n## S5.3 event-cap sensitivity of Delta-over-Raw  (results/cap_sensitivity.json)")
+    out(f"- E-MLB, {r['cells_scored']} scored cells over caps {caps} "
+        f"(all 384 recordings: 48 scenes x 4 ND levels x 2 lighting conditions)")
+    out(f"- **Delta-over-Raw is NOT cap-invariant.** Spread across caps: median "
+        f"{s['median']:.4f} ({s['median']/r['unit_of_scale']:.1f}x the 0.0092 unit of "
+        f"scale), max {s['max']:.4f} ({s['max_in_units_of_scale']:.0f}x); "
+        f"**{s['share_above_unit_of_scale']:.0%} of cells exceed the unit of scale**")
+    er = r["evaluable_range"]
+    out(f"- evaluable range identical across these caps: {er['identical_range']}/"
+        f"{er['cells']} cells -- the cap moves the measurable floor as well as the value")
+    out("- with retention held FIXED (floor effect removed):")
+    for label, v in r["at_fixed_retention"].items():
+        above = round(v["share_above_unit_of_scale"] * v["cells"])
+        out(f"  - {label}: median {v['median']:.5f}, max {v['max']:.4f}, "
+            f"{above}/{v['cells']} cells above the unit of scale "
+            f"({v['share_above_unit_of_scale']:.1%})")
+    out("- per-method mean by cap, over the cells the cap can bind: " + "; ".join(
+        f"{m} " + "/".join(f"{d:+.4f}" for d in v["mean_by_cap"].values())
+        for m, v in r["per_method"].items() if m != "raw"))
+    ov = r["means_over_all_recordings"]
+    out(f"- per-method mean by cap over ALL {ov['recordings']} recordings -- **this is the "
+        f"cohort Table V prints**, and the 1M column reproduces it to the printed digit: "
+        + "; ".join(
+            f"{m} " + "/".join(f"{d:+.4f}" for d in v["mean_by_cap"].values())
+            + f" (moves {v['spread_across_caps']:.4f}, {v['spread_in_units_of_scale']:.1f}x)"
+            for m, v in sorted(ov["by_method"].items(),
+                               key=lambda kv: -kv[1]["spread_across_caps"]) if m != "raw"))
+
+    pair = RESULTS / "cap_sensitivity" / "pair_1M_vs_2M.json"
+    if pair.is_file():
+        p2 = json.loads(pair.read_text())
+        s2, e2 = p2["spread"], p2["evaluable_range"]
+        out(f"- **the clean pair (1M vs 2M): evaluable range identical for "
+            f"{e2['identical_range']}/{e2['cells']} cells, so this is the cap alone** -- "
+            f"median {s2['median']:.4f}, max {s2['max']:.4f} "
+            f"({s2['max_in_units_of_scale']:.0f}x), "
+            f"{round(s2['share_above_unit_of_scale'] * p2['cells_scored'])}/"
+            f"{p2['cells_scored']} bindable cells above the unit of scale "
+            f"({s2['share_above_unit_of_scale']:.0%})")
+        worst = max(v["mean_spread_across_caps"] for m, v in p2["per_method"].items()
+                    if m != "raw")
+        ov2 = p2["means_over_all_recordings"]
+        moves = sorted(((v["spread_across_caps"], m) for m, v in ov2["by_method"].items()
+                        if m != "raw"), reverse=True)
+        out(f"  - on the printed cohort (all {ov2['recordings']} recordings) the corpus "
+            f"means move too, but only one passes the gap: {moves[0][1]} by "
+            f"{moves[0][0]:.4f} ({moves[0][0] / p2['unit_of_scale']:.1f}x); the other five "
+            f"move at most {moves[1][0]:.4f}. No classical row changes position")
+    out("- 2M is still not uncapped: 223 of the 384 recordings remain truncated at it (354 "
+        "at 0.5M, 308 at 1M), so the residual against an uncapped run is not bounded by "
+        "these data")
+
+
+def _esr_properties(out: Callable[[str], None]) -> None:
+    """S4-A's mechanism. The first two lines replace claims the paper made and could not
+    support: that ESR rises with concentration, and that hot-pixel share fixes the null's
+    sign. Both are now computed against the released `esr.esr`."""
+
+    payload = _load("esr_properties.json")
+    out("\n## S4-A properties of ESR (`results/esr_properties.json`)\n")
+
+    m = payload["monotonicity"]
+    c, s = m["concentrated"], m["spread"]
+    fmt = lambda v: "ESR(" + ", ".join(f"{n:,}" for n in v["counts"]) + ")"
+    out(f"- **ESR is NOT monotone in concentration**: {fmt(c)} = {c['esr']:.5f} < "
+        f"{fmt(s)} = {s['esr']:.5f}, and the first majorises the second "
+        f"({m['concentrated_majorises_spread']})")
+    out(f"  - ntss {c['ntss']:.4f} -> {s['ntss']:.4f} (Schur-convex, favours the "
+        f"concentrated vector); ell_n {c['ell_n']:.4f} -> {s['ell_n']:.4f} "
+        f"(Schur-concave, favours the spread one)")
+
+    pi = payload["permutation_invariance"]
+    out(f"- **ESR is invariant to a bijection of the pixel grid**: max |dESR| over "
+        f"{pi['trials']} random slices = **{pi['max_abs_difference']:.3g}**")
+
+    st = payload["stationarity"]
+    out(f"- **the null's sign needs a nonstationary scene**, not hot-pixel share: "
+        f"{st['length']:,}-event synthetic streams, {len(st['seeds'])} seeds, "
+        f"{st['n_hot_pixels']} hot pixels, scene span {st['scene_span_pixels']} px")
+    for cell in st["cells"]:
+        moves = "  ".join(f"{k} {v:+.4f}"
+                          for k, v in cell["delta_over_unthinned"].items() if v)
+        out(f"  - scene {cell['scene']}, hot share {cell['hot_share']:.0%}: {moves} "
+            f"-> **{cell['sign']}**")
+
+
+def _paired_contrasts(out: Callable[[str], None]) -> None:
+    """S5-C's ranking claims. These replaced marginal-interval overlap reasoning, which is
+    invalid in both directions the table used it and which had discarded a real ordering."""
+
+    payload = _load("paired_contrasts.json")
+    out("\n## S5-C paired contrasts on E-MLB (`results/paired_contrasts.json`)\n")
+    out(f"- ranking by mean Delta-over-Raw: {' > '.join(payload['ranked_by_mean'])}")
+    out(f"- **{payload['pairs_resolved']}/{payload['pairs_total']} pairs separate** under a "
+        f"paired difference over {payload['n_recordings']} recordings, bootstrapped over "
+        f"{payload['n_scenes']} scene clusters")
+    for pair in payload["pairs"]:
+        flag = "separates" if pair["excludes_zero"] else "**NOT resolved**"
+        out(f"  - {pair['a']} - {pair['b']}: {pair['mean_difference']:+.4f} "
+            f"[{pair['lo']:+.4f}, {pair['hi']:+.4f}], holds on "
+            f"{pair['share_a_above_b']:.0%} of recordings -> {flag}")
+
+
+def _common_support(out: Callable[[str], None]) -> None:
+    """S4 item 1 and S5-B. AUC_r is a span-normalised trapezoid, not a mean, and it was
+    aggregated across recordings with different evaluable ranges. Both are repaired here;
+    the own-range column reproduces the published table, which is what licenses the rest."""
+
+    payload = _load("common_support.json")
+    out("\n## S4/S5-B common support for AUC_r (`results/common_support.json`)\n")
+    for dataset, r in payload.items():
+        er = r["evaluable_range_per_recording"]
+        v = r["vs_native"]
+        out(f"- **{dataset}** ({r['n_recordings']} recordings, ranges "
+            f"{'RAGGED' if er['ragged'] else 'uniform'}): common grid "
+            f"[{er['common'][0]:.2f}, {er['common'][1]:.2f}], common cohort "
+            f"{r['common_cohort']['n_recordings']} recordings")
+        for name in ("own_range", "common_grid", "common_cohort"):
+            a = v[name]
+            out(f"  - AUC_r ({name}) vs native: rho={a['spearman']:+.3f} "
+                f"tau={a['kendall']:+.3f} rankings differ={a['differ']}")
+        cov = r["coverage"]["recordings_at_r"]
+        lo = min(cov, key=float)
+        out(f"  - n(r): {cov[lo]} recordings at r={lo}, {cov['1.00']} at r=1.00")
+
+
 def _regime_and_audit(out: Callable[[str], None]) -> None:
     regimes = _load("noise_regimes.json")
     out("\n## S7 regime separation  (results/noise_regimes.json)")
@@ -431,6 +596,12 @@ def _downstream(out: Callable[[str], None]) -> None:
         f"p={stats['all']['p']:.3f} n={stats['all']['n']}**")
     out(f"- excluding r=1: rho={stats['excluding_r1']['rho']:+.3f} "
         f"p={stats['excluding_r1']['p']:.3f} n={stats['excluding_r1']['n']}")
+    # The pooled row counts one unfiltered stream once per method. Both are quoted because
+    # the deduplicated value is larger, and a reader must be able to see that.
+    di = stats["distinct_inputs"]
+    out(f"- **distinct inputs (r=1 endpoint kept once, not once per method): "
+        f"rho={di['rho']:+.3f} p={di['p']:.3f} n={di['n']}** "
+        f"({di['duplicate_cells_collapsed']} duplicate cells collapsed)")
 
     # What the design could have detected. Without it a failure to reject reads as a
     # well-powered null, which at n=40 it is not.
@@ -469,8 +640,13 @@ def _downstream(out: Callable[[str], None]) -> None:
 
     spread = payload.get("accuracy_sd_across_seeds")
     if spread:
-        out(f"- accuracy sd across seeds: median {spread['median']:.4f} "
-            f"max {spread['max']:.4f} (the scale any accuracy difference must beat)")
+        # Name the architecture. This whole function reads `downstream_gesture.json`, which
+        # is the 2D CNN alone; the 3D CNN and MLP are digested by `_architectures`. An
+        # unlabelled median/max here reads as if it covered all three, and the main text
+        # once paired this median with the 3D CNN's max as though both were one grid.
+        out(f"- accuracy sd across seeds (2D CNN): median {spread['median']:.4f} "
+            f"max {spread['max']:.4f} (the scale any accuracy difference must beat; "
+            f"the 3D CNN and MLP are in S8.1)")
 
     # Every line above is scoped to the paper's method set; the extremes must be too, or a
     # sibling project's row would be quoted as if it were in the paper's tables.
@@ -514,8 +690,12 @@ def _downstream(out: Callable[[str], None]) -> None:
 def main() -> None:
     out = print
     out("# Every number in the paper, with its source file\n")
+    # The digest lives beside the manuscript it maps, at `paper/NUMBERS.md`. The bare
+    # `NUMBERS.md` here dated from the release layout, where `paper/` was stripped; that
+    # path does not exist in this tree, so the file told the reader to regenerate it
+    # somewhere it has never been.
     out("Regenerate with `python -m dataset_assessment.make_numbers_digest > "
-        "NUMBERS.md`.")
+        "paper/NUMBERS.md`.")
     out("Every value is read from `results/*.json`; nothing here is typed by hand, so a "
         "claim in")
     out("the draft that cannot be found below has no artifact behind it.\n")
@@ -524,6 +704,10 @@ def main() -> None:
     _benchmark(out)
     _scale(out)
     _blank_signature(out)
+    _cap_sensitivity(out)
+    _esr_properties(out)
+    _paired_contrasts(out)
+    _common_support(out)
     _regime_and_audit(out)
     _downstream(out)
     _architectures(out)

@@ -112,6 +112,7 @@
     ],
     "n_rankable_methods": 8,
     "oracle_violations": {
+      "superseded_by": "results/label_quality_<dataset>.json (matched retention)",
       "comparable_cells": 60,
       "cells_beating_oracle": 37,
       "share_beating_oracle": 0.6166666666666667,
@@ -782,6 +783,7 @@
     ],
     "n_rankable_methods": 8,
     "oracle_violations": {
+      "superseded_by": "results/label_quality_<dataset>.json (matched retention)",
       "comparable_cells": 60,
       "cells_beating_oracle": 10,
       "share_beating_oracle": 0.16666666666666666,
@@ -2063,7 +2065,7 @@
         "classical_scene_clusters": 96,
         "classical_cap": 1000000,
         "matched_on_recordings": true,
-        "note": "Delta-over-Raw is cap-invariant, so matched recording sets under different caps are comparable"
+        "note": "Delta-over-Raw is NOT cap-invariant (results/cap_sensitivity.json), so recording sets measured under different caps are NOT matched; the EDformer row beside the capped classical rows is descriptive only"
       }
     }
   },

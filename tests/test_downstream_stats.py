@@ -168,3 +168,59 @@ def test_shipped_downstream_artifact_carries_the_sensitivity_block():
     reported = payload["spearman_mesr_vs_accuracy"]["all"]
     # The reported rho sits below what this design can resolve - which is the point.
     assert abs(reported["rho"]) < sensitivity["min_detectable_rho"]
+
+
+def _grid(n_methods=8, retentions=(0.2, 0.5, 1.0)):
+    """One condition per (method, retention). At r = 1.0 every method is the same input."""
+
+    rows = []
+    for m in range(n_methods):
+        for r in retentions:
+            shared = r >= 1.0
+            rows.append({"method": f"m{m}", "retention": r,
+                         "mesr": 1.0 if shared else 1.0 + m * 0.1 + r,
+                         "accuracy": 0.45 if shared else 0.40 + m * 0.01,
+                         "accuracy_sd": 0.05, "accuracy_per_seed": {}})
+    return rows
+
+
+def test_the_r1_endpoint_is_one_input_counted_once_per_method():
+    """Eight identical cells are one condition, and pooling them counts it eight times."""
+
+    from dataset_assessment.downstream_gesture import summarise_conditions
+
+    rows = _grid()
+    s = summarise_conditions(rows)["mesr_vs_accuracy"]
+    assert s["all"]["n"] == 24
+    assert s["distinct_inputs"]["n"] == 17          # 16 below r=1, plus the endpoint once
+    assert s["distinct_inputs"]["duplicate_cells_collapsed"] == 8
+    assert s["excluding_r1"]["n"] == 16             # the endpoint dropped entirely
+
+
+def test_the_deduplicated_correlation_is_reported_alongside_the_pooled_one():
+    """Both must survive: the pooled value is what was published, the distinct one is what
+    the association is estimated on. Dropping either would hide a change of conclusion."""
+
+    from dataset_assessment.downstream_gesture import summarise_conditions
+
+    s = summarise_conditions(_grid())["mesr_vs_accuracy"]
+    for key in ("all", "excluding_r1", "distinct_inputs"):
+        assert {"rho", "p", "n"} <= set(s[key])
+
+
+def test_published_downstream_correlations_match_the_artifact():
+    """+0.135 over 40 pooled cells and +0.292 over 33 distinct inputs, both quoted."""
+
+    import json
+    from pathlib import Path
+
+    path = (Path(__file__).resolve().parents[1] / "results" / "downstream_gesture.json")
+    if not path.is_file():
+        pytest.skip("downstream_gesture.json not generated")
+    s = json.loads(path.read_text())["spearman_mesr_vs_accuracy"]
+    assert s["all"]["n"] == 40
+    assert s["all"]["rho"] == pytest.approx(0.135, abs=5e-4)
+    assert s["distinct_inputs"]["n"] == 33
+    assert s["distinct_inputs"]["rho"] == pytest.approx(0.292, abs=5e-4)
+    # The headline claim has to survive the repair, and it does: still not significant.
+    assert s["distinct_inputs"]["p"] > 0.05

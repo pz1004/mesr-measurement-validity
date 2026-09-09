@@ -1,0 +1,214 @@
+{
+  "caps": [
+    500000,
+    1000000
+  ],
+  "runs": [
+    "emlb_cap_500000.json",
+    "emlb_cap_1000000.json"
+  ],
+  "cells_compared": 2688,
+  "cells_bound_by_cap": 2478,
+  "cells_scored": 2124,
+  "unit_of_scale": 0.0092,
+  "spread": {
+    "max": 3.7603125716213666,
+    "median": 0.01727395790799849,
+    "mean": 0.10314846087686505,
+    "share_above_unit_of_scale": 0.6789077212806026,
+    "max_in_units_of_scale": 408.7296273501485
+  },
+  "per_method": {
+    "dwf": {
+      "cells": 354,
+      "mean_by_cap": {
+        "500000": 0.11893065562043306,
+        "1000000": 0.11983724087686044
+      },
+      "max_spread": 0.19725798740176814,
+      "median_spread": 0.009719582542812633,
+      "mean_spread_across_caps": 0.0009065852564273807
+    },
+    "evflow": {
+      "cells": 354,
+      "mean_by_cap": {
+        "500000": 0.009552712420029913,
+        "1000000": 0.03354324232721172
+      },
+      "max_spread": 0.7614146433771718,
+      "median_spread": 0.026151121829695784,
+      "mean_spread_across_caps": 0.023990529907181805
+    },
+    "knoise": {
+      "cells": 354,
+      "mean_by_cap": {
+        "500000": 0.06159654532335295,
+        "1000000": 0.05741286069844142
+      },
+      "max_spread": 1.0476219987653685,
+      "median_spread": 0.014374802458972519,
+      "mean_spread_across_caps": 0.004183684624911532
+    },
+    "raw": {
+      "cells": 354,
+      "mean_by_cap": {
+        "500000": 0.0,
+        "1000000": 0.0
+      },
+      "max_spread": 0.0,
+      "median_spread": 0.0,
+      "mean_spread_across_caps": 0.0
+    },
+    "red": {
+      "cells": 354,
+      "mean_by_cap": {
+        "500000": 0.6173179670713242,
+        "1000000": 0.9157035904672731
+      },
+      "max_spread": 3.7603125716213666,
+      "median_spread": 0.02822297351106462,
+      "mean_spread_across_caps": 0.2983856233959489
+    },
+    "ts": {
+      "cells": 354,
+      "mean_by_cap": {
+        "500000": 0.09266652785293336,
+        "1000000": 0.11481364995032244
+      },
+      "max_spread": 0.6979424311788895,
+      "median_spread": 0.0280496359209097,
+      "mean_spread_across_caps": 0.022147122097389074
+    },
+    "ynoise": {
+      "cells": 354,
+      "mean_by_cap": {
+        "500000": 0.1976813493128415,
+        "1000000": 0.22999105493493768
+      },
+      "max_spread": 1.6646197442425483,
+      "median_spread": 0.010169753513641466,
+      "mean_spread_across_caps": 0.032309705622096174
+    }
+  },
+  "at_fixed_retention": {
+    "r=0.50": {
+      "cells": 2304,
+      "median": 0.0032897693153237095,
+      "max": 0.16703148584654848,
+      "share_above_unit_of_scale": 0.2608506944444444
+    },
+    "r=0.95": {
+      "cells": 2304,
+      "median": 0.0002522358540148484,
+      "max": 0.014738077962096252,
+      "share_above_unit_of_scale": 0.001736111111111111
+    }
+  },
+  "evaluable_range": {
+    "cells": 2688,
+    "identical_range": 294,
+    "share_identical": 0.109375
+  },
+  "worst_cells": [
+    {
+      "recording": "E-MLB/N-END/Signage-ND64-1",
+      "method": "red",
+      "by_cap": {
+        "500000": 3.3546525935552354,
+        "1000000": 7.114965165176602
+      },
+      "spread": 3.7603125716213666,
+      "truncated_at_smallest_cap": true
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND64-1",
+      "method": "red",
+      "by_cap": {
+        "500000": 3.593055302390562,
+        "1000000": 7.106193874362273
+      },
+      "spread": 3.5131385719717105,
+      "truncated_at_smallest_cap": true
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND64-1",
+      "method": "red",
+      "by_cap": {
+        "500000": 3.341641059237036,
+        "1000000": 6.832520597439874
+      },
+      "spread": 3.4908795382028384,
+      "truncated_at_smallest_cap": true
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND64-1",
+      "method": "red",
+      "by_cap": {
+        "500000": 3.3967246880626134,
+        "1000000": 6.865755750420445
+      },
+      "spread": 3.4690310623578315,
+      "truncated_at_smallest_cap": true
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND64-1",
+      "method": "red",
+      "by_cap": {
+        "500000": 3.0253219486371643,
+        "1000000": 6.451524685320509
+      },
+      "spread": 3.4262027366833445,
+      "truncated_at_smallest_cap": true
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND16-1",
+      "method": "red",
+      "by_cap": {
+        "500000": 3.329205307535367,
+        "1000000": 6.739175376443127
+      },
+      "spread": 3.40997006890776,
+      "truncated_at_smallest_cap": true
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND16-1",
+      "method": "red",
+      "by_cap": {
+        "500000": 3.2636029558775164,
+        "1000000": 6.569215442107328
+      },
+      "spread": 3.305612486229812,
+      "truncated_at_smallest_cap": true
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND64-1",
+      "method": "red",
+      "by_cap": {
+        "500000": 3.543511401033761,
+        "1000000": 6.748379425281579
+      },
+      "spread": 3.204868024247818,
+      "truncated_at_smallest_cap": true
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND64-1",
+      "method": "red",
+      "by_cap": {
+        "500000": 2.816754901826314,
+        "1000000": 5.952099672457128
+      },
+      "spread": 3.1353447706308137,
+      "truncated_at_smallest_cap": true
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND16-1",
+      "method": "red",
+      "by_cap": {
+        "500000": 3.048375317920452,
+        "1000000": 6.06714577843136
+      },
+      "spread": 3.0187704605109085,
+      "truncated_at_smallest_cap": true
+    }
+  ]
+}

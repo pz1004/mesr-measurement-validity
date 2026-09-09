@@ -19,6 +19,15 @@ python -m dataset_assessment.make_numbers_digest > NUMBERS.md
 nothing is executed). `analyze` needs `results/benchmark_*.json`, which ship with this
 repository.
 
+`analyze` also writes **Figure 1** (`results/figures/fig_retention_curves.pdf`). It is drawn
+at the size it is printed at -- 516 x 63 pt, the full text width of a two-column IEEEtran
+`figure*` -- and included with `width=\linewidth`, so nothing downscales the type. The float
+it sits in is capped at 101.2 pt, which is that graphic plus a three-line caption; the cap is
+asserted in `tests/test_figures.py::test_figure_fits_the_float_budget`, because growing the
+figure silently costs a page at $265. Bands are `cluster_bootstrap_delta_ci` at 2,000 draws
+on the same seed as the reported intervals, and the strip under each panel is `n(r)`,
+asserted equal to `common_support.coverage`.
+
 ## Tier 1 — metric analysis (needs DND21 + DVSCLEAN, ~3 min)
 
 ```bash
@@ -50,6 +59,94 @@ python -m dataset_assessment.analyze                                            
 
 Every run writes its JSON incrementally, one recording at a time, so a killed job keeps its
 partial output and can be inspected.
+
+### Matched-retention label quality
+
+Whether a filter that out-scores the label oracle on MESR actually selects events better.
+Needs per-event labels, so it runs on the two labelled corpora only.
+
+```bash
+python -m dataset_assessment.label_quality --dataset dnd21     # results/label_quality_dnd21.json     ~90 s
+python -m dataset_assessment.label_quality --dataset dvsclean  # results/label_quality_dvsclean.json  ~110 s
+```
+
+### Properties of ESR
+
+Section IV-A's mechanism, checked against the released `esr.esr` rather than re-derived. Needs
+no corpus: the counterexample is analytic and the stationarity contrast is synthetic, so this
+is the one run a reader can reproduce without downloading anything. About 40 s.
+
+```bash
+python -m dataset_assessment.esr_properties   # results/esr_properties.json
+```
+
+It reports three things: a slice that majorises another and scores lower (so ESR is not
+monotone in concentration), ESR's invariance to a bijection of the pixel grid, and the
+stationary-versus-drifting 2x2 showing that the null's sign needs a nonstationary scene
+component and not merely a high hot-pixel share.
+
+### Common support for AUC_r
+
+Whether the AUC_r ranking is a property of the methods or of which retentions each recording
+could be measured at. Reads the five `results/benchmark_*.json`; a few seconds.
+
+```bash
+python -m dataset_assessment.common_support   # results/common_support.json
+```
+
+The `own_range` column reproduces the published Table III exactly; `common_grid` and
+`common_cohort` are the two repairs. It also reports `n(r)` per corpus, which is what makes a
+shrinking sample at low retention visible.
+
+### Paired contrasts on the E-MLB ranking
+
+What Table IV's ranking can carry. Every classical row is scored on the same 384 recordings,
+so the comparison is paired; this differences within each recording and bootstraps the 96
+scene clusters. Reads `results/benchmark_emlb.json`; a few seconds.
+
+```bash
+python -m dataset_assessment.paired_contrasts --dataset emlb   # results/paired_contrasts.json
+```
+
+It replaced reasoning from whether two marginal intervals overlap, which is invalid in both
+directions the table used it. 14 of the 15 pairs separate; only DWF over TS does not.
+
+### Event-cap sensitivity
+
+The measurement that replaced an unmeasured cap-invariance assertion. Three caps over all
+384 E-MLB recordings, then the comparison. The two computed lanes run in parallel and take
+about 2.5 hours wall, bounded by the 2,000,000-event lane.
+
+The 1,000,000-event lane is not recomputed: `results/benchmark_emlb.json` **is** that run —
+384 recordings, the same eight methods, the same 20-point retention grid, `max_events`
+1000000 — so copying it in anchors the sweep to the table the paper prints rather than to a
+claimed reproduction of it.
+
+```bash
+mkdir -p results/cap_sensitivity
+cp results/benchmark_emlb.json results/cap_sensitivity/emlb_cap_1000000.json
+for CAP in 500000 2000000; do
+  python -m dataset_assessment.run_benchmark --dataset emlb --max-events $CAP \
+    --methods raw random_null dwf evflow knoise red ts ynoise \
+    --out results/cap_sensitivity/emlb_cap_${CAP}.json &
+done
+wait
+python -m dataset_assessment.cap_sensitivity results/cap_sensitivity/emlb_cap_*.json \
+    --out results/cap_sensitivity.json
+python -m dataset_assessment.cap_sensitivity \
+    results/cap_sensitivity/emlb_cap_{1000000,2000000}.json \
+    --out results/cap_sensitivity/pair_1M_vs_2M.json   # the pair with an identical grid
+```
+
+**`--scene-stride` is omitted deliberately: the sweep needs all 384 recordings.** An earlier
+48-recording run at `--scene-stride 8` is kept under `results/cap_sensitivity/subset48/`, and
+it does not support the paper's numbers. Two of its conclusions are false at full scale: it
+found the evaluable range moving on every cell, where 294 of 2688 hold still, and it found
+every corpus mean steady between 1M and 2M, where RED's passes the unit of scale on both
+cohorts (0.0395 over the cells the cap binds, 0.0317 over all 384 recordings). Scene stride selects
+which recordings are scored and changes nothing about how one is scored — all 7,296 evaluable
+curve points shared with the full run match it exactly at the 500,000-event cap — so the
+subset was unrepresentative, not wrong.
 
 **`--scene-stride 4` on E-MLB is deliberate.** It keeps 96 recordings balanced at 48 daylight
 / 48 night and 24 per ND level. Capping by `--max-recordings 96` instead would truncate inside
@@ -140,4 +237,14 @@ checked against `cuke-emlb/python/src/utils/metric.py::EventStructuralRatio._cal
 Randomness is confined to three places, all seeded: `random_null`'s ranking
 (`RANDOM_NULL_SEED = 20260726`), the downstream classifier (`SEEDS = 20260726/7/8`, with
 `cudnn.deterministic = True`), and the bootstrap intervals in `analyze.py`
-(`bootstrap_delta_ci(seed=20260726)`). Everything else is deterministic given the inputs.
+(`bootstrap_delta_ci(seed=20260726)`, and Figure 1's bands through the same seeded path at
+2,000 draws instead of 10,000). Everything else is deterministic given the inputs.
+
+**Two cohorts, and they are not interchangeable.** `per_method` in the comparison averages
+over the cells the cap can bind — the recordings longer than the smallest cap, times six
+filters — which is the right denominator for "how large is the cap effect where the cap acts".
+`means_over_all_recordings` averages over all 384 recordings, which is what the article's
+E-MLB table prints; its 1,000,000-event column reproduces that table to the printed digit, and
+`tests/test_cap_sensitivity.py::test_the_1m_column_reproduces_the_published_emlb_table` pins
+it. Quoting the first as though it were the second overstates the movement, by 0.0395 against
+0.0317 on RED.

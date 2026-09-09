@@ -393,6 +393,16 @@ def summarise_conditions(conditions: Sequence[dict]) -> dict:
     filtered = [c for c in usable if c["retention"] < 1.0]
     rho_filtered = spearmanr([c["mesr"] for c in filtered],
                              [c["accuracy"] for c in filtered])
+    # At r = 1.0 every method is the unfiltered stream, so those cells are one input
+    # repeated once per method: identical MESR and identical accuracy. Pooling them counts
+    # that single condition eight times and drags the rank correlation toward zero.
+    # `excluding_r1` drops the endpoint entirely; this keeps it once, which is the sample of
+    # *distinct* inputs the association is actually estimated on.
+    duplicates = [c for c in usable if c["retention"] >= 1.0]
+    distinct = [c for c in usable if c["retention"] < 1.0] + duplicates[:1]
+    rho_distinct = spearmanr([c["mesr"] for c in distinct],
+                             [c["accuracy"] for c in distinct])
+
     retention_accuracy = spearmanr([c["retention"] for c in usable],
                                    [c["accuracy"] for c in usable])
     retention_mesr = spearmanr([c["retention"] for c in usable],
@@ -415,6 +425,12 @@ def summarise_conditions(conditions: Sequence[dict]) -> dict:
             "sensitivity": detectable_rho(len(usable)),
             "excluding_r1": {"rho": float(rho_filtered.statistic),
                              "p": float(rho_filtered.pvalue), "n": len(filtered)},
+            "distinct_inputs": {"rho": float(rho_distinct.statistic),
+                                "p": float(rho_distinct.pvalue), "n": len(distinct),
+                                "duplicate_cells_collapsed": len(duplicates),
+                                "note": ("the r = 1.0 endpoint kept once instead of once "
+                                         "per method; the pooled value over all conditions "
+                                         "counts one input as many")},
             "partial_given_retention": partial_spearman(
                 [c["mesr"] for c in usable], [c["accuracy"] for c in usable],
                 [c["retention"] for c in usable]),

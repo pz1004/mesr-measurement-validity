@@ -894,6 +894,13 @@
       "p": 2.3651460074946613e-10,
       "n": 32
     },
+    "distinct_inputs": {
+      "rho": 0.8653573193028209,
+      "p": 8.135651539315868e-11,
+      "n": 33,
+      "duplicate_cells_collapsed": 8,
+      "note": "the r = 1.0 endpoint kept once instead of once per method; the pooled value over all conditions counts one input as many"
+    },
     "partial_given_retention": {
       "rho": 0.8713711143831668,
       "p": 5.357446369225474e-13,
@@ -1024,6 +1031,13 @@
         "rho": 0.7149894637250519,
         "p": 2.1795470080390628e-07,
         "n": 40
+      },
+      "distinct_inputs": {
+        "rho": 0.7145284421299041,
+        "p": 1.5461663204832913e-07,
+        "n": 41,
+        "duplicate_cells_collapsed": 10,
+        "note": "the r = 1.0 endpoint kept once instead of once per method; the pooled value over all conditions counts one input as many"
       },
       "partial_given_retention": {
         "rho": 0.7147653595106911,

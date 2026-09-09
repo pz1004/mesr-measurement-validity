@@ -1,0 +1,1299 @@
+{
+  "dnd21": {
+    "dataset": "dnd21",
+    "n_recordings": 10,
+    "evaluable_range_per_recording": {
+      "distinct": [
+        [
+          0.05,
+          1.0
+        ]
+      ],
+      "common": [
+        0.05,
+        1.0
+      ],
+      "widest": [
+        0.05,
+        1.0
+      ],
+      "ragged": false
+    },
+    "common_cohort": {
+      "n_recordings": 10,
+      "share": 1.0
+    },
+    "coverage": {
+      "grid": [
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95,
+        1.0
+      ],
+      "recordings_at_r": {
+        "0.05": 10,
+        "0.10": 10,
+        "0.15": 10,
+        "0.20": 10,
+        "0.25": 10,
+        "0.30": 10,
+        "0.35": 10,
+        "0.40": 10,
+        "0.45": 10,
+        "0.50": 10,
+        "0.55": 10,
+        "0.60": 10,
+        "0.65": 10,
+        "0.70": 10,
+        "0.75": 10,
+        "0.80": 10,
+        "0.85": 10,
+        "0.90": 10,
+        "0.95": 10,
+        "1.00": 10
+      },
+      "cells_at_r": {
+        "0.05": 80,
+        "0.10": 80,
+        "0.15": 80,
+        "0.20": 80,
+        "0.25": 80,
+        "0.30": 80,
+        "0.35": 80,
+        "0.40": 80,
+        "0.45": 80,
+        "0.50": 80,
+        "0.55": 80,
+        "0.60": 80,
+        "0.65": 80,
+        "0.70": 80,
+        "0.75": 80,
+        "0.80": 80,
+        "0.85": 80,
+        "0.90": 80,
+        "0.95": 80,
+        "1.00": 80
+      },
+      "n_recordings": 10
+    },
+    "mean_auc": {
+      "own_range": {
+        "raw": 0.6883230122052701,
+        "random_null": 0.6967248226006919,
+        "dwf": 0.872718357814928,
+        "evflow": 0.7441455005212874,
+        "knoise": 0.8094991477376681,
+        "red": 0.8771623043712458,
+        "ts": 0.8247894794120914,
+        "ynoise": 0.8700184075793006
+      },
+      "common_grid": {
+        "raw": 0.6883230122052701,
+        "random_null": 0.6967248226006919,
+        "dwf": 0.872718357814928,
+        "evflow": 0.7441455005212874,
+        "knoise": 0.8094991477376681,
+        "red": 0.8771623043712458,
+        "ts": 0.8247894794120914,
+        "ynoise": 0.8700184075793006
+      },
+      "common_cohort": {
+        "raw": 0.6883230122052701,
+        "random_null": 0.6967248226006919,
+        "dwf": 0.872718357814928,
+        "evflow": 0.7441455005212874,
+        "knoise": 0.8094991477376681,
+        "red": 0.8771623043712458,
+        "ts": 0.8247894794120914,
+        "ynoise": 0.8700184075793006
+      }
+    },
+    "vs_native": {
+      "own_range": {
+        "n_methods": 7,
+        "spearman": 1.0,
+        "kendall": 1.0,
+        "differ": false,
+        "rank_a": [
+          "red",
+          "dwf",
+          "ynoise",
+          "ts",
+          "knoise",
+          "evflow",
+          "raw"
+        ],
+        "rank_b": [
+          "red",
+          "dwf",
+          "ynoise",
+          "ts",
+          "knoise",
+          "evflow",
+          "raw"
+        ]
+      },
+      "common_grid": {
+        "n_methods": 7,
+        "spearman": 1.0,
+        "kendall": 1.0,
+        "differ": false,
+        "rank_a": [
+          "red",
+          "dwf",
+          "ynoise",
+          "ts",
+          "knoise",
+          "evflow",
+          "raw"
+        ],
+        "rank_b": [
+          "red",
+          "dwf",
+          "ynoise",
+          "ts",
+          "knoise",
+          "evflow",
+          "raw"
+        ]
+      },
+      "common_cohort": {
+        "n_methods": 7,
+        "spearman": 1.0,
+        "kendall": 1.0,
+        "differ": false,
+        "rank_a": [
+          "red",
+          "dwf",
+          "ynoise",
+          "ts",
+          "knoise",
+          "evflow",
+          "raw"
+        ],
+        "rank_b": [
+          "red",
+          "dwf",
+          "ynoise",
+          "ts",
+          "knoise",
+          "evflow",
+          "raw"
+        ]
+      }
+    },
+    "own_vs_common_grid": {
+      "n_methods": 8,
+      "spearman": 1.0,
+      "kendall": 0.9999999999999998,
+      "differ": false,
+      "rank_a": [
+        "red",
+        "dwf",
+        "ynoise",
+        "ts",
+        "knoise",
+        "evflow",
+        "random_null",
+        "raw"
+      ],
+      "rank_b": [
+        "red",
+        "dwf",
+        "ynoise",
+        "ts",
+        "knoise",
+        "evflow",
+        "random_null",
+        "raw"
+      ]
+    },
+    "own_vs_common_cohort": {
+      "n_methods": 8,
+      "spearman": 1.0,
+      "kendall": 0.9999999999999998,
+      "differ": false,
+      "rank_a": [
+        "red",
+        "dwf",
+        "ynoise",
+        "ts",
+        "knoise",
+        "evflow",
+        "random_null",
+        "raw"
+      ],
+      "rank_b": [
+        "red",
+        "dwf",
+        "ynoise",
+        "ts",
+        "knoise",
+        "evflow",
+        "random_null",
+        "raw"
+      ]
+    }
+  },
+  "dvsclean": {
+    "dataset": "dvsclean",
+    "n_recordings": 10,
+    "evaluable_range_per_recording": {
+      "distinct": [
+        [
+          0.1,
+          1.0
+        ],
+        [
+          0.15,
+          1.0
+        ]
+      ],
+      "common": [
+        0.15,
+        1.0
+      ],
+      "widest": [
+        0.1,
+        1.0
+      ],
+      "ragged": true
+    },
+    "common_cohort": {
+      "n_recordings": 5,
+      "share": 0.5
+    },
+    "coverage": {
+      "grid": [
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95,
+        1.0
+      ],
+      "recordings_at_r": {
+        "0.10": 5,
+        "0.15": 10,
+        "0.20": 10,
+        "0.25": 10,
+        "0.30": 10,
+        "0.35": 10,
+        "0.40": 10,
+        "0.45": 10,
+        "0.50": 10,
+        "0.55": 10,
+        "0.60": 10,
+        "0.65": 10,
+        "0.70": 10,
+        "0.75": 10,
+        "0.80": 10,
+        "0.85": 10,
+        "0.90": 10,
+        "0.95": 10,
+        "1.00": 10
+      },
+      "cells_at_r": {
+        "0.10": 40,
+        "0.15": 80,
+        "0.20": 80,
+        "0.25": 80,
+        "0.30": 80,
+        "0.35": 80,
+        "0.40": 80,
+        "0.45": 80,
+        "0.50": 80,
+        "0.55": 80,
+        "0.60": 80,
+        "0.65": 80,
+        "0.70": 80,
+        "0.75": 80,
+        "0.80": 80,
+        "0.85": 80,
+        "0.90": 80,
+        "0.95": 80,
+        "1.00": 80
+      },
+      "n_recordings": 10
+    },
+    "mean_auc": {
+      "own_range": {
+        "raw": 0.4067638158504024,
+        "random_null": 0.40621364840840873,
+        "dwf": 0.4937787020194223,
+        "evflow": 0.40723105562755285,
+        "knoise": 0.4584452691687285,
+        "red": 0.41073823909853235,
+        "ts": 0.4220708059916444,
+        "ynoise": 0.48435390785858107
+      },
+      "common_grid": {
+        "raw": 0.40824517673330263,
+        "random_null": 0.40762761579378826,
+        "dwf": 0.48873468597627523,
+        "evflow": 0.4086663868999638,
+        "knoise": 0.4552745755085549,
+        "red": 0.411914718600605,
+        "ts": 0.42182738626493954,
+        "ynoise": 0.48014064373639753
+      },
+      "common_cohort": {
+        "raw": 0.3568315105600838,
+        "random_null": 0.357656472947529,
+        "dwf": 0.4494657226835742,
+        "evflow": 0.3573833928534279,
+        "knoise": 0.41394847276251945,
+        "red": 0.36125625262952027,
+        "ts": 0.3759464898006042,
+        "ynoise": 0.4440970000196554
+      }
+    },
+    "vs_native": {
+      "own_range": {
+        "n_methods": 7,
+        "spearman": 0.7857142857142859,
+        "kendall": 0.7142857142857143,
+        "differ": true,
+        "rank_a": [
+          "dwf",
+          "ynoise",
+          "knoise",
+          "ts",
+          "red",
+          "evflow",
+          "raw"
+        ],
+        "rank_b": [
+          "dwf",
+          "ynoise",
+          "knoise",
+          "raw",
+          "ts",
+          "red",
+          "evflow"
+        ]
+      },
+      "common_grid": {
+        "n_methods": 7,
+        "spearman": 0.7857142857142859,
+        "kendall": 0.7142857142857143,
+        "differ": true,
+        "rank_a": [
+          "dwf",
+          "ynoise",
+          "knoise",
+          "ts",
+          "red",
+          "evflow",
+          "raw"
+        ],
+        "rank_b": [
+          "dwf",
+          "ynoise",
+          "knoise",
+          "raw",
+          "ts",
+          "red",
+          "evflow"
+        ]
+      },
+      "common_cohort": {
+        "n_methods": 7,
+        "spearman": 0.7857142857142859,
+        "kendall": 0.7142857142857143,
+        "differ": true,
+        "rank_a": [
+          "dwf",
+          "ynoise",
+          "knoise",
+          "ts",
+          "red",
+          "evflow",
+          "raw"
+        ],
+        "rank_b": [
+          "dwf",
+          "ynoise",
+          "knoise",
+          "raw",
+          "ts",
+          "red",
+          "evflow"
+        ]
+      }
+    },
+    "own_vs_common_grid": {
+      "n_methods": 8,
+      "spearman": 1.0,
+      "kendall": 0.9999999999999998,
+      "differ": false,
+      "rank_a": [
+        "dwf",
+        "ynoise",
+        "knoise",
+        "ts",
+        "red",
+        "evflow",
+        "raw",
+        "random_null"
+      ],
+      "rank_b": [
+        "dwf",
+        "ynoise",
+        "knoise",
+        "ts",
+        "red",
+        "evflow",
+        "raw",
+        "random_null"
+      ]
+    },
+    "own_vs_common_cohort": {
+      "n_methods": 8,
+      "spearman": 0.9285714285714287,
+      "kendall": 0.8571428571428571,
+      "differ": true,
+      "rank_a": [
+        "dwf",
+        "ynoise",
+        "knoise",
+        "ts",
+        "red",
+        "evflow",
+        "raw",
+        "random_null"
+      ],
+      "rank_b": [
+        "dwf",
+        "ynoise",
+        "knoise",
+        "ts",
+        "red",
+        "random_null",
+        "evflow",
+        "raw"
+      ]
+    }
+  },
+  "emlb": {
+    "dataset": "emlb",
+    "n_recordings": 384,
+    "evaluable_range_per_recording": {
+      "distinct": [
+        [
+          0.05,
+          1.0
+        ],
+        [
+          0.1,
+          1.0
+        ],
+        [
+          0.15,
+          1.0
+        ],
+        [
+          0.2,
+          1.0
+        ],
+        [
+          0.25,
+          1.0
+        ],
+        [
+          0.35,
+          1.0
+        ]
+      ],
+      "common": [
+        0.35,
+        1.0
+      ],
+      "widest": [
+        0.05,
+        1.0
+      ],
+      "ragged": true
+    },
+    "common_cohort": {
+      "n_recordings": 342,
+      "share": 0.890625
+    },
+    "coverage": {
+      "grid": [
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95,
+        1.0
+      ],
+      "recordings_at_r": {
+        "0.05": 342,
+        "0.10": 375,
+        "0.15": 379,
+        "0.20": 380,
+        "0.25": 382,
+        "0.30": 382,
+        "0.35": 384,
+        "0.40": 384,
+        "0.45": 384,
+        "0.50": 384,
+        "0.55": 384,
+        "0.60": 384,
+        "0.65": 384,
+        "0.70": 384,
+        "0.75": 384,
+        "0.80": 384,
+        "0.85": 384,
+        "0.90": 384,
+        "0.95": 384,
+        "1.00": 384
+      },
+      "cells_at_r": {
+        "0.05": 2736,
+        "0.10": 3000,
+        "0.15": 3032,
+        "0.20": 3040,
+        "0.25": 3056,
+        "0.30": 3056,
+        "0.35": 3072,
+        "0.40": 3072,
+        "0.45": 3072,
+        "0.50": 3072,
+        "0.55": 3072,
+        "0.60": 3072,
+        "0.65": 3072,
+        "0.70": 3072,
+        "0.75": 3072,
+        "0.80": 3072,
+        "0.85": 3072,
+        "0.90": 3072,
+        "0.95": 3072,
+        "1.00": 3072
+      },
+      "n_recordings": 384
+    },
+    "mean_auc": {
+      "own_range": {
+        "raw": 0.7810778121615481,
+        "random_null": 0.7869022935676163,
+        "dwf": 0.8618114423206563,
+        "evflow": 0.817905579100695,
+        "knoise": 0.8286898057198369,
+        "red": 0.9804442918634338,
+        "ts": 0.8492667108963184,
+        "ynoise": 0.8805553437183122
+      },
+      "common_grid": {
+        "raw": 0.8010773408729898,
+        "random_null": 0.8053733942962094,
+        "dwf": 0.8569434360345953,
+        "evflow": 0.8178356932535108,
+        "knoise": 0.8251319415493853,
+        "red": 0.886783144689567,
+        "ts": 0.8398711868227678,
+        "ynoise": 0.8669608649190182
+      },
+      "common_cohort": {
+        "raw": 0.7568370251381149,
+        "random_null": 0.7648786844646072,
+        "dwf": 0.8436037579672684,
+        "evflow": 0.7965399820162491,
+        "knoise": 0.8081772812611917,
+        "red": 0.9587028576809785,
+        "ts": 0.8308753200866156,
+        "ynoise": 0.8615533108872916
+      }
+    },
+    "vs_native": {
+      "own_range": {
+        "n_methods": 7,
+        "spearman": 1.0,
+        "kendall": 1.0,
+        "differ": false,
+        "rank_a": [
+          "red",
+          "ynoise",
+          "dwf",
+          "ts",
+          "knoise",
+          "evflow",
+          "raw"
+        ],
+        "rank_b": [
+          "red",
+          "ynoise",
+          "dwf",
+          "ts",
+          "knoise",
+          "evflow",
+          "raw"
+        ]
+      },
+      "common_grid": {
+        "n_methods": 7,
+        "spearman": 1.0,
+        "kendall": 1.0,
+        "differ": false,
+        "rank_a": [
+          "red",
+          "ynoise",
+          "dwf",
+          "ts",
+          "knoise",
+          "evflow",
+          "raw"
+        ],
+        "rank_b": [
+          "red",
+          "ynoise",
+          "dwf",
+          "ts",
+          "knoise",
+          "evflow",
+          "raw"
+        ]
+      },
+      "common_cohort": {
+        "n_methods": 7,
+        "spearman": 1.0,
+        "kendall": 1.0,
+        "differ": false,
+        "rank_a": [
+          "red",
+          "ynoise",
+          "dwf",
+          "ts",
+          "knoise",
+          "evflow",
+          "raw"
+        ],
+        "rank_b": [
+          "red",
+          "ynoise",
+          "dwf",
+          "ts",
+          "knoise",
+          "evflow",
+          "raw"
+        ]
+      }
+    },
+    "own_vs_common_grid": {
+      "n_methods": 8,
+      "spearman": 1.0,
+      "kendall": 0.9999999999999998,
+      "differ": false,
+      "rank_a": [
+        "red",
+        "ynoise",
+        "dwf",
+        "ts",
+        "knoise",
+        "evflow",
+        "random_null",
+        "raw"
+      ],
+      "rank_b": [
+        "red",
+        "ynoise",
+        "dwf",
+        "ts",
+        "knoise",
+        "evflow",
+        "random_null",
+        "raw"
+      ]
+    },
+    "own_vs_common_cohort": {
+      "n_methods": 8,
+      "spearman": 1.0,
+      "kendall": 0.9999999999999998,
+      "differ": false,
+      "rank_a": [
+        "red",
+        "ynoise",
+        "dwf",
+        "ts",
+        "knoise",
+        "evflow",
+        "random_null",
+        "raw"
+      ],
+      "rank_b": [
+        "red",
+        "ynoise",
+        "dwf",
+        "ts",
+        "knoise",
+        "evflow",
+        "random_null",
+        "raw"
+      ]
+    }
+  },
+  "dvsd22": {
+    "dataset": "dvsd22",
+    "n_recordings": 12,
+    "evaluable_range_per_recording": {
+      "distinct": [
+        [
+          0.05,
+          1.0
+        ]
+      ],
+      "common": [
+        0.05,
+        1.0
+      ],
+      "widest": [
+        0.05,
+        1.0
+      ],
+      "ragged": false
+    },
+    "common_cohort": {
+      "n_recordings": 12,
+      "share": 1.0
+    },
+    "coverage": {
+      "grid": [
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95,
+        1.0
+      ],
+      "recordings_at_r": {
+        "0.05": 12,
+        "0.10": 12,
+        "0.15": 12,
+        "0.20": 12,
+        "0.25": 12,
+        "0.30": 12,
+        "0.35": 12,
+        "0.40": 12,
+        "0.45": 12,
+        "0.50": 12,
+        "0.55": 12,
+        "0.60": 12,
+        "0.65": 12,
+        "0.70": 12,
+        "0.75": 12,
+        "0.80": 12,
+        "0.85": 12,
+        "0.90": 12,
+        "0.95": 12,
+        "1.00": 12
+      },
+      "cells_at_r": {
+        "0.05": 96,
+        "0.10": 96,
+        "0.15": 96,
+        "0.20": 96,
+        "0.25": 96,
+        "0.30": 96,
+        "0.35": 96,
+        "0.40": 96,
+        "0.45": 96,
+        "0.50": 96,
+        "0.55": 96,
+        "0.60": 96,
+        "0.65": 96,
+        "0.70": 96,
+        "0.75": 96,
+        "0.80": 96,
+        "0.85": 96,
+        "0.90": 96,
+        "0.95": 96,
+        "1.00": 96
+      },
+      "n_recordings": 12
+    },
+    "mean_auc": {
+      "own_range": {
+        "raw": 2.3610344676287656,
+        "random_null": 2.3639203309104575,
+        "dwf": 2.7411005375253734,
+        "evflow": 2.2817545428346766,
+        "knoise": 2.2133259418853326,
+        "red": 2.7651591901008863,
+        "ts": 2.7151390993578457,
+        "ynoise": 2.82601014744545
+      },
+      "common_grid": {
+        "raw": 2.3610344676287656,
+        "random_null": 2.3639203309104575,
+        "dwf": 2.7411005375253734,
+        "evflow": 2.2817545428346766,
+        "knoise": 2.2133259418853326,
+        "red": 2.7651591901008863,
+        "ts": 2.7151390993578457,
+        "ynoise": 2.82601014744545
+      },
+      "common_cohort": {
+        "raw": 2.3610344676287656,
+        "random_null": 2.3639203309104575,
+        "dwf": 2.7411005375253734,
+        "evflow": 2.2817545428346766,
+        "knoise": 2.2133259418853326,
+        "red": 2.7651591901008863,
+        "ts": 2.7151390993578457,
+        "ynoise": 2.82601014744545
+      }
+    },
+    "vs_native": {
+      "own_range": {
+        "n_methods": 7,
+        "spearman": 0.5714285714285715,
+        "kendall": 0.4285714285714286,
+        "differ": true,
+        "rank_a": [
+          "ynoise",
+          "red",
+          "dwf",
+          "ts",
+          "raw",
+          "evflow",
+          "knoise"
+        ],
+        "rank_b": [
+          "ts",
+          "ynoise",
+          "red",
+          "evflow",
+          "dwf",
+          "knoise",
+          "raw"
+        ]
+      },
+      "common_grid": {
+        "n_methods": 7,
+        "spearman": 0.5714285714285715,
+        "kendall": 0.4285714285714286,
+        "differ": true,
+        "rank_a": [
+          "ynoise",
+          "red",
+          "dwf",
+          "ts",
+          "raw",
+          "evflow",
+          "knoise"
+        ],
+        "rank_b": [
+          "ts",
+          "ynoise",
+          "red",
+          "evflow",
+          "dwf",
+          "knoise",
+          "raw"
+        ]
+      },
+      "common_cohort": {
+        "n_methods": 7,
+        "spearman": 0.5714285714285715,
+        "kendall": 0.4285714285714286,
+        "differ": true,
+        "rank_a": [
+          "ynoise",
+          "red",
+          "dwf",
+          "ts",
+          "raw",
+          "evflow",
+          "knoise"
+        ],
+        "rank_b": [
+          "ts",
+          "ynoise",
+          "red",
+          "evflow",
+          "dwf",
+          "knoise",
+          "raw"
+        ]
+      }
+    },
+    "own_vs_common_grid": {
+      "n_methods": 8,
+      "spearman": 1.0,
+      "kendall": 0.9999999999999998,
+      "differ": false,
+      "rank_a": [
+        "ynoise",
+        "red",
+        "dwf",
+        "ts",
+        "random_null",
+        "raw",
+        "evflow",
+        "knoise"
+      ],
+      "rank_b": [
+        "ynoise",
+        "red",
+        "dwf",
+        "ts",
+        "random_null",
+        "raw",
+        "evflow",
+        "knoise"
+      ]
+    },
+    "own_vs_common_cohort": {
+      "n_methods": 8,
+      "spearman": 1.0,
+      "kendall": 0.9999999999999998,
+      "differ": false,
+      "rank_a": [
+        "ynoise",
+        "red",
+        "dwf",
+        "ts",
+        "random_null",
+        "raw",
+        "evflow",
+        "knoise"
+      ],
+      "rank_b": [
+        "ynoise",
+        "red",
+        "dwf",
+        "ts",
+        "random_null",
+        "raw",
+        "evflow",
+        "knoise"
+      ]
+    }
+  },
+  "pure_ba": {
+    "dataset": "pure_ba",
+    "n_recordings": 26,
+    "evaluable_range_per_recording": {
+      "distinct": [
+        [
+          0.05,
+          1.0
+        ],
+        [
+          0.1,
+          1.0
+        ],
+        [
+          0.2,
+          1.0
+        ],
+        [
+          0.35,
+          1.0
+        ],
+        [
+          0.6,
+          1.0
+        ]
+      ],
+      "common": [
+        0.6,
+        1.0
+      ],
+      "widest": [
+        0.05,
+        1.0
+      ],
+      "ragged": true
+    },
+    "common_cohort": {
+      "n_recordings": 21,
+      "share": 0.8076923076923077
+    },
+    "coverage": {
+      "grid": [
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95,
+        1.0
+      ],
+      "recordings_at_r": {
+        "0.05": 21,
+        "0.10": 23,
+        "0.15": 23,
+        "0.20": 24,
+        "0.25": 24,
+        "0.30": 24,
+        "0.35": 25,
+        "0.40": 25,
+        "0.45": 25,
+        "0.50": 25,
+        "0.55": 25,
+        "0.60": 26,
+        "0.65": 26,
+        "0.70": 26,
+        "0.75": 26,
+        "0.80": 26,
+        "0.85": 26,
+        "0.90": 26,
+        "0.95": 26,
+        "1.00": 26
+      },
+      "cells_at_r": {
+        "0.05": 168,
+        "0.10": 184,
+        "0.15": 184,
+        "0.20": 192,
+        "0.25": 192,
+        "0.30": 192,
+        "0.35": 200,
+        "0.40": 200,
+        "0.45": 200,
+        "0.50": 200,
+        "0.55": 200,
+        "0.60": 208,
+        "0.65": 208,
+        "0.70": 208,
+        "0.75": 208,
+        "0.80": 208,
+        "0.85": 208,
+        "0.90": 208,
+        "0.95": 208,
+        "1.00": 208
+      },
+      "n_recordings": 26
+    },
+    "mean_auc": {
+      "own_range": {
+        "raw": 3.217269560999296,
+        "random_null": 3.22584644872569,
+        "dwf": 4.724143282796906,
+        "evflow": 3.2188192158011524,
+        "knoise": 3.20911868182678,
+        "red": 5.809407010523277,
+        "ts": 3.380513960744326,
+        "ynoise": 4.866500598271907
+      },
+      "common_grid": {
+        "raw": 3.2004191918764815,
+        "random_null": 3.2046761577384424,
+        "dwf": 3.7035818084704903,
+        "evflow": 3.200633486931529,
+        "knoise": 3.1991127919083393,
+        "red": 3.751466456656714,
+        "ts": 3.226048133161364,
+        "ynoise": 3.48103229130903
+      },
+      "common_cohort": {
+        "raw": 1.424748687418943,
+        "random_null": 1.4183084397128172,
+        "dwf": 2.2432183238608125,
+        "evflow": 1.4264328345819142,
+        "knoise": 1.4165690297320066,
+        "red": 3.317419211782876,
+        "ts": 1.571355248557462,
+        "ynoise": 2.7287598186649356
+      }
+    },
+    "vs_native": {
+      "own_range": {
+        "n_methods": 7,
+        "spearman": 0.9642857142857145,
+        "kendall": 0.9047619047619049,
+        "differ": true,
+        "rank_a": [
+          "red",
+          "ynoise",
+          "dwf",
+          "ts",
+          "evflow",
+          "raw",
+          "knoise"
+        ],
+        "rank_b": [
+          "red",
+          "ynoise",
+          "dwf",
+          "ts",
+          "evflow",
+          "knoise",
+          "raw"
+        ]
+      },
+      "common_grid": {
+        "n_methods": 7,
+        "spearman": 0.9285714285714288,
+        "kendall": 0.8095238095238096,
+        "differ": true,
+        "rank_a": [
+          "red",
+          "dwf",
+          "ynoise",
+          "ts",
+          "evflow",
+          "raw",
+          "knoise"
+        ],
+        "rank_b": [
+          "red",
+          "ynoise",
+          "dwf",
+          "ts",
+          "evflow",
+          "knoise",
+          "raw"
+        ]
+      },
+      "common_cohort": {
+        "n_methods": 7,
+        "spearman": 0.9642857142857145,
+        "kendall": 0.9047619047619049,
+        "differ": true,
+        "rank_a": [
+          "red",
+          "ynoise",
+          "dwf",
+          "ts",
+          "evflow",
+          "raw",
+          "knoise"
+        ],
+        "rank_b": [
+          "red",
+          "ynoise",
+          "dwf",
+          "ts",
+          "evflow",
+          "knoise",
+          "raw"
+        ]
+      }
+    },
+    "own_vs_common_grid": {
+      "n_methods": 8,
+      "spearman": 0.9761904761904763,
+      "kendall": 0.9285714285714285,
+      "differ": true,
+      "rank_a": [
+        "red",
+        "ynoise",
+        "dwf",
+        "ts",
+        "random_null",
+        "evflow",
+        "raw",
+        "knoise"
+      ],
+      "rank_b": [
+        "red",
+        "dwf",
+        "ynoise",
+        "ts",
+        "random_null",
+        "evflow",
+        "raw",
+        "knoise"
+      ]
+    },
+    "own_vs_common_cohort": {
+      "n_methods": 8,
+      "spearman": 0.9285714285714287,
+      "kendall": 0.8571428571428571,
+      "differ": true,
+      "rank_a": [
+        "red",
+        "ynoise",
+        "dwf",
+        "ts",
+        "random_null",
+        "evflow",
+        "raw",
+        "knoise"
+      ],
+      "rank_b": [
+        "red",
+        "ynoise",
+        "dwf",
+        "ts",
+        "evflow",
+        "raw",
+        "random_null",
+        "knoise"
+      ]
+    }
+  }
+}

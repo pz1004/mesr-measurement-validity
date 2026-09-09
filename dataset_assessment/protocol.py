@@ -38,7 +38,16 @@ import numpy as np
 
 
 def delta_over_raw(method_mesr: float, raw_mesr: float) -> float:
-    """Improvement over the unfiltered stream - the cap-invariant quantity."""
+    """Improvement over the unfiltered stream.
+
+    This was once described here as "the cap-invariant quantity". It is not.
+    `cap_sensitivity.py` measures it: between a 10^6 and a 2x10^6 cap, with the evaluable
+    grid identical for all 336 cells, 52% of them move by more than the 0.0092 the field
+    ranks methods by, and the worst moves 35x it. Corpus *means* are steadier -- every
+    method's mean moves less than 0.0092 across that pair -- but that is a measured property
+    at those caps, not an invariance, and it degrades downward: at 5x10^5 the means move by
+    up to 0.19 and one method's changes sign.
+    """
 
     return float(method_mesr - raw_mesr)
 

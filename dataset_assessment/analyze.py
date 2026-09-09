@@ -104,12 +104,24 @@ def per_recording_native_deltas(dataset: str) -> Dict[str, List[float]]:
 
 
 def oracle_violations(dataset: str) -> Dict:
-    """How often does a real denoiser out-score a PERFECT label-based filter?
+    """SUPERSEDED by `label_quality.py`. Kept as the secondary, unmatched comparison.
 
-    `label_oracle` ranks every event by its ground-truth label, so its MESR@r curve is the
-    best a label-driven filter can reach on the same retention grid. A method beating it
-    cannot be denoising better - there is nothing better than the labels. Every such cell is
-    direct evidence that MESR's optimum is not the ground-truth ranking.
+    This compares `mesr_star` on both sides -- each side's own maximum over the retention
+    grid. That is wrong twice over, which is why the paper no longer quotes it:
+
+    1. The two argmaxes are different retentions, so the method and the oracle need not even
+       retain the same number of events. A filter can "beat" the oracle by being measured
+       somewhere else on its curve.
+    2. `mesr_star` is selected on the test metric, the metric-oracle quantity `protocol.py`
+       item 1 tells every other paper not to rank on.
+
+    `label_quality.measure` does it at matched retention, where both sides retain exactly the
+    same count, and additionally reports whether the winning filter's *label* quality is
+    worse (it always is: 52 of 55 DND21 cells and 19 of 30 DVSCLEAN cells at the methods'
+    own operating points, every one a strict reversal, no ties).
+
+    Note also that `label_oracle` is a label oracle, not a metric oracle: it maximises
+    retained signal at a given count and bounds nothing about MESR.
     """
 
     payload = json.loads((RESULTS / f"benchmark_{dataset}.json").read_text())
@@ -144,6 +156,7 @@ def oracle_violations(dataset: str) -> Dict:
     worst = max((c for v in per_method.values() for c in v),
                 key=lambda c: c["margin"], default=None)
     return {
+        "superseded_by": "results/label_quality_<dataset>.json (matched retention)",
         "comparable_cells": cells,
         "cells_beating_oracle": beating,
         "share_beating_oracle": beating / cells,
@@ -265,7 +278,9 @@ def edformer_reference() -> Dict:
     honest figure: it is larger than the gap it is being compared against.
 
     `recording_sets` - both runs now cover the same 384 E-MLB recordings; they differ only
-    in the 1,000,000-event cap on the classical rows, and Delta-over-Raw is cap-invariant.
+    in the 1,000,000-event cap on the classical rows. Delta-over-Raw is NOT cap-invariant
+    (`cap_sensitivity.py`); the two runs are therefore not matched on the cap, and the
+    comparison is descriptive.
     Earlier revisions ran the classical rows on a 96-recording subset, and this block
     reported that as a mismatch; the counts are read from the artifacts so that a divergence
     reappears here rather than being asserted either way.
@@ -340,8 +355,9 @@ def _recording_sets(payload: Dict) -> Dict:
         "classical_scene_clusters": clusters,
         "classical_cap": 1_000_000,
         "matched_on_recordings": bool(classical) and classical == edformer,
-        "note": ("Delta-over-Raw is cap-invariant, so matched recording sets under "
-                 "different caps are comparable"),
+        "note": ("Delta-over-Raw is NOT cap-invariant (results/cap_sensitivity.json), so "
+                 "recording sets measured under different caps are NOT matched; the "
+                 "EDformer row beside the capped classical rows is descriptive only"),
     }
 
 
@@ -429,8 +445,12 @@ def bootstrap_delta_ci(values: Sequence[float], draws: int = 10_000,
 #: instead. The two nulls and the oracle are drawn heavier and dashed so the three series the
 #: figure exists to show are separable from the six filters at a glance.
 CURVE_STYLE: Dict[str, Dict] = {
-    "raw":          {"color": "#000000", "linestyle": "--", "linewidth": 2.2, "zorder": 5},
-    "random_null":  {"color": "#d62728", "linestyle": "--", "linewidth": 2.2, "zorder": 5},
+    "raw":          {"color": "#000000", "dashes": (3.0, 1.6), "linewidth": 2.2,
+                     "zorder": 6},
+    # A finer dash under the black one, so the two stay separable on E-MLB and Pure_BA where
+    # they very nearly coincide and whichever was drawn second used to hide the other.
+    "random_null":  {"color": "#d62728", "dashes": (1.2, 1.2), "linewidth": 2.2,
+                     "zorder": 5},
     "label_oracle": {"color": "#2ca02c", "linestyle": ":",  "linewidth": 2.2, "zorder": 5},
     "dwf":          {"color": "#1f77b4"},
     "evflow":       {"color": "#ff7f0e"},
@@ -445,11 +465,79 @@ CURVE_STYLE: Dict[str, Dict] = {
 CURVE_ORDER = ["raw", "random_null", "label_oracle"]
 
 
-def _curve_style(method: str) -> Dict:
+#: Corpus names as the paper prints them; the JSON keys are lowercase slugs.
+CURVE_CORPUS_NAME = {"dnd21": "DND21", "dvsclean": "DVSCLEAN", "emlb": "E-MLB",
+                     "dvsd22": "DVSD22", "pure_ba": "Pure_BA", "ed24": "ED24"}
+
+#: Figure 1 is drawn at the size it is printed at and included with `width=\\linewidth`, so
+#: nothing downscales the type. The previous version was drawn 25 in wide and included at
+#: 340.6 pt -- a 0.19x reduction that printed 10 pt tick labels at under 2 pt, which is the
+#: reason the panels were unreadable, more than the panel count was. The float may not grow,
+#: so the height here is fixed and the caption pays for what the panels gained.
+CURVE_FIG_INCHES = (7.17, 0.88)  # 516.2 x 63.4 pt: the float it sits in must total
+#: 101.2 pt, which is 63.4 pt of panels plus a three-line caption plus IEEEtran's
+#: caption skip. The old split was 54.5 pt of panels and a four-line caption; the
+#: caption gave up its prose colour key to the legend and the panels took the space.
+#: Line and marker weights are tuned for a panel 1.4 in wide; the stored widths suit a panel
+#: five times that. One scalar keeps the two in one place.
+CURVE_STYLE_SCALE = 0.45
+#: Bands resample scene clusters, the unit Table II reports on, not recordings. 2,000 draws
+#: rather than the 10,000 used for reported numbers: this band is eyeballed, and E-MLB's 96
+#: clusters make resampling the slowest step in the figure.
+CURVE_BAND_DRAWS = 2_000
+#: Only the series the figure exists to argue about carry a band. Nine bands on a panel half
+#: an inch tall is mush, and the claim under test is about the nulls, not the filters.
+CURVE_BAND_SERIES = ("raw", "random_null", "label_oracle")
+
+
+def _curve_style(method: str, scale: float = 1.0) -> Dict:
     """Style for one series; unknown methods fall back to a thin grey line."""
 
-    base = {"marker": "o", "markersize": 3, "linewidth": 1.2}
-    return {**base, **CURVE_STYLE.get(method, {"color": "#aaaaaa"})}
+    # No markers. The retention grid is dense and uniform, so on a panel 1.4 in wide the
+    # markers merge into a solid band that hides the dash pattern the nulls are told apart
+    # by -- which is the one thing the figure must not lose.
+    base = {"linewidth": 1.2}
+    style = {**base, **CURVE_STYLE.get(method, {"color": "#aaaaaa"})}
+    return {**style, "linewidth": style["linewidth"] * scale}
+
+
+def curves_by_recording(dataset: str) -> Dict[str, Dict[str, Dict[float, float]]]:
+    """method -> recording -> {r: MESR}, over evaluable points only.
+
+    `figures` used to pool every (r, MESR) point and average the pool, which throws away
+    which recording each point came from. That is enough for a mean and not enough for
+    either of the two things Figure 1 now has to show: an interval, which needs the
+    resampling unit, and `n(r)`, which needs the count of distinct recordings that reached
+    each grid point.
+    """
+
+    payload = json.loads((RESULTS / f"benchmark_{dataset}.json").read_text())
+    out: Dict[str, Dict[str, Dict[float, float]]] = {}
+    for record in payload["records"]:
+        for method, row in record["methods"].items():
+            if "curve" not in row:
+                continue
+            for point in row["curve"]:
+                if point["evaluable"] and np.isfinite(point["mesr"]):
+                    cell = out.setdefault(method, {}).setdefault(record["recording"], {})
+                    cell[float(point["r"])] = float(point["mesr"])
+    return out
+
+
+def recordings_at_r(by_method: Dict[str, Dict[str, Dict[float, float]]]) -> Dict[float, int]:
+    """`n(r)`: distinct recordings evaluable at each grid point.
+
+    Evaluability is a property of the recording and not of the method -- `retain_mask` keeps
+    the same count for every ranking -- so pooling methods here cannot double-count, and the
+    result must agree with `common_support.coverage`, which `tests/test_figures.py` asserts.
+    """
+
+    seen: Dict[float, set] = {}
+    for cells in by_method.values():
+        for recording, points in cells.items():
+            for r in points:
+                seen.setdefault(r, set()).add(recording)
+    return {r: len(v) for r, v in sorted(seen.items())}
 
 
 def figures(report: Dict) -> List[Path]:
@@ -464,34 +552,90 @@ def figures(report: Dict) -> List[Path]:
 
     datasets = [d for d in report if report[d].get("rows")]
     if datasets:
-        fig, axes = plt.subplots(1, len(datasets), figsize=(5 * len(datasets), 4),
-                                 squeeze=False)
-        for axis, dataset in zip(axes[0], datasets):
-            payload = json.loads((RESULTS / f"benchmark_{dataset}.json").read_text())
-            curves: Dict[str, List[List[float]]] = {}
-            for record in payload["records"]:
-                for method, row in record["methods"].items():
-                    if "curve" not in row:
-                        continue
-                    for point in row["curve"]:
-                        if point["evaluable"]:
-                            curves.setdefault(method, []).append([point["r"], point["mesr"]])
-            ordered = ([m for m in CURVE_ORDER if m in curves]
-                       + sorted(m for m in curves if m not in CURVE_ORDER))
+        # One legend for the whole figure, drawn once above the panels, replaces the five
+        # identical per-panel legends that used to eat a corner of every axes -- and the
+        # sentence of the caption that spelled the same key out in prose.
+        plt.rcParams.update({"font.size": 5.6, "axes.linewidth": 0.4,
+                             "xtick.major.width": 0.4, "ytick.major.width": 0.4,
+                             "xtick.major.size": 1.5, "ytick.major.size": 1.5,
+                             "xtick.major.pad": 1.2, "ytick.major.pad": 1.2,
+                             "axes.labelpad": 1.5, "pdf.fonttype": 42})
+        fig = plt.figure(figsize=CURVE_FIG_INCHES)
+        # The lower strip carries n(r) and nothing else, so the curves keep their own scale
+        # instead of sharing an axis with a count.
+        cells = fig.add_gridspec(2, len(datasets), height_ratios=[6.2, 1.0],
+                                 left=0.031, right=0.997, top=0.845, bottom=0.145,
+                                 wspace=0.27, hspace=0.16)
+        handles: Dict[str, object] = {}
+        for column, dataset in enumerate(datasets):
+            by_method = curves_by_recording(dataset)
+            ordered = ([m for m in CURVE_ORDER if m in by_method]
+                       + sorted(m for m in by_method if m not in CURVE_ORDER))
+            axis = fig.add_subplot(cells[0, column])
             for method in ordered:
-                array = np.array(curves[method])
-                grid = np.unique(array[:, 0])
-                mean = [array[array[:, 0] == r, 1].mean() for r in grid]
-                axis.plot(grid, mean, label=method, **_curve_style(method))
-            axis.set_title(dataset)
-            axis.set_xlabel("retention r (fraction of events kept)")
-            axis.set_ylabel("MESR (mean over recordings)")
-            axis.grid(alpha=0.3)
-            axis.legend(fontsize=8)
-        fig.tight_layout()
+                per_recording = by_method[method]
+                grid = sorted({r for points in per_recording.values() for r in points})
+                mean = [float(np.mean([p[r] for p in per_recording.values() if r in p]))
+                        for r in grid]
+                line, = axis.plot(grid, mean,
+                                  **_curve_style(method, CURVE_STYLE_SCALE))
+                handles.setdefault(method, line)
+                if method not in CURVE_BAND_SERIES:
+                    continue
+                lo, hi = [], []
+                for r, centre in zip(grid, mean):
+                    values = [p[r] for p in per_recording.values() if r in p]
+                    clusters = [scene_of(rec) for rec, p in per_recording.items()
+                                if r in p]
+                    band = cluster_bootstrap_delta_ci(values, clusters,
+                                                      draws=CURVE_BAND_DRAWS)
+                    lo.append(band["lo"] if np.isfinite(band["lo"]) else centre)
+                    hi.append(band["hi"] if np.isfinite(band["hi"]) else centre)
+                axis.fill_between(grid, lo, hi, color=line.get_color(), alpha=0.20,
+                                  linewidth=0, zorder=2)
+            axis.text(0.035, 0.94, CURVE_CORPUS_NAME.get(dataset, dataset),
+                      transform=axis.transAxes, ha="left", va="top",
+                      fontsize=6.0, fontweight="bold")
+            axis.grid(alpha=0.25, linewidth=0.3)
+            axis.set_xlim(0, 1.02)
+            axis.tick_params(labelbottom=False)
+            # No axis labels: at five panels they are five copies of the caption's first
+            # clause, and the height they cost is the height the panels need.
+
+            counts = recordings_at_r(by_method)
+            strip = fig.add_subplot(cells[1, column], sharex=axis)
+            full, floor = max(counts.values()), min(counts.values())
+            # Filled from zero this reads as a solid slab, because n(r) sits at its ceiling
+            # over most of the axis. A step line on a tight scale shows where it drops, and
+            # the dotted rule marks the full cohort so a flat trace is legibly flat.
+            strip.axhline(full, color="#909090", linewidth=0.3, linestyle=":")
+            strip.step(list(counts), list(counts.values()), where="mid",
+                       color="#404040", linewidth=0.6)
+            # Asymmetric on purpose: it seats the trace near the top of a strip five points
+            # tall, which is the only place the count annotation can sit without the line
+            # striking through it on the corpora where n(r) never moves.
+            pad = max(full - floor, 1) * 0.35
+            strip.set_ylim(floor - pad * 2.6, full + pad * 0.5)
+            strip.set_yticks([])
+            for spine in ("top", "left", "right"):
+                strip.spines[spine].set_visible(False)
+            # The floor and the ceiling of n(r) are what a reader needs to tell a rising
+            # metric from a shrinking sample; the axis is truncated, so both are printed.
+            span = f"n {full}" if floor == full else f"n {floor}\u2013{full}"
+            strip.text(0.99, 0.0, span, transform=strip.transAxes, ha="right",
+                       va="bottom", fontsize=4.8, color="#404040")
+            strip.tick_params(labelsize=5.0)
+
+        ordered_handles = ([m for m in CURVE_ORDER if m in handles]
+                           + sorted(m for m in handles if m not in CURVE_ORDER))
+        fig.legend([handles[m] for m in ordered_handles], ordered_handles,
+                   loc="upper center", bbox_to_anchor=(0.5, 1.005),
+                   ncol=len(ordered_handles), fontsize=5.4, frameon=False,
+                   handlelength=1.9, handletextpad=0.4, columnspacing=1.1)
         path = FIGURES / "fig_retention_curves.pdf"
         fig.savefig(path)
         plt.close(fig)
+        plt.rcdefaults()
         written.append(path)
 
     regimes = RESULTS / "noise_regimes.json"

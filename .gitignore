@@ -41,3 +41,8 @@ __pycache__/
 /docs/
 /NUMBERS.md
 /results/figures/
+
+# The 1M lane of the cap sweep is a byte-identical copy of results/benchmark_emlb.json,
+# which is already tracked. REPRODUCE.md documents the `cp` that recreates it.
+/results/cap_sensitivity/emlb_cap_1000000.json
+/results/cap_sensitivity/subset48/

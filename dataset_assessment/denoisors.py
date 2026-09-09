@@ -108,9 +108,18 @@ def _raw_scores(recording) -> np.ndarray:
 def _oracle_scores(recording) -> np.ndarray:
     """Perfect per-event knowledge: signal 0, noise 1.
 
-    This is a METRIC ORACLE. It answers "what is the best MESR any ranking could reach at
-    this retention", which bounds every method's curve from above. It is not a denoiser and
-    must never be reported as one.
+    This is a LABEL ORACLE, not a metric oracle. It maximises *retained signal* at any
+    block-wise retained count -- nothing more. It does **not** bound MESR from above, and
+    real filters routinely exceed it: `label_quality.py` measures 52 of 55 DND21 cells and
+    19 of 30 DVSCLEAN cells scoring higher MESR at the methods' own operating points, every
+    one of them while retaining strictly less signal and strictly more noise.
+
+    Note the tie-break. This is a two-level score, so at a count below the block's signal
+    total `esr.retain_mask`'s stable argsort keeps the temporally-first signal events of the
+    block. That is one label-optimal subset out of many, and ESR is not indifferent between
+    them, which is a second reason this bounds nothing about the metric.
+
+    It is not a denoiser and must never be reported as one.
     """
 
     if recording.labels is None:

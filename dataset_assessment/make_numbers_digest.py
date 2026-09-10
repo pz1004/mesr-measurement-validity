@@ -662,6 +662,13 @@ def _downstream(out: Callable[[str], None]) -> None:
     if partial:
         out(f"- **partial rho(MESR, accuracy | retention) = {partial['rho']:+.3f} "
             f"p={partial['p']:.3f} n={partial['n']}**  <- primary within-condition test")
+    distinct = stats.get("partial_given_retention_distinct")
+    if distinct:
+        # Same test on the distinct-input sample: the r = 1 endpoint enters the pooled grid
+        # once per method, so the pooled value is computed over as many copies of one
+        # deterministic condition as there are methods. Section 9 prints both.
+        out(f"- **the same, distinct inputs = {distinct['rho']:+.3f} "
+            f"p={distinct['p']:.3f} n={distinct['n']}**  <- endpoint counted once")
 
     retention_stats = payload.get("spearman_retention", {})
     if retention_stats:

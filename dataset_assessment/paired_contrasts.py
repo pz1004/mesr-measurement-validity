@@ -39,15 +39,25 @@ from typing import Dict, List, Optional, Sequence
 
 import numpy as np
 
-from .analyze import RESULTS, _mesr_at, cluster_bootstrap_delta_ci, scene_of
+from .analyze import (RESULTS, _mesr_at, _nearest_evaluable, cluster_bootstrap_delta_ci,
+                      scene_of)
+from .protocol import native_point_is_eligible
 from .denoisors import has_native_operating_point, is_null
 
 
-def native_deltas_by_recording(dataset: str) -> Dict[str, Dict[str, float]]:
+def native_deltas_by_recording(dataset: str,
+                               eligible_only: bool = True) -> Dict[str, Dict[str, float]]:
     """Delta-over-Raw at each method's native operating point, keyed recording -> method.
 
     `analyze.per_recording_native_deltas` drops the recording name, which is exactly what a
     paired comparison needs; this keeps it.
+
+    `eligible_only` applies `protocol.native_point_is_eligible`. It matters more here than
+    anywhere else in the paper. On E-MLB, 445 of 2304 cells have a native retention below the
+    recording's measurable floor, so the sweep scores them at a retention the filter never
+    chose -- and those cells are not a random sample. RED's 73 ineligible cells average
+    +2.7180 against +0.4550 on its 311 eligible ones, so the loose cohort put RED at the top
+    of the table on cells where it could not be measured at its own operating point at all.
     """
 
     payload = json.loads((RESULTS / f"benchmark_{dataset}.json").read_text())
@@ -66,9 +76,13 @@ def native_deltas_by_recording(dataset: str) -> Dict[str, Dict[str, float]]:
                 continue
             if not has_native_operating_point(method) or is_null(method):
                 continue
-            value = _mesr_at(row["curve"], row["native_retention"])
-            if np.isfinite(value):
-                cell[method] = float(value - raw_native)
+            point = _nearest_evaluable(row["curve"], row["native_retention"])
+            if point is None or not np.isfinite(point["mesr"]):
+                continue
+            if eligible_only and not native_point_is_eligible(row["native_retention"],
+                                                              point["r"]):
+                continue
+            cell[method] = float(point["mesr"] - raw_native)
         if cell:
             out[record["recording"]] = cell
     return out
@@ -106,6 +120,18 @@ def compare(dataset: str = "emlb", order: Optional[Sequence[str]] = None) -> Dic
              for m in methods}
     ranked = list(order) if order else sorted(methods, key=lambda m: -means[m])
 
+    # The marginals the table prints. Each row is now its own cohort, because eligibility is
+    # a property of (method, recording), so these are NOT comparable across rows -- the
+    # pairwise contrasts below are, and they are what every comparative statement rests on.
+    marginals = {}
+    for m in ranked:
+        recs = sorted(r for r, cell in deltas.items() if m in cell)
+        ci = cluster_bootstrap_delta_ci([deltas[r][m] for r in recs],
+                                        [scene_of(r) for r in recs])
+        marginals[m] = {"n_recordings": len(recs), "n_scenes": ci.get("n_clusters"),
+                        "mean": ci["mean"], "lo": ci["lo"], "hi": ci["hi"],
+                        "excludes_zero": bool(ci.get("excludes_zero", False))}
+
     pairs = [paired_difference(deltas, a, b)
              for a, b in itertools.combinations(ranked, 2)]
     adjacent = [p for p in pairs
@@ -116,6 +142,7 @@ def compare(dataset: str = "emlb", order: Optional[Sequence[str]] = None) -> Dic
         "n_scenes": len({scene_of(r) for r in deltas}),
         "ranked_by_mean": ranked,
         "mean_delta": {m: means[m] for m in ranked},
+        "marginals": marginals,
         "pairs": pairs,
         "adjacent_pairs": adjacent,
         "adjacent_all_resolved": all(p["excludes_zero"] for p in adjacent),

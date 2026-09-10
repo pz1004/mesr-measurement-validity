@@ -434,6 +434,20 @@ def summarise_conditions(conditions: Sequence[dict]) -> dict:
             "partial_given_retention": partial_spearman(
                 [c["mesr"] for c in usable], [c["accuracy"] for c in usable],
                 [c["retention"] for c in usable]),
+            # The same pre-designated test on the distinct-input sample. The pooled grid
+            # enters the r = 1 endpoint once per method, so the partial correlation is
+            # computed over as many copies of one deterministic condition as there are
+            # methods. Neither weighting is automatically the intended estimand - a
+            # uniformly weighted method-retention grid and a set of unique evaluated
+            # inputs weight retention differently - so we report both and say which is
+            # which. Deduplicating does not make the remaining conditions independent.
+            "partial_given_retention_distinct": dict(
+                partial_spearman([c["mesr"] for c in distinct],
+                                 [c["accuracy"] for c in distinct],
+                                 [c["retention"] for c in distinct]),
+                duplicate_cells_collapsed=len(duplicates) - len(duplicates[:1]),
+                note=("the r = 1.0 endpoint kept once instead of once per method; the "
+                      "pooled partial counts one deterministic input as many")),
             "within_retention": within_retention_correlations(usable),
             "per_seed_all_conditions": per_seed,
         },
@@ -476,6 +490,16 @@ def main() -> None:
         if "coverage" not in existing:
             raise SystemExit(f"{OUT} has no `coverage` block; it predates this protocol "
                              "and cannot be rescoped. Re-run the experiment.")
+        # `--arch` selects a model to train; it does not select an artifact. Without this
+        # guard, `--from-artifact --arch mlp` silently rescopes whatever `--out` points at
+        # - by default the 2D CNN's file - and reports it as the MLP's. Each architecture's
+        # artifact is addressed by `--out`.
+        stored_arch = existing["protocol"].get("arch", DEFAULT_ARCH)
+        if args.arch != stored_arch:
+            raise SystemExit(
+                f"{out_path} holds arch '{stored_arch}' but --arch says '{args.arch}'. "
+                f"--from-artifact recomputes the file --out names; pass "
+                f"--out results/downstream_gesture_{args.arch}.json, or drop --arch.")
         print(f"recomputing statistics from {out_path} "
               f"({len(existing['conditions'])} stored conditions); no training", flush=True)
         write_report(existing["conditions"],
@@ -601,6 +625,9 @@ def write_report(conditions, train_cov, test_cov, n_train: int, n_test: int,
     partial = stats["partial_given_retention"]
     print(f"  partial | retention rho = {partial['rho']:+.3f}  p = {partial['p']:.3e}  "
           f"n = {partial['n']}")
+    partial_distinct = stats["partial_given_retention_distinct"]
+    print(f"    same, distinct inputs rho = {partial_distinct['rho']:+.3f}  "
+          f"p = {partial_distinct['p']:.3e}  n = {partial_distinct['n']}")
     within = stats["within_retention"]
     print(f"  within-retention    mean rho = {within['mean_rho']:+.3f}  "
           f"Fisher-combined p = {within['fisher_p']:.3f}")

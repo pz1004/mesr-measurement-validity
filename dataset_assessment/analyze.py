@@ -13,12 +13,12 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
-from typing import Dict, List, Sequence
+from typing import Dict, List, Optional, Sequence
 
 import numpy as np
 
-from .denoisors import has_native_operating_point
-from .protocol import rank_agreement, rank_methods
+from .denoisors import CLASSICAL, has_native_operating_point
+from .protocol import native_point_is_eligible, rank_agreement, rank_methods
 
 RESULTS = Path(__file__).resolve().parents[1] / "results"
 FIGURES = Path(__file__).resolve().parents[1] / "results/figures"
@@ -27,15 +27,27 @@ MIN_METHODS_FOR_GATE = 4
 DATASETS = ("dnd21", "dvsclean", "emlb", "dvsd22", "pure_ba", "ed24")
 
 
-def _mesr_at(curve: List[Dict], retention: float) -> float:
-    """MESR at the evaluable grid point nearest `retention`; NaN if none is evaluable."""
+def _nearest_evaluable(curve: List[Dict], retention: float) -> Optional[Dict]:
+    """The evaluable grid point nearest `retention`, or None if the curve has none."""
 
     if not np.isfinite(retention):
-        return float("nan")
+        return None
     usable = [c for c in curve if c.get("evaluable") and np.isfinite(c["mesr"])]
     if not usable:
-        return float("nan")
-    return float(min(usable, key=lambda c: abs(c["r"] - retention))["mesr"])
+        return None
+    return min(usable, key=lambda c: abs(c["r"] - retention))
+
+
+def _mesr_at(curve: List[Dict], retention: float) -> float:
+    """MESR at the evaluable grid point nearest `retention`; NaN if none is evaluable.
+
+    Note what this does *not* check: whether that grid point is close enough to `retention`
+    to stand in for it. `protocol.native_point_is_eligible` is that check, and callers
+    reporting a native-operating-point quantity must apply it.
+    """
+
+    point = _nearest_evaluable(curve, retention)
+    return float(point["mesr"]) if point is not None else float("nan")
 
 
 def aggregate(dataset: str) -> List[Dict]:
@@ -74,8 +86,15 @@ def aggregate(dataset: str) -> List[Dict]:
     return rows
 
 
-def per_recording_native_deltas(dataset: str) -> Dict[str, List[float]]:
+def per_recording_native_deltas(dataset: str,
+                                eligible_only: bool = True) -> Dict[str, List[float]]:
     """Delta-over-Raw at each method's native operating point, one value per recording.
+
+    `eligible_only` applies `protocol.native_point_is_eligible`, which is what makes the
+    phrase "at its native operating point" mean the same thing here as in `label_quality`.
+    Pass False to recover the older, looser cohort -- every cell snapped to its nearest grid
+    point however far away that is. The two differ: on E-MLB the loose cohort scores EvFlow
+    at a mean r of 0.082 against a mean native retention of 0.049.
 
     `aggregate` collapses these to a mean, which is what the tables print. Keeping the
     per-recording values is what makes a confidence interval possible, and without one a
@@ -97,9 +116,13 @@ def per_recording_native_deltas(dataset: str) -> Dict[str, List[float]]:
                 continue
             if not has_native_operating_point(method) or row.get("is_oracle"):
                 continue
-            value = _mesr_at(row["curve"], row["native_retention"])
-            if np.isfinite(value):
-                out.setdefault(method, []).append(float(value - raw_native))
+            point = _nearest_evaluable(row["curve"], row["native_retention"])
+            if point is None or not np.isfinite(point["mesr"]):
+                continue
+            if eligible_only and not native_point_is_eligible(row["native_retention"],
+                                                              point["r"]):
+                continue
+            out.setdefault(method, []).append(float(point["mesr"] - raw_native))
     return out
 
 
@@ -167,6 +190,134 @@ def oracle_violations(dataset: str) -> Dict:
         "by_method": {m: len(v) for m, v in sorted(per_method.items())},
         "worst_case": worst,
     }
+
+
+def native_eligibility(dataset: str) -> Dict:
+    """What the native-operating-point column costs, per method and overall.
+
+    A cell is ineligible when the nearest evaluable grid point is too far from the filter's
+    own retention to stand in for it (`protocol.native_point_is_eligible`). On E-MLB every
+    one of the 445 ineligible cells is ineligible for the same reason -- the filter's native
+    retention is below that recording's measurable floor -- so the sweep can only score it
+    somewhere the filter never chose. Reporting the ineligible cells' own mean matters
+    because they are not a random sample: RED's average +2.7180 against +0.4550 on its
+    eligible ones, which is why dropping them moves the E-MLB table's top row by half.
+    """
+
+    payload = json.loads((RESULTS / f"benchmark_{dataset}.json").read_text())
+    per_method: Dict[str, Dict[str, List[float]]] = {}
+    for record in payload["records"]:
+        raw = record["methods"].get("raw", {})
+        base = _nearest_evaluable(raw.get("curve", []), 1.0)
+        if base is None:
+            continue
+        for method, row in record["methods"].items():
+            if "error" in row or "curve" not in row or row.get("is_oracle"):
+                continue
+            if not has_native_operating_point(method) or method == "raw":
+                continue
+            native = row.get("native_retention")
+            point = _nearest_evaluable(row["curve"], native)
+            if point is None or not np.isfinite(point["mesr"]):
+                continue
+            key = ("eligible" if native_point_is_eligible(native, point["r"])
+                   else "ineligible")
+            cell = per_method.setdefault(method, {})
+            cell.setdefault(key + "_delta", []).append(float(point["mesr"] - base["mesr"]))
+            cell.setdefault(key + "_native", []).append(float(native))
+            cell.setdefault(key + "_grid", []).append(float(point["r"]))
+            cell.setdefault(key + "_below_floor", []).append(
+                float(native < min(c["r"] for c in row["curve"] if c.get("evaluable"))))
+
+    out: Dict[str, Dict] = {}
+    total = bad = below = 0
+    for method, cell in sorted(per_method.items()):
+        n_ok = len(cell.get("eligible_delta", []))
+        n_bad = len(cell.get("ineligible_delta", []))
+        total += n_ok + n_bad
+        bad += n_bad
+        below += int(sum(cell.get("ineligible_below_floor", [])))
+        entry = {"eligible": n_ok, "ineligible": n_bad}
+        for key in ("eligible", "ineligible"):
+            if cell.get(key + "_delta"):
+                entry[key + "_mean_delta"] = float(np.mean(cell[key + "_delta"]))
+                entry[key + "_mean_native_r"] = float(np.mean(cell[key + "_native"]))
+                entry[key + "_mean_scored_at_r"] = float(np.mean(cell[key + "_grid"]))
+        every = cell.get("eligible_native", []) + cell.get("ineligible_native", [])
+        entry["mean_native_r_all_cells"] = float(np.mean(every)) if every else float("nan")
+        entry["mean_scored_at_r_all_cells"] = float(np.mean(
+            cell.get("eligible_grid", []) + cell.get("ineligible_grid", [])))
+        out[method] = entry
+    rows = [{"delta": e["eligible_mean_delta"], "r": e["eligible_mean_native_r"]}
+            for m, e in out.items()
+            if m in CLASSICAL and "eligible_mean_delta" in e]
+    if len(rows) >= 3:
+        rho, tau = rank_agreement(rows, "delta", "r")
+        aggressiveness = {"methods": len(rows), "spearman": rho, "kendall": tau}
+    else:
+        aggressiveness = {"methods": len(rows)}
+
+    return {"dataset": dataset, "cells": total, "ineligible": bad,
+            "share_ineligible": bad / total if total else float("nan"),
+            "ineligible_because_native_is_below_the_floor": below,
+            "delta_vs_native_retention_over_eligible_rows": aggressiveness,
+            "by_method": out}
+
+
+def common_support_floor(dataset: str) -> float:
+    """The smallest retention every recording of the corpus is evaluable at.
+
+    Chosen by the corpus's own support rather than by any outcome, which is what makes a
+    quantity read there selection-free. `common_support.py` reports the same range.
+    """
+
+    payload = json.loads((RESULTS / f"benchmark_{dataset}.json").read_text())
+    floors = []
+    for record in payload["records"]:
+        raw = record["methods"].get("raw", {})
+        usable = [c["r"] for c in raw.get("curve", [])
+                  if c.get("evaluable") and np.isfinite(c["mesr"])]
+        if usable:
+            floors.append(min(usable))
+    return float(max(floors)) if floors else float("nan")
+
+
+def delta_at_fixed_retention(dataset: str, retention: float) -> Dict:
+    """Every method's Delta-over-Raw at one retention, with a scene-clustered interval.
+
+    Section VII needs this because the blank-sample response cannot be read at native
+    operating points on Pure_BA: most of its filters natively keep a few per cent, far below
+    that corpus's measurable floor, so `protocol.native_point_is_eligible` leaves RED with 4
+    of 26 recordings and TS with none. Fixing r instead selects nothing, drops no recording,
+    and -- the reason it is the better statistic anyway -- puts the filters and the
+    nonselective controls at an identical retained count, which is the blank's *expected*
+    response. On a signal-free stream there is no `which` to select, so a filter gaining more
+    than the controls at the same r is being paid for aggressiveness alone.
+    """
+
+    payload = json.loads((RESULTS / f"benchmark_{dataset}.json").read_text())
+    out: Dict[str, Dict] = {}
+    for record in payload["records"]:
+        for method, row in record["methods"].items():
+            if "error" in row or "curve" not in row or "raw_mesr" not in row:
+                continue
+            points = [c for c in row["curve"]
+                      if abs(c["r"] - retention) < 1e-9
+                      and c.get("evaluable") and np.isfinite(c["mesr"])]
+            if not points:
+                continue
+            cell = out.setdefault(method, {"values": [], "recordings": []})
+            cell["values"].append(float(points[0]["mesr"] - row["raw_mesr"]))
+            cell["recordings"].append(record["recording"])
+    result: Dict[str, Dict] = {}
+    for method, cell in sorted(out.items()):
+        values = cell["values"]
+        ci = cluster_bootstrap_delta_ci(values, [scene_of(r) for r in cell["recordings"]])
+        result[method] = {"n": len(values), "mean": float(np.mean(values)),
+                          "median": float(np.median(values)),
+                          "lo": ci["lo"], "hi": ci["hi"],
+                          "n_scenes": ci.get("n_clusters")}
+    return {"dataset": dataset, "retention": retention, "by_method": result}
 
 
 def null_gain_at_fixed_retention(dataset: str,
@@ -673,6 +824,13 @@ def main() -> None:
         entry: Dict = {"rows": rows, "n_rankable_methods": len(rankable),
                        "oracle_violations": oracle_violations(dataset),
                        "null_gain_fixed_retention": null_gain_at_fixed_retention(dataset)}
+        # The blank-sample response (S VII) is read here rather than at native operating
+        # points, which Pure_BA's measurable floor puts out of reach for most of its filters.
+        # The retention is the corpus's common-support floor, so nothing is selected.
+        entry["native_eligibility"] = native_eligibility(dataset)
+        floor = common_support_floor(dataset)
+        if np.isfinite(floor):
+            entry["delta_at_common_floor"] = delta_at_fixed_retention(dataset, floor)
         # A continuous scorer has no native operating point (native_retention is NaN), so
         # it cannot appear in the native ranking; comparing the two rankings requires the
         # same method set on both sides.
@@ -711,8 +869,20 @@ def main() -> None:
                 # 95% percentile bootstrap over recordings. Two things a point estimate
                 # hides: whether adjacent rows in the table are separable at all, and how
                 # much of a cross-run gap could be scene sampling rather than method.
+                #
+                # Two cohorts, and the paper's E-MLB table prints the eligible one. The
+                # rankings above stay on the unrestricted column deliberately: they compare
+                # two *summaries* of the same cells, and restricting one side would put a
+                # cohort difference inside a comparison that is meant to isolate the summary.
+                # What the restriction does to the native order is reported separately.
                 "delta_over_raw_at_native_ci": {
                     method: bootstrap_delta_ci(values)
+                    for method, values in sorted(
+                        per_recording_native_deltas(dataset,
+                                                    eligible_only=False).items())},
+                "delta_over_raw_at_native_eligible": {
+                    method: {"n": len(values), "mean": float(np.mean(values)),
+                             **bootstrap_delta_ci(values)}
                     for method, values in sorted(
                         per_recording_native_deltas(dataset).items())},
                 "spearman_protocol_vs_auc": rho_auc,

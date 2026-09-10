@@ -907,6 +907,14 @@
       "n": 40,
       "control": "retention"
     },
+    "partial_given_retention_distinct": {
+      "rho": 0.206670779066022,
+      "p": 0.25641806037828063,
+      "n": 33,
+      "control": "retention",
+      "duplicate_cells_collapsed": 7,
+      "note": "the r = 1.0 endpoint kept once instead of once per method; the pooled partial counts one deterministic input as many"
+    },
     "within_retention": {
       "per_retention": {
         "0.4": {
@@ -1044,6 +1052,14 @@
         "p": 0.1432655208740744,
         "n": 50,
         "control": "retention"
+      },
+      "partial_given_retention_distinct": {
+        "rho": -0.19881625438245457,
+        "p": 0.21874427512611094,
+        "n": 41,
+        "control": "retention",
+        "duplicate_cells_collapsed": 9,
+        "note": "the r = 1.0 endpoint kept once instead of once per method; the pooled partial counts one deterministic input as many"
       },
       "within_retention": {
         "per_retention": {

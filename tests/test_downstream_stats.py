@@ -208,6 +208,44 @@ def test_the_deduplicated_correlation_is_reported_alongside_the_pooled_one():
         assert {"rho", "p", "n"} <= set(s[key])
 
 
+def test_the_partial_correlation_is_reported_on_both_weightings():
+    """The pre-designated test is a partial correlation, and it inherits the same defect the
+    pooled correlation had: the r = 1 endpoint enters once per method, so the control is
+    given as many copies of one deterministic condition as there are methods. Both
+    weightings must be published, because they are different estimands and neither is
+    automatically the intended one."""
+
+    from dataset_assessment.downstream_gesture import summarise_conditions
+
+    s = summarise_conditions(_grid())["mesr_vs_accuracy"]
+    pooled = s["partial_given_retention"]
+    distinct = s["partial_given_retention_distinct"]
+    assert pooled["n"] == 24
+    assert distinct["n"] == 17
+    assert distinct["duplicate_cells_collapsed"] == 7
+
+
+def test_deduplicating_the_endpoint_does_not_overturn_the_downstream_verdict():
+    """Section 9 reports that the pre-designated within-condition test fails to reject. That
+    verdict must survive the endpoint repair, or the section's conclusion changes. It does:
+    the correlation rises from +0.261 to +0.333 and stays above 0.05."""
+
+    import json
+    from pathlib import Path
+
+    path = (Path(__file__).resolve().parents[1] / "results" / "downstream_gesture.json")
+    if not path.is_file():
+        pytest.skip("downstream_gesture.json not generated")
+    s = json.loads(path.read_text())["spearman_mesr_vs_accuracy"]
+    pooled = s["partial_given_retention"]
+    distinct = s["partial_given_retention_distinct"]
+    assert pooled["n"] == 40 and distinct["n"] == 33
+    assert pooled["rho"] == pytest.approx(0.261, abs=5e-4)
+    assert distinct["rho"] == pytest.approx(0.333, abs=5e-4)
+    assert distinct["rho"] > pooled["rho"]          # the pooled value was biased downward
+    assert distinct["p"] > 0.05                     # and the verdict is unchanged
+
+
 def test_published_downstream_correlations_match_the_artifact():
     """+0.135 over 40 pooled cells and +0.292 over 33 distinct inputs, both quoted."""
 

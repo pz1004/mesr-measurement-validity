@@ -52,6 +52,34 @@ def delta_over_raw(method_mesr: float, raw_mesr: float) -> float:
     return float(method_mesr - raw_mesr)
 
 
+#: A binary filter has one operating point, but the sweep only offers grid retentions, so
+#: "at its native operating point" always means "at the nearest grid point". These bound how
+#: far that substitution may reach. One grid step alone is the wrong yardstick at the low end:
+#: a method natively keeping 1% is not measured at its operating point when scored at r=0.05,
+#: which retains five times the events it actually keeps, even though the absolute gap is
+#: under one step. The relative bound is what makes "native" mean native.
+NATIVE_GRID_STEP = 0.05
+NATIVE_REL_TOL = 0.5
+
+
+def native_point_is_eligible(native_retention: float, grid_retention: float,
+                             grid_step: float = NATIVE_GRID_STEP,
+                             rel_tol: float = NATIVE_REL_TOL) -> bool:
+    """May `grid_retention` stand in for a method's own operating point?
+
+    One rule for every native-operating-point number in the paper. `label_quality` applied it
+    from the start; Table IV did not, and 445 of its 2304 E-MLB cells (19.3%) fall outside it
+    -- 261 of EvFlow's 384 alone, whose median native retention is 0.015 against a grid floor
+    of 0.05. Applying it in one place is what stops the two tables meaning different things
+    by the same phrase.
+    """
+
+    if not np.isfinite(native_retention) or not np.isfinite(grid_retention):
+        return False
+    gap = abs(grid_retention - native_retention)
+    return bool(gap <= grid_step + 1e-9 and gap <= rel_tol * native_retention + 1e-12)
+
+
 def decompose_esr(x: np.ndarray, y: np.ndarray, width: int, height: int) -> Dict:
     """Split one slice's ESR into its two factors plus the quantity that bounds `ln`.
 

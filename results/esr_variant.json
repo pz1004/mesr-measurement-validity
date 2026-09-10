@@ -1,0 +1,423 @@
+{
+  "corpora": {
+    "dnd21": {
+      "sensor": [
+        346,
+        260
+      ],
+      "slices": 12,
+      "ratio": {
+        "median": 2.127608185929522,
+        "min": 1.576673822661858,
+        "max": 3.360189593484872
+      },
+      "thousand_over_sqrt_k": 3.3340743210791395,
+      "cells": [
+        {
+          "recording": "DND21/1hz_hotel-bar",
+          "official": 1.2338806462023295,
+          "variant": 2.476492044315816,
+          "ratio": 2.0070758480068784
+        },
+        {
+          "recording": "DND21/1hz_hotel-bar",
+          "official": 1.1869885908115572,
+          "variant": 2.531218214998374,
+          "ratio": 2.1324705516063576
+        },
+        {
+          "recording": "DND21/1hz_hotel-bar",
+          "official": 1.2071167957351634,
+          "variant": 2.5917096159868955,
+          "ratio": 2.147024732936867
+        },
+        {
+          "recording": "DND21/1hz_hotel-bar",
+          "official": 1.180733126064382,
+          "variant": 2.506396308187056,
+          "ratio": 2.1227458202526868
+        },
+        {
+          "recording": "DND21/1hz_driving",
+          "official": 0.8082759532338926,
+          "variant": 2.233915398089389,
+          "ratio": 2.763802868502456
+        },
+        {
+          "recording": "DND21/1hz_driving",
+          "official": 0.8008538702090883,
+          "variant": 2.4107704392158924,
+          "ratio": 3.0102500954218834
+        },
+        {
+          "recording": "DND21/1hz_driving",
+          "official": 0.7779146349169702,
+          "variant": 2.6016341307973847,
+          "ratio": 3.34436969562228
+        },
+        {
+          "recording": "DND21/1hz_driving",
+          "official": 0.7730840774885699,
+          "variant": 2.597709072065945,
+          "ratio": 3.360189593484872
+        },
+        {
+          "recording": "DND21/3hz_hotel-bar",
+          "official": 0.9917191496694678,
+          "variant": 1.5636176227163272,
+          "ratio": 1.576673822661858
+        },
+        {
+          "recording": "DND21/3hz_hotel-bar",
+          "official": 1.026969398174551,
+          "variant": 1.726339806161149,
+          "ratio": 1.6810041362768322
+        },
+        {
+          "recording": "DND21/3hz_hotel-bar",
+          "official": 0.9968583148579032,
+          "variant": 1.6904628198895344,
+          "ratio": 1.695790459580508
+        },
+        {
+          "recording": "DND21/3hz_hotel-bar",
+          "official": 0.9936481824011707,
+          "variant": 1.6613328151861402,
+          "ratio": 1.6719527541141335
+        }
+      ]
+    },
+    "dvsclean": {
+      "sensor": [
+        1280,
+        720
+      ],
+      "slices": 12,
+      "ratio": {
+        "median": 1.0252648938296476,
+        "min": 0.9104757245691362,
+        "max": 1.133862414490709
+      },
+      "thousand_over_sqrt_k": 1.0416666666666667,
+      "cells": [
+        {
+          "recording": "DVSCLEAN/MAH00446_50",
+          "official": 0.49070699120626193,
+          "variant": 0.5563942138566033,
+          "ratio": 1.133862414490709
+        },
+        {
+          "recording": "DVSCLEAN/MAH00446_50",
+          "official": 0.48922064787961783,
+          "variant": 0.5132277574912624,
+          "ratio": 1.049072151217853
+        },
+        {
+          "recording": "DVSCLEAN/MAH00446_50",
+          "official": 0.48313144120077706,
+          "variant": 0.5286431229690144,
+          "ratio": 1.0942014488958167
+        },
+        {
+          "recording": "DVSCLEAN/MAH00446_50",
+          "official": 0.4902001304538334,
+          "variant": 0.5232237816875106,
+          "ratio": 1.0673676916468862
+        },
+        {
+          "recording": "DVSCLEAN/MAH00446_100",
+          "official": 0.37571286973261236,
+          "variant": 0.37626052250305353,
+          "ratio": 1.0014576364414425
+        },
+        {
+          "recording": "DVSCLEAN/MAH00446_100",
+          "official": 0.36477331470586943,
+          "variant": 0.38887194399777325,
+          "ratio": 1.0660646717299906
+        },
+        {
+          "recording": "DVSCLEAN/MAH00446_100",
+          "official": 0.34209856083787654,
+          "variant": 0.36399249744252204,
+          "ratio": 1.0639989146724917
+        },
+        {
+          "recording": "DVSCLEAN/MAH00446_100",
+          "official": 0.374409375856914,
+          "variant": 0.3600206860536962,
+          "ratio": 0.961569632784205
+        },
+        {
+          "recording": "DVSCLEAN/MAH00454_50",
+          "official": 0.4824904951109589,
+          "variant": 0.4392958831338715,
+          "ratio": 0.9104757245691362
+        },
+        {
+          "recording": "DVSCLEAN/MAH00454_50",
+          "official": 0.46726774194542875,
+          "variant": 0.42688189164458884,
+          "ratio": 0.9135702153701069
+        },
+        {
+          "recording": "DVSCLEAN/MAH00454_50",
+          "official": 0.4748969638915883,
+          "variant": 0.43520850197182603,
+          "ratio": 0.9164272148751355
+        },
+        {
+          "recording": "DVSCLEAN/MAH00454_50",
+          "official": 0.4749849497291804,
+          "variant": 0.435381568187647,
+          "ratio": 0.9166218180931547
+        }
+      ]
+    },
+    "emlb": {
+      "sensor": [
+        346,
+        260
+      ],
+      "slices": 12,
+      "ratio": {
+        "median": 3.273617678822715,
+        "min": 2.9400616072866117,
+        "max": 3.444655559224205
+      },
+      "thousand_over_sqrt_k": 3.3340743210791395,
+      "cells": [
+        {
+          "recording": "E-MLB/D-END/Architecture-ND00-1",
+          "official": 0.6636461925342935,
+          "variant": 2.1021550531353674,
+          "ratio": 3.1675839879496333
+        },
+        {
+          "recording": "E-MLB/D-END/Architecture-ND00-1",
+          "official": 0.7300112486092237,
+          "variant": 2.388147063829295,
+          "ratio": 3.2713839250820564
+        },
+        {
+          "recording": "E-MLB/D-END/Architecture-ND00-1",
+          "official": 0.7608456133188859,
+          "variant": 2.4265023121361,
+          "ratio": 3.1892177199411718
+        },
+        {
+          "recording": "E-MLB/D-END/Architecture-ND00-1",
+          "official": 0.7697021805480984,
+          "variant": 2.3947817506631472,
+          "ratio": 3.111309557363919
+        },
+        {
+          "recording": "E-MLB/D-END/Architecture-ND04-1",
+          "official": 0.776992465873609,
+          "variant": 2.2844057180659507,
+          "ratio": 2.9400616072866117
+        },
+        {
+          "recording": "E-MLB/D-END/Architecture-ND04-1",
+          "official": 0.7361739179780427,
+          "variant": 2.3323741668270257,
+          "ratio": 3.1682379800048714
+        },
+        {
+          "recording": "E-MLB/D-END/Architecture-ND04-1",
+          "official": 0.6749306496229951,
+          "variant": 2.324903614314654,
+          "ratio": 3.444655559224205
+        },
+        {
+          "recording": "E-MLB/D-END/Architecture-ND04-1",
+          "official": 0.6292993309310907,
+          "variant": 2.129433628230853,
+          "ratio": 3.383816768214599
+        },
+        {
+          "recording": "E-MLB/D-END/Architecture-ND16-1",
+          "official": 0.6963782820758031,
+          "variant": 2.367798189047943,
+          "ratio": 3.4001608751925443
+        },
+        {
+          "recording": "E-MLB/D-END/Architecture-ND16-1",
+          "official": 0.6802381096134908,
+          "variant": 2.2283589858615556,
+          "ratio": 3.2758514325633743
+        },
+        {
+          "recording": "E-MLB/D-END/Architecture-ND16-1",
+          "official": 0.6964347207824635,
+          "variant": 2.3459307551275868,
+          "ratio": 3.3684862128813298
+        },
+        {
+          "recording": "E-MLB/D-END/Architecture-ND16-1",
+          "official": 0.6943343248837383,
+          "variant": 2.297167321518659,
+          "ratio": 3.308445570371744
+        }
+      ]
+    },
+    "pure_ba": {
+      "sensor": [
+        346,
+        260
+      ],
+      "slices": 8,
+      "ratio": {
+        "median": 0.0025540517877003285,
+        "min": 0.0013742700789290225,
+        "max": 0.004126870999166676
+      },
+      "thousand_over_sqrt_k": 3.3340743210791395,
+      "cells": [
+        {
+          "recording": "Pure_BA/1.5",
+          "official": 16.79013480642256,
+          "variant": 0.025065745278847622,
+          "ratio": 0.0014928852905492739
+        },
+        {
+          "recording": "Pure_BA/1.6",
+          "official": 15.03053812122319,
+          "variant": 0.020656018810199076,
+          "ratio": 0.0013742700789290225
+        },
+        {
+          "recording": "Pure_BA/1.6",
+          "official": 14.08942108777215,
+          "variant": 0.032853393277248455,
+          "ratio": 0.002331777372014318
+        },
+        {
+          "recording": "Pure_BA/1.6",
+          "official": 13.967234817458305,
+          "variant": 0.0387776000125595,
+          "ratio": 0.0027763262033863386
+        },
+        {
+          "recording": "Pure_BA/1.7",
+          "official": 10.59873181731503,
+          "variant": 0.02413128661358107,
+          "ratio": 0.0022768088701101063
+        },
+        {
+          "recording": "Pure_BA/1.7",
+          "official": 10.383146452629068,
+          "variant": 0.03494846872018963,
+          "ratio": 0.0033658842124239213
+        },
+        {
+          "recording": "Pure_BA/1.7",
+          "official": 10.05273930022569,
+          "variant": 0.03474749586587734,
+          "ratio": 0.0034565201412412273
+        },
+        {
+          "recording": "Pure_BA/1.7",
+          "official": 9.745537068565543,
+          "variant": 0.04021857429956696,
+          "ratio": 0.004126870999166676
+        }
+      ]
+    },
+    "dvsd22": {
+      "sensor": [
+        346,
+        260
+      ],
+      "slices": 12,
+      "ratio": {
+        "median": 0.0001402391212484953,
+        "min": 0.0,
+        "max": 0.00039607981103608765
+      },
+      "thousand_over_sqrt_k": 3.3340743210791395,
+      "cells": [
+        {
+          "recording": "DVSD22/HDD/2x100Hz",
+          "official": 4.707608560371787,
+          "variant": 0.0008644337391854978,
+          "ratio": 0.00018362481249231745
+        },
+        {
+          "recording": "DVSD22/HDD/2x100Hz",
+          "official": 4.826472436202786,
+          "variant": 0.0016502825929904958,
+          "ratio": 0.00034192313637014185
+        },
+        {
+          "recording": "DVSD22/HDD/2x100Hz",
+          "official": 4.710190276346956,
+          "variant": 0.0010216035099464972,
+          "ratio": 0.00021689219543351737
+        },
+        {
+          "recording": "DVSD22/HDD/2x100Hz",
+          "official": 4.7615408383658675,
+          "variant": 0.0007858488538049981,
+          "ratio": 0.00016504087237330023
+        },
+        {
+          "recording": "DVSD22/HDD/2x110Hz",
+          "official": 3.981754548799594,
+          "variant": 7.858488538049981e-05,
+          "ratio": 1.9736245521259294e-05
+        },
+        {
+          "recording": "DVSD22/HDD/2x110Hz",
+          "official": 3.876581015030992,
+          "variant": 0.0,
+          "ratio": 0.0
+        },
+        {
+          "recording": "DVSD22/HDD/2x110Hz",
+          "official": 3.968133855393088,
+          "variant": 0.0015716977076099961,
+          "ratio": 0.00039607981103608765
+        },
+        {
+          "recording": "DVSD22/HDD/2x110Hz",
+          "official": 3.804527591490445,
+          "variant": 0.0,
+          "ratio": 0.0
+        },
+        {
+          "recording": "DVSD22/HDD/2x30Hz_a",
+          "official": 2.7572583110373925,
+          "variant": 0.0006010587960429314,
+          "ratio": 0.00021799147132384148
+        },
+        {
+          "recording": "DVSD22/HDD/2x30Hz_a",
+          "official": 2.7230310356619056,
+          "variant": 0.00031433954152199924,
+          "ratio": 0.00011543737012369035
+        },
+        {
+          "recording": "DVSD22/HDD/2x30Hz_a",
+          "official": 2.738794020821153,
+          "variant": 0.0,
+          "ratio": 0.0
+        },
+        {
+          "recording": "DVSD22/HDD/2x30Hz_a",
+          "official": 2.699298413406482,
+          "variant": 0.0002357546561414994,
+          "ratio": 8.73392341397259e-05
+        }
+      ]
+    }
+  },
+  "overall": {
+    "slices": 56,
+    "min": 0.0,
+    "max": 3.444655559224205,
+    "median": 1.0650317932012412
+  },
+  "collapsed_to_zero": 3,
+  "spread_in_orders_of_magnitude": 5.241881262900011
+}

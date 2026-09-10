@@ -101,15 +101,46 @@ shrinking sample at low retention visible.
 ### Paired contrasts on the E-MLB ranking
 
 What the E-MLB ranking table (`tab:emlb`) can carry. Every classical row is scored on the
-same 384 recordings, so the comparison is paired; this differences within each recording
-and bootstraps the 96 scene clusters. Reads `results/benchmark_emlb.json`; a few seconds.
+same recordings wherever both reach their own operating point, so the comparison is paired;
+this differences within each recording and bootstraps the scene clusters. Reads
+`results/benchmark_emlb.json`; a few seconds.
 
 ```bash
 python -m dataset_assessment.paired_contrasts --dataset emlb   # results/paired_contrasts.json
 ```
 
 It replaced reasoning from whether two marginal intervals overlap, which is invalid in both
-directions the table used it. 14 of the 15 pairs separate; only DWF over TS does not.
+directions the table used it. 10 of the 15 pairs separate; the five that do not are the four
+middle methods against each other. Both this and Table IV apply
+`protocol.native_point_is_eligible`, which drops the 445 of 2304 E-MLB cells whose native
+retention is below the recording's measurable floor -- cells the sweep can only score at a
+retention the filter never chose.
+
+### Is the swept curve at native the released filter?
+
+No, and `native_mask` measures the gap. `esr.retain_mask` keeps a fixed count per
+10,240-event block while a binary filter's accepted count varies by block, so the two
+retained sets differ by `sum_b |a_b - k_b(r)|`. Held at each filter's exact native rate, the
+median cell differs on about 25% of its retained events and not one of 168 cells recovers the
+filter exactly.
+
+```bash
+python -m dataset_assessment.native_mask --dataset emlb --recordings 24   # ~3 min
+python -m dataset_assessment.native_mask --dataset dnd21 --recordings 4
+```
+
+### How far off is the unused ESR variant?
+
+The paper once said "three orders of magnitude". It is not: the `/K` in
+`EventStructuralRatioV2` cancels most of its `1000`, and what remains is a size-3 median
+filter that erases isolated pixels. Needs the corpora; about a minute.
+
+```bash
+python -m dataset_assessment.esr_variant     # results/esr_variant.json
+```
+
+It reports 3.27x the official value on E-MLB, 2.13x on DND21, 1.03x on DVSCLEAN, 0.003x on
+Pure_BA and exactly zero on the sparse DVSD22 slices.
 
 ### Event-cap sensitivity
 

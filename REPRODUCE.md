@@ -94,7 +94,7 @@ could be measured at. Reads the five `results/benchmark_*.json`; a few seconds.
 python -m dataset_assessment.common_support   # results/common_support.json
 ```
 
-The `own_range` column reproduces the published Table III exactly; `common_grid` and
+The `own_range` column reproduces the published values exactly (`tab:support`); `common_grid` and
 `common_cohort` are the two repairs. It also reports `n(r)` per corpus, which is what makes a
 shrinking sample at low retention visible.
 

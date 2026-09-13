@@ -76,7 +76,7 @@ def delta_over_raw_curve(dataset: str, method: str) -> Dict[float, float]:
 
 
 def _scalar_at_native(dataset: str) -> Dict[str, float]:
-    """Delta-over-Raw at each method's own operating point, as Table~III reports it."""
+    """Delta-over-Raw at each method's own operating point, as Table~IV reports it."""
 
     report = json.loads((RESULTS / "rank_analysis.json").read_text())
     return report[dataset]["delta_over_raw_at_native"]

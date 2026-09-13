@@ -118,7 +118,7 @@ def test_coverage_reports_a_shrinking_sample():
 
 
 def test_published_common_support_matches_the_artifact():
-    """Own-range reproduces Table III exactly; the repairs are quoted against it."""
+    """Own-range reproduces the published values exactly; the repairs are quoted against it."""
 
     path = Path(__file__).resolve().parents[1] / "results" / "common_support.json"
     if not path.is_file():

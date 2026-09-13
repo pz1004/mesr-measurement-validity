@@ -1,6 +1,6 @@
 """The two protocol figures carry printed numbers, so their data contracts are pinned.
 
-Figure~1's caption prints the null's peak and Figure~3's panel titles print Spearman
+Figure~2's caption prints the null's peak and Figure~3's panel titles print Spearman
 $\\rho$. Both are drawn from released artifacts rather than typed, and both restate values the
 body prints, so a figure that silently disagreed with the prose would be invisible in a build
 that reports every counter as zero. Each is asserted against the artifact here.
@@ -121,7 +121,7 @@ def test_four_corpora_disagree_somewhere_and_three_disagree_on_auc():
 
 
 def test_the_null_clears_the_filter_band_at_one_retention_only():
-    """Figure 1's caption says the null gains everywhere but clears every filter only at
+    """Figure 2's caption says the null gains everywhere but clears every filter only at
     r = 0.05. An earlier caption said it left the band outright, which is false at 18 of the
     19 retentions and is the selected-point claim protocol item 1 forbids."""
 

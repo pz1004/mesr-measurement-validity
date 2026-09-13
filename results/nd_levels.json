@@ -1,0 +1,181 @@
+{
+  "statistic": "hot_pixel_share",
+  "level_mapping": {
+    "ND00": {
+      "paper_name": "ND1",
+      "transmittance": 1.0,
+      "attenuated": false,
+      "basis": "by elimination; paper: 'ND1 is used to represent the data captured without any ND filters'"
+    },
+    "ND04": {
+      "paper_name": "ND4",
+      "transmittance": 0.25,
+      "attenuated": true,
+      "basis": "literal name match"
+    },
+    "ND16": {
+      "paper_name": "ND16",
+      "transmittance": 0.0625,
+      "attenuated": true,
+      "basis": "literal name match"
+    },
+    "ND64": {
+      "paper_name": "ND64",
+      "transmittance": 0.015625,
+      "attenuated": true,
+      "basis": "literal name match"
+    }
+  },
+  "separation_bar": {
+    "p_value": 0.01,
+    "abs_rank_biserial": 0.8,
+    "source": "profile_datasets, registered before that run"
+  },
+  "nd_levels": {
+    "statistic": "hot_pixel_share",
+    "design": {
+      "scenes": 96,
+      "levels": [
+        "ND00",
+        "ND04",
+        "ND16",
+        "ND64"
+      ],
+      "recordings": 384,
+      "fully_crossed": true
+    },
+    "per_level": {
+      "ND00": {
+        "n": 96,
+        "median": 0.007658333333333333,
+        "mean": 0.010184237995771521,
+        "iqr": [
+          0.005755,
+          0.010669166666666667
+        ]
+      },
+      "ND04": {
+        "n": 96,
+        "median": 0.008278333333333334,
+        "mean": 0.011527297439673416,
+        "iqr": [
+          0.006413333333333333,
+          0.014075833333333333
+        ]
+      },
+      "ND16": {
+        "n": 96,
+        "median": 0.008978333333333335,
+        "mean": 0.012306649289206125,
+        "iqr": [
+          0.006401666666666667,
+          0.016111666666666666
+        ]
+      },
+      "ND64": {
+        "n": 96,
+        "median": 0.011463333333333332,
+        "mean": 0.014483337072014012,
+        "iqr": [
+          0.007360833333333333,
+          0.0212725
+        ]
+      }
+    },
+    "paired": {
+      "friedman_chi2": 66.58498435870699,
+      "friedman_p": 2.2975449726173006e-14,
+      "wilcoxon_first_vs_last_p": 1.9465043787853773e-08,
+      "scenes_rising_first_to_last": 73,
+      "scenes_strictly_monotone": 34
+    },
+    "unpaired_secondary": {
+      "n_first": 96,
+      "n_second": 96,
+      "median_first": 0.007658333333333333,
+      "median_second": 0.011463333333333332,
+      "p_value": 2.448426522794275e-05,
+      "rank_biserial": 0.3526475694444444,
+      "separates": false
+    },
+    "reading": "The unattenuated level is the lowest of the four, so attenuation does not explain E-MLB's low busiest-pixel share."
+  },
+  "unattenuated_vs_synthetic": {
+    "n_first": 96,
+    "n_second": 20,
+    "median_first": 0.007658333333333333,
+    "median_second": 0.009616666666666666,
+    "p_value": 0.15409303281772765,
+    "rank_biserial": 0.2036458333333333,
+    "separates": false,
+    "synthetic_base_scenes": 7,
+    "synthetic_range": [
+      0.00559,
+      0.012656666666666667
+    ],
+    "unattenuated_range": [
+      0.0037233333333333333,
+      0.053483333333333334
+    ],
+    "unattenuated_share_inside_synthetic_range": 0.5729166666666666,
+    "reading": "Containment and non-separation under the registered bar. Not equivalence: the comparison group is 20 recordings from a handful of base scenes and the two spreads differ."
+  },
+  "groupings": {
+    "statistic": "hot_pixel_share",
+    "provenance_all_corpora": {
+      "n_first": 20,
+      "n_second": 437,
+      "median_first": 0.009616666666666666,
+      "median_second": 0.010046666666666667,
+      "p_value": 0.24814895119455838,
+      "rank_biserial": 0.152745995423341,
+      "separates": false,
+      "groups": [
+        "synthetic",
+        "real"
+      ]
+    },
+    "provenance_without_emlb": {
+      "n_first": 20,
+      "n_second": 53,
+      "median_first": 0.009616666666666666,
+      "median_second": 0.055868167202572344,
+      "p_value": 5.784879544213858e-11,
+      "rank_biserial": 1.0,
+      "separates": true,
+      "groups": [
+        "synthetic",
+        "real minus E-MLB"
+      ]
+    },
+    "corpus_identity": {
+      "n_first": 404,
+      "n_second": 53,
+      "median_first": 0.008913333333333334,
+      "median_second": 0.055868167202572344,
+      "p_value": 9.394824528189082e-31,
+      "rank_biserial": 0.973566224546983,
+      "separates": true,
+      "groups": [
+        "E-MLB + DND21 + DVSCLEAN",
+        "Pure_BA + DVSD22"
+      ]
+    },
+    "reading": "The corpus-identity split uses the same 53 recordings as the withheld-E-MLB split and separates more strongly, while placing the real corpus E-MLB with the synthetic ones. The exception is therefore corpus identity, not provenance.",
+    "basis": "Post-hoc, not registered, and not a tested cause. Pure_BA is documented as a background-activity series with no scene content and DVSD22 as sparse falling drops in a darkroom; both are content-sparse static captures. Event rate per pixel moves against the statistic across the corpus set and within E-MLB's matched levels, but does not account for DVSCLEAN, which is low on both."
+  },
+  "rate_association": {
+    "overall_spearman": -0.5002174166278599,
+    "overall_p": 2.6213182080330227e-30,
+    "n": 457,
+    "emlb_rate_median_per_level": {
+      "ND00": 4.1649047480728445,
+      "ND04": 3.8553172262994257,
+      "ND16": 3.317217785531689,
+      "ND64": 2.978116357253449
+    },
+    "emlb_rate_friedman_p": 5.9269748019425776e-05,
+    "caveat": "Does not account for DVSCLEAN, which is low on rate and on concentration."
+  },
+  "wall_seconds": 0.279495623006369
+}

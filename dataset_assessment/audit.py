@@ -76,7 +76,12 @@ def main() -> None:
                    "claim": "the operating point IS stated in the released code (0.005)",
                    "verified": hit is not None, "evidence": hit})
 
-    hit = grep(PROJECT_ROOT / "EDformer/metrics.py", r"median_filter")
+    # Locate the VARIANT, not the helper it calls. `median_filter` first matches its own
+    # `def` at :12, which evidences none of the three properties the claim asserts and
+    # sends a reader to a generic utility. The class declaration is the location the
+    # sibling cuke-emlb row cites, and reading it shows the median filter at :64, the
+    # division by K at :72 and the 1000x at :75.
+    hit = grep(PROJECT_ROOT / "EDformer/metrics.py", r"class EventStructuralRatioV2")
     checks.append({"paper": "EDformer", "table": "Table 3 (MESR)",
                    "claim": "the repo ships an unused ESR variant that median-filters "
                             "and rescales by 1000 - a silent-error hazard",

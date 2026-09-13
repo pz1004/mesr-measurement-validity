@@ -30,7 +30,11 @@ def _cell(method_tp, oracle_tp, kept=100, mesr_win=True, r=0.5, native=0.5,
         "signal_retention": method_tp / 200, "noise_retention": (kept - method_tp) / 200,
         "oracle_signal_retention": oracle_tp / 200,
         "oracle_noise_retention": (kept - oracle_tp) / 200,
-        "label_class": _classify({"tp": method_tp}, {"tp": oracle_tp}),
+        "scored": kept, "scored_fraction": 1.0,
+        "tp_scored": method_tp, "fp_scored": kept - method_tp,
+        "oracle_tp_scored": oracle_tp, "oracle_fp_scored": kept - oracle_tp,
+        "label_class": _classify({"tp_scored": method_tp}, {"tp_scored": oracle_tp}),
+        "label_class_full_mask": _classify({"tp": method_tp}, {"tp": oracle_tp}, key="tp"),
         "native_retention": native,
     }
 
@@ -66,13 +70,28 @@ def test_oracle_maximises_retained_signal_at_matched_count():
         mq = _quality(labels.astype(np.int64), mk)
         assert mq["kept"] == oq["kept"]
         assert mq["tp"] <= oq["tp"]
-        assert _classify(mq, oq) in {"strict", "tie"}
+        assert _classify(mq, oq, key="tp") in {"strict", "tie"}
 
 
 def test_classify_is_exhaustive_and_ordered():
-    assert _classify({"tp": 10}, {"tp": 20}) == "strict"
-    assert _classify({"tp": 20}, {"tp": 20}) == "tie"
-    assert _classify({"tp": 30}, {"tp": 20}) == "impossible"
+    for key in ("tp", "tp_scored"):
+        assert _classify({key: 10}, {key: 20}, key=key) == "strict"
+        assert _classify({key: 20}, {key: 20}, key=key) == "tie"
+        assert _classify({key: 30}, {key: 20}, key=key) == "impossible"
+
+
+def test_classify_defaults_to_the_domain_mesr_actually_read():
+    """The default must be the scored prefix, not the full retained mask.
+
+    The two can disagree: a filter can retain more signal than the oracle over the whole
+    mask while retaining less over the events MESR scored. Defaulting to the full mask is
+    what let the published counts compare labels on one domain to a score on another.
+    """
+
+    method = {"tp": 30, "tp_scored": 10}
+    oracle = {"tp": 20, "tp_scored": 20}
+    assert _classify(method, oracle) == "strict"
+    assert _classify(method, oracle, key="tp") == "impossible"
 
 
 def test_strict_reversal_means_worse_on_both_axes():
@@ -162,3 +181,47 @@ def test_published_counts_match_the_artifact(dataset, pairs, wins):
     assert s["mesr_wins"] == wins
     assert s["strict_reversals"] == wins, "every win must be a strict reversal"
     assert s["ties"] == 0 and s["impossible"] == 0
+
+
+def test_quality_reports_the_scored_prefix_as_well_as_the_full_mask():
+    """`esr.mesr` reads complete slices only, so the label counts must have that domain too."""
+
+    rng = np.random.default_rng(2)
+    labels = (rng.random(1000) < 0.4).astype(np.int64)
+    keep = rng.random(1000) < 0.7
+
+    q = _quality(labels, keep, slice_size=100)
+    assert q["scored"] == q["kept"] // 100 * 100
+    assert q["tp_scored"] + q["fp_scored"] == q["scored"]
+    assert q["tp"] + q["fp"] == q["kept"]
+    assert q["tp_scored"] <= q["tp"] and q["fp_scored"] <= q["fp"]
+    assert q["scored_fraction"] == pytest.approx(q["scored"] / q["kept"])
+
+
+def test_the_discarded_remainder_approaches_half_the_output():
+    """Worst where it matters: just under two slices, MESR reads barely half the retained set."""
+
+    labels = np.zeros(400, dtype=np.int64)
+    keep = np.zeros(400, dtype=bool)
+    keep[:199] = True                       # one complete slice of 100, 99 events dropped
+    q = _quality(labels, keep, slice_size=100)
+    assert q["kept"] == 199 and q["scored"] == 100
+    assert q["scored_fraction"] == pytest.approx(100 / 199, abs=1e-9)
+
+
+def test_both_domains_agree_on_the_counts_and_may_disagree_on_the_labels():
+    """Matching survives truncation: same kept, same scored, possibly different signal."""
+
+    rng = np.random.default_rng(3)
+    n = 20_000
+    labels = (rng.random(n) < 0.4).astype(np.float32)
+    other = rng.random(n).astype(np.float32)
+    disagreed = False
+    for r in (0.2, 0.5, 0.8):
+        oq = _quality(labels.astype(np.int64), retain_mask(labels, r), slice_size=1000)
+        mq = _quality(labels.astype(np.int64), retain_mask(other, r), slice_size=1000)
+        assert mq["kept"] == oq["kept"], "retained counts must match"
+        assert mq["scored"] == oq["scored"], "scored domains must match"
+        assert mq["tp_scored"] <= oq["tp_scored"], "the oracle bounds signal on any prefix"
+        disagreed |= mq["tp_scored"] != oq["tp_scored"]
+    assert disagreed, "the two sides must be allowed to differ on retained signal"

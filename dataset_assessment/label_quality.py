@@ -55,7 +55,7 @@ from typing import Dict, List, Optional
 import numpy as np
 
 from .denoisors import is_null, is_oracle, native_retention, score_events
-from .esr import mesr, retain_mask
+from .esr import SLICE, mesr, retain_mask
 from .readers import iter_dnd21, iter_dvsclean
 
 #: The two corpora with per-event labels. Everything here needs them.
@@ -68,21 +68,53 @@ ORACLE = "label_oracle"
 OUT_DIR = Path(__file__).resolve().parents[1] / "results"
 
 
-def _quality(labels: np.ndarray, keep: np.ndarray) -> Dict[str, int]:
-    """Retained signal and noise counts. `labels` is 1 for noise, 0 for signal."""
+def _quality(labels: np.ndarray, keep: np.ndarray,
+             slice_size: int = SLICE) -> Dict[str, int]:
+    """Retained signal and noise counts, on the full mask and on the scored prefix.
 
-    kept = labels[keep]
-    return {"kept": int(keep.sum()),
-            "tp": int((kept == 0).sum()),      # signal retained
-            "fp": int((kept == 1).sum())}      # noise retained
+    `labels` is 1 for noise, 0 for signal.
+
+    Two domains, because they are not the same events. `esr.mesr` scores consecutive
+    *complete* slices and drops the incomplete tail, so of `kept` retained events it reads
+    only the first ``kept // slice_size * slice_size``. Counting labels over the full mask and
+    MESR over the prefix compares a quantity to a score computed on different data. The
+    scored counts are therefore the primary ones: they are the only labels MESR could have
+    responded to.
+
+    The discarded remainder is not negligible and is worst where it matters. `scored_fraction`
+    is ``1 - (kept mod slice_size)/kept``, which falls towards ``1/2`` as `kept` approaches a
+    single slice -- that is, at the most aggressive operating points, where the contested
+    cells sit.
+
+    Matching survives the truncation: `retain_mask` fixes the retained count per block from
+    the block length alone, so method and oracle share `kept`, hence share `scored`, hence
+    still satisfy TP + FP = scored on the same domain.
+    """
+
+    kept_labels = labels[keep]
+    n_kept = int(keep.sum())
+    n_scored = n_kept // slice_size * slice_size
+    scored_labels = kept_labels[:n_scored]
+    return {"kept": n_kept,
+            "tp": int((kept_labels == 0).sum()),        # signal retained, full mask
+            "fp": int((kept_labels == 1).sum()),        # noise retained, full mask
+            "scored": n_scored,
+            "tp_scored": int((scored_labels == 0).sum()),
+            "fp_scored": int((scored_labels == 1).sum()),
+            "scored_fraction": n_scored / n_kept if n_kept else float("nan")}
 
 
-def _classify(method: Dict[str, int], oracle: Dict[str, int]) -> str:
-    """Which of the three classes this cell falls into, given equal retained counts."""
+def _classify(method: Dict[str, int], oracle: Dict[str, int],
+              key: str = "tp_scored") -> str:
+    """Which of the three classes this cell falls into, given equal retained counts.
 
-    if method["tp"] < oracle["tp"]:
+    `key` selects the domain: ``tp_scored`` is the events MESR read and is the default;
+    ``tp`` is the full retained mask, kept only as the robustness comparison.
+    """
+
+    if method[key] < oracle[key]:
         return "strict"
-    if method["tp"] == oracle["tp"]:
+    if method[key] == oracle[key]:
         return "tie"
     return "impossible"
 
@@ -131,7 +163,7 @@ def measure(dataset: str, max_events: int = 1_000_000,
                 # The counts must agree for the comparison to mean anything. `retain_mask`
                 # keeps the same number per block for every method, so they do -- but assert
                 # it rather than assume it, because the whole classification rests on it.
-                if mq["kept"] != oq["kept"]:
+                if mq["kept"] != oq["kept"] or mq["scored"] != oq["scored"]:
                     raise AssertionError(
                         f"{rec.name} {method} r={r}: retained {mq['kept']} against the "
                         f"oracle's {oq['kept']}; the matched comparison is invalid")
@@ -143,11 +175,16 @@ def measure(dataset: str, max_events: int = 1_000_000,
                     "mesr_win": bool(values[method] > values[ORACLE]),
                     "tp": mq["tp"], "fp": mq["fp"],
                     "oracle_tp": oq["tp"], "oracle_fp": oq["fp"],
+                    "scored": mq["scored"], "scored_fraction": mq["scored_fraction"],
+                    "tp_scored": mq["tp_scored"], "fp_scored": mq["fp_scored"],
+                    "oracle_tp_scored": oq["tp_scored"],
+                    "oracle_fp_scored": oq["fp_scored"],
                     "signal_retention": mq["tp"] / n_signal if n_signal else float("nan"),
                     "noise_retention": mq["fp"] / n_noise if n_noise else float("nan"),
                     "oracle_signal_retention": oq["tp"] / n_signal if n_signal else float("nan"),
                     "oracle_noise_retention": oq["fp"] / n_noise if n_noise else float("nan"),
                     "label_class": _classify(mq, oq),
+                    "label_class_full_mask": _classify(mq, oq, key="tp"),
                     "native_retention": native[method],
                 })
         print(f"[{index}] {rec.name}: {len(cells)} cells so far", flush=True)
@@ -178,7 +215,8 @@ def summarise(payload: Dict, grid_step: float = 0.05, rel_tol: float = 0.5) -> D
 
     def tally(rows: List[Dict]) -> Dict:
         wins = [c for c in rows if c["mesr_win"]]
-        return {
+        fractions = [c["scored_fraction"] for c in rows if "scored_fraction" in c]
+        out = {
             "cells": len(rows),
             "mesr_wins": len(wins),
             "share_mesr_win": len(wins) / len(rows) if rows else float("nan"),
@@ -186,6 +224,22 @@ def summarise(payload: Dict, grid_step: float = 0.05, rel_tol: float = 0.5) -> D
             "ties": sum(1 for c in wins if c["label_class"] == "tie"),
             "impossible": sum(1 for c in wins if c["label_class"] == "impossible"),
         }
+        # The same tally on the full retained mask, which is what the paper quoted before the
+        # domain mismatch was found. Reported so the two can be compared, never as the
+        # headline: MESR never read the discarded remainder.
+        if any("label_class_full_mask" in c for c in wins):
+            out["full_mask"] = {
+                "strict_reversals": sum(1 for c in wins
+                                        if c.get("label_class_full_mask") == "strict"),
+                "ties": sum(1 for c in wins if c.get("label_class_full_mask") == "tie"),
+                "impossible": sum(1 for c in wins
+                                  if c.get("label_class_full_mask") == "impossible"),
+            }
+        if fractions:
+            out["scored_fraction"] = {"min": float(np.min(fractions)),
+                                      "median": float(np.median(fractions)),
+                                      "max": float(np.max(fractions))}
+        return out
 
     out["all_matched"] = tally(cells)
 

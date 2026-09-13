@@ -12,6 +12,8 @@ from typing import Callable, Dict, List
 
 import numpy as np
 
+from .esr import SLICE
+
 RESULTS = Path(__file__).resolve().parents[1] / "results"
 CORPORA = ("dnd21", "dvsclean", "emlb", "dvsd22", "pure_ba")
 
@@ -23,6 +25,44 @@ def _load(name: str) -> Dict:
 def _cells(dataset: str) -> List[Dict]:
     return [row for record in _load(f"benchmark_{dataset}.json")["records"]
             for row in record["methods"].values() if "r_star" in row]
+
+
+def _benchmark_scale(out: Callable[[str], None]) -> None:
+    """The scale the abstract and the contributions quote: five corpora, 3,556 cells.
+
+    This was the last headline number with no artifact behind it. It is a *derived* count,
+    so no file stores it, and a reader checking the release could not confirm it. Both
+    factors are derivable and both matter: `benchmark_pure_ba.json` holds 41 records but 15
+    of them carry fewer than one complete 30,000-event slice, so the paper counts 26. The
+    sibling-project file `benchmark_emlb_native3d.json` is deliberately excluded -- it is
+    not one of the five corpora and its two methods enter no contrast (S IX).
+    """
+
+    out("\n## S0 benchmark scale  (results/benchmark_{dnd21,dvsclean,emlb,dvsd22,"
+        "pure_ba}.json)\n")
+    total_cells = 0
+    total_evaluable = 0
+    for dataset in CORPORA:
+        payload = _load(f"benchmark_{dataset}.json")
+        records = payload["records"]
+        evaluable = [r for r in records
+                     if isinstance(r.get("raw_mesr"), float) and np.isfinite(r["raw_mesr"])]
+        scored = [m for r in evaluable for m in r["methods"].values() if "curve" in m]
+        names = sorted({k for r in evaluable for k in r["methods"]})
+        dropped = len(records) - len(evaluable)
+        total_cells += len(scored)
+        total_evaluable += len(evaluable)
+        out(f"- **{dataset}**: {len(evaluable)} evaluable recordings of {len(records)} in "
+            f"the artifact"
+            + (f" ({dropped} hold under one complete {SLICE:,}-event slice)"
+               if dropped else "")
+            + f"; {len(names)} methods {names}; **{len(scored)} (method, recording) "
+              f"cells**")
+    out(f"- **total: {total_evaluable} recordings, {total_cells:,} (method, recording) "
+        f"cells** -- the count S I, S III and S V-A quote")
+    out(f"  - excludes results/benchmark_emlb_native3d.json (the sibling-project rows of "
+        f"S IX), which adds "
+        f"{len([m for r in _load('benchmark_emlb_native3d.json')['records'] for m in r['methods'].values() if 'curve' in m])} more")
 
 
 def _metric_dependencies(out: Callable[[str], None]) -> None:
@@ -63,6 +103,35 @@ def _metric_dependencies(out: Callable[[str], None]) -> None:
         + f"  spread {slices['spread']:.4f} (single recording)")
     _spread_over_recordings(out, slices, "slice-size")
     out(f"- monotone increasing on {slices['monotone_increasing_share']:.0%} of recordings")
+
+
+def _controlled_addition(out: Callable[[str], None]) -> None:
+    """The one published calibration of ESR, reproduced on DND21's injected series.
+
+    E-MLB validate ESR by adding known noise to a fixed stream and showing the score falls.
+    DND21 injects uniform noise into two real recordings at five rates, so the unfiltered
+    row of the benchmark is a controlled-addition series of the same kind. Reported because a
+    validation result that holds belongs in the record beside the four that do not.
+    """
+
+    payload = _load("benchmark_dnd21.json")
+    series: Dict[str, List] = {}
+    for rec in payload["records"]:
+        rate, _, scene = rec["recording"].split("/")[-1].partition("_")
+        series.setdefault(scene, []).append((int(rate.rstrip("hz")), rec["raw_mesr"]))
+
+    out("\n## S3.6 controlled noise addition  (results/benchmark_dnd21.json, raw at r=1)")
+    out("- the one published calibration of ESR (E-MLB add 10/20/40% noise and the score "
+        "falls); DND21's five injection rates reproduce it")
+    for scene, points in sorted(series.items()):
+        points.sort()
+        values = ", ".join(f"{v:.4f}" for _, v in points)
+        rates = ", ".join(str(r) for r, _ in points)
+        falling = all(b < a for (_, a), (_, b) in zip(points, points[1:]))
+        out(f"  - {scene}: at {rates} Hz/px, unfiltered MESR {values} "
+            f"-> **monotone decreasing: {falling}**")
+    out("  - unit: two independent base scenes, not ten recordings; the five rates within a "
+        "scene are one capture at five injection levels")
 
 
 def _nulls(out: Callable[[str], None]) -> None:
@@ -163,13 +232,33 @@ def _benchmark(out: Callable[[str], None]) -> None:
             out(f"  - all-retention view: {s['all_matched']['mesr_wins']}/"
                 f"{s['all_matched']['cells']} matched cells, "
                 f"{s['all_matched']['strict_reversals']} strict")
+            # Every label rate is quoted on the events MESR scored, because `esr.mesr`
+            # drops the incomplete tail; the full-mask tally is printed beside it so the
+            # two domains can be compared rather than conflated.
+            for cohort, label in (("at_native", "at native"),
+                                  ("all_matched", "over all matched cells")):
+                frac = s[cohort].get("scored_fraction")
+                if frac:
+                    out(f"  - scored fraction {label} (share of the retained output MESR "
+                        f"reads): min {frac['min']:.3f}, median {frac['median']:.3f}, "
+                        f"max {frac['max']:.3f}")
+            full = n.get("full_mask")
+            if full:
+                out(f"  - same wins classified on the FULL retained mask: "
+                    f"{full['strict_reversals']} strict, {full['ties']} ties, "
+                    f"{full['impossible']} impossible "
+                    f"(identical to the scored domain: "
+                    f"{full['strict_reversals'] == n['strict_reversals']})")
             w = s.get("largest_signal_deficit")
             if w:
                 out(f"  - largest deficit: {w['method']} on {w['recording']} at r={w['r']}: "
-                    f"signal {w['signal_retention']:.3f} vs oracle "
-                    f"{w['oracle_signal_retention']:.3f}, noise {w['noise_retention']:.3f} "
-                    f"vs {w['oracle_noise_retention']:.3f}, MESR {w['mesr']:.4f} vs "
-                    f"{w['oracle_mesr']:.4f} at the same {w['kept']} retained")
+                    f"signal {w['tp_scored'] / w['n_signal']:.3f} vs oracle "
+                    f"{w['oracle_tp_scored'] / w['n_signal']:.3f}, noise "
+                    f"{w['fp_scored'] / w['n_noise']:.3f} vs "
+                    f"{w['oracle_fp_scored'] / w['n_noise']:.3f}, MESR {w['mesr']:.4f} vs "
+                    f"{w['oracle_mesr']:.4f} at the same {w['kept']} retained, "
+                    f"{w['scored']} scored (rates on the scored events; on the full mask "
+                    f"{w['signal_retention']:.3f} vs {w['oracle_signal_retention']:.3f})")
             out(f"  - per method (wins/cells at native): " + ", ".join(
                 f"{m} {v['mesr_wins']}/{v['cells']}" for m, v in s["by_method"].items()))
 
@@ -531,6 +620,21 @@ def _paired_contrasts(out: Callable[[str], None]) -> None:
         out(f"  - {pair['a']} - {pair['b']}: {pair['mean_difference']:+.4f} "
             f"[{pair['lo']:+.4f}, {pair['hi']:+.4f}], holds on "
             f"{pair['share_a_above_b']:.0%} of recordings -> {flag}")
+    # The intervals tab:emlb PRINTS. They live here, not beside the means in
+    # `rank_analysis.json`, because they resample scene clusters rather than recordings --
+    # which is what the caption promises. `rank_analysis.delta_over_raw_at_native_eligible`
+    # carries a recording-level interval for the identical row, and it is narrower (RED
+    # [+0.3739, +0.5429] against the printed [+0.3500, +0.5793]). Printing only one of the
+    # two left a reader who followed the mean to its file finding an interval that
+    # disagrees with the table.
+    out("- **marginals -- the mean and interval `tab:emlb` prints**, eligible cells only, "
+        "95% percentile bootstrap over scene clusters (NOT the narrower recording-level "
+        "interval stored beside the means in `rank_analysis.json`):")
+    for method in payload["ranked_by_mean"]:
+        m = payload["marginals"][method]
+        out(f"  - {method}: {m['mean']:+.4f} [{m['lo']:+.4f}, {m['hi']:+.4f}] "
+            f"(n={m['n_recordings']} recordings over {m['n_scenes']} scene clusters), "
+            f"excludes zero={m['excludes_zero']}")
 
 
 def _common_support(out: Callable[[str], None]) -> None:
@@ -554,6 +658,63 @@ def _common_support(out: Callable[[str], None]) -> None:
         cov = r["coverage"]["recordings_at_r"]
         lo = min(cov, key=float)
         out(f"  - n(r): {cov[lo]} recordings at r={lo}, {cov['1.00']} at r=1.00")
+
+
+def _nd_levels(out: Callable[[str], None]) -> None:
+    """S VIII's replacement for the ND mechanism, and every figure the appendix prints.
+
+    Added because these were the newest numbers in the paper and the only ones with no
+    digest line -- the exact defect the data-availability statement promises against.
+    """
+
+    payload = _load("nd_levels.json")
+    nd, design, paired = payload["nd_levels"], None, None
+    design, paired = nd["design"], nd["paired"]
+
+    out("\n## S7.1 E-MLB neutral-density levels  (results/nd_levels.json)")
+    out(f"- design: {design['scenes']} scenes x {len(design['levels'])} levels x 1 "
+        f"repetition = {design['recordings']} recordings, fully crossed "
+        f"(so the level contrast is PAIRED)")
+    mapping = payload["level_mapping"]
+    out("- level mapping (release directory -> the condition the source paper names): "
+        + ", ".join(f"{k}={v['paper_name']} (T={v['transmittance']:.4f}"
+                    + (", unattenuated)" if not v["attenuated"] else ")")
+                    for k, v in mapping.items()))
+    out("- busiest-pixel share per level: " + ", ".join(
+        f"{level} median {nd['per_level'][level]['median']:.5f} "
+        f"(mean {nd['per_level'][level]['mean']:.5f})" for level in design["levels"]))
+    out(f"- **paired: Friedman chi2={paired['friedman_chi2']:.2f} "
+        f"p={paired['friedman_p']:.2e}; Wilcoxon unattenuated vs most attenuated "
+        f"p={paired['wilcoxon_first_vs_last_p']:.2e}; rising in "
+        f"{paired['scenes_rising_first_to_last']}/{design['scenes']} scenes** "
+        f"-- the unattenuated level is the LOWEST, so attenuation does not explain "
+        f"E-MLB's low share")
+    unpaired = nd["unpaired_secondary"]
+    out(f"  - unpaired on the same values, kept as a secondary line only: "
+        f"p={unpaired['p_value']:.2e} rb={unpaired['rank_biserial']:+.3f}")
+
+    contrast = payload["unattenuated_vs_synthetic"]
+    out(f"- unattenuated E-MLB vs the synthetic corpora: p={contrast['p_value']:.3f} "
+        f"rb={contrast['rank_biserial']:+.3f} separates={contrast['separates']}, "
+        f"{contrast['n_first']} against {contrast['n_second']} recordings from "
+        f"{contrast['synthetic_base_scenes']} base scenes; "
+        f"{contrast['unattenuated_share_inside_synthetic_range']:.1%} of the unattenuated "
+        f"recordings lie inside the synthetic range "
+        f"-- NON-SEPARATION under the registered bar, not equivalence")
+
+    out("\n### S7.1 which split separates (S VIII's exception is corpus identity)")
+    for key in ("provenance_all_corpora", "provenance_without_emlb", "corpus_identity"):
+        row = payload["groupings"][key]
+        out(f"- {key}: {row['groups'][0]} (n={row['n_first']}) vs {row['groups'][1]} "
+            f"(n={row['n_second']}): p={row['p_value']:.2e} "
+            f"rb={row['rank_biserial']:+.3f} separates={row['separates']}")
+    rate = payload["rate_association"]
+    out(f"- event rate vs busiest-pixel share, all recordings: spearman "
+        f"{rate['overall_spearman']:+.3f} p={rate['overall_p']:.2e} n={rate['n']}; "
+        "within E-MLB's matched levels the rate medians run "
+        + ", ".join(f"{v:.2f}" for v in rate["emlb_rate_median_per_level"].values())
+        + f" (Friedman p={rate['emlb_rate_friedman_p']:.1e})")
+    out(f"  - post-hoc and not a mechanism: {payload['groupings']['basis'].split('.')[0]}.")
 
 
 def _regime_and_audit(out: Callable[[str], None]) -> None:
@@ -752,7 +913,9 @@ def main() -> None:
     out("Every value is read from `results/*.json`; nothing here is typed by hand, so a "
         "claim in")
     out("the draft that cannot be found below has no artifact behind it.\n")
+    _benchmark_scale(out)
     _metric_dependencies(out)
+    _controlled_addition(out)
     _nulls(out)
     _benchmark(out)
     _scale(out)
@@ -762,6 +925,7 @@ def main() -> None:
     _paired_contrasts(out)
     _common_support(out)
     _regime_and_audit(out)
+    _nd_levels(out)
     _downstream(out)
     _architectures(out)
 

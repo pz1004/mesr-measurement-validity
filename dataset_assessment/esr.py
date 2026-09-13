@@ -1,7 +1,8 @@
 """Event Structural Ratio — the official cuke-emlb definition, verified bit-exact.
 
 Ported from `native3d_ssm/phase5_emlb_mesr.py`, which was checked against
-`cuke-emlb/python/src/utils/metric.py:109 EventStructuralRatio._calc_esr` (maxdiff 0.00e+00)
+`cuke-emlb/python/src/utils/metric.py:109 EventStructuralRatio`, whose `_calc_esr`
+is at `:175` (maxdiff 0.00e+00)
 and against EDformer's vendored copy under its pinned dv-processing 1.7.9 (maxdiff 1.4e-07,
 float32 accumulator precision).
 

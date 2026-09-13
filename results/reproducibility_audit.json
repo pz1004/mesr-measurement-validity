@@ -58,8 +58,8 @@
       "verified": true,
       "evidence": {
         "file": "EDformer/metrics.py",
-        "line": 12,
-        "text": "def median_filter(data, size=3):"
+        "line": 21,
+        "text": "class EventStructuralRatioV2(object):"
       }
     },
     {

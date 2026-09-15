@@ -14,9 +14,11 @@ from pathlib import Path
 
 import numpy as np
 
+from . import denoisors
 from .denoisors import (available_methods, is_null, is_oracle, native_retention,
                         score_events)
 from .esr import mesr, mesr_curve
+from .hotpixel import remove_hot_pixels
 from .protocol import decompose_esr, protocol_row
 from .readers import (iter_dnd21, iter_dvsd22, iter_dvsclean, iter_ed24, iter_emlb,
                       iter_pure_ba_noise)
@@ -46,8 +48,17 @@ def main() -> None:
     parser.add_argument("--scene-stride", type=int, default=1,
                         help="E-MLB only: keep every k-th scene, so a capped run still "
                              "covers all 4 ND levels and both lighting parts.")
+    parser.add_argument("--hot-pixel-removal", action="store_true",
+                        help="drop events from the busiest 0.1%% of occupied pixels before "
+                             "scoring, the preprocessing the ESR release recommends. Off by "
+                             "default: every result the paper quotes is without it.")
+    parser.add_argument("--null-seed", type=int, default=None,
+                        help="override random_null's draw, to separate the null's effect "
+                             "from the particular sample it drew. Off by default.")
     args = parser.parse_args()
 
+    if args.null_seed is not None:
+        denoisors.RANDOM_NULL_SEED = args.null_seed
     methods = args.methods or available_methods()
     out = args.out or OUT_DIR / f"benchmark_{args.dataset}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -65,9 +76,15 @@ def main() -> None:
         events = rec.events[:args.max_events]
         rec = replace(rec, events=events,
                       labels=None if rec.labels is None else rec.labels[:len(events)])
+        # After the cap, so the before/after cohort is the same recordings cut the same way.
+        hot_summary = None
+        if args.hot_pixel_removal:
+            rec, hot_summary = remove_hot_pixels(rec)
+            events = rec.events
         raw = mesr(rec.x, rec.y, rec.width, rec.height)
         entry = {"recording": rec.name, "synthetic": rec.synthetic,
                  "sensor": [rec.width, rec.height], "events": int(len(events)),
+                 "hot_pixel_removal": hot_summary,
                  "raw_mesr": raw,
                  "raw_decomposition": decompose_esr(rec.x[:30_000], rec.y[:30_000],
                                                     rec.width, rec.height),
@@ -92,6 +109,8 @@ def main() -> None:
         out.write_text(json.dumps({"dataset": args.dataset,
                                    "retentions": RETENTIONS.tolist(),
                                    "max_events": args.max_events,
+                                   "hot_pixel_removal": args.hot_pixel_removal,
+                                   "null_seed": args.null_seed or denoisors.RANDOM_NULL_SEED,
                                    "records": records,
                                    "wall_seconds": time.perf_counter() - started},
                                   indent=2, default=float) + "\n")

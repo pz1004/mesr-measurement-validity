@@ -27,6 +27,61 @@ def _condition(method: str, retention: float, mesr: float, accuracy: float,
     return row
 
 
+# --- scored versus classified event set -----------------------------------------------------
+
+def test_the_scored_share_matches_the_measured_profile():
+    """MESR and the classifier are read off different event sets, and this pins the gap.
+
+    The classifier gets every retained event; MESR gets complete 30,000-event slices only.
+    These five rows are what section 8's disclosure quotes, so a change to the budget, the
+    grid or the block rule has to come through here rather than silently moving the paper.
+    """
+
+    from dataset_assessment.downstream_gesture import scored_share
+
+    rows = {r["retention"]: r for r in scored_share()}
+    expected = {0.4: (32_000, 1, 30_000), 0.5: (40_000, 1, 30_000),
+                0.6: (48_000, 1, 30_000), 0.8: (64_000, 2, 60_000),
+                1.0: (80_000, 2, 60_000)}
+    for retention, (classified, slices, scored) in expected.items():
+        row = rows[retention]
+        assert row["classified"] == classified, retention
+        assert row["complete_slices"] == slices, retention
+        assert row["scored_by_mesr"] == scored, retention
+        assert row["scored_share"] == pytest.approx(scored / classified), retention
+
+
+def test_the_scored_share_is_not_monotone_in_retention():
+    """The reason the mismatch survives the paper's confound control.
+
+    Section 8 partials retention out of the MESR-accuracy correlation. That removes a
+    confound only if the confound is monotone in retention. This one is not: the share falls
+    to its minimum at r = 0.6 and then rises again at r = 0.8, when the retained stream
+    clears a second complete slice. A regression that made it monotone would quietly make the
+    paper's disclosure wrong.
+    """
+
+    from dataset_assessment.downstream_gesture import scored_share
+
+    shares = [r["scored_share"] for r in scored_share()]
+    assert shares != sorted(shares) and shares != sorted(shares, reverse=True)
+    assert min(shares) == pytest.approx(0.625)          # r = 0.6
+    assert shares[2] < shares[1] < shares[0]            # falls to the minimum
+    assert shares[3] > shares[2]                        # and then rises: not monotone
+
+
+def test_every_scored_count_is_a_whole_number_of_slices():
+    """`esr.mesr` drops the incomplete tail, so anything else here is a bug in this helper."""
+
+    from dataset_assessment.downstream_gesture import scored_share
+    from dataset_assessment.esr import SLICE
+
+    for row in scored_share():
+        assert row["scored_by_mesr"] % SLICE == 0
+        assert row["scored_by_mesr"] <= row["classified"]
+        assert row["classified"] - row["scored_by_mesr"] < SLICE
+
+
 # --- partial correlation ------------------------------------------------------------------
 
 def test_partial_spearman_removes_a_confound_the_raw_correlation_shows():

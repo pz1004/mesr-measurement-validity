@@ -65,7 +65,7 @@ import numpy as np
 import pandas as pd
 
 from .denoisors import RANDOM_NULL, available_methods, score_events
-from .esr import mesr, retain_mask
+from .esr import SLICE, mesr, retain_mask
 from .readers import Recording, read_aedat31
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -167,6 +167,44 @@ def voxelise(events: np.ndarray, keep: np.ndarray) -> np.ndarray:
     signed = np.where(kept[:, 3] > 0, 1.0, -1.0).astype(np.float32)
     np.add.at(grid.reshape(-1), flat, signed)
     return grid
+
+
+def scored_share(budget: int = MAX_EVENTS, retentions: Sequence[float] = RETENTIONS,
+                 slice_size: int = SLICE) -> List[dict]:
+    """How much of each classified event set MESR actually scores.
+
+    `voxelise` above hands the classifier *every* retained event. `esr.mesr` averages over
+    complete `slice_size`-event slices and drops the tail, so it reads only the first
+    ``slice_size * (retained // slice_size)``. The two quantities this experiment correlates
+    are therefore read off different event sets.
+
+    The gap is not a constant and not monotone in retention: it widens as events are
+    discarded, then snaps back each time the retained stream clears another complete slice.
+    That is why it is worth reporting rather than absorbing. Retention is the confound
+    `partial_spearman` removes, and a confound that is non-monotone in the control is not
+    removed by controlling for it.
+
+    `native_oracle` handles the same prefix rule explicitly, which is what makes this the one
+    experiment here whose comparison objects were not matched. Reported per retention so the
+    paper's disclosure traces to the artifact like every other number.
+    """
+
+    out: List[dict] = []
+    for retention in retentions:
+        # Scores are constant, so `retain_mask` keeps each block's first `k_b`: the count is
+        # what matters here and every method shares it at a given r (see the module docstring).
+        keep = retain_mask(np.zeros(budget), float(retention))
+        classified = int(keep.sum())
+        slices = classified // slice_size
+        scored = int(slices * slice_size)
+        out.append({
+            "retention": float(retention),
+            "classified": classified,
+            "complete_slices": int(slices),
+            "scored_by_mesr": scored,
+            "scored_share": (scored / classified) if classified else float("nan"),
+        })
+    return out
 
 
 ARCHS = ("cnn2d", "cnn3d", "mlp")
@@ -579,6 +617,12 @@ def write_report(conditions, train_cov, test_cov, n_train: int, n_test: int,
             "gesture_window": "whole labelled gesture (no wall-clock truncation)",
             "max_events_per_sample": MAX_EVENTS, "min_retention": MIN_RETENTION,
             "retentions": list(RETENTIONS), "time_bins": TIME_BINS,
+            "scored_share": scored_share(),
+            "scored_share_caveat": ("the classifier consumes every retained event; MESR reads "
+                                    "only complete 30000-event slices, so the two are scored "
+                                    "on different sets. The share is non-monotone in "
+                                    "retention, so partialling retention out does not remove "
+                                    "it. See `scored_share`."),
             "seeds": list(SEEDS), "epochs": EPOCHS, "batch": BATCH, "lr": LR,
             "arch": arch,
             "train_samples": n_train, "test_samples": n_test,

@@ -797,6 +797,24 @@ def _downstream(out: Callable[[str], None]) -> None:
         f"{protocol['max_events_per_sample']} events/sample, "
         f"retentions {protocol['retentions']}, sensor {protocol['sensor']}")
 
+    # The two quantities this experiment correlates are read off different event sets: the
+    # classifier gets every retained event, `esr.mesr` only complete slices. Emitted per
+    # retention because the share is non-monotone in r, which is what makes it survive the
+    # partial correlation that removes retention.
+    shares = protocol.get("scored_share")
+    if shares:
+        out("- **MESR and the classifier do not read the same events**: the classifier gets "
+            "every retained event, MESR only complete slices")
+        for row in shares:
+            out(f"  - r={row['retention']:.1f}: {row['classified']:,} classified, "
+                f"{row['complete_slices']} complete slice(s), "
+                f"{row['scored_by_mesr']:,} scored by MESR "
+                f"= **{100 * row['scored_share']:.1f}%**")
+        worst = min(shares, key=lambda r: r["scored_share"])
+        out(f"  - **not monotone in r**: minimum {100 * worst['scored_share']:.1f}% at "
+            f"r={worst['retention']:.1f}, back up at r=0.8 where a second slice fits, so "
+            f"partialling retention out does not remove it")
+
     coverage = payload.get("coverage")
     if coverage:
         for split in ("train", "test"):

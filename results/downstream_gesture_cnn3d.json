@@ -15,6 +15,44 @@
       1.0
     ],
     "time_bins": 8,
+    "scored_share": [
+      {
+        "retention": 0.4,
+        "classified": 32000,
+        "complete_slices": 1,
+        "scored_by_mesr": 30000,
+        "scored_share": 0.9375
+      },
+      {
+        "retention": 0.5,
+        "classified": 40000,
+        "complete_slices": 1,
+        "scored_by_mesr": 30000,
+        "scored_share": 0.75
+      },
+      {
+        "retention": 0.6,
+        "classified": 48000,
+        "complete_slices": 1,
+        "scored_by_mesr": 30000,
+        "scored_share": 0.625
+      },
+      {
+        "retention": 0.8,
+        "classified": 64000,
+        "complete_slices": 2,
+        "scored_by_mesr": 60000,
+        "scored_share": 0.9375
+      },
+      {
+        "retention": 1.0,
+        "classified": 80000,
+        "complete_slices": 2,
+        "scored_by_mesr": 60000,
+        "scored_share": 0.75
+      }
+    ],
+    "scored_share_caveat": "the classifier consumes every retained event; MESR reads only complete 30000-event slices, so the two are scored on different sets. The share is non-monotone in retention, so partialling retention out does not remove it. See `scored_share`.",
     "seeds": [
       20260726,
       20260727,

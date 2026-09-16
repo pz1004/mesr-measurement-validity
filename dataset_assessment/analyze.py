@@ -536,13 +536,18 @@ def scene_of(recording: str) -> str:
 
 
 def cluster_bootstrap_delta_ci(values: Sequence[float], clusters: Sequence[str],
-                               draws: int = 10_000, seed: int = 20260726) -> Dict:
+                               draws: int = 10_000, seed: int = 20260726,
+                               alpha: float = 0.05) -> Dict:
     """Percentile bootstrap that resamples independent scenes rather than recordings.
 
     This is the interval a corpus can actually carry. Where every recording is its own scene
     it reduces to `bootstrap_delta_ci`; where recordings are siblings of a smaller number of
     scenes it is wider, and on DVSCLEAN - five sequences at two noise densities - it is wide
     enough to change the verdict, which is why the paper does not count that corpus.
+
+    `alpha` exists so a caller can ask for a familywise level -- Bonferroni and Holm hold
+    under arbitrary dependence, so a dependent family does not forbid the correction. The
+    default reproduces the 2.5/97.5 interval every number in the paper was computed at.
     """
 
     grouped: Dict[str, List[float]] = {}
@@ -559,12 +564,14 @@ def cluster_bootstrap_delta_ci(values: Sequence[float], clusters: Sequence[str],
     rng = np.random.default_rng(seed)
     picks = rng.integers(0, len(keys), size=(draws, len(keys)))
     means = np.array([np.concatenate([arrays[j] for j in row]).mean() for row in picks])
+    lo_pct, hi_pct = 100 * alpha / 2, 100 * (1 - alpha / 2)
+    lo, hi = float(np.percentile(means, lo_pct)), float(np.percentile(means, hi_pct))
     return {"mean": float(flat.mean()),
-            "lo": float(np.percentile(means, 2.5)),
-            "hi": float(np.percentile(means, 97.5)),
+            "lo": lo,
+            "hi": hi,
             "n": int(len(flat)), "n_clusters": len(keys), "draws": int(draws),
-            "excludes_zero": bool(np.percentile(means, 2.5) > 0
-                                  or np.percentile(means, 97.5) < 0)}
+            "alpha": float(alpha),
+            "excludes_zero": bool(lo > 0 or hi < 0)}
 
 
 def bootstrap_delta_ci(values: Sequence[float], draws: int = 10_000,

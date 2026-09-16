@@ -88,13 +88,17 @@ def native_deltas_by_recording(dataset: str,
     return out
 
 
-def paired_difference(deltas: Dict[str, Dict[str, float]], a: str, b: str) -> Dict:
-    """Mean of `Delta_a - Delta_b` over the recordings scoring both, bootstrapped by scene."""
+def paired_difference(deltas: Dict[str, Dict[str, float]], a: str, b: str,
+                      alpha: float = 0.05) -> Dict:
+    """Mean of `Delta_a - Delta_b` over the recordings scoring both, bootstrapped by scene.
+
+    `alpha` below 0.05 asks for a familywise interval; see `compare`.
+    """
 
     shared = sorted(r for r, cell in deltas.items() if a in cell and b in cell)
     diffs = [deltas[r][a] - deltas[r][b] for r in shared]
     scenes = [scene_of(r) for r in shared]
-    ci = cluster_bootstrap_delta_ci(diffs, scenes)
+    ci = cluster_bootstrap_delta_ci(diffs, scenes, alpha=alpha)
     wins = int(sum(d > 0 for d in diffs))
     return {
         "a": a, "b": b,
@@ -136,6 +140,14 @@ def compare(dataset: str = "emlb", order: Optional[Sequence[str]] = None) -> Dic
              for a, b in itertools.combinations(ranked, 2)]
     adjacent = [p for p in pairs
                 if ranked.index(p["b"]) == ranked.index(p["a"]) + 1]
+
+    # Dependence is not what would prevent a multiplicity correction: Bonferroni and Holm
+    # control the familywise rate under arbitrary dependence. What these fifteen lack is a
+    # family specified in advance, so the corrected count is reported beside the pointwise
+    # one rather than replacing it -- and it is reported whichever way it comes out.
+    bonferroni_alpha = 0.05 / len(pairs) if pairs else float("nan")
+    familywise = [paired_difference(deltas, p["a"], p["b"], alpha=bonferroni_alpha)
+                  for p in pairs] if pairs else []
     return {
         "dataset": dataset,
         "n_recordings": len(deltas),
@@ -148,6 +160,11 @@ def compare(dataset: str = "emlb", order: Optional[Sequence[str]] = None) -> Dic
         "adjacent_all_resolved": all(p["excludes_zero"] for p in adjacent),
         "pairs_resolved": sum(1 for p in pairs if p["excludes_zero"]),
         "pairs_total": len(pairs),
+        "bonferroni": {
+            "alpha": bonferroni_alpha,
+            "pairs_resolved": sum(1 for p in familywise if p["excludes_zero"]),
+            "pairs": familywise,
+        },
     }
 
 

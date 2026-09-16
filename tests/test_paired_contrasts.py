@@ -107,6 +107,46 @@ def test_published_contrasts_match_the_artifact():
             assert p["excludes_zero"], (p["a"], p["b"])
 
 
+def test_a_familywise_interval_is_available_and_never_resolves_more():
+    """Dependence does not make a multiplicity correction unavailable.
+
+    The supplement once said it did, which is wrong: Bonferroni and Holm control the
+    familywise rate under arbitrary dependence. The corrected count is therefore computed and
+    reported beside the pointwise one. It can only be smaller, and each interval can only be
+    wider, so a regression that silently reported the pointwise count as familywise would show
+    up here.
+    """
+
+    from pathlib import Path
+
+    path = Path(__file__).resolve().parents[1] / "results" / "paired_contrasts.json"
+    if not path.is_file():
+        pytest.skip("paired_contrasts.json not generated")
+    r = json.loads(path.read_text())
+    fw = r["bonferroni"]
+    assert fw["alpha"] == pytest.approx(0.05 / r["pairs_total"])
+    assert fw["pairs_resolved"] <= r["pairs_resolved"]
+    for pointwise, corrected in zip(r["pairs"], fw["pairs"]):
+        assert (pointwise["a"], pointwise["b"]) == (corrected["a"], corrected["b"])
+        assert corrected["lo"] <= pointwise["lo"] and corrected["hi"] >= pointwise["hi"]
+        assert corrected["mean_difference"] == pytest.approx(pointwise["mean_difference"])
+
+
+def test_the_default_interval_is_unchanged_by_the_familywise_option():
+    """Every number already published was computed at the 2.5/97.5 percentiles, and the new
+    `alpha` argument must leave that untouched at its default."""
+
+    from dataset_assessment.analyze import cluster_bootstrap_delta_ci
+
+    values = [0.1, 0.4, -0.2, 0.9, 0.3, 0.05]
+    clusters = ["s1", "s1", "s2", "s2", "s3", "s3"]
+    default = cluster_bootstrap_delta_ci(values, clusters)
+    explicit = cluster_bootstrap_delta_ci(values, clusters, alpha=0.05)
+    assert default["lo"] == explicit["lo"] and default["hi"] == explicit["hi"]
+    wider = cluster_bootstrap_delta_ci(values, clusters, alpha=0.05 / 15)
+    assert wider["lo"] <= default["lo"] and wider["hi"] >= default["hi"]
+
+
 def test_the_blank_response_is_read_at_a_selection_free_retention():
     """Section VII quotes Pure_BA at its common-support floor, not at native operating points.
 

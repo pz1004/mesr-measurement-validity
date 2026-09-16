@@ -620,6 +620,15 @@ def _paired_contrasts(out: Callable[[str], None]) -> None:
         out(f"  - {pair['a']} - {pair['b']}: {pair['mean_difference']:+.4f} "
             f"[{pair['lo']:+.4f}, {pair['hi']:+.4f}], holds on "
             f"{pair['share_a_above_b']:.0%} of recordings -> {flag}")
+    # Dependence never made the correction unavailable -- Bonferroni and Holm hold under
+    # arbitrary dependence -- so the corrected count is reported beside the pointwise one.
+    familywise = payload.get("bonferroni")
+    if familywise:
+        dropped = [f"{p['a']}-{p['b']}" for p, q in zip(payload["pairs"], familywise["pairs"])
+                   if p["excludes_zero"] and not q["excludes_zero"]]
+        note = f" (lost: {', '.join(dropped)})" if dropped else ""
+        out(f"- **{familywise['pairs_resolved']}/{payload['pairs_total']} survive a "
+            f"Bonferroni level alpha={familywise['alpha']:.5f}**{note}")
     # The intervals tab:emlb PRINTS. They live here, not beside the means in
     # `rank_analysis.json`, because they resample scene clusters rather than recordings --
     # which is what the caption promises. `rank_analysis.delta_over_raw_at_native_eligible`
@@ -901,6 +910,28 @@ def _downstream(out: Callable[[str], None]) -> None:
             f"Fisher result does not survive adding two filters")
 
 
+def _paired_seeds(out: Callable[[str], None]) -> None:
+    """S5-F's seed claim, formed as a paired contrast rather than two marginal spreads.
+
+    The marginal comparison cannot answer the question it is put to: shared seeds mean a
+    large swing in both conditions can leave their difference stable. These are the counts
+    the paper quotes, and they do not all favour it -- the MLP is the exception.
+    """
+
+    payload = _load("downstream_paired_seeds.json")
+    out("\n## S5-F paired seed contrasts (`results/downstream_paired_seeds.json`)\n")
+    out(f"- scope: {payload['scope']}")
+    for arch, summary in payload["architectures"].items():
+        if "error" in summary:
+            out(f"- {arch}: {summary['error']}")
+            continue
+        out(f"- **{arch}: {summary['n_resolved']}/{summary['n_pairs']} pairs whose mean "
+            f"difference exceeds the across-seed spread of that difference**, "
+            f"{summary['n_sign_consistent']} sign-consistent across all three seeds; "
+            f"median paired sd {summary['median_paired_sd']:.4f} against marginal "
+            f"{summary['median_marginal_sd']:.4f}")
+
+
 def main() -> None:
     out = print
     out("# Every number in the paper, with its source file\n")
@@ -928,6 +959,7 @@ def main() -> None:
     _nd_levels(out)
     _downstream(out)
     _architectures(out)
+    _paired_seeds(out)
 
 
 if __name__ == "__main__":

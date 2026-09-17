@@ -950,6 +950,76 @@ def _paired_seeds(out: Callable[[str], None]) -> None:
             f"{summary['median_marginal_sd']:.4f}")
 
 
+def _native_oracle(out: Callable[[str], None]) -> None:
+    """S5-A's reversals on the filters' own outputs, before and after busiest-pixel removal.
+
+    The `_hotpixel` runs remove the pixels from the *input* and rebuild both sides, so the two
+    rows are the same construction on two inputs, not one comparison pruned after the fact."""
+
+    out("\n## S5-A native-output label oracle (`results/native_oracle_<corpus>[_hotpixel].json`)\n")
+    for dataset in ("dnd21", "dvsclean"):
+        for suffix, label in (("", "as released"), ("_hotpixel", "busiest 0.1% removed first")):
+            payload = _load(f"native_oracle_{dataset}{suffix}.json")
+            s, cells = payload["summary"], payload["cells"]
+            wins = [c for c in cells if c["mesr_win"]]
+            margins = sorted(c["mesr"] - c["oracle_mesr"] for c in wins)
+            out(f"- {dataset} {label}: **{s['reversals']}/{s['cells']} evaluable cells reverse**, "
+                f"strict {s['eligible_strict']}, ties {s['tie']}, impossible {s['impossible']}, "
+                f"unevaluable {s['unevaluable']}; largest margin "
+                f"{max(c['mesr'] - c['oracle_mesr'] for c in cells):+.4f}, median margin among "
+                f"reversals {float(np.median(margins)):+.4f}")
+            if payload.get("removals"):
+                shares = [r["share_removed"] for r in payload["removals"]]
+                out(f"  - median share of events removed {float(np.median(shares)):.2%}")
+            for c in cells:
+                if c["recording"] == "DND21/10hz_hotel-bar" and c["method"] == "knoise":
+                    out(f"  - knoise on 10hz_hotel-bar: {c['tp_scored']} signal / "
+                        f"{c['fp_scored']} noise of {c['scored']} scored, MESR "
+                        f"{c['mesr']:.4f} vs oracle {c['oracle_mesr']:.4f}")
+
+
+def _native_emlb(out: Callable[[str], None]) -> None:
+    """S6-C's Table IV: E-MLB scored on each filter's own output beside a matched control."""
+
+    from scipy.stats import spearmanr
+
+    payload = _load("native_emlb.json")
+    summary = payload["summary"]
+    out("\n## S6-C E-MLB on native outputs (`results/native_emlb.json`)\n")
+    out(f"- {summary['recordings']} recordings, {summary['cells']} evaluable cells, "
+        f"{summary['unevaluable']} unevaluable (native output under one slice)")
+    rows = []
+    for method, row in sorted(summary["by_method"].items(),
+                              key=lambda kv: -kv[1].get("delta_over_raw", {}).get("mean", -9)):
+        if "delta_over_raw" not in row:
+            out(f"  - {method}: no evaluable cell ({row['unevaluable']} unevaluable)")
+            continue
+        d, n, s = row["delta_over_raw"], row["null_delta_over_raw"], row["filter_minus_null"]
+        rows.append((row["native_retention_mean"], d["mean"]))
+        extra = ""
+        if "unevaluable_native_retention_mean" in row:
+            extra = f", unevaluable native r mean {row['unevaluable_native_retention_mean']:.2f}"
+        out(f"  - {method}: n={row['evaluable']} (unevaluable {row['unevaluable']}{extra}), "
+            f"native r {row['native_retention_mean']:.2f}, Delta {d['mean']:+.4f} "
+            f"[{d['lo']:+.3f}, {d['hi']:+.3f}], matched null Delta {n['mean']:+.4f} "
+            f"[{n['lo']:+.3f}, {n['hi']:+.3f}], filter - null {s['mean']:+.4f} "
+            f"[{s['lo']:+.3f}, {s['hi']:+.3f}] above null on "
+            f"{row['recordings_filter_above_null']}/{row['evaluable']}")
+    rho, p = spearmanr([r for r, _ in rows], [d for _, d in rows])
+    out(f"- rows: Spearman(native r, Delta) = {rho:+.2f}, p = {p:.2f} over {len(rows)} rows")
+
+    paired = _load("paired_contrasts_native.json")
+    out(f"- paired, native outputs: **{paired['pairs_resolved']}/{paired['pairs_total']} "
+        f"separate**, **{paired['bonferroni']['pairs_resolved']}** under Bonferroni "
+        f"alpha={paired['bonferroni']['alpha']:.5f}; ranking {' > '.join(paired['ranked_by_mean'])}")
+    for pair, fw in zip(paired["pairs"], paired["bonferroni"]["pairs"]):
+        flag = "separates" if pair["excludes_zero"] else "**NOT resolved**"
+        fam = "" if fw["excludes_zero"] or not pair["excludes_zero"] else " (lost under Bonferroni)"
+        out(f"  - {pair['a']} - {pair['b']}: {pair['mean_difference']:+.4f} "
+            f"[{pair['lo']:+.4f}, {pair['hi']:+.4f}], n={pair['n_recordings']}, holds on "
+            f"{pair['share_a_above_b']:.0%} -> {flag}{fam}")
+
+
 def main() -> None:
     out = print
     out("# Every number in the paper, with its source file\n")
@@ -971,7 +1041,9 @@ def main() -> None:
     _blank_signature(out)
     _cap_sensitivity(out)
     _esr_properties(out)
+    _native_oracle(out)
     _paired_contrasts(out)
+    _native_emlb(out)
     _common_support(out)
     _regime_and_audit(out)
     _nd_levels(out)

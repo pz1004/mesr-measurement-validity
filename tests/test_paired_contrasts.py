@@ -197,3 +197,24 @@ def test_table_iv_prints_the_eligible_cohort_and_says_what_it_dropped():
     # EvFlow's printed native retention is not where EvFlow was scored.
     assert by["evflow"]["mean_native_r_all_cells"] == pytest.approx(0.0493, abs=5e-5)
     assert by["evflow"]["mean_scored_at_r_all_cells"] == pytest.approx(0.0824, abs=5e-5)
+
+
+def test_native_output_deltas_come_from_evaluable_native_cells_only(tmp_path, monkeypatch):
+    """The native-output source pairs what each filter actually kept, never a grid point."""
+
+    import dataset_assessment.paired_contrasts as pc
+
+    payload = {"records": [
+        {"recording": "E-MLB/D-END/A-ND00-1", "raw_mesr": 1.0,
+         "cells": [{"method": "red", "delta_over_raw": 0.4},
+                   {"method": "dwf", "delta_over_raw": 0.1}],
+         "unevaluable": [{"method": "evflow"}]},
+        {"recording": "E-MLB/D-END/A-ND04-1", "raw_mesr": 1.0,
+         "cells": [{"method": "dwf", "delta_over_raw": 0.2}], "unevaluable": []},
+    ]}
+    (tmp_path / "native_emlb.json").write_text(json.dumps(payload))
+    monkeypatch.setattr(pc, "RESULTS", tmp_path)
+    deltas = pc.native_output_deltas_by_recording()
+    assert deltas == {"E-MLB/D-END/A-ND00-1": {"red": 0.4, "dwf": 0.1},
+                      "E-MLB/D-END/A-ND04-1": {"dwf": 0.2}}
+    assert "evflow" not in {m for cell in deltas.values() for m in cell}

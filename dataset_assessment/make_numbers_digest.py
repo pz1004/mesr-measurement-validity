@@ -103,6 +103,15 @@ def _metric_dependencies(out: Callable[[str], None]) -> None:
         + f"  spread {slices['spread']:.4f} (single recording)")
     _spread_over_recordings(out, slices, "slice-size")
     out(f"- monotone increasing on {slices['monotone_increasing_share']:.0%} of recordings")
+    # Same-corpus scale for the verdict: the same ten DND21 recordings, each filter on its own
+    # output (first 10^6 events), paired where both filters are scored.
+    from .native_oracle import widest_filter_gap
+
+    gap = widest_filter_gap(_load("native_oracle_dnd21.json")["cells"])
+    mean = slices["spread_over_recordings"]["mean"]
+    out(f"- same-corpus scale (`results/native_oracle_dnd21.json`): widest paired gap between "
+        f"two filters' own outputs **{gap['gap']:.4f}** ({gap['a']} over {gap['b']}, "
+        f"n={gap['n_recordings']}); slice-size spread = **{mean / gap['gap']:.2f}x** that")
 
 
 def _controlled_addition(out: Callable[[str], None]) -> None:

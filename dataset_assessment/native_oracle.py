@@ -229,6 +229,31 @@ def measure(dataset: str, max_events: int = 1_000_000,
             "summary": summarise(cells, unevaluable)}
 
 
+def widest_filter_gap(cells: Sequence[Dict]) -> Dict:
+    """The largest mean MESR difference between two filters' own outputs, paired by recording.
+
+    Each pair is averaged over the recordings on which both filters are scored, so a filter
+    evaluable on fewer recordings is never compared across two cohorts. This is the
+    same-corpus scale S V-E sets the slice-size spread against.
+    """
+
+    by_method: Dict[str, Dict[str, float]] = {}
+    for c in cells:
+        by_method.setdefault(c["method"], {})[c["recording"]] = float(c["mesr"])
+    best: Dict = {"gap": float("nan")}
+    methods = sorted(by_method)
+    for i, a in enumerate(methods):
+        for b in methods[i + 1:]:
+            shared = sorted(set(by_method[a]) & set(by_method[b]))
+            if not shared:
+                continue
+            diff = float(np.mean([by_method[a][r] - by_method[b][r] for r in shared]))
+            if not abs(diff) <= best["gap"]:              # also replaces the initial nan
+                hi, lo = (a, b) if diff >= 0 else (b, a)
+                best = {"gap": abs(diff), "a": hi, "b": lo, "n_recordings": len(shared)}
+    return best
+
+
 def summarise(cells: Sequence[Dict], unevaluable: Sequence[Dict]) -> Dict:
     """The counts the paper quotes: reversals on the filters' own outputs."""
 

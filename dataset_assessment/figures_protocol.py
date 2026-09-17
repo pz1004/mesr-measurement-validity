@@ -46,8 +46,9 @@ RANK_INCHES = (7.17, 1.62)
 #: on E-MLB the first two agree and only r* inverts the order, which is that subsection's
 #: whole point, so a two-column figure would show E-MLB as the corpus with no problem.
 RANK_KEYS = ("rank_native", "rank_auc_over_r", "rank_protocol")
-RANK_LABELS = ("native", "$\\mathrm{AUC}_r$", "$r^\\star$")
-#: Spearman against the native ranking, printed under the column it belongs to.
+RANK_LABELS = ("nearest\ngrid", "$\\mathrm{AUC}_r$", "$r^\\star$")
+#: Spearman against the nearest-grid ranking (the quota-adapted point nearest each native
+#: retention, not the native output), printed under the column it belongs to.
 RANK_RHO = (None, "spearman_auc_vs_native", "spearman_protocol_vs_native")
 RANK_DATASETS = ("dnd21", "dvsclean", "emlb", "dvsd22", "pure_ba")
 

@@ -24,9 +24,16 @@ EDformer is deliberately excluded. Its row is a published fixed threshold on an 
 with eight (lighting, ND) cells, so it is not paired with anything here and stays descriptive
 (\\appref{app:edformer}).
 
-Writes `results/paired_contrasts.json`. Run:
+**Two sources.** `--source grid` (the default) pairs the quota-adapted value at the grid
+point nearest each native retention, the diagnostic form. `--source native` pairs each
+filter's own output as `native_emlb` scores it, protocol item 1 itself; a recording enters a
+pair only where both filters' native outputs hold a complete slice.
+
+Writes `results/paired_contrasts.json`, or `paired_contrasts_native.json` with
+`--source native`. Run:
 
     python -m dataset_assessment.paired_contrasts --dataset emlb
+    python -m dataset_assessment.paired_contrasts --dataset emlb --source native
 """
 
 from __future__ import annotations
@@ -88,6 +95,23 @@ def native_deltas_by_recording(dataset: str,
     return out
 
 
+def native_output_deltas_by_recording() -> Dict[str, Dict[str, float]]:
+    """Delta-over-Raw on each filter's own scored output, keyed recording -> method.
+
+    Read from `native_emlb.json`. Unevaluable cells -- a native output under one slice -- are
+    absent rather than refilled, so pairing uses only recordings both filters can be scored on.
+    """
+
+    payload = json.loads((RESULTS / "native_emlb.json").read_text())
+    out: Dict[str, Dict[str, float]] = {}
+    for record in payload["records"]:
+        cell = {c["method"]: float(c["delta_over_raw"]) for c in record["cells"]
+                if np.isfinite(c["delta_over_raw"])}
+        if cell:
+            out[record["recording"]] = cell
+    return out
+
+
 def paired_difference(deltas: Dict[str, Dict[str, float]], a: str, b: str,
                       alpha: float = 0.05) -> Dict:
     """Mean of `Delta_a - Delta_b` over the recordings scoring both, bootstrapped by scene.
@@ -115,10 +139,16 @@ def paired_difference(deltas: Dict[str, Dict[str, float]], a: str, b: str,
     }
 
 
-def compare(dataset: str = "emlb", order: Optional[Sequence[str]] = None) -> Dict:
+def compare(dataset: str = "emlb", order: Optional[Sequence[str]] = None,
+            source: str = "grid") -> Dict:
     """Every ordered pair of classical methods, ranked by mean Delta-over-Raw."""
 
-    deltas = native_deltas_by_recording(dataset)
+    if source == "native":
+        if dataset != "emlb":
+            raise ValueError("native-output deltas exist for E-MLB only")
+        deltas = native_output_deltas_by_recording()
+    else:
+        deltas = native_deltas_by_recording(dataset)
     methods = sorted({m for cell in deltas.values() for m in cell})
     means = {m: float(np.mean([cell[m] for cell in deltas.values() if m in cell]))
              for m in methods}
@@ -150,6 +180,7 @@ def compare(dataset: str = "emlb", order: Optional[Sequence[str]] = None) -> Dic
                   for p in pairs] if pairs else []
     return {
         "dataset": dataset,
+        "source": source,
         "n_recordings": len(deltas),
         "n_scenes": len({scene_of(r) for r in deltas}),
         "ranked_by_mean": ranked,
@@ -171,11 +202,13 @@ def compare(dataset: str = "emlb", order: Optional[Sequence[str]] = None) -> Dic
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", default="emlb")
+    parser.add_argument("--source", choices=("grid", "native"), default="grid")
     parser.add_argument("--out", type=Path, default=None)
     args = parser.parse_args()
 
-    result = compare(args.dataset)
-    out = args.out or RESULTS / "paired_contrasts.json"
+    result = compare(args.dataset, source=args.source)
+    suffix = "_native" if args.source == "native" else ""
+    out = args.out or RESULTS / f"paired_contrasts{suffix}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(result, indent=2, default=float) + "\n")
 

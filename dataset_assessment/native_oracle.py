@@ -34,10 +34,16 @@ A ``strict`` cell is one where the filter retains strictly less labelled signal 
 strictly more labelled noise, at equal count -- and MESR still scores it above the oracle.
 That is a counterexample on the released filter's own output.
 
-Writes `results/native_oracle_<dataset>.json`. Run:
+**Hot-pixel removal.** `--hot-pixel-removal` applies `hotpixel.remove_hot_pixels` to the
+*input*, after the event cap and before any filter runs, so the filters see the trimmed stream
+and the oracle is rebuilt from their new scored prefixes. Deleting pixels from an existing
+comparison would evaluate a different pipeline. The rule reads event counts only, never MESR.
+
+Writes `results/native_oracle_<dataset>.json` (`_hotpixel` appended with the flag). Run:
 
     python -m dataset_assessment.native_oracle --dataset dnd21
     python -m dataset_assessment.native_oracle --dataset dvsclean
+    python -m dataset_assessment.native_oracle --dataset dnd21 --hot-pixel-removal
 """
 
 from __future__ import annotations
@@ -53,6 +59,7 @@ import numpy as np
 
 from .denoisors import CLASSICAL, score_events
 from .esr import BLOCK, SLICE, mesr
+from .hotpixel import remove_hot_pixels
 from .label_quality import _classify, _quality
 from .readers import iter_dnd21, iter_dvsclean
 
@@ -111,13 +118,28 @@ def available_signal(labels: np.ndarray, block: int = BLOCK) -> np.ndarray:
                      for s in range(0, len(labels), block)], dtype=np.int64)
 
 
+def prepare(rec, max_events: int, hot_pixel_removal: bool = False):
+    """The input every filter sees: capped, then (optionally) with hot pixels removed.
+
+    Returns the recording and the removal summary, which is None when removal is off.
+    """
+
+    rec = replace(rec, events=rec.events[:max_events],
+                  labels=None if rec.labels is None else rec.labels[:max_events])
+    if not hot_pixel_removal:
+        return rec, None
+    return remove_hot_pixels(rec)
+
+
 def measure(dataset: str, max_events: int = 1_000_000,
             max_recordings: Optional[int] = None,
-            methods: Sequence[str] = CLASSICAL) -> Dict:
+            methods: Sequence[str] = CLASSICAL,
+            hot_pixel_removal: bool = False) -> Dict:
     """Every (recording, method) cell, each filter scored on its own native output."""
 
     cells: List[Dict] = []
     unevaluable: List[Dict] = []
+    removals: List[Dict] = []
     signal_total = 0
     noise_total = 0
     started = time.perf_counter()
@@ -125,8 +147,9 @@ def measure(dataset: str, max_events: int = 1_000_000,
     for index, rec in enumerate(LOADERS[dataset]()):
         if max_recordings is not None and index >= max_recordings:
             break
-        rec = replace(rec, events=rec.events[:max_events],
-                      labels=None if rec.labels is None else rec.labels[:max_events])
+        rec, hot_summary = prepare(rec, max_events, hot_pixel_removal)
+        if hot_summary is not None:
+            removals.append({"recording": rec.name, **hot_summary})
         if rec.labels is None:
             raise ValueError(f"{rec.name} has no labels; this analysis needs them")
 
@@ -199,6 +222,7 @@ def measure(dataset: str, max_events: int = 1_000_000,
         print(f"[{index}] {rec.name}: {len(cells)} cells so far", flush=True)
 
     return {"dataset": dataset, "max_events": max_events,
+            "hot_pixel_removal": hot_pixel_removal, "removals": removals,
             "signal_events": signal_total, "noise_events": noise_total,
             "cells": cells, "unevaluable": unevaluable,
             "wall_seconds": time.perf_counter() - started,
@@ -232,10 +256,14 @@ def main() -> None:
     parser.add_argument("--dataset", default="dnd21", choices=sorted(LOADERS))
     parser.add_argument("--max-recordings", type=int, default=None)
     parser.add_argument("--out", type=Path, default=None)
+    parser.add_argument("--hot-pixel-removal", action="store_true",
+                        help="remove the busiest 0.1%% of occupied pixels from the input first")
     args = parser.parse_args()
 
-    result = measure(args.dataset, max_recordings=args.max_recordings)
-    out = args.out or OUT_DIR / f"native_oracle_{args.dataset}.json"
+    result = measure(args.dataset, max_recordings=args.max_recordings,
+                     hot_pixel_removal=args.hot_pixel_removal)
+    suffix = "_hotpixel" if args.hot_pixel_removal else ""
+    out = args.out or OUT_DIR / f"native_oracle_{args.dataset}{suffix}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(result, indent=2, default=float) + "\n")
 

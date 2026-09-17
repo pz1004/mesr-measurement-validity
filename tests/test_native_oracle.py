@@ -102,3 +102,35 @@ def test_block_counts_sum_to_the_mask():
     counts = block_counts(mask, block=4)
     assert list(counts) == [3, 1, 1]
     assert counts.sum() == mask.sum()
+
+
+def test_hot_pixel_removal_is_applied_to_the_input_after_the_cap():
+    """The preprocessed run removes pixels from the *input*, so labels must follow the events.
+
+    Deleting pixels from an existing filter output would evaluate a different pipeline; the
+    filters have to see the trimmed stream and the oracle has to be rebuilt from it.
+    """
+
+    from dataset_assessment.native_oracle import prepare
+    from dataset_assessment.readers import Recording
+
+    rng = np.random.default_rng(20260917)
+    n = 4000
+    xs = rng.integers(0, 16, size=n)
+    ys = rng.integers(0, 16, size=n)
+    xs[::4], ys[::4] = 5, 7                                # one pixel carries a quarter
+    events = np.stack([np.arange(n), xs, ys, np.ones(n, dtype=np.int64)], axis=1)
+    labels = (rng.random(n) < 0.3).astype(np.int64)
+    rec = Recording(events=events, labels=labels, width=16, height=16, name="synthetic",
+                    synthetic=True)
+
+    capped, none = prepare(rec, max_events=3000, hot_pixel_removal=False)
+    assert none is None and len(capped.events) == 3000
+
+    trimmed, summary = prepare(rec, max_events=3000, hot_pixel_removal=True)
+    assert summary["events_before"] == 3000                 # the cap came first
+    assert summary["events_removed"] > 0
+    assert len(trimmed.events) == len(trimmed.labels) == summary["events_after"]
+    hot = (capped.events[:, 1] == 5) & (capped.events[:, 2] == 7)
+    assert not ((trimmed.events[:, 1] == 5) & (trimmed.events[:, 2] == 7)).any()
+    np.testing.assert_array_equal(trimmed.labels, capped.labels[~hot])

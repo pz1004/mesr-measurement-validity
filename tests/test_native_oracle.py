@@ -17,6 +17,7 @@ an unmatched or an unbounded contrast:
 """
 
 import numpy as np
+import pytest
 
 from dataset_assessment.label_quality import _classify, _quality
 from dataset_assessment.native_oracle import (available_signal, block_counts, oracle_mask,
@@ -134,3 +135,21 @@ def test_hot_pixel_removal_is_applied_to_the_input_after_the_cap():
     hot = (capped.events[:, 1] == 5) & (capped.events[:, 2] == 7)
     assert not ((trimmed.events[:, 1] == 5) & (trimmed.events[:, 2] == 7)).any()
     np.testing.assert_array_equal(trimmed.labels, capped.labels[~hot])
+
+
+def test_widest_filter_gap_pairs_only_the_recordings_both_filters_are_scored_on():
+    """The slice-size comparator: a mean *paired* gap, so a filter scored on fewer recordings
+    is compared only where both have a native output, never across two different cohorts."""
+
+    from dataset_assessment.native_oracle import widest_filter_gap
+
+    cells = [{"recording": "r1", "method": "a", "mesr": 1.0},
+             {"recording": "r2", "method": "a", "mesr": 1.2},
+             {"recording": "r1", "method": "b", "mesr": 0.9},
+             {"recording": "r2", "method": "b", "mesr": 1.0},
+             {"recording": "r2", "method": "c", "mesr": 0.2}]      # c scored on r2 only
+    gap = widest_filter_gap(cells)
+    # Unpaired means would give a - c = 1.1 - 0.2 = 0.9; paired on r2 it is 1.2 - 0.2 = 1.0.
+    assert gap["a"] == "a" and gap["b"] == "c"
+    assert gap["gap"] == pytest.approx(1.0)
+    assert gap["n_recordings"] == 1

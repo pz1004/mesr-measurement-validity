@@ -201,6 +201,18 @@ def _nulls(out: Callable[[str], None]) -> None:
                 f"**cluster CI over {cluster['n_clusters']} independent scenes: "
                 f"[{cluster['lo']:+.4f}, {cluster['hi']:+.4f}]** "
                 f"excludes_zero={cluster['excludes_zero']}")
+        # The criterion forbids a rise beyond sampling variation, which a sign count does not
+        # test: the scene interval at every retention below 1 (`results/null_intervals.json`).
+        per_r = _load("null_intervals.json")[dataset]
+        for method in ("raw", "random_null"):
+            row = per_r[method]
+            # The exceptions are worth naming only where most retentions do rise.
+            misses = (f"; not above zero at r={row['not_above_zero_at']}"
+                      if 0 < len(row["not_above_zero_at"]) < row["n_above_zero"] else "")
+            out(f"  - {method} scene interval per retention: **above zero at "
+                f"{row['n_above_zero']}/{row['n_retentions_below_one']}** "
+                f"(Bonferroni {row['n_above_zero_bonferroni']}), below zero at "
+                f"{row['n_below_zero']}{misses}")
     out("- EDformer vs EDmamba as published on E-MLB: 1.00588 vs 1.01513 -> gap 0.0092")
 
     out("\n## S3.5 floor-pinned optima")

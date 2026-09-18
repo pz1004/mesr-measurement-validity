@@ -112,6 +112,18 @@ def _metric_dependencies(out: Callable[[str], None]) -> None:
     out(f"- same-corpus scale (`results/native_oracle_dnd21.json`): widest paired gap between "
         f"two filters' own outputs **{gap['gap']:.4f}** ({gap['a']} over {gap['b']}, "
         f"n={gap['n_recordings']}); slice-size spread = **{mean / gap['gap']:.2f}x** that")
+    # Does the convention reorder filters, or shift them together? Each filter's own output
+    # at every slice size, on the same first 10^6 events.
+    s = _load("slice_ranking_dnd21.json")["summary"]
+    out(f"- filters' own outputs across slice sizes (`results/slice_ranking_dnd21.json`): "
+        f"**{s['recordings_reordered']}/{s['ranked_recordings']}** recordings reordered against "
+        f"30k, top filter changes on {s['recordings_top_changed']}; Kendall tau min "
+        f"{s['min_tau']:.3f}, mean {s['mean_tau']:.3f}; cohort sizes {s['cohort_sizes']}")
+    out(f"  - corpus-mean paired differences: {len(s['pairs_flipping'])}/{s['pairs']} pairs "
+        f"change sign ({', '.join(s['pairs_flipping']) or 'none'}); widest pair gap at 30k "
+        f"{s['widest_pair_gap_at_reference']:.4f}")
+    out(f"  - unfiltered spread on the same 10^6-event support: "
+        f"**{s['unfiltered_spread_mean']:.4f}** (mean over recordings)")
 
 
 def _controlled_addition(out: Callable[[str], None]) -> None:

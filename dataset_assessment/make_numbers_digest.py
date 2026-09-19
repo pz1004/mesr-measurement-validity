@@ -1011,6 +1011,43 @@ def _native_oracle(out: Callable[[str], None]) -> None:
                         f"{c['mesr']:.4f} vs oracle {c['oracle_mesr']:.4f}")
 
 
+def _hotpixel_contrast(out: Callable[[str], None]) -> None:
+    """S5-B and S5-C with the busiest 0.1% of pixels removed first, on one cohort per side.
+
+    Both real-capture failures -- the null's gain and the blank's filter lead -- are read on
+    the recordings evaluable under both runs, so a before/after change is never a cohort
+    change; the before-means therefore sit just under the published full-cohort columns."""
+
+    payload = _load("hotpixel_contrast.json")
+    out("\n## S5-B/C busiest 0.1% of pixels removed first (`results/hotpixel_contrast.json`)\n")
+    for dataset, row in payload.items():
+        removed = _load(row["files"][1])["records"]
+        h = [r["hot_pixel_removal"] for r in removed]
+        out(f"- {dataset}: median {float(np.median([x['hot_pixels'] for x in h])):g} pixels of "
+            f"{float(np.median([x['occupied_pixels'] for x in h])):g} occupied carry "
+            f"{float(np.median([x['share_removed'] for x in h])):.1%} of events "
+            f"({len(h)} recordings)")
+        s = row["specificity"]
+        at = s["at_r"]
+        top = max((p["mean"] for p in s["after_positive"]), default=None)
+        top = "none positive" if top is None else f"largest after {top:+.4f}"
+        out(f"  - specificity: random_null mean Delta > 0 at **{s['n_positive_before']} -> "
+            f"{s['n_positive_after']}/{s['n_retentions']}** retentions ({top}); "
+            f"at r = {s['at']}: {at['before']:+.4f} -> {at['after']:+.4f}, "
+            f"{at['n_drop']}/{at['n']} recordings drop")
+        for r, b in row.get("blank", {}).items():
+            out(f"  - blank at r = {r}, {b['n']} recordings evaluable under both:")
+            for when in ("before", "after"):
+                cells = b[when]
+                best = b["best"][when]
+                out(f"    - {when}: best filter {best} {cells[best]['delta']:+.4f}, over "
+                    f"random_null **{cells[best]['minus_null']:+.4f}** (above on "
+                    f"{cells[best]['n_above_null']}/{cells[best]['n']}); red over null "
+                    f"{cells['red']['minus_null']:+.4f}; raw {cells['raw']['delta']:+.4f}, "
+                    f"random_null {cells['random_null']['delta']:+.4f}, raw over null "
+                    f"{cells['raw']['minus_null']:+.4f}")
+
+
 def _native_emlb(out: Callable[[str], None]) -> None:
     """S6-C's Table IV: E-MLB scored on each filter's own output beside a matched control."""
 
@@ -1075,6 +1112,7 @@ def main() -> None:
     _cap_sensitivity(out)
     _esr_properties(out)
     _native_oracle(out)
+    _hotpixel_contrast(out)
     _paired_contrasts(out)
     _native_emlb(out)
     _common_support(out)

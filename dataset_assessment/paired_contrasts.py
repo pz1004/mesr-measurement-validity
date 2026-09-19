@@ -20,9 +20,9 @@ A paired difference removes the recording-to-recording variance the marginal int
 carry, so it resolves differences the marginals cannot -- which is the point: the previous
 reasoning discarded real orderings as unresolvable.
 
-EDformer is deliberately excluded. Its row is a published fixed threshold on an uncapped run
-with eight (lighting, ND) cells, so it is not paired with anything here and stays descriptive
-(\\appref{app:edformer}).
+EDformer enters as a seventh method wherever its rows exist: `edformer_native` in
+`native_emlb.json`, and in `benchmark_emlb_edformer.json` for the grid form. It is scored by
+`edformer.py` on the same capped inputs as the filters, so it pairs like any other row.
 
 **Two sources.** `--source grid` (the default) pairs the quota-adapted value at the grid
 point nearest each native retention, the diagnostic form. `--source native` pairs each
@@ -68,9 +68,14 @@ def native_deltas_by_recording(dataset: str,
     """
 
     payload = json.loads((RESULTS / f"benchmark_{dataset}.json").read_text())
+    extra: Dict[str, Dict] = {}
+    for path in sorted(RESULTS.glob(f"benchmark_{dataset}_edformer.json")):
+        for record in json.loads(path.read_text())["records"]:
+            extra[record["recording"]] = {m: row for m, row in record["methods"].items()
+                                          if m != "raw"}
     out: Dict[str, Dict[str, float]] = {}
     for record in payload["records"]:
-        methods = record["methods"]
+        methods = {**record["methods"], **extra.get(record["recording"], {})}
         raw = methods.get("raw", {})
         if "curve" not in raw or "error" in raw:
             continue

@@ -74,6 +74,18 @@ NATIVE3D_GATED = "native3d_gated"
 NATIVE3D_METHODS = (NATIVE3D, NATIVE3D_GATED)
 NATIVE3D_ROOT = PROJECT_ROOT.parent / "zero-parameter-event-denoising"
 
+#: EDformer (ECCV 2024) from its released weights and inference recipe, as two rows, read
+#: from the scores `edformer.py` caches (it needs torch and CUDA; this module does not).
+#:
+#: `edformer` is the continuous per-event sigmoid, so its curve is a genuine sweep of the
+#: learned score. `edformer_native` is the released decision, keep iff sigmoid < 0.005, as
+#: the usual two-level score so it carries a native operating point. Neither is in
+#: `available_methods()`: EDformer is scored on E-MLB only, and only when asked for.
+EDFORMER = "edformer"
+EDFORMER_NATIVE = "edformer_native"
+EDFORMER_METHODS = (EDFORMER, EDFORMER_NATIVE)
+EDFORMER_CAP = 1_000_000
+
 #: Frozen by the sibling project; do not retune here. Radius 1 keys the corr(G,R) gate,
 #: radius 2 supplies the support ring, and 10,240 is the block the method is defined on.
 NATIVE3D_BLOCK = 10_240
@@ -202,6 +214,25 @@ def _native3d_gated_scores(recording) -> np.ndarray:
     return np.where(keep, 0.0, 1.0).astype(np.float32)
 
 
+def _edformer_sigmoid(recording) -> np.ndarray:
+    from .edformer import cache_path
+
+    path = cache_path(recording.name, EDFORMER_CAP)
+    if not path.is_file():
+        raise ValueError(f"{EDFORMER}: no cached scores at {path}; run dataset_assessment.edformer")
+    scores = np.load(path)
+    if len(scores) != len(recording.events):
+        raise ValueError(f"{EDFORMER}: cached {len(scores)} scores for "
+                         f"{len(recording.events)} events on {recording.name}")
+    return scores
+
+
+def _edformer_native_scores(recording) -> np.ndarray:
+    from .edformer import keep_mask
+
+    return np.where(keep_mask(_edformer_sigmoid(recording)), 0.0, 1.0).astype(np.float32)
+
+
 def _to_storage(events: np.ndarray):
     """Copy an `[t, x, y, p]` int64 array into a `dv_toolkit.EventStorage`."""
 
@@ -272,6 +303,10 @@ def score_events(method: str, recording) -> np.ndarray:
         return _native3d_scores(recording)
     if method == NATIVE3D_GATED:
         return _native3d_gated_scores(recording)
+    if method == EDFORMER:
+        return _edformer_sigmoid(recording)
+    if method == EDFORMER_NATIVE:
+        return _edformer_native_scores(recording)
     if method in CLASSICAL:
         return _classical_scores(method, recording)
     raise ValueError(f"unknown method {method!r}; available: {available_methods()}")
@@ -312,4 +347,4 @@ def has_native_operating_point(method: str) -> bool:
     any native-operating-point comparison.
     """
 
-    return method in CLASSICAL or method in ("raw", ORACLE, NATIVE3D_GATED)
+    return method in CLASSICAL or method in ("raw", ORACLE, NATIVE3D_GATED, EDFORMER_NATIVE)

@@ -30,6 +30,7 @@ import argparse
 import json
 import time
 import zlib
+from functools import partial
 from multiprocessing import Pool
 from pathlib import Path
 from typing import Callable, Dict, List, Optional, Sequence
@@ -101,8 +102,32 @@ def measure_recording(rec, methods: Sequence[str] = CLASSICAL,
             "cells": cells, "unevaluable": unevaluable}
 
 
-def _one(rec) -> Dict:
-    return measure_recording(rec)
+def _one(rec, methods: Sequence[str] = CLASSICAL) -> Dict:
+    return measure_recording(rec, methods)
+
+
+def merge(existing: Sequence[Dict], added: Sequence[Dict]) -> List[Dict]:
+    """Append `added`'s cells to `existing`'s records, leaving every existing cell untouched.
+
+    Used to add a method (EDformer) without re-running the six filters: the classical cells
+    are carried over verbatim, so they cannot move. Recordings must match one to one.
+    """
+
+    by_name = {r["recording"]: r for r in added}
+    if set(by_name) != {r["recording"] for r in existing}:
+        raise ValueError("merge needs the same recordings on both sides")
+    merged: List[Dict] = []
+    for record in existing:
+        extra = by_name[record["recording"]]
+        if extra["raw_mesr"] != record["raw_mesr"] or extra["events"] != record["events"]:
+            raise ValueError(f"{record['recording']}: inputs differ between runs")
+        clash = ({c["method"] for c in record["cells"] + record["unevaluable"]}
+                 & {c["method"] for c in extra["cells"] + extra["unevaluable"]})
+        if clash:
+            raise ValueError(f"{record['recording']}: {sorted(clash)} already present")
+        merged.append({**record, "cells": record["cells"] + extra["cells"],
+                       "unevaluable": record["unevaluable"] + extra["unevaluable"]})
+    return merged
 
 
 def _marginal(cells: Sequence[Dict], key: str) -> Dict:
@@ -145,6 +170,10 @@ def main() -> None:
     parser.add_argument("--workers", type=int, default=8)
     parser.add_argument("--max-recordings", type=int, default=None)
     parser.add_argument("--out", type=Path, default=None)
+    parser.add_argument("--methods", nargs="+", default=list(CLASSICAL))
+    parser.add_argument("--merge", action="store_true",
+                        help="add --methods to the existing native_emlb.json instead of "
+                             "replacing it; existing cells are carried over verbatim")
     args = parser.parse_args()
 
     started = time.perf_counter()
@@ -153,16 +182,19 @@ def main() -> None:
     with Pool(args.workers) as pool:
         stream = (r for i, r in enumerate(recordings)
                   if args.max_recordings is None or i < args.max_recordings)
-        for index, record in enumerate(pool.imap(_one, stream, chunksize=1)):
+        worker = partial(_one, methods=tuple(args.methods))
+        for index, record in enumerate(pool.imap(worker, stream, chunksize=1)):
             records.append(record)
             if index % 16 == 0:
                 print(f"[{index + 1}] {record['recording']} "
                       f"({time.perf_counter() - started:.0f}s)", flush=True)
+    out = args.out or RESULTS / "native_emlb.json"
+    if args.merge:
+        records = merge(json.loads(out.read_text())["records"], records)
 
     result = {"dataset": "emlb", "max_events": MAX_EVENTS, "control_seed": CONTROL_SEED,
               "records": records, "wall_seconds": time.perf_counter() - started,
               "summary": summarise(records)}
-    out = args.out or RESULTS / "native_emlb.json"
     out.write_text(json.dumps(result, indent=2, default=float) + "\n")
 
     print(f"\n{result['summary']['recordings']} recordings, {result['summary']['cells']} "

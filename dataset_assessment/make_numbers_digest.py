@@ -12,6 +12,7 @@ from typing import Callable, Dict, List
 
 import numpy as np
 
+from .denoisors import CLASSICAL
 from .esr import SLICE
 
 RESULTS = Path(__file__).resolve().parents[1] / "results"
@@ -1065,7 +1066,8 @@ def _native_emlb(out: Callable[[str], None]) -> None:
             out(f"  - {method}: no evaluable cell ({row['unevaluable']} unevaluable)")
             continue
         d, n, s = row["delta_over_raw"], row["null_delta_over_raw"], row["filter_minus_null"]
-        rows.append((row["native_retention_mean"], d["mean"]))
+        if method in CLASSICAL:        # App F quotes the six filters' correlation only
+            rows.append((row["native_retention_mean"], d["mean"]))
         extra = ""
         if "unevaluable_native_retention_mean" in row:
             extra = f", unevaluable native r mean {row['unevaluable_native_retention_mean']:.2f}"
@@ -1076,7 +1078,8 @@ def _native_emlb(out: Callable[[str], None]) -> None:
             f"[{s['lo']:+.3f}, {s['hi']:+.3f}] above null on "
             f"{row['recordings_filter_above_null']}/{row['evaluable']}")
     rho, p = spearmanr([r for r, _ in rows], [d for _, d in rows])
-    out(f"- rows: Spearman(native r, Delta) = {rho:+.2f}, p = {p:.2f} over {len(rows)} rows")
+    out(f"- classical rows: Spearman(native r, Delta) = {rho:+.2f}, p = {p:.2f} over "
+        f"{len(rows)} rows")
 
     paired = _load("paired_contrasts_native.json")
     out(f"- paired, native outputs: **{paired['pairs_resolved']}/{paired['pairs_total']} "

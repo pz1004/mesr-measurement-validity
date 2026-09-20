@@ -388,17 +388,17 @@ def _benchmark(out: Callable[[str], None]) -> None:
                 out(f"  - **per-cell error span {error['max'] - error['min']:.4f}** "
                     f"(the figure quoted in the abstract, S5.1 and Appendix A; "
                     f"{error['max'] - error['min']:.4f} > 0.0092, the gap the table claims)")
-            sets = reference.get("recording_sets")
+            sets = reference.get("recordings")
             if sets:
-                # Matched on recordings is not matched on the cap. Delta-over-Raw moves
-                # with the cap (S5.3), so the EDformer row stays descriptive either way.
-                verdict = ("matched on recordings but NOT on the event cap"
-                           if sets["matched_on_recordings"] else "NOT matched")
-                out(f"  - recording sets: EDformer "
-                    f"{sets['edformer_recordings']} recordings uncapped; classical rows "
-                    f"{sets['classical_recordings']} over "
-                    f"{sets['classical_scene_clusters']} (scene, lighting) clusters "
-                    f"capped at {sets['classical_cap']:,} -- {verdict}")
+                # This run checks the published table; it is not the row tab:emlb prints.
+                # Delta-over-Raw moves with the cap (S5.3), so the two are not
+                # interchangeable, and EDformer's own capped run supplies the table row.
+                out(f"  - this uncapped run: {sets['uncapped_recordings']} recordings, "
+                    f"{sets['uncapped_evaluable']} with a score (EDformer keeps less than "
+                    f"one 30,000-event slice on the rest); the capped rows of tab:emlb are "
+                    f"{sets['capped_recordings']} recordings over "
+                    f"{sets['capped_scene_clusters']} (scene, lighting) clusters at "
+                    f"{sets['cap']:,} events")
 
 
 def _scale(out: Callable[[str], None]) -> None:

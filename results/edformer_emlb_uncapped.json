@@ -1,0 +1,3465 @@
+{
+  "what": "EDformer, released protocol, uncapped E-MLB",
+  "seq_len": 4096,
+  "threshold": 0.005,
+  "seed": 230086,
+  "records": [
+    {
+      "recording": "E-MLB/D-END/Architecture-ND00-1",
+      "events": 4198921,
+      "considered": 4198400,
+      "kept": 1139492,
+      "retention": 0.2714110137195122,
+      "raw_mesr": 0.7289136378118936,
+      "edformer_mesr": 0.8709305660441842
+    },
+    {
+      "recording": "E-MLB/D-END/Architecture-ND04-1",
+      "events": 4673032,
+      "considered": 4669440,
+      "kept": 983474,
+      "retention": 0.21061926055372807,
+      "raw_mesr": 0.7149092434987688,
+      "edformer_mesr": 0.8698804805000193
+    },
+    {
+      "recording": "E-MLB/D-END/Architecture-ND16-1",
+      "events": 5513969,
+      "considered": 5513216,
+      "kept": 1113163,
+      "retention": 0.2019081059040676,
+      "raw_mesr": 0.7192138064055242,
+      "edformer_mesr": 0.8826939211237967
+    },
+    {
+      "recording": "E-MLB/D-END/Architecture-ND64-1",
+      "events": 6130560,
+      "considered": 6127616,
+      "kept": 824979,
+      "retention": 0.13463294697317849,
+      "raw_mesr": 0.7001651026162966,
+      "edformer_mesr": 0.8872017029745841
+    },
+    {
+      "recording": "E-MLB/D-END/Bicycle-ND00-1",
+      "events": 2362667,
+      "considered": 2359296,
+      "kept": 134079,
+      "retention": 0.05683008829752604,
+      "raw_mesr": 0.7064712364685333,
+      "edformer_mesr": 0.8888438777339371
+    },
+    {
+      "recording": "E-MLB/D-END/Bicycle-ND04-1",
+      "events": 4565306,
+      "considered": 4562944,
+      "kept": 105702,
+      "retention": 0.023165307310368043,
+      "raw_mesr": 0.6614069375670015,
+      "edformer_mesr": 0.9074136865278817
+    },
+    {
+      "recording": "E-MLB/D-END/Bicycle-ND16-1",
+      "events": 4898850,
+      "considered": 4898816,
+      "kept": 81720,
+      "retention": 0.01668158183528428,
+      "raw_mesr": 0.6323607519419387,
+      "edformer_mesr": 0.8115981178317491
+    },
+    {
+      "recording": "E-MLB/D-END/Bicycle-ND64-1",
+      "events": 4589024,
+      "considered": 4587520,
+      "kept": 29206,
+      "retention": 0.006366402762276786,
+      "raw_mesr": 0.5839816573441731,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/D-END/Boat-ND00-1",
+      "events": 743308,
+      "considered": 741376,
+      "kept": 422335,
+      "retention": 0.5696637064053868,
+      "raw_mesr": 1.048483866328,
+      "edformer_mesr": 1.0900969682050614
+    },
+    {
+      "recording": "E-MLB/D-END/Boat-ND04-1",
+      "events": 803141,
+      "considered": 802816,
+      "kept": 393709,
+      "retention": 0.49041000677614793,
+      "raw_mesr": 1.0419019446233404,
+      "edformer_mesr": 1.1240123989316755
+    },
+    {
+      "recording": "E-MLB/D-END/Boat-ND16-1",
+      "events": 665862,
+      "considered": 663552,
+      "kept": 188460,
+      "retention": 0.2840169270833333,
+      "raw_mesr": 0.96683911199145,
+      "edformer_mesr": 1.0849354068497552
+    },
+    {
+      "recording": "E-MLB/D-END/Boat-ND64-1",
+      "events": 1062936,
+      "considered": 1060864,
+      "kept": 190517,
+      "retention": 0.17958663881515444,
+      "raw_mesr": 0.9242240922566666,
+      "edformer_mesr": 1.0717352914012983
+    },
+    {
+      "recording": "E-MLB/D-END/Books-ND00-1",
+      "events": 3875506,
+      "considered": 3874816,
+      "kept": 151005,
+      "retention": 0.038970882746432345,
+      "raw_mesr": 0.6272317406359601,
+      "edformer_mesr": 0.8230803548106993
+    },
+    {
+      "recording": "E-MLB/D-END/Books-ND04-1",
+      "events": 3412781,
+      "considered": 3411968,
+      "kept": 68235,
+      "retention": 0.019998722145108044,
+      "raw_mesr": 0.6036813524574892,
+      "edformer_mesr": 0.8599973381308056
+    },
+    {
+      "recording": "E-MLB/D-END/Books-ND16-1",
+      "events": 4337588,
+      "considered": 4333568,
+      "kept": 70592,
+      "retention": 0.016289579395085067,
+      "raw_mesr": 0.5442153525451249,
+      "edformer_mesr": 0.8104408900564036
+    },
+    {
+      "recording": "E-MLB/D-END/Books-ND64-1",
+      "events": 2717050,
+      "considered": 2715648,
+      "kept": 42785,
+      "retention": 0.01575498739159125,
+      "raw_mesr": 0.5230657006323964,
+      "edformer_mesr": 0.8127147946909591
+    },
+    {
+      "recording": "E-MLB/D-END/Bubble-ND00-1",
+      "events": 664841,
+      "considered": 663552,
+      "kept": 583826,
+      "retention": 0.8798496576003086,
+      "raw_mesr": 0.9450772320302767,
+      "edformer_mesr": 0.9495037213491835
+    },
+    {
+      "recording": "E-MLB/D-END/Bubble-ND04-1",
+      "events": 443256,
+      "considered": 442368,
+      "kept": 392693,
+      "retention": 0.8877066153067129,
+      "raw_mesr": 0.963015007880289,
+      "edformer_mesr": 0.9666496241296615
+    },
+    {
+      "recording": "E-MLB/D-END/Bubble-ND16-1",
+      "events": 462407,
+      "considered": 458752,
+      "kept": 417366,
+      "retention": 0.9097856794084821,
+      "raw_mesr": 0.9649247873533768,
+      "edformer_mesr": 0.9605472929277596
+    },
+    {
+      "recording": "E-MLB/D-END/Bubble-ND64-1",
+      "events": 431204,
+      "considered": 430080,
+      "kept": 398566,
+      "retention": 0.9267252604166667,
+      "raw_mesr": 0.9723621423303397,
+      "edformer_mesr": 0.956914709542443
+    },
+    {
+      "recording": "E-MLB/D-END/Camera-ND00-1",
+      "events": 2470634,
+      "considered": 2469888,
+      "kept": 1517693,
+      "retention": 0.6144784702788143,
+      "raw_mesr": 0.8927190798068873,
+      "edformer_mesr": 0.956407439413826
+    },
+    {
+      "recording": "E-MLB/D-END/Camera-ND04-1",
+      "events": 1991488,
+      "considered": 1990656,
+      "kept": 1259659,
+      "retention": 0.6327858756108539,
+      "raw_mesr": 0.8945568854840545,
+      "edformer_mesr": 0.9557764710524118
+    },
+    {
+      "recording": "E-MLB/D-END/Camera-ND16-1",
+      "events": 1880819,
+      "considered": 1880064,
+      "kept": 1100247,
+      "retention": 0.5852178436478758,
+      "raw_mesr": 0.8698203200378553,
+      "edformer_mesr": 0.9431487802690393
+    },
+    {
+      "recording": "E-MLB/D-END/Camera-ND64-1",
+      "events": 2320460,
+      "considered": 2318336,
+      "kept": 1011112,
+      "retention": 0.43613695340106007,
+      "raw_mesr": 0.8359578340455952,
+      "edformer_mesr": 0.9605928336857993
+    },
+    {
+      "recording": "E-MLB/D-END/Car_Day-ND00-1",
+      "events": 2203347,
+      "considered": 2199552,
+      "kept": 1856086,
+      "retention": 0.8438472925395717,
+      "raw_mesr": 1.0051926633239925,
+      "edformer_mesr": 1.0256182422107514
+    },
+    {
+      "recording": "E-MLB/D-END/Car_Day-ND04-1",
+      "events": 2757923,
+      "considered": 2756608,
+      "kept": 2235584,
+      "retention": 0.8109908989598811,
+      "raw_mesr": 1.0105647018697796,
+      "edformer_mesr": 1.0224213180673256
+    },
+    {
+      "recording": "E-MLB/D-END/Car_Day-ND16-1",
+      "events": 2031013,
+      "considered": 2027520,
+      "kept": 1743960,
+      "retention": 0.8601444128787878,
+      "raw_mesr": 1.013316512322003,
+      "edformer_mesr": 1.022303982654413
+    },
+    {
+      "recording": "E-MLB/D-END/Car_Day-ND64-1",
+      "events": 2481987,
+      "considered": 2478080,
+      "kept": 1905677,
+      "retention": 0.7690135104597108,
+      "raw_mesr": 0.98432791464479,
+      "edformer_mesr": 1.0138781621989763
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Highlight-ND00-1",
+      "events": 1761476,
+      "considered": 1761280,
+      "kept": 1367263,
+      "retention": 0.7762894031613372,
+      "raw_mesr": 0.835205888642759,
+      "edformer_mesr": 0.8339928400543793
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Highlight-ND04-1",
+      "events": 2070261,
+      "considered": 2068480,
+      "kept": 1782958,
+      "retention": 0.8619653078589109,
+      "raw_mesr": 0.8732810623134862,
+      "edformer_mesr": 0.871799501865534
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Highlight-ND16-1",
+      "events": 1879539,
+      "considered": 1875968,
+      "kept": 1609637,
+      "retention": 0.8580300943299672,
+      "raw_mesr": 0.8660262974423866,
+      "edformer_mesr": 0.865436400202593
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Highlight-ND64-1",
+      "events": 1475709,
+      "considered": 1474560,
+      "kept": 1274864,
+      "retention": 0.8645724826388889,
+      "raw_mesr": 0.886097801642735,
+      "edformer_mesr": 0.8860064456217475
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Shadow-ND00-1",
+      "events": 1659935,
+      "considered": 1658880,
+      "kept": 1449535,
+      "retention": 0.873803409529321,
+      "raw_mesr": 0.902807173297285,
+      "edformer_mesr": 0.8921993634094747
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Shadow-ND04-1",
+      "events": 1705293,
+      "considered": 1703936,
+      "kept": 1462890,
+      "retention": 0.8585357666015625,
+      "raw_mesr": 0.9018906389428272,
+      "edformer_mesr": 0.8925928975116001
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Shadow-ND16-1",
+      "events": 2267577,
+      "considered": 2265088,
+      "kept": 1939544,
+      "retention": 0.8562775485985533,
+      "raw_mesr": 0.8852019256509132,
+      "edformer_mesr": 0.8761658797071532
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Shadow-ND64-1",
+      "events": 1746564,
+      "considered": 1744896,
+      "kept": 1432926,
+      "retention": 0.8212099746919014,
+      "raw_mesr": 0.898774788989762,
+      "edformer_mesr": 0.8875891402075158
+    },
+    {
+      "recording": "E-MLB/D-END/Consturcture-ND00-1",
+      "events": 3952546,
+      "considered": 3948544,
+      "kept": 470374,
+      "retention": 0.11912593604123443,
+      "raw_mesr": 0.6784768490117501,
+      "edformer_mesr": 0.8863072683367362
+    },
+    {
+      "recording": "E-MLB/D-END/Consturcture-ND04-1",
+      "events": 7390198,
+      "considered": 7389184,
+      "kept": 210940,
+      "retention": 0.028547130508592016,
+      "raw_mesr": 0.5999914648877687,
+      "edformer_mesr": 0.7678743836293691
+    },
+    {
+      "recording": "E-MLB/D-END/Consturcture-ND16-1",
+      "events": 5531977,
+      "considered": 5529600,
+      "kept": 214946,
+      "retention": 0.03887188946759259,
+      "raw_mesr": 0.6125604854878643,
+      "edformer_mesr": 0.7430080743185978
+    },
+    {
+      "recording": "E-MLB/D-END/Consturcture-ND64-1",
+      "events": 6701383,
+      "considered": 6701056,
+      "kept": 280277,
+      "retention": 0.04182579581486858,
+      "raw_mesr": 0.6193890163864455,
+      "edformer_mesr": 0.8046500678809978
+    },
+    {
+      "recording": "E-MLB/D-END/Corridor-ND00-1",
+      "events": 2840415,
+      "considered": 2838528,
+      "kept": 91389,
+      "retention": 0.032195912811147184,
+      "raw_mesr": 0.606932534355909,
+      "edformer_mesr": 1.2569002568252978
+    },
+    {
+      "recording": "E-MLB/D-END/Corridor-ND04-1",
+      "events": 1933883,
+      "considered": 1933312,
+      "kept": 135481,
+      "retention": 0.0700771525754767,
+      "raw_mesr": 0.7064230756620022,
+      "edformer_mesr": 1.2344263547504557
+    },
+    {
+      "recording": "E-MLB/D-END/Corridor-ND16-1",
+      "events": 1428100,
+      "considered": 1425408,
+      "kept": 102675,
+      "retention": 0.07203200767780173,
+      "raw_mesr": 0.8036195445509456,
+      "edformer_mesr": 1.207371630037439
+    },
+    {
+      "recording": "E-MLB/D-END/Corridor-ND64-1",
+      "events": 646626,
+      "considered": 643072,
+      "kept": 17869,
+      "retention": 0.02778693521098726,
+      "raw_mesr": 0.8997178397859875,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/D-END/Courtyard-ND00-1",
+      "events": 2961039,
+      "considered": 2957312,
+      "kept": 620538,
+      "retention": 0.20983176614439059,
+      "raw_mesr": 0.6091532063791527,
+      "edformer_mesr": 0.6607775356259225
+    },
+    {
+      "recording": "E-MLB/D-END/Courtyard-ND04-1",
+      "events": 3678227,
+      "considered": 3678208,
+      "kept": 659345,
+      "retention": 0.17925712738376948,
+      "raw_mesr": 0.6317248151055311,
+      "edformer_mesr": 0.7003746286269349
+    },
+    {
+      "recording": "E-MLB/D-END/Courtyard-ND16-1",
+      "events": 4353317,
+      "considered": 4349952,
+      "kept": 499861,
+      "retention": 0.11491184270539077,
+      "raw_mesr": 0.6114220795215388,
+      "edformer_mesr": 0.6794015584145717
+    },
+    {
+      "recording": "E-MLB/D-END/Courtyard-ND64-1",
+      "events": 3335679,
+      "considered": 3334144,
+      "kept": 223731,
+      "retention": 0.06710298055512899,
+      "raw_mesr": 0.6070202247269963,
+      "edformer_mesr": 0.7199175990781183
+    },
+    {
+      "recording": "E-MLB/D-END/Dance-ND00-1",
+      "events": 1069956,
+      "considered": 1069056,
+      "kept": 864584,
+      "retention": 0.80873593151341,
+      "raw_mesr": 0.9610970727810015,
+      "edformer_mesr": 0.9711572706590971
+    },
+    {
+      "recording": "E-MLB/D-END/Dance-ND04-1",
+      "events": 1091717,
+      "considered": 1089536,
+      "kept": 865378,
+      "retention": 0.7942628788768797,
+      "raw_mesr": 0.9893621021225392,
+      "edformer_mesr": 0.9936976080239088
+    },
+    {
+      "recording": "E-MLB/D-END/Dance-ND16-1",
+      "events": 707374,
+      "considered": 704512,
+      "kept": 605673,
+      "retention": 0.8597057253815407,
+      "raw_mesr": 0.9994065049648222,
+      "edformer_mesr": 0.9978256066416475
+    },
+    {
+      "recording": "E-MLB/D-END/Dance-ND64-1",
+      "events": 1285868,
+      "considered": 1282048,
+      "kept": 1005990,
+      "retention": 0.7846742087659745,
+      "raw_mesr": 1.0015791276544312,
+      "edformer_mesr": 1.0068997748611288
+    },
+    {
+      "recording": "E-MLB/D-END/Decoration-ND00-1",
+      "events": 2916556,
+      "considered": 2916352,
+      "kept": 198287,
+      "retention": 0.06799144959181883,
+      "raw_mesr": 0.45648165569956606,
+      "edformer_mesr": 0.4707078058356169
+    },
+    {
+      "recording": "E-MLB/D-END/Decoration-ND04-1",
+      "events": 5001999,
+      "considered": 5001216,
+      "kept": 175476,
+      "retention": 0.035086666922604426,
+      "raw_mesr": 0.5186017024037716,
+      "edformer_mesr": 0.6556843946138525
+    },
+    {
+      "recording": "E-MLB/D-END/Decoration-ND16-1",
+      "events": 5993311,
+      "considered": 5992448,
+      "kept": 290615,
+      "retention": 0.04849687473299726,
+      "raw_mesr": 0.5024671968852685,
+      "edformer_mesr": 0.6711390676671142
+    },
+    {
+      "recording": "E-MLB/D-END/Decoration-ND64-1",
+      "events": 7602504,
+      "considered": 7602176,
+      "kept": 83388,
+      "retention": 0.010968964675377155,
+      "raw_mesr": 0.4809873890638256,
+      "edformer_mesr": 0.7028654044739238
+    },
+    {
+      "recording": "E-MLB/D-END/Drop_Balls-ND00-1",
+      "events": 95480,
+      "considered": 94208,
+      "kept": 89456,
+      "retention": 0.9495584239130435,
+      "raw_mesr": 1.260489467821141,
+      "edformer_mesr": 1.2449916447150589
+    },
+    {
+      "recording": "E-MLB/D-END/Drop_Balls-ND04-1",
+      "events": 180417,
+      "considered": 180224,
+      "kept": 168588,
+      "retention": 0.9354359019886364,
+      "raw_mesr": 1.090868661990292,
+      "edformer_mesr": 1.064378803299887
+    },
+    {
+      "recording": "E-MLB/D-END/Drop_Balls-ND16-1",
+      "events": 277684,
+      "considered": 274432,
+      "kept": 175777,
+      "retention": 0.6405120394123134,
+      "raw_mesr": 1.4772515630378624,
+      "edformer_mesr": 1.112156614339487
+    },
+    {
+      "recording": "E-MLB/D-END/Drop_Balls-ND64-1",
+      "events": 502560,
+      "considered": 499712,
+      "kept": 55274,
+      "retention": 0.11061171234631148,
+      "raw_mesr": 1.0677220505603713,
+      "edformer_mesr": 1.1425871586678773
+    },
+    {
+      "recording": "E-MLB/D-END/Dump-ND00-1",
+      "events": 2277117,
+      "considered": 2273280,
+      "kept": 1671072,
+      "retention": 0.7350929054054054,
+      "raw_mesr": 0.7607872630193682,
+      "edformer_mesr": 0.8086199199572623
+    },
+    {
+      "recording": "E-MLB/D-END/Dump-ND04-1",
+      "events": 2776311,
+      "considered": 2772992,
+      "kept": 722216,
+      "retention": 0.260446478028065,
+      "raw_mesr": 0.5752957336581422,
+      "edformer_mesr": 0.7712376417988883
+    },
+    {
+      "recording": "E-MLB/D-END/Dump-ND16-1",
+      "events": 2977312,
+      "considered": 2973696,
+      "kept": 582837,
+      "retention": 0.195997506133781,
+      "raw_mesr": 0.605692863893657,
+      "edformer_mesr": 0.8677548955557016
+    },
+    {
+      "recording": "E-MLB/D-END/Dump-ND64-1",
+      "events": 4234538,
+      "considered": 4231168,
+      "kept": 653195,
+      "retention": 0.15437699472107938,
+      "raw_mesr": 0.556735217386231,
+      "edformer_mesr": 0.8016926893283511
+    },
+    {
+      "recording": "E-MLB/D-END/Fence-ND00-1",
+      "events": 8440946,
+      "considered": 8437760,
+      "kept": 400766,
+      "retention": 0.04749672898968447,
+      "raw_mesr": 0.6053560636292646,
+      "edformer_mesr": 0.8373725053294017
+    },
+    {
+      "recording": "E-MLB/D-END/Fence-ND04-1",
+      "events": 7382293,
+      "considered": 7380992,
+      "kept": 385371,
+      "retention": 0.052211274582061595,
+      "raw_mesr": 0.5881451542431946,
+      "edformer_mesr": 0.7821639221943114
+    },
+    {
+      "recording": "E-MLB/D-END/Fence-ND16-1",
+      "events": 5560430,
+      "considered": 5558272,
+      "kept": 117202,
+      "retention": 0.021086049765106852,
+      "raw_mesr": 0.6272997712680765,
+      "edformer_mesr": 0.7727574977773147
+    },
+    {
+      "recording": "E-MLB/D-END/Fence-ND64-1",
+      "events": 9734153,
+      "considered": 9732096,
+      "kept": 397491,
+      "retention": 0.040843308574021464,
+      "raw_mesr": 0.5594934879594254,
+      "edformer_mesr": 0.811569770059527
+    },
+    {
+      "recording": "E-MLB/D-END/Ferriswheel-ND00-1",
+      "events": 8009959,
+      "considered": 8007680,
+      "kept": 180543,
+      "retention": 0.02254623061860614,
+      "raw_mesr": 0.6440939800604956,
+      "edformer_mesr": 1.8281918421565873
+    },
+    {
+      "recording": "E-MLB/D-END/Ferriswheel-ND04-1",
+      "events": 9061006,
+      "considered": 9060352,
+      "kept": 182985,
+      "retention": 0.020196235201457958,
+      "raw_mesr": 0.6387425689342023,
+      "edformer_mesr": 1.215216965889633
+    },
+    {
+      "recording": "E-MLB/D-END/Ferriswheel-ND16-1",
+      "events": 9664392,
+      "considered": 9662464,
+      "kept": 219751,
+      "retention": 0.022742749675445102,
+      "raw_mesr": 0.6505378456499187,
+      "edformer_mesr": 1.1300497994485577
+    },
+    {
+      "recording": "E-MLB/D-END/Ferriswheel-ND64-1",
+      "events": 8541198,
+      "considered": 8540160,
+      "kept": 200725,
+      "retention": 0.023503658011091128,
+      "raw_mesr": 0.6730573758073054,
+      "edformer_mesr": 1.1420881034583683
+    },
+    {
+      "recording": "E-MLB/D-END/Food-ND00-1",
+      "events": 3289013,
+      "considered": 3284992,
+      "kept": 925524,
+      "retention": 0.2817431518859102,
+      "raw_mesr": 0.7759889095709437,
+      "edformer_mesr": 0.9228380311970648
+    },
+    {
+      "recording": "E-MLB/D-END/Food-ND04-1",
+      "events": 3557994,
+      "considered": 3555328,
+      "kept": 718144,
+      "retention": 0.20199092741935484,
+      "raw_mesr": 0.7301021034386769,
+      "edformer_mesr": 0.8980627000693573
+    },
+    {
+      "recording": "E-MLB/D-END/Food-ND16-1",
+      "events": 4868941,
+      "considered": 4866048,
+      "kept": 693143,
+      "retention": 0.14244475188078703,
+      "raw_mesr": 0.7015659859479371,
+      "edformer_mesr": 0.8816363227465088
+    },
+    {
+      "recording": "E-MLB/D-END/Food-ND64-1",
+      "events": 5817644,
+      "considered": 5816320,
+      "kept": 401102,
+      "retention": 0.06896147392165493,
+      "raw_mesr": 0.6625880715766664,
+      "edformer_mesr": 0.8607518235183327
+    },
+    {
+      "recording": "E-MLB/D-END/Hall-ND00-1",
+      "events": 17256668,
+      "considered": 17256448,
+      "kept": 1637181,
+      "retention": 0.09487358000904937,
+      "raw_mesr": 0.7519854508728304,
+      "edformer_mesr": 1.0697518934878405
+    },
+    {
+      "recording": "E-MLB/D-END/Hall-ND04-1",
+      "events": 17473298,
+      "considered": 17469440,
+      "kept": 1097669,
+      "retention": 0.06283366839463658,
+      "raw_mesr": 0.7273472875505874,
+      "edformer_mesr": 1.052117756211626
+    },
+    {
+      "recording": "E-MLB/D-END/Hall-ND16-1",
+      "events": 22491131,
+      "considered": 22487040,
+      "kept": 1006338,
+      "retention": 0.04475191043374317,
+      "raw_mesr": 0.6765352236940739,
+      "edformer_mesr": 1.029965877224359
+    },
+    {
+      "recording": "E-MLB/D-END/Hall-ND64-1",
+      "events": 14720096,
+      "considered": 14716928,
+      "kept": 582480,
+      "retention": 0.03957891212079043,
+      "raw_mesr": 0.6686951640875616,
+      "edformer_mesr": 1.1155677255281153
+    },
+    {
+      "recording": "E-MLB/D-END/Hands-ND00-1",
+      "events": 1616626,
+      "considered": 1613824,
+      "kept": 80242,
+      "retention": 0.049721654901649745,
+      "raw_mesr": 0.6356651367101915,
+      "edformer_mesr": 0.718970439674286
+    },
+    {
+      "recording": "E-MLB/D-END/Hands-ND04-1",
+      "events": 1109728,
+      "considered": 1105920,
+      "kept": 3125,
+      "retention": 0.002825701678240741,
+      "raw_mesr": 0.6121773263441058,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/D-END/Hands-ND16-1",
+      "events": 884021,
+      "considered": 880640,
+      "kept": 18,
+      "retention": 2.043968023255814e-05,
+      "raw_mesr": 0.7144379148207957,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/D-END/Hands-ND64-1",
+      "events": 803217,
+      "considered": 802816,
+      "kept": 36,
+      "retention": 4.48421556122449e-05,
+      "raw_mesr": 0.7574162567267098,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/D-END/Leaf-ND00-1",
+      "events": 2010113,
+      "considered": 2007040,
+      "kept": 195554,
+      "retention": 0.09743403220663266,
+      "raw_mesr": 0.569613869370511,
+      "edformer_mesr": 0.71317150892999
+    },
+    {
+      "recording": "E-MLB/D-END/Leaf-ND04-1",
+      "events": 2172372,
+      "considered": 2170880,
+      "kept": 138707,
+      "retention": 0.06389436541863208,
+      "raw_mesr": 0.5886547557185193,
+      "edformer_mesr": 0.7712946143096888
+    },
+    {
+      "recording": "E-MLB/D-END/Leaf-ND16-1",
+      "events": 2344540,
+      "considered": 2342912,
+      "kept": 306767,
+      "retention": 0.13093406837303323,
+      "raw_mesr": 0.5936908695698102,
+      "edformer_mesr": 0.7095190584654352
+    },
+    {
+      "recording": "E-MLB/D-END/Leaf-ND64-1",
+      "events": 3085575,
+      "considered": 3084288,
+      "kept": 144233,
+      "retention": 0.04676379118940903,
+      "raw_mesr": 0.5601651625297603,
+      "edformer_mesr": 0.7482953677052538
+    },
+    {
+      "recording": "E-MLB/D-END/Lockers-ND00-1",
+      "events": 3561886,
+      "considered": 3559424,
+      "kept": 1163540,
+      "retention": 0.32688996871403914,
+      "raw_mesr": 0.8288707412142149,
+      "edformer_mesr": 0.9984479504056273
+    },
+    {
+      "recording": "E-MLB/D-END/Lockers-ND04-1",
+      "events": 5478108,
+      "considered": 5476352,
+      "kept": 1596593,
+      "retention": 0.2915431659615744,
+      "raw_mesr": 0.8534876238250411,
+      "edformer_mesr": 1.1125824242884526
+    },
+    {
+      "recording": "E-MLB/D-END/Lockers-ND16-1",
+      "events": 4871730,
+      "considered": 4870144,
+      "kept": 868934,
+      "retention": 0.1784205970090412,
+      "raw_mesr": 0.766740367909021,
+      "edformer_mesr": 1.0319014471137553
+    },
+    {
+      "recording": "E-MLB/D-END/Lockers-ND64-1",
+      "events": 5494517,
+      "considered": 5492736,
+      "kept": 719333,
+      "retention": 0.13096078165781133,
+      "raw_mesr": 0.7522724284926678,
+      "edformer_mesr": 1.0772109627237796
+    },
+    {
+      "recording": "E-MLB/D-END/Meeting_Room-ND00-1",
+      "events": 3543016,
+      "considered": 3538944,
+      "kept": 805961,
+      "retention": 0.22774053502965858,
+      "raw_mesr": 0.8393823935414118,
+      "edformer_mesr": 1.1111089220943113
+    },
+    {
+      "recording": "E-MLB/D-END/Meeting_Room-ND04-1",
+      "events": 4192249,
+      "considered": 4190208,
+      "kept": 1087907,
+      "retention": 0.25963078682490226,
+      "raw_mesr": 0.9137533262163186,
+      "edformer_mesr": 1.091216889840729
+    },
+    {
+      "recording": "E-MLB/D-END/Meeting_Room-ND16-1",
+      "events": 4209235,
+      "considered": 4206592,
+      "kept": 1241171,
+      "retention": 0.29505381078079357,
+      "raw_mesr": 0.9253146282315791,
+      "edformer_mesr": 1.0515967670667696
+    },
+    {
+      "recording": "E-MLB/D-END/Meeting_Room-ND64-1",
+      "events": 2198954,
+      "considered": 2195456,
+      "kept": 537253,
+      "retention": 0.24471134925956156,
+      "raw_mesr": 0.8698941389518438,
+      "edformer_mesr": 1.0255708854569985
+    },
+    {
+      "recording": "E-MLB/D-END/Minions-ND00-1",
+      "events": 309979,
+      "considered": 307200,
+      "kept": 253802,
+      "retention": 0.8261783854166667,
+      "raw_mesr": 1.1739179943389644,
+      "edformer_mesr": 1.181207557028849
+    },
+    {
+      "recording": "E-MLB/D-END/Minions-ND04-1",
+      "events": 367889,
+      "considered": 364544,
+      "kept": 289175,
+      "retention": 0.7932512947682584,
+      "raw_mesr": 1.1600229796067,
+      "edformer_mesr": 1.168329198787986
+    },
+    {
+      "recording": "E-MLB/D-END/Minions-ND16-1",
+      "events": 593726,
+      "considered": 589824,
+      "kept": 380497,
+      "retention": 0.6451026068793403,
+      "raw_mesr": 1.138875618383659,
+      "edformer_mesr": 1.149060950216874
+    },
+    {
+      "recording": "E-MLB/D-END/Minions-ND64-1",
+      "events": 796331,
+      "considered": 794624,
+      "kept": 114923,
+      "retention": 0.14462563426224226,
+      "raw_mesr": 1.0474286193995677,
+      "edformer_mesr": 1.3390508687311211
+    },
+    {
+      "recording": "E-MLB/D-END/Mirror-ND00-1",
+      "events": 1537308,
+      "considered": 1536000,
+      "kept": 1275276,
+      "retention": 0.8302578125,
+      "raw_mesr": 0.8851309656577362,
+      "edformer_mesr": 0.8982073681851193
+    },
+    {
+      "recording": "E-MLB/D-END/Mirror-ND04-1",
+      "events": 2078056,
+      "considered": 2076672,
+      "kept": 1467066,
+      "retention": 0.7064505131286982,
+      "raw_mesr": 0.879476356881573,
+      "edformer_mesr": 0.9034770693452984
+    },
+    {
+      "recording": "E-MLB/D-END/Mirror-ND16-1",
+      "events": 1609822,
+      "considered": 1609728,
+      "kept": 629421,
+      "retention": 0.39101077946087787,
+      "raw_mesr": 0.8412306155754296,
+      "edformer_mesr": 0.8874807987089797
+    },
+    {
+      "recording": "E-MLB/D-END/Mirror-ND64-1",
+      "events": 1061304,
+      "considered": 1060864,
+      "kept": 133155,
+      "retention": 0.12551561745897682,
+      "raw_mesr": 0.7222720981931154,
+      "edformer_mesr": 0.8346400361732148
+    },
+    {
+      "recording": "E-MLB/D-END/Newton-ND00-1",
+      "events": 3060382,
+      "considered": 3059712,
+      "kept": 2861311,
+      "retention": 0.935156969021921,
+      "raw_mesr": 1.0269294858781945,
+      "edformer_mesr": 1.0318629753350173
+    },
+    {
+      "recording": "E-MLB/D-END/Newton-ND04-1",
+      "events": 3651796,
+      "considered": 3649536,
+      "kept": 3224620,
+      "retention": 0.8835698565516273,
+      "raw_mesr": 1.028757927098224,
+      "edformer_mesr": 1.0316857851097279
+    },
+    {
+      "recording": "E-MLB/D-END/Newton-ND16-1",
+      "events": 3908377,
+      "considered": 3907584,
+      "kept": 3017736,
+      "retention": 0.7722766804245284,
+      "raw_mesr": 1.0186974253503798,
+      "edformer_mesr": 1.035201268868517
+    },
+    {
+      "recording": "E-MLB/D-END/Newton-ND64-1",
+      "events": 4839386,
+      "considered": 4837376,
+      "kept": 2139001,
+      "retention": 0.44218208384049534,
+      "raw_mesr": 0.9509168557632908,
+      "edformer_mesr": 1.0128180007819028
+    },
+    {
+      "recording": "E-MLB/D-END/Pedestrians-ND00-1",
+      "events": 2507304,
+      "considered": 2506752,
+      "kept": 1625427,
+      "retention": 0.6484195484834558,
+      "raw_mesr": 0.8471177752180447,
+      "edformer_mesr": 0.8904427961230869
+    },
+    {
+      "recording": "E-MLB/D-END/Pedestrians-ND04-1",
+      "events": 1614002,
+      "considered": 1613824,
+      "kept": 1056937,
+      "retention": 0.654927055242703,
+      "raw_mesr": 0.8443869749748637,
+      "edformer_mesr": 0.8757520527404693
+    },
+    {
+      "recording": "E-MLB/D-END/Pedestrians-ND16-1",
+      "events": 898336,
+      "considered": 897024,
+      "kept": 695453,
+      "retention": 0.775289178438927,
+      "raw_mesr": 0.9029133873951447,
+      "edformer_mesr": 0.9176652998833855
+    },
+    {
+      "recording": "E-MLB/D-END/Pedestrians-ND64-1",
+      "events": 1321699,
+      "considered": 1318912,
+      "kept": 1055696,
+      "retention": 0.8004294448757764,
+      "raw_mesr": 0.9164771919744292,
+      "edformer_mesr": 0.9371186463968367
+    },
+    {
+      "recording": "E-MLB/D-END/Pendulum-ND00-1",
+      "events": 3873180,
+      "considered": 3870720,
+      "kept": 1929555,
+      "retention": 0.49850027901785715,
+      "raw_mesr": 0.8182376384880556,
+      "edformer_mesr": 0.9506301385586975
+    },
+    {
+      "recording": "E-MLB/D-END/Pendulum-ND04-1",
+      "events": 2669040,
+      "considered": 2666496,
+      "kept": 2012864,
+      "retention": 0.754872311827957,
+      "raw_mesr": 0.9387792034169632,
+      "edformer_mesr": 1.003013680059261
+    },
+    {
+      "recording": "E-MLB/D-END/Pendulum-ND16-1",
+      "events": 1874016,
+      "considered": 1871872,
+      "kept": 1145848,
+      "retention": 0.6121401463347921,
+      "raw_mesr": 0.8809472262827117,
+      "edformer_mesr": 0.9680993863515631
+    },
+    {
+      "recording": "E-MLB/D-END/Pendulum-ND64-1",
+      "events": 3664706,
+      "considered": 3661824,
+      "kept": 1607661,
+      "retention": 0.4390328426489094,
+      "raw_mesr": 0.7709143500248608,
+      "edformer_mesr": 0.9454538218217741
+    },
+    {
+      "recording": "E-MLB/D-END/Poker-ND00-1",
+      "events": 2890597,
+      "considered": 2887680,
+      "kept": 2004306,
+      "retention": 0.6940886801861702,
+      "raw_mesr": 0.8329244683406957,
+      "edformer_mesr": 0.9485561606361287
+    },
+    {
+      "recording": "E-MLB/D-END/Poker-ND04-1",
+      "events": 3168590,
+      "considered": 3166208,
+      "kept": 2598282,
+      "retention": 0.8206289668903622,
+      "raw_mesr": 0.9008935950400329,
+      "edformer_mesr": 0.9391562547193738
+    },
+    {
+      "recording": "E-MLB/D-END/Poker-ND16-1",
+      "events": 3289436,
+      "considered": 3289088,
+      "kept": 2838495,
+      "retention": 0.8630036654537672,
+      "raw_mesr": 0.9443376018555367,
+      "edformer_mesr": 0.9581732836267676
+    },
+    {
+      "recording": "E-MLB/D-END/Poker-ND64-1",
+      "events": 2291390,
+      "considered": 2289664,
+      "kept": 1612323,
+      "retention": 0.7041744989657871,
+      "raw_mesr": 0.8767277539875268,
+      "edformer_mesr": 0.8765327749164691
+    },
+    {
+      "recording": "E-MLB/D-END/Punch-ND00-1",
+      "events": 1189501,
+      "considered": 1187840,
+      "kept": 1109604,
+      "retention": 0.9341359105603448,
+      "raw_mesr": 0.9455693758519962,
+      "edformer_mesr": 0.9504206355523128
+    },
+    {
+      "recording": "E-MLB/D-END/Punch-ND04-1",
+      "events": 1447534,
+      "considered": 1445888,
+      "kept": 1346709,
+      "retention": 0.9314061670060199,
+      "raw_mesr": 0.9428799349655296,
+      "edformer_mesr": 0.9456986609766311
+    },
+    {
+      "recording": "E-MLB/D-END/Punch-ND16-1",
+      "events": 1796284,
+      "considered": 1794048,
+      "kept": 1649172,
+      "retention": 0.9192463077910958,
+      "raw_mesr": 0.9265864249190784,
+      "edformer_mesr": 0.9387468105358505
+    },
+    {
+      "recording": "E-MLB/D-END/Punch-ND64-1",
+      "events": 2690261,
+      "considered": 2686976,
+      "kept": 2371841,
+      "retention": 0.882717597775343,
+      "raw_mesr": 0.9068786108509039,
+      "edformer_mesr": 0.9160309626146554
+    },
+    {
+      "recording": "E-MLB/D-END/Reflact-ND00-1",
+      "events": 4663308,
+      "considered": 4661248,
+      "kept": 845194,
+      "retention": 0.1813235425362478,
+      "raw_mesr": 0.64564666649595,
+      "edformer_mesr": 0.8387066328851055
+    },
+    {
+      "recording": "E-MLB/D-END/Reflact-ND04-1",
+      "events": 5264457,
+      "considered": 5263360,
+      "kept": 623850,
+      "retention": 0.1185269485651751,
+      "raw_mesr": 0.6106119969495833,
+      "edformer_mesr": 0.8392383270455863
+    },
+    {
+      "recording": "E-MLB/D-END/Reflact-ND16-1",
+      "events": 5597502,
+      "considered": 5595136,
+      "kept": 538267,
+      "retention": 0.09620266602992314,
+      "raw_mesr": 0.5955730890240105,
+      "edformer_mesr": 0.8393054889394428
+    },
+    {
+      "recording": "E-MLB/D-END/Reflact-ND64-1",
+      "events": 5428425,
+      "considered": 5427200,
+      "kept": 302819,
+      "retention": 0.05579654333726415,
+      "raw_mesr": 0.5693712390135973,
+      "edformer_mesr": 0.8643153731494186
+    },
+    {
+      "recording": "E-MLB/D-END/Ride-ND00-1",
+      "events": 1861189,
+      "considered": 1859584,
+      "kept": 1471267,
+      "retention": 0.7911807156869494,
+      "raw_mesr": 0.9236360430618721,
+      "edformer_mesr": 0.9535661150824771
+    },
+    {
+      "recording": "E-MLB/D-END/Ride-ND04-1",
+      "events": 2177853,
+      "considered": 2174976,
+      "kept": 1102154,
+      "retention": 0.5067430629119586,
+      "raw_mesr": 0.9156485548353308,
+      "edformer_mesr": 0.9707296565249851
+    },
+    {
+      "recording": "E-MLB/D-END/Ride-ND16-1",
+      "events": 1837564,
+      "considered": 1835008,
+      "kept": 442438,
+      "retention": 0.24110957554408483,
+      "raw_mesr": 0.8462185861035352,
+      "edformer_mesr": 0.977477916494489
+    },
+    {
+      "recording": "E-MLB/D-END/Ride-ND64-1",
+      "events": 1240984,
+      "considered": 1236992,
+      "kept": 136378,
+      "retention": 0.11024970250413907,
+      "raw_mesr": 0.7677790876248889,
+      "edformer_mesr": 0.9017128519911859
+    },
+    {
+      "recording": "E-MLB/D-END/Ruler-ND00-1",
+      "events": 2185346,
+      "considered": 2183168,
+      "kept": 1420042,
+      "retention": 0.6504501714939024,
+      "raw_mesr": 0.8035491178349428,
+      "edformer_mesr": 0.8259361043769939
+    },
+    {
+      "recording": "E-MLB/D-END/Ruler-ND04-1",
+      "events": 1899729,
+      "considered": 1896448,
+      "kept": 1099356,
+      "retention": 0.5796921402537797,
+      "raw_mesr": 0.7706451924484428,
+      "edformer_mesr": 0.82058668024162
+    },
+    {
+      "recording": "E-MLB/D-END/Ruler-ND16-1",
+      "events": 1315089,
+      "considered": 1314816,
+      "kept": 556625,
+      "retention": 0.42334820993964173,
+      "raw_mesr": 0.7394615746759365,
+      "edformer_mesr": 0.8112256635628997
+    },
+    {
+      "recording": "E-MLB/D-END/Ruler-ND64-1",
+      "events": 913844,
+      "considered": 913408,
+      "kept": 85134,
+      "retention": 0.09320478909753363,
+      "raw_mesr": 0.6376300212427269,
+      "edformer_mesr": 0.8051344949804212
+    },
+    {
+      "recording": "E-MLB/D-END/Shapes_Day-ND00-1",
+      "events": 3155658,
+      "considered": 3153920,
+      "kept": 2845758,
+      "retention": 0.902292385349026,
+      "raw_mesr": 0.9398746200501495,
+      "edformer_mesr": 0.9396842096413259
+    },
+    {
+      "recording": "E-MLB/D-END/Shapes_Day-ND04-1",
+      "events": 3372312,
+      "considered": 3371008,
+      "kept": 2736616,
+      "retention": 0.8118094053766707,
+      "raw_mesr": 0.9388145722699203,
+      "edformer_mesr": 0.9387991062941761
+    },
+    {
+      "recording": "E-MLB/D-END/Shapes_Day-ND16-1",
+      "events": 3514699,
+      "considered": 3514368,
+      "kept": 961972,
+      "retention": 0.27372546073717946,
+      "raw_mesr": 0.9056795623332213,
+      "edformer_mesr": 0.8655550355227425
+    },
+    {
+      "recording": "E-MLB/D-END/Shapes_Day-ND64-1",
+      "events": 2240199,
+      "considered": 2236416,
+      "kept": 112240,
+      "retention": 0.05018744276556777,
+      "raw_mesr": 0.722728012382903,
+      "edformer_mesr": 0.7362318735804955
+    },
+    {
+      "recording": "E-MLB/D-END/Shuttlecock-ND00-1",
+      "events": 365538,
+      "considered": 364544,
+      "kept": 311748,
+      "retention": 0.8551724894662921,
+      "raw_mesr": 1.000376618974783,
+      "edformer_mesr": 1.010065218723895
+    },
+    {
+      "recording": "E-MLB/D-END/Shuttlecock-ND04-1",
+      "events": 676578,
+      "considered": 675840,
+      "kept": 578947,
+      "retention": 0.8566332267992425,
+      "raw_mesr": 0.9648574770618698,
+      "edformer_mesr": 0.9859778510710516
+    },
+    {
+      "recording": "E-MLB/D-END/Shuttlecock-ND16-1",
+      "events": 399340,
+      "considered": 397312,
+      "kept": 335207,
+      "retention": 0.8436870771585051,
+      "raw_mesr": 0.9620507058088363,
+      "edformer_mesr": 0.9793057570570739
+    },
+    {
+      "recording": "E-MLB/D-END/Shuttlecock-ND64-1",
+      "events": 443170,
+      "considered": 442368,
+      "kept": 374447,
+      "retention": 0.8464604130497685,
+      "raw_mesr": 1.0523024092693756,
+      "edformer_mesr": 1.0225145086585923
+    },
+    {
+      "recording": "E-MLB/D-END/Snackery-ND00-1",
+      "events": 9463803,
+      "considered": 9461760,
+      "kept": 229780,
+      "retention": 0.02428512242965368,
+      "raw_mesr": 0.5345374292869934,
+      "edformer_mesr": 0.6567893560000592
+    },
+    {
+      "recording": "E-MLB/D-END/Snackery-ND04-1",
+      "events": 6558758,
+      "considered": 6557696,
+      "kept": 164236,
+      "retention": 0.025044771822298563,
+      "raw_mesr": 0.4760224970670946,
+      "edformer_mesr": 0.5847963063361559
+    },
+    {
+      "recording": "E-MLB/D-END/Snackery-ND16-1",
+      "events": 7408942,
+      "considered": 7405568,
+      "kept": 100361,
+      "retention": 0.013552100257535952,
+      "raw_mesr": 0.4003360926533164,
+      "edformer_mesr": 0.6540773212750247
+    },
+    {
+      "recording": "E-MLB/D-END/Snackery-ND64-1",
+      "events": 3499233,
+      "considered": 3497984,
+      "kept": 45383,
+      "retention": 0.012974044478190866,
+      "raw_mesr": 0.3634300489219063,
+      "edformer_mesr": 0.6472221515207505
+    },
+    {
+      "recording": "E-MLB/D-END/Snow-ND00-1",
+      "events": 90180,
+      "considered": 90112,
+      "kept": 49866,
+      "retention": 0.5533780184659091,
+      "raw_mesr": 0.8684380422498125,
+      "edformer_mesr": 0.9259363096921385
+    },
+    {
+      "recording": "E-MLB/D-END/Snow-ND04-1",
+      "events": 148840,
+      "considered": 147456,
+      "kept": 94473,
+      "retention": 0.64068603515625,
+      "raw_mesr": 0.8753426495000205,
+      "edformer_mesr": 0.8889876882492915
+    },
+    {
+      "recording": "E-MLB/D-END/Snow-ND16-1",
+      "events": 227020,
+      "considered": 225280,
+      "kept": 130299,
+      "retention": 0.5783868963068182,
+      "raw_mesr": 0.8785352373762728,
+      "edformer_mesr": 0.8958196458865111
+    },
+    {
+      "recording": "E-MLB/D-END/Snow-ND64-1",
+      "events": 319970,
+      "considered": 319488,
+      "kept": 149766,
+      "retention": 0.4687687800480769,
+      "raw_mesr": 0.9414296210327473,
+      "edformer_mesr": 0.8918982922670066
+    },
+    {
+      "recording": "E-MLB/D-END/Spinning-ND00-1",
+      "events": 2275171,
+      "considered": 2273280,
+      "kept": 2198523,
+      "retention": 0.9671149176520271,
+      "raw_mesr": 1.0689938218666473,
+      "edformer_mesr": 1.0681109695262632
+    },
+    {
+      "recording": "E-MLB/D-END/Spinning-ND04-1",
+      "events": 1939558,
+      "considered": 1937408,
+      "kept": 1811380,
+      "retention": 0.9349502015063424,
+      "raw_mesr": 1.1339088135584043,
+      "edformer_mesr": 1.1237125360515956
+    },
+    {
+      "recording": "E-MLB/D-END/Spinning-ND16-1",
+      "events": 2301117,
+      "considered": 2297856,
+      "kept": 2059777,
+      "retention": 0.8963908095198306,
+      "raw_mesr": 1.2546674136892662,
+      "edformer_mesr": 1.1774695722093234
+    },
+    {
+      "recording": "E-MLB/D-END/Spinning-ND64-1",
+      "events": 1367768,
+      "considered": 1363968,
+      "kept": 433206,
+      "retention": 0.3176071579391892,
+      "raw_mesr": 1.4181483557355703,
+      "edformer_mesr": 1.3026720121814956
+    },
+    {
+      "recording": "E-MLB/D-END/Stacks-ND00-1",
+      "events": 3284840,
+      "considered": 3280896,
+      "kept": 366244,
+      "retention": 0.11162926225031211,
+      "raw_mesr": 0.6871991154292545,
+      "edformer_mesr": 0.9382305691402077
+    },
+    {
+      "recording": "E-MLB/D-END/Stacks-ND04-1",
+      "events": 3450867,
+      "considered": 3448832,
+      "kept": 265505,
+      "retention": 0.07698403401499407,
+      "raw_mesr": 0.669500482329653,
+      "edformer_mesr": 0.9537833170515937
+    },
+    {
+      "recording": "E-MLB/D-END/Stacks-ND16-1",
+      "events": 4356582,
+      "considered": 4354048,
+      "kept": 325278,
+      "retention": 0.07470703125,
+      "raw_mesr": 0.6659885036727636,
+      "edformer_mesr": 0.9417533238344096
+    },
+    {
+      "recording": "E-MLB/D-END/Stacks-ND64-1",
+      "events": 3756041,
+      "considered": 3756032,
+      "kept": 128603,
+      "retention": 0.03423905866616685,
+      "raw_mesr": 0.6282101549078556,
+      "edformer_mesr": 0.9607408456593685
+    },
+    {
+      "recording": "E-MLB/D-END/Stairs-ND00-1",
+      "events": 2269389,
+      "considered": 2269184,
+      "kept": 812557,
+      "retention": 0.3580833462601534,
+      "raw_mesr": 0.7752036965386939,
+      "edformer_mesr": 0.889489674358892
+    },
+    {
+      "recording": "E-MLB/D-END/Stairs-ND04-1",
+      "events": 1689107,
+      "considered": 1687552,
+      "kept": 176177,
+      "retention": 0.10439796818112865,
+      "raw_mesr": 0.7262242267434001,
+      "edformer_mesr": 0.9252625914943076
+    },
+    {
+      "recording": "E-MLB/D-END/Stairs-ND16-1",
+      "events": 4366488,
+      "considered": 4366336,
+      "kept": 290775,
+      "retention": 0.06659473755569888,
+      "raw_mesr": 0.6181331162210092,
+      "edformer_mesr": 0.9131244150013074
+    },
+    {
+      "recording": "E-MLB/D-END/Stairs-ND64-1",
+      "events": 2471070,
+      "considered": 2469888,
+      "kept": 82596,
+      "retention": 0.03344119247512438,
+      "raw_mesr": 0.5605132240130214,
+      "edformer_mesr": 0.8875273338564551
+    },
+    {
+      "recording": "E-MLB/D-END/Study_Lounge-ND00-1",
+      "events": 4634858,
+      "considered": 4632576,
+      "kept": 1536862,
+      "retention": 0.33175106031719714,
+      "raw_mesr": 1.0173442542475488,
+      "edformer_mesr": 1.2388631437220472
+    },
+    {
+      "recording": "E-MLB/D-END/Study_Lounge-ND04-1",
+      "events": 4677281,
+      "considered": 4673536,
+      "kept": 1443272,
+      "retention": 0.3088179913453111,
+      "raw_mesr": 0.9849426015676679,
+      "edformer_mesr": 1.2060698938714365
+    },
+    {
+      "recording": "E-MLB/D-END/Study_Lounge-ND16-1",
+      "events": 4864497,
+      "considered": 4861952,
+      "kept": 1214417,
+      "retention": 0.24977971810499158,
+      "raw_mesr": 0.9584581284599679,
+      "edformer_mesr": 1.1845151425867075
+    },
+    {
+      "recording": "E-MLB/D-END/Study_Lounge-ND64-1",
+      "events": 4353890,
+      "considered": 4349952,
+      "kept": 1057396,
+      "retention": 0.24308222251647835,
+      "raw_mesr": 0.9672039170359285,
+      "edformer_mesr": 1.153202808056578
+    },
+    {
+      "recording": "E-MLB/D-END/Swan-ND00-1",
+      "events": 1962389,
+      "considered": 1961984,
+      "kept": 290362,
+      "retention": 0.14799407130741127,
+      "raw_mesr": 0.773113113890834,
+      "edformer_mesr": 1.0043442137255323
+    },
+    {
+      "recording": "E-MLB/D-END/Swan-ND04-1",
+      "events": 2725602,
+      "considered": 2723840,
+      "kept": 63356,
+      "retention": 0.02325980968045113,
+      "raw_mesr": 0.6598717352048585,
+      "edformer_mesr": 1.133131761088741
+    },
+    {
+      "recording": "E-MLB/D-END/Swan-ND16-1",
+      "events": 3291844,
+      "considered": 3289088,
+      "kept": 37556,
+      "retention": 0.011418362780199252,
+      "raw_mesr": 0.5762269941242159,
+      "edformer_mesr": 0.9635478174988478
+    },
+    {
+      "recording": "E-MLB/D-END/Swan-ND64-1",
+      "events": 1426014,
+      "considered": 1425408,
+      "kept": 8486,
+      "retention": 0.005953383171695402,
+      "raw_mesr": 0.6891394524661947,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/D-END/Temple-ND00-1",
+      "events": 2687054,
+      "considered": 2686976,
+      "kept": 928443,
+      "retention": 0.3455345339891387,
+      "raw_mesr": 0.7803577108728774,
+      "edformer_mesr": 0.9174606613001112
+    },
+    {
+      "recording": "E-MLB/D-END/Temple-ND04-1",
+      "events": 4468733,
+      "considered": 4464640,
+      "kept": 1080763,
+      "retention": 0.24207170118979357,
+      "raw_mesr": 0.7785088141767615,
+      "edformer_mesr": 0.9281388914511121
+    },
+    {
+      "recording": "E-MLB/D-END/Temple-ND16-1",
+      "events": 3524389,
+      "considered": 3522560,
+      "kept": 1383119,
+      "retention": 0.3926459733829942,
+      "raw_mesr": 0.7962036165356681,
+      "edformer_mesr": 0.9054259513657061
+    },
+    {
+      "recording": "E-MLB/D-END/Temple-ND64-1",
+      "events": 4202224,
+      "considered": 4198400,
+      "kept": 1076004,
+      "retention": 0.2562890625,
+      "raw_mesr": 0.768396043381058,
+      "edformer_mesr": 0.9169932284839677
+    },
+    {
+      "recording": "E-MLB/D-END/Toys-ND00-1",
+      "events": 590233,
+      "considered": 589824,
+      "kept": 557647,
+      "retention": 0.9454464382595487,
+      "raw_mesr": 0.9468550082733231,
+      "edformer_mesr": 0.9532798799806051
+    },
+    {
+      "recording": "E-MLB/D-END/Toys-ND04-1",
+      "events": 862722,
+      "considered": 860160,
+      "kept": 785618,
+      "retention": 0.9133393787202381,
+      "raw_mesr": 0.910483351149557,
+      "edformer_mesr": 0.9267142901588628
+    },
+    {
+      "recording": "E-MLB/D-END/Toys-ND16-1",
+      "events": 599447,
+      "considered": 598016,
+      "kept": 549331,
+      "retention": 0.9185891347388698,
+      "raw_mesr": 0.9566989973467452,
+      "edformer_mesr": 0.9658260313931579
+    },
+    {
+      "recording": "E-MLB/D-END/Toys-ND64-1",
+      "events": 1005625,
+      "considered": 1003520,
+      "kept": 770631,
+      "retention": 0.7679278938137755,
+      "raw_mesr": 0.8817428435980302,
+      "edformer_mesr": 0.8880587407892834
+    },
+    {
+      "recording": "E-MLB/D-END/Tree-ND00-1",
+      "events": 6797847,
+      "considered": 6795264,
+      "kept": 158436,
+      "retention": 0.023315650429475587,
+      "raw_mesr": 0.5756169152916591,
+      "edformer_mesr": 0.8186182290183386
+    },
+    {
+      "recording": "E-MLB/D-END/Tree-ND04-1",
+      "events": 3655232,
+      "considered": 3653632,
+      "kept": 121358,
+      "retention": 0.03321571521160314,
+      "raw_mesr": 0.6063467514140505,
+      "edformer_mesr": 0.9096410085805593
+    },
+    {
+      "recording": "E-MLB/D-END/Tree-ND16-1",
+      "events": 5854518,
+      "considered": 5853184,
+      "kept": 151804,
+      "retention": 0.025935285820503848,
+      "raw_mesr": 0.5420293812856267,
+      "edformer_mesr": 0.8384179961848306
+    },
+    {
+      "recording": "E-MLB/D-END/Tree-ND64-1",
+      "events": 7032029,
+      "considered": 7028736,
+      "kept": 102668,
+      "retention": 0.014606893757284382,
+      "raw_mesr": 0.5198381832647161,
+      "edformer_mesr": 0.7741144790787868
+    },
+    {
+      "recording": "E-MLB/D-END/UAV-ND00-1",
+      "events": 416444,
+      "considered": 413696,
+      "kept": 399845,
+      "retention": 0.9665188931002475,
+      "raw_mesr": 1.0539509758785641,
+      "edformer_mesr": 1.0435474092034354
+    },
+    {
+      "recording": "E-MLB/D-END/UAV-ND04-1",
+      "events": 390390,
+      "considered": 389120,
+      "kept": 333833,
+      "retention": 0.8579178659539474,
+      "raw_mesr": 1.3473509334665401,
+      "edformer_mesr": 1.1221808904481265
+    },
+    {
+      "recording": "E-MLB/D-END/UAV-ND16-1",
+      "events": 426289,
+      "considered": 425984,
+      "kept": 381676,
+      "retention": 0.8959867037259616,
+      "raw_mesr": 1.225235218867438,
+      "edformer_mesr": 1.09912805287109
+    },
+    {
+      "recording": "E-MLB/D-END/UAV-ND64-1",
+      "events": 218530,
+      "considered": 217088,
+      "kept": 209794,
+      "retention": 0.9664007222877359,
+      "raw_mesr": 1.1093441884769795,
+      "edformer_mesr": 1.1017114425087264
+    },
+    {
+      "recording": "E-MLB/D-END/Windows-ND00-1",
+      "events": 2069296,
+      "considered": 2068480,
+      "kept": 1402044,
+      "retention": 0.6778136602722772,
+      "raw_mesr": 0.974598260633702,
+      "edformer_mesr": 0.9936120531858333
+    },
+    {
+      "recording": "E-MLB/D-END/Windows-ND04-1",
+      "events": 1616640,
+      "considered": 1613824,
+      "kept": 1069059,
+      "retention": 0.6624384071621193,
+      "raw_mesr": 0.9804101202025242,
+      "edformer_mesr": 1.006968601470139
+    },
+    {
+      "recording": "E-MLB/D-END/Windows-ND16-1",
+      "events": 1708247,
+      "considered": 1708032,
+      "kept": 1248679,
+      "retention": 0.7310630011615707,
+      "raw_mesr": 0.9896304817534103,
+      "edformer_mesr": 1.0034140367377402
+    },
+    {
+      "recording": "E-MLB/D-END/Windows-ND64-1",
+      "events": 2596216,
+      "considered": 2592768,
+      "kept": 1723064,
+      "retention": 0.6645654374012638,
+      "raw_mesr": 0.9513120314128881,
+      "edformer_mesr": 0.9887008802704724
+    },
+    {
+      "recording": "E-MLB/N-END/Bat-ND00-1",
+      "events": 648689,
+      "considered": 647168,
+      "kept": 569930,
+      "retention": 0.8806523190268988,
+      "raw_mesr": 0.9355902122075316,
+      "edformer_mesr": 0.9430077555806808
+    },
+    {
+      "recording": "E-MLB/N-END/Bat-ND04-1",
+      "events": 856509,
+      "considered": 856064,
+      "kept": 503376,
+      "retention": 0.5880121112440191,
+      "raw_mesr": 0.9797580448589741,
+      "edformer_mesr": 0.9923723610052686
+    },
+    {
+      "recording": "E-MLB/N-END/Bat-ND16-1",
+      "events": 683271,
+      "considered": 679936,
+      "kept": 146393,
+      "retention": 0.21530408744352408,
+      "raw_mesr": 0.8309079322169644,
+      "edformer_mesr": 1.0018899881685308
+    },
+    {
+      "recording": "E-MLB/N-END/Bat-ND64-1",
+      "events": 541968,
+      "considered": 540672,
+      "kept": 47286,
+      "retention": 0.08745783025568182,
+      "raw_mesr": 0.7172987977214291,
+      "edformer_mesr": 0.9500867218577845
+    },
+    {
+      "recording": "E-MLB/N-END/Beams-ND00-1",
+      "events": 481835,
+      "considered": 479232,
+      "kept": 376180,
+      "retention": 0.7849642761752137,
+      "raw_mesr": 0.8731594440076136,
+      "edformer_mesr": 0.9182958865600389
+    },
+    {
+      "recording": "E-MLB/N-END/Beams-ND04-1",
+      "events": 1073859,
+      "considered": 1073152,
+      "kept": 777427,
+      "retention": 0.7244332582895993,
+      "raw_mesr": 0.9325168820036467,
+      "edformer_mesr": 1.0052550286388187
+    },
+    {
+      "recording": "E-MLB/N-END/Beams-ND16-1",
+      "events": 1094185,
+      "considered": 1093632,
+      "kept": 540033,
+      "retention": 0.49379773086376405,
+      "raw_mesr": 0.9098896242186648,
+      "edformer_mesr": 1.039189221926145
+    },
+    {
+      "recording": "E-MLB/N-END/Beams-ND64-1",
+      "events": 3501635,
+      "considered": 3497984,
+      "kept": 943274,
+      "retention": 0.26966218256001173,
+      "raw_mesr": 0.8069463757023947,
+      "edformer_mesr": 1.04966520995739
+    },
+    {
+      "recording": "E-MLB/N-END/Bed-ND00-1",
+      "events": 751060,
+      "considered": 749568,
+      "kept": 230659,
+      "retention": 0.3077225815403005,
+      "raw_mesr": 0.9146636085432991,
+      "edformer_mesr": 0.9689623530772771
+    },
+    {
+      "recording": "E-MLB/N-END/Bed-ND04-1",
+      "events": 2286615,
+      "considered": 2285568,
+      "kept": 267324,
+      "retention": 0.11696173555107527,
+      "raw_mesr": 0.8197496584877116,
+      "edformer_mesr": 0.9659509293175014
+    },
+    {
+      "recording": "E-MLB/N-END/Bed-ND16-1",
+      "events": 2707962,
+      "considered": 2707456,
+      "kept": 188651,
+      "retention": 0.06967832533566566,
+      "raw_mesr": 0.7075083470099911,
+      "edformer_mesr": 0.9650895971486664
+    },
+    {
+      "recording": "E-MLB/N-END/Bed-ND64-1",
+      "events": 3196547,
+      "considered": 3194880,
+      "kept": 144893,
+      "retention": 0.045351625100160255,
+      "raw_mesr": 0.6797418769392506,
+      "edformer_mesr": 1.040618735923055
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND00-1",
+      "events": 2791968,
+      "considered": 2789376,
+      "kept": 305643,
+      "retention": 0.10957396923182819,
+      "raw_mesr": 1.7194270606732793,
+      "edformer_mesr": 1.4280356383665944
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND04-1",
+      "events": 1211482,
+      "considered": 1208320,
+      "kept": 1900,
+      "retention": 0.0015724311440677965,
+      "raw_mesr": 1.5348480555185195,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND16-1",
+      "events": 1079271,
+      "considered": 1077248,
+      "kept": 374,
+      "retention": 0.0003471809648288973,
+      "raw_mesr": 0.8195682143895948,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND64-1",
+      "events": 898717,
+      "considered": 897024,
+      "kept": 23,
+      "retention": 2.5640339611872145e-05,
+      "raw_mesr": 0.8186108519771057,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Car_Night-ND00-1",
+      "events": 7051899,
+      "considered": 7049216,
+      "kept": 2102961,
+      "retention": 0.29832551591552875,
+      "raw_mesr": 1.0444329827804772,
+      "edformer_mesr": 1.1680659035607357
+    },
+    {
+      "recording": "E-MLB/N-END/Car_Night-ND04-1",
+      "events": 7065784,
+      "considered": 7065600,
+      "kept": 1496502,
+      "retention": 0.21180112092391304,
+      "raw_mesr": 1.1127066371488574,
+      "edformer_mesr": 1.2883206911960299
+    },
+    {
+      "recording": "E-MLB/N-END/Car_Night-ND16-1",
+      "events": 4375302,
+      "considered": 4374528,
+      "kept": 749378,
+      "retention": 0.17130488134948502,
+      "raw_mesr": 1.1851515382697224,
+      "edformer_mesr": 1.2884940795790547
+    },
+    {
+      "recording": "E-MLB/N-END/Car_Night-ND64-1",
+      "events": 2271000,
+      "considered": 2269184,
+      "kept": 214223,
+      "retention": 0.09440530164147112,
+      "raw_mesr": 1.049250234093236,
+      "edformer_mesr": 1.1876171997588487
+    },
+    {
+      "recording": "E-MLB/N-END/Ceiling-ND00-1",
+      "events": 3872625,
+      "considered": 3870720,
+      "kept": 57323,
+      "retention": 0.014809389467592592,
+      "raw_mesr": 0.6202715330908208,
+      "edformer_mesr": 0.74928311623904
+    },
+    {
+      "recording": "E-MLB/N-END/Ceiling-ND04-1",
+      "events": 1614486,
+      "considered": 1613824,
+      "kept": 12044,
+      "retention": 0.00746301951142132,
+      "raw_mesr": 0.5480799407667597,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Ceiling-ND16-1",
+      "events": 973363,
+      "considered": 970752,
+      "kept": 842,
+      "retention": 0.0008673688027426161,
+      "raw_mesr": 0.5761450545713491,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Ceiling-ND64-1",
+      "events": 616354,
+      "considered": 614400,
+      "kept": 32,
+      "retention": 5.208333333333334e-05,
+      "raw_mesr": 0.6737220755018755,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Blur-ND00-1",
+      "events": 2362859,
+      "considered": 2359296,
+      "kept": 455180,
+      "retention": 0.19293043348524305,
+      "raw_mesr": 0.6851912635166884,
+      "edformer_mesr": 0.7298470656850414
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Blur-ND04-1",
+      "events": 1511248,
+      "considered": 1507328,
+      "kept": 54515,
+      "retention": 0.03616664720618207,
+      "raw_mesr": 0.5249643126969343,
+      "edformer_mesr": 0.5527416373031161
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Blur-ND16-1",
+      "events": 1115115,
+      "considered": 1114112,
+      "kept": 12818,
+      "retention": 0.011505126953125,
+      "raw_mesr": 0.4775499972057181,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Blur-ND64-1",
+      "events": 426004,
+      "considered": 425984,
+      "kept": 29,
+      "retention": 6.807767427884616e-05,
+      "raw_mesr": 0.6711064186693146,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND00-1",
+      "events": 3005100,
+      "considered": 3002368,
+      "kept": 490318,
+      "retention": 0.1633104269696453,
+      "raw_mesr": 0.7525189693546344,
+      "edformer_mesr": 0.9050011412671408
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND04-1",
+      "events": 2473743,
+      "considered": 2469888,
+      "kept": 39928,
+      "retention": 0.016165915215588723,
+      "raw_mesr": 0.5491289695688766,
+      "edformer_mesr": 1.081489226497996
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND16-1",
+      "events": 1269333,
+      "considered": 1265664,
+      "kept": 2484,
+      "retention": 0.0019626061893203883,
+      "raw_mesr": 0.637489146650311,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND64-1",
+      "events": 881770,
+      "considered": 880640,
+      "kept": 1076,
+      "retention": 0.0012218386627906976,
+      "raw_mesr": 0.7787671488601379,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Cloth-ND00-1",
+      "events": 7660708,
+      "considered": 7659520,
+      "kept": 19469,
+      "retention": 0.002541804186163102,
+      "raw_mesr": 0.4054240077571016,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Cloth-ND04-1",
+      "events": 4684711,
+      "considered": 4681728,
+      "kept": 11323,
+      "retention": 0.0024185514408355206,
+      "raw_mesr": 0.3927740786191216,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Cloth-ND16-1",
+      "events": 3445990,
+      "considered": 3444736,
+      "kept": 7984,
+      "retention": 0.002317739298454221,
+      "raw_mesr": 0.3992733340647349,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Cloth-ND64-1",
+      "events": 1154185,
+      "considered": 1150976,
+      "kept": 3190,
+      "retention": 0.002771560831850534,
+      "raw_mesr": 0.4358807092706261,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Cola_Can-ND00-1",
+      "events": 227831,
+      "considered": 225280,
+      "kept": 200854,
+      "retention": 0.8915749289772728,
+      "raw_mesr": 1.197722694307952,
+      "edformer_mesr": 1.1386033267023634
+    },
+    {
+      "recording": "E-MLB/N-END/Cola_Can-ND04-1",
+      "events": 569230,
+      "considered": 565248,
+      "kept": 338566,
+      "retention": 0.598968948143116,
+      "raw_mesr": 1.1557909940325368,
+      "edformer_mesr": 1.1158187987637667
+    },
+    {
+      "recording": "E-MLB/N-END/Cola_Can-ND16-1",
+      "events": 437880,
+      "considered": 434176,
+      "kept": 115828,
+      "retention": 0.2667766067216981,
+      "raw_mesr": 1.194201833878982,
+      "edformer_mesr": 1.2474816261449295
+    },
+    {
+      "recording": "E-MLB/N-END/Cola_Can-ND64-1",
+      "events": 470497,
+      "considered": 466944,
+      "kept": 110090,
+      "retention": 0.23576702987938597,
+      "raw_mesr": 0.8797939557094507,
+      "edformer_mesr": 1.0543954553128159
+    },
+    {
+      "recording": "E-MLB/N-END/Dark_Building-ND00-1",
+      "events": 4075467,
+      "considered": 4071424,
+      "kept": 164295,
+      "retention": 0.04035320320359658,
+      "raw_mesr": 0.5709753092942544,
+      "edformer_mesr": 0.6945730368532013
+    },
+    {
+      "recording": "E-MLB/N-END/Dark_Building-ND04-1",
+      "events": 1938178,
+      "considered": 1937408,
+      "kept": 14442,
+      "retention": 0.007454289442389007,
+      "raw_mesr": 0.5871082458464989,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Dark_Building-ND16-1",
+      "events": 1394147,
+      "considered": 1392640,
+      "kept": 1135,
+      "retention": 0.0008149988511029412,
+      "raw_mesr": 0.6393323728478307,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Dark_Building-ND64-1",
+      "events": 847025,
+      "considered": 843776,
+      "kept": 83,
+      "retention": 9.836733919902912e-05,
+      "raw_mesr": 0.6923265163256873,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Fire-ND00-1",
+      "events": 4120191,
+      "considered": 4116480,
+      "kept": 2198289,
+      "retention": 0.5340215426772388,
+      "raw_mesr": 1.0047547655817415,
+      "edformer_mesr": 1.098604368168141
+    },
+    {
+      "recording": "E-MLB/N-END/Fire-ND04-1",
+      "events": 1634783,
+      "considered": 1634304,
+      "kept": 656725,
+      "retention": 0.4018377241932957,
+      "raw_mesr": 1.03996253707218,
+      "edformer_mesr": 1.1800534577603063
+    },
+    {
+      "recording": "E-MLB/N-END/Fire-ND16-1",
+      "events": 1556511,
+      "considered": 1556480,
+      "kept": 490496,
+      "retention": 0.31513157894736843,
+      "raw_mesr": 1.0078932936337832,
+      "edformer_mesr": 1.2461324706757133
+    },
+    {
+      "recording": "E-MLB/N-END/Fire-ND64-1",
+      "events": 938884,
+      "considered": 937984,
+      "kept": 65107,
+      "retention": 0.06941163175491266,
+      "raw_mesr": 0.8165479019532519,
+      "edformer_mesr": 1.5613832161274537
+    },
+    {
+      "recording": "E-MLB/N-END/Flip_Chariot-ND00-1",
+      "events": 581412,
+      "considered": 577536,
+      "kept": 544028,
+      "retention": 0.9419811059397163,
+      "raw_mesr": 1.0231163166804038,
+      "edformer_mesr": 1.0192201751315408
+    },
+    {
+      "recording": "E-MLB/N-END/Flip_Chariot-ND04-1",
+      "events": 664466,
+      "considered": 663552,
+      "kept": 523556,
+      "retention": 0.7890203028549383,
+      "raw_mesr": 1.0033775153971236,
+      "edformer_mesr": 0.9955355034659751
+    },
+    {
+      "recording": "E-MLB/N-END/Flip_Chariot-ND16-1",
+      "events": 715134,
+      "considered": 712704,
+      "kept": 391448,
+      "retention": 0.5492434446839081,
+      "raw_mesr": 0.9696399480030257,
+      "edformer_mesr": 1.0039471442062042
+    },
+    {
+      "recording": "E-MLB/N-END/Flip_Chariot-ND64-1",
+      "events": 403128,
+      "considered": 401408,
+      "kept": 147595,
+      "retention": 0.36769321986607145,
+      "raw_mesr": 0.8691199379299847,
+      "edformer_mesr": 0.9306086504259888
+    },
+    {
+      "recording": "E-MLB/N-END/Fly_Soccer-ND00-1",
+      "events": 721447,
+      "considered": 720896,
+      "kept": 480633,
+      "retention": 0.6667161421342329,
+      "raw_mesr": 1.3401582563008436,
+      "edformer_mesr": 1.1061450132394008
+    },
+    {
+      "recording": "E-MLB/N-END/Fly_Soccer-ND04-1",
+      "events": 538899,
+      "considered": 536576,
+      "kept": 234660,
+      "retention": 0.43732854246183206,
+      "raw_mesr": 1.2094435766006706,
+      "edformer_mesr": 1.0469955729785034
+    },
+    {
+      "recording": "E-MLB/N-END/Fly_Soccer-ND16-1",
+      "events": 485169,
+      "considered": 483328,
+      "kept": 167292,
+      "retention": 0.3461251986228814,
+      "raw_mesr": 0.926170129270403,
+      "edformer_mesr": 1.0123798103039614
+    },
+    {
+      "recording": "E-MLB/N-END/Fly_Soccer-ND64-1",
+      "events": 327527,
+      "considered": 323584,
+      "kept": 34360,
+      "retention": 0.10618571993670886,
+      "raw_mesr": 0.750780974916719,
+      "edformer_mesr": 0.8123520015120252
+    },
+    {
+      "recording": "E-MLB/N-END/Garage-ND00-1",
+      "events": 2175770,
+      "considered": 2174976,
+      "kept": 376193,
+      "retention": 0.17296420742113935,
+      "raw_mesr": 0.7984777214882841,
+      "edformer_mesr": 0.9844974936263906
+    },
+    {
+      "recording": "E-MLB/N-END/Garage-ND04-1",
+      "events": 2644537,
+      "considered": 2641920,
+      "kept": 180095,
+      "retention": 0.0681682261385659,
+      "raw_mesr": 0.6850056517620343,
+      "edformer_mesr": 1.004188966208346
+    },
+    {
+      "recording": "E-MLB/N-END/Garage-ND16-1",
+      "events": 2424085,
+      "considered": 2420736,
+      "kept": 207508,
+      "retention": 0.08572103690778342,
+      "raw_mesr": 0.6636526104646417,
+      "edformer_mesr": 0.9884086432083118
+    },
+    {
+      "recording": "E-MLB/N-END/Garage-ND64-1",
+      "events": 1729143,
+      "considered": 1728512,
+      "kept": 105329,
+      "retention": 0.06093622722896919,
+      "raw_mesr": 0.6663381904555503,
+      "edformer_mesr": 0.9402286505129984
+    },
+    {
+      "recording": "E-MLB/N-END/Gas_Tank-ND00-1",
+      "events": 12370246,
+      "considered": 12369920,
+      "kept": 312186,
+      "retention": 0.025237511641142383,
+      "raw_mesr": 0.5101577989436153,
+      "edformer_mesr": 1.0432150065748282
+    },
+    {
+      "recording": "E-MLB/N-END/Gas_Tank-ND04-1",
+      "events": 6981655,
+      "considered": 6979584,
+      "kept": 213453,
+      "retention": 0.030582481706646125,
+      "raw_mesr": 0.5817930954949372,
+      "edformer_mesr": 1.0560252344546261
+    },
+    {
+      "recording": "E-MLB/N-END/Gas_Tank-ND16-1",
+      "events": 3134101,
+      "considered": 3133440,
+      "kept": 209602,
+      "retention": 0.06689197814542483,
+      "raw_mesr": 0.6253194889313616,
+      "edformer_mesr": 1.017712349239641
+    },
+    {
+      "recording": "E-MLB/N-END/Gas_Tank-ND64-1",
+      "events": 1429107,
+      "considered": 1425408,
+      "kept": 86710,
+      "retention": 0.060831705729166664,
+      "raw_mesr": 0.6757310240273108,
+      "edformer_mesr": 1.2908879874539565
+    },
+    {
+      "recording": "E-MLB/N-END/Gun-ND00-1",
+      "events": 2152598,
+      "considered": 2150400,
+      "kept": 1787169,
+      "retention": 0.8310867745535714,
+      "raw_mesr": 0.9992398096577493,
+      "edformer_mesr": 1.029333167058726
+    },
+    {
+      "recording": "E-MLB/N-END/Gun-ND04-1",
+      "events": 2612680,
+      "considered": 2609152,
+      "kept": 1835965,
+      "retention": 0.7036634891336342,
+      "raw_mesr": 0.9417805673517424,
+      "edformer_mesr": 0.9741743170585976
+    },
+    {
+      "recording": "E-MLB/N-END/Gun-ND16-1",
+      "events": 1538387,
+      "considered": 1536000,
+      "kept": 672577,
+      "retention": 0.43787565104166665,
+      "raw_mesr": 0.9339941158544033,
+      "edformer_mesr": 1.0135739862671214
+    },
+    {
+      "recording": "E-MLB/N-END/Gun-ND64-1",
+      "events": 1216842,
+      "considered": 1216512,
+      "kept": 327002,
+      "retention": 0.268802938236532,
+      "raw_mesr": 0.8371416172175465,
+      "edformer_mesr": 0.9872978415293577
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND00-1",
+      "events": 4462102,
+      "considered": 4460544,
+      "kept": 136855,
+      "retention": 0.030681235293273646,
+      "raw_mesr": 0.6398074817078064,
+      "edformer_mesr": 1.1486850193012594
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND04-1",
+      "events": 2241917,
+      "considered": 2240512,
+      "kept": 96158,
+      "retention": 0.04291786877285192,
+      "raw_mesr": 0.6986240768579747,
+      "edformer_mesr": 1.1996682966191925
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND16-1",
+      "events": 1475481,
+      "considered": 1474560,
+      "kept": 41778,
+      "retention": 0.02833251953125,
+      "raw_mesr": 0.7295516440211284,
+      "edformer_mesr": 1.195346355986596
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND64-1",
+      "events": 1033903,
+      "considered": 1032192,
+      "kept": 4232,
+      "retention": 0.004100012400793651,
+      "raw_mesr": 0.7603747277126944,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Keyboard-ND00-1",
+      "events": 6830052,
+      "considered": 6828032,
+      "kept": 241184,
+      "retention": 0.03532262297540492,
+      "raw_mesr": 1.0556306250373773,
+      "edformer_mesr": 1.2324570398404462
+    },
+    {
+      "recording": "E-MLB/N-END/Keyboard-ND04-1",
+      "events": 5674458,
+      "considered": 5672960,
+      "kept": 626474,
+      "retention": 0.11043159126805054,
+      "raw_mesr": 0.7998109628955796,
+      "edformer_mesr": 1.0534313882525193
+    },
+    {
+      "recording": "E-MLB/N-END/Keyboard-ND16-1",
+      "events": 5397912,
+      "considered": 5394432,
+      "kept": 797471,
+      "retention": 0.14783224628654137,
+      "raw_mesr": 0.8468039197422224,
+      "edformer_mesr": 1.1355104056924898
+    },
+    {
+      "recording": "E-MLB/N-END/Keyboard-ND64-1",
+      "events": 3548640,
+      "considered": 3547136,
+      "kept": 580845,
+      "retention": 0.16375041723801964,
+      "raw_mesr": 0.9094556515159974,
+      "edformer_mesr": 1.108090522694678
+    },
+    {
+      "recording": "E-MLB/N-END/LED-ND00-1",
+      "events": 148849,
+      "considered": 147456,
+      "kept": 86412,
+      "retention": 0.5860188802083334,
+      "raw_mesr": 1.1757391837043845,
+      "edformer_mesr": 1.1107590917491081
+    },
+    {
+      "recording": "E-MLB/N-END/LED-ND04-1",
+      "events": 525038,
+      "considered": 524288,
+      "kept": 78715,
+      "retention": 0.15013694763183594,
+      "raw_mesr": 0.9384344827925767,
+      "edformer_mesr": 1.2653285882608163
+    },
+    {
+      "recording": "E-MLB/N-END/LED-ND16-1",
+      "events": 604290,
+      "considered": 602112,
+      "kept": 43783,
+      "retention": 0.07271570737670068,
+      "raw_mesr": 0.9126572911555153,
+      "edformer_mesr": 1.2791824818181443
+    },
+    {
+      "recording": "E-MLB/N-END/LED-ND64-1",
+      "events": 564533,
+      "considered": 561152,
+      "kept": 10828,
+      "retention": 0.019296019616788323,
+      "raw_mesr": 0.8757255147216885,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/LEGO-ND00-1",
+      "events": 6101802,
+      "considered": 6098944,
+      "kept": 613150,
+      "retention": 0.10053379732622565,
+      "raw_mesr": 0.7484801220125306,
+      "edformer_mesr": 0.9595580446384249
+    },
+    {
+      "recording": "E-MLB/N-END/LEGO-ND04-1",
+      "events": 5468679,
+      "considered": 5468160,
+      "kept": 409156,
+      "retention": 0.07482516970973782,
+      "raw_mesr": 0.7329680029856818,
+      "edformer_mesr": 0.955751028536902
+    },
+    {
+      "recording": "E-MLB/N-END/LEGO-ND16-1",
+      "events": 4846477,
+      "considered": 4845568,
+      "kept": 291518,
+      "retention": 0.06016178082734573,
+      "raw_mesr": 0.6824355811902231,
+      "edformer_mesr": 1.0021752394589412
+    },
+    {
+      "recording": "E-MLB/N-END/LEGO-ND64-1",
+      "events": 3038014,
+      "considered": 3035136,
+      "kept": 191446,
+      "retention": 0.06307658042341431,
+      "raw_mesr": 0.624901253884424,
+      "edformer_mesr": 1.0859474310013064
+    },
+    {
+      "recording": "E-MLB/N-END/Landmark-ND00-1",
+      "events": 34372425,
+      "considered": 34369536,
+      "kept": 15637167,
+      "retention": 0.45497172263250807,
+      "raw_mesr": 0.7400371217985652,
+      "edformer_mesr": 0.8984503421679647
+    },
+    {
+      "recording": "E-MLB/N-END/Landmark-ND04-1",
+      "events": 15583465,
+      "considered": 15581184,
+      "kept": 6260783,
+      "retention": 0.4018168965850092,
+      "raw_mesr": 0.8558707214673767,
+      "edformer_mesr": 0.9887497612375044
+    },
+    {
+      "recording": "E-MLB/N-END/Landmark-ND16-1",
+      "events": 3243493,
+      "considered": 3239936,
+      "kept": 390116,
+      "retention": 0.12040855128002528,
+      "raw_mesr": 0.7850984703455137,
+      "edformer_mesr": 0.8921614785982942
+    },
+    {
+      "recording": "E-MLB/N-END/Landmark-ND64-1",
+      "events": 2031761,
+      "considered": 2031616,
+      "kept": 209075,
+      "retention": 0.10291068784652217,
+      "raw_mesr": 0.6943280577507394,
+      "edformer_mesr": 0.8960426269931903
+    },
+    {
+      "recording": "E-MLB/N-END/Lantern-ND00-1",
+      "events": 8706687,
+      "considered": 8704000,
+      "kept": 1208993,
+      "retention": 0.13890085018382353,
+      "raw_mesr": 0.8878957315950986,
+      "edformer_mesr": 1.773148211382781
+    },
+    {
+      "recording": "E-MLB/N-END/Lantern-ND04-1",
+      "events": 8981125,
+      "considered": 8978432,
+      "kept": 947784,
+      "retention": 0.10556230753877738,
+      "raw_mesr": 0.8154620446973305,
+      "edformer_mesr": 1.9128768392751092
+    },
+    {
+      "recording": "E-MLB/N-END/Lantern-ND16-1",
+      "events": 9842418,
+      "considered": 9838592,
+      "kept": 592412,
+      "retention": 0.06021308740112406,
+      "raw_mesr": 0.7014242142292876,
+      "edformer_mesr": 1.9854053600867996
+    },
+    {
+      "recording": "E-MLB/N-END/Lantern-ND64-1",
+      "events": 8054245,
+      "considered": 8052736,
+      "kept": 316151,
+      "retention": 0.0392600726014115,
+      "raw_mesr": 0.6562720464029291,
+      "edformer_mesr": 1.274359851267606
+    },
+    {
+      "recording": "E-MLB/N-END/Light_Board-ND00-1",
+      "events": 9456342,
+      "considered": 9453568,
+      "kept": 463677,
+      "retention": 0.04904783040646664,
+      "raw_mesr": 0.7586145407020413,
+      "edformer_mesr": 1.2510710160505991
+    },
+    {
+      "recording": "E-MLB/N-END/Light_Board-ND04-1",
+      "events": 11259036,
+      "considered": 11255808,
+      "kept": 518754,
+      "retention": 0.04608767313728166,
+      "raw_mesr": 0.7228290189120447,
+      "edformer_mesr": 1.091592500843142
+    },
+    {
+      "recording": "E-MLB/N-END/Light_Board-ND16-1",
+      "events": 12123765,
+      "considered": 12120064,
+      "kept": 1060336,
+      "retention": 0.08748600667455221,
+      "raw_mesr": 0.747174944952459,
+      "edformer_mesr": 1.0201279804587788
+    },
+    {
+      "recording": "E-MLB/N-END/Light_Board-ND64-1",
+      "events": 10004902,
+      "considered": 10002432,
+      "kept": 1419578,
+      "retention": 0.14192328425726863,
+      "raw_mesr": 0.8066944240816797,
+      "edformer_mesr": 1.0445137900317067
+    },
+    {
+      "recording": "E-MLB/N-END/Lounge-ND00-1",
+      "events": 8600462,
+      "considered": 8597504,
+      "kept": 73100,
+      "retention": 0.008502467692949022,
+      "raw_mesr": 0.5753546283522626,
+      "edformer_mesr": 1.3916658315068378
+    },
+    {
+      "recording": "E-MLB/N-END/Lounge-ND04-1",
+      "events": 6693291,
+      "considered": 6692864,
+      "kept": 85162,
+      "retention": 0.01272429859623623,
+      "raw_mesr": 0.5717031262892202,
+      "edformer_mesr": 1.7285588606213538
+    },
+    {
+      "recording": "E-MLB/N-END/Lounge-ND16-1",
+      "events": 3609655,
+      "considered": 3608576,
+      "kept": 49241,
+      "retention": 0.01364554882590806,
+      "raw_mesr": 0.6269959424759368,
+      "edformer_mesr": 1.5657532332727693
+    },
+    {
+      "recording": "E-MLB/N-END/Lounge-ND64-1",
+      "events": 1763079,
+      "considered": 1761280,
+      "kept": 36281,
+      "retention": 0.020599223292151164,
+      "raw_mesr": 0.7733064468046702,
+      "edformer_mesr": 1.5330988001781478
+    },
+    {
+      "recording": "E-MLB/N-END/Machine-ND00-1",
+      "events": 6578053,
+      "considered": 6574080,
+      "kept": 1990419,
+      "retention": 0.302767687646028,
+      "raw_mesr": 1.338499014931905,
+      "edformer_mesr": 1.431888351825128
+    },
+    {
+      "recording": "E-MLB/N-END/Machine-ND04-1",
+      "events": 6833890,
+      "considered": 6832128,
+      "kept": 773597,
+      "retention": 0.11322928961518286,
+      "raw_mesr": 0.9654877907014234,
+      "edformer_mesr": 1.236080368117274
+    },
+    {
+      "recording": "E-MLB/N-END/Machine-ND16-1",
+      "events": 8814479,
+      "considered": 8810496,
+      "kept": 875228,
+      "retention": 0.09933924264876802,
+      "raw_mesr": 0.8330235892233011,
+      "edformer_mesr": 1.0680598185248356
+    },
+    {
+      "recording": "E-MLB/N-END/Machine-ND64-1",
+      "events": 9797929,
+      "considered": 9797632,
+      "kept": 1033082,
+      "retention": 0.10544200884458613,
+      "raw_mesr": 0.7977072053113621,
+      "edformer_mesr": 1.095962017626194
+    },
+    {
+      "recording": "E-MLB/N-END/Mall-ND00-1",
+      "events": 2118673,
+      "considered": 2117632,
+      "kept": 138435,
+      "retention": 0.06537254820478723,
+      "raw_mesr": 0.7812350537612035,
+      "edformer_mesr": 1.3132846605730228
+    },
+    {
+      "recording": "E-MLB/N-END/Mall-ND04-1",
+      "events": 2736788,
+      "considered": 2736128,
+      "kept": 111373,
+      "retention": 0.04070460153910928,
+      "raw_mesr": 0.6578198135675388,
+      "edformer_mesr": 1.1158486995234416
+    },
+    {
+      "recording": "E-MLB/N-END/Mall-ND16-1",
+      "events": 1743684,
+      "considered": 1740800,
+      "kept": 37292,
+      "retention": 0.02142233455882353,
+      "raw_mesr": 0.6614389434419824,
+      "edformer_mesr": 1.0912751120518192
+    },
+    {
+      "recording": "E-MLB/N-END/Mall-ND64-1",
+      "events": 1272261,
+      "considered": 1269760,
+      "kept": 23741,
+      "retention": 0.01869723412298387,
+      "raw_mesr": 0.7173027328504394,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Office-ND00-1",
+      "events": 4729652,
+      "considered": 4726784,
+      "kept": 1977340,
+      "retention": 0.41832671008448874,
+      "raw_mesr": 0.8397212760831676,
+      "edformer_mesr": 0.9438737834333283
+    },
+    {
+      "recording": "E-MLB/N-END/Office-ND04-1",
+      "events": 3442205,
+      "considered": 3440640,
+      "kept": 888852,
+      "retention": 0.25833914620535714,
+      "raw_mesr": 0.8236663452925733,
+      "edformer_mesr": 0.973741774374325
+    },
+    {
+      "recording": "E-MLB/N-END/Office-ND16-1",
+      "events": 3805864,
+      "considered": 3805184,
+      "kept": 625514,
+      "retention": 0.1643846920411733,
+      "raw_mesr": 0.785604823950929,
+      "edformer_mesr": 0.953252715903553
+    },
+    {
+      "recording": "E-MLB/N-END/Office-ND64-1",
+      "events": 3430285,
+      "considered": 3428352,
+      "kept": 352616,
+      "retention": 0.10285291591995221,
+      "raw_mesr": 0.702100519423231,
+      "edformer_mesr": 0.891137100360898
+    },
+    {
+      "recording": "E-MLB/N-END/Party-ND00-1",
+      "events": 2770485,
+      "considered": 2768896,
+      "kept": 1347782,
+      "retention": 0.48675789917714496,
+      "raw_mesr": 0.558452932292674,
+      "edformer_mesr": 0.7542057390127526
+    },
+    {
+      "recording": "E-MLB/N-END/Party-ND04-1",
+      "events": 4551802,
+      "considered": 4550656,
+      "kept": 1155969,
+      "retention": 0.2540224969762601,
+      "raw_mesr": 0.5287758065542959,
+      "edformer_mesr": 0.7442611032995264
+    },
+    {
+      "recording": "E-MLB/N-END/Party-ND16-1",
+      "events": 4169709,
+      "considered": 4165632,
+      "kept": 642748,
+      "retention": 0.15429783523844642,
+      "raw_mesr": 0.5746876130640811,
+      "edformer_mesr": 0.9774088365949513
+    },
+    {
+      "recording": "E-MLB/N-END/Party-ND64-1",
+      "events": 3349208,
+      "considered": 3346432,
+      "kept": 250513,
+      "retention": 0.07485973120027539,
+      "raw_mesr": 0.5453952259744512,
+      "edformer_mesr": 1.0706530664005602
+    },
+    {
+      "recording": "E-MLB/N-END/Pedestrian-ND00-1",
+      "events": 4148800,
+      "considered": 4145152,
+      "kept": 1130217,
+      "retention": 0.2726599651834239,
+      "raw_mesr": 0.7808755084422023,
+      "edformer_mesr": 0.9261606379291023
+    },
+    {
+      "recording": "E-MLB/N-END/Pedestrian-ND04-1",
+      "events": 1389739,
+      "considered": 1388544,
+      "kept": 157679,
+      "retention": 0.11355707849373156,
+      "raw_mesr": 0.8726106984475722,
+      "edformer_mesr": 1.0226873012017992
+    },
+    {
+      "recording": "E-MLB/N-END/Pedestrian-ND16-1",
+      "events": 2623948,
+      "considered": 2621440,
+      "kept": 248246,
+      "retention": 0.09469833374023437,
+      "raw_mesr": 0.67621031394338,
+      "edformer_mesr": 1.0549986395406852
+    },
+    {
+      "recording": "E-MLB/N-END/Pedestrian-ND64-1",
+      "events": 1089847,
+      "considered": 1089536,
+      "kept": 33034,
+      "retention": 0.03031932859492481,
+      "raw_mesr": 0.7539947548364179,
+      "edformer_mesr": 1.2780015478985618
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND00-1",
+      "events": 1857196,
+      "considered": 1855488,
+      "kept": 471539,
+      "retention": 0.2541320666045806,
+      "raw_mesr": 0.8527981912597004,
+      "edformer_mesr": 0.832741376086679
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND04-1",
+      "events": 1336564,
+      "considered": 1335296,
+      "kept": 123440,
+      "retention": 0.09244392254601227,
+      "raw_mesr": 0.7879239747532139,
+      "edformer_mesr": 0.7084334257750892
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND16-1",
+      "events": 1315562,
+      "considered": 1314816,
+      "kept": 2710,
+      "retention": 0.002061124902647975,
+      "raw_mesr": 0.8124043082350753,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND64-1",
+      "events": 1157141,
+      "considered": 1155072,
+      "kept": 210,
+      "retention": 0.0001818068484042553,
+      "raw_mesr": 0.8034859049490202,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Rowing-ND00-1",
+      "events": 2512892,
+      "considered": 2510848,
+      "kept": 882844,
+      "retention": 0.35161188570554647,
+      "raw_mesr": 1.0915892158004468,
+      "edformer_mesr": 1.1756996560067179
+    },
+    {
+      "recording": "E-MLB/N-END/Rowing-ND04-1",
+      "events": 2664430,
+      "considered": 2662400,
+      "kept": 533199,
+      "retention": 0.20027005709134615,
+      "raw_mesr": 1.066830139071152,
+      "edformer_mesr": 1.175526127681278
+    },
+    {
+      "recording": "E-MLB/N-END/Rowing-ND16-1",
+      "events": 2196661,
+      "considered": 2195456,
+      "kept": 269342,
+      "retention": 0.12268157503498134,
+      "raw_mesr": 1.0780042173801343,
+      "edformer_mesr": 1.206147069852695
+    },
+    {
+      "recording": "E-MLB/N-END/Rowing-ND64-1",
+      "events": 1460931,
+      "considered": 1458176,
+      "kept": 106695,
+      "retention": 0.07317017973139045,
+      "raw_mesr": 1.2190049651567472,
+      "edformer_mesr": 1.4893839506435953
+    },
+    {
+      "recording": "E-MLB/N-END/School-ND00-1",
+      "events": 7711348,
+      "considered": 7708672,
+      "kept": 360347,
+      "retention": 0.046745665141803935,
+      "raw_mesr": 0.6736769374501145,
+      "edformer_mesr": 0.8790902384433701
+    },
+    {
+      "recording": "E-MLB/N-END/School-ND04-1",
+      "events": 5881474,
+      "considered": 5877760,
+      "kept": 183940,
+      "retention": 0.031294234538327526,
+      "raw_mesr": 0.6004467583178233,
+      "edformer_mesr": 0.9314743171322978
+    },
+    {
+      "recording": "E-MLB/N-END/School-ND16-1",
+      "events": 3557918,
+      "considered": 3555328,
+      "kept": 132467,
+      "retention": 0.03725872830861175,
+      "raw_mesr": 0.5656369079853962,
+      "edformer_mesr": 1.073618810512665
+    },
+    {
+      "recording": "E-MLB/N-END/School-ND64-1",
+      "events": 2009686,
+      "considered": 2007040,
+      "kept": 98041,
+      "retention": 0.04884855309311224,
+      "raw_mesr": 0.6633804559642281,
+      "edformer_mesr": 1.1534362323207494
+    },
+    {
+      "recording": "E-MLB/N-END/Screen-ND00-1",
+      "events": 5547459,
+      "considered": 5545984,
+      "kept": 4718027,
+      "retention": 0.8507105321616507,
+      "raw_mesr": 1.0079019017559678,
+      "edformer_mesr": 1.028705216236528
+    },
+    {
+      "recording": "E-MLB/N-END/Screen-ND04-1",
+      "events": 4645422,
+      "considered": 4644864,
+      "kept": 4028292,
+      "retention": 0.8672572544642857,
+      "raw_mesr": 1.0020423522638853,
+      "edformer_mesr": 1.0214712659764307
+    },
+    {
+      "recording": "E-MLB/N-END/Screen-ND16-1",
+      "events": 4687167,
+      "considered": 4685824,
+      "kept": 3778042,
+      "retention": 0.8062705726890297,
+      "raw_mesr": 0.9644549097199567,
+      "edformer_mesr": 0.9891568797212762
+    },
+    {
+      "recording": "E-MLB/N-END/Screen-ND64-1",
+      "events": 3515168,
+      "considered": 3514368,
+      "kept": 1353017,
+      "retention": 0.3849958228620338,
+      "raw_mesr": 0.880045063689034,
+      "edformer_mesr": 0.9329185600671545
+    },
+    {
+      "recording": "E-MLB/N-END/Shapes_Night-ND00-1",
+      "events": 1533844,
+      "considered": 1531904,
+      "kept": 483887,
+      "retention": 0.31587292676303474,
+      "raw_mesr": 0.9425312344639417,
+      "edformer_mesr": 0.9001306174640709
+    },
+    {
+      "recording": "E-MLB/N-END/Shapes_Night-ND04-1",
+      "events": 1527425,
+      "considered": 1523712,
+      "kept": 70004,
+      "retention": 0.0459430653561828,
+      "raw_mesr": 0.729483462393973,
+      "edformer_mesr": 0.8162579258620256
+    },
+    {
+      "recording": "E-MLB/N-END/Shapes_Night-ND16-1",
+      "events": 846577,
+      "considered": 843776,
+      "kept": 6463,
+      "retention": 0.0076596158222087376,
+      "raw_mesr": 0.6309485792795834,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Shapes_Night-ND64-1",
+      "events": 467251,
+      "considered": 466944,
+      "kept": 32,
+      "retention": 6.853070175438596e-05,
+      "raw_mesr": 0.6819393879371953,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND00-1",
+      "events": 1843121,
+      "considered": 1839104,
+      "kept": 197626,
+      "retention": 0.10745776204064587,
+      "raw_mesr": 0.760609635823054,
+      "edformer_mesr": 0.8144963570585038
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND04-1",
+      "events": 1378866,
+      "considered": 1376256,
+      "kept": 7755,
+      "retention": 0.005634852818080357,
+      "raw_mesr": 0.6901763675748936,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND16-1",
+      "events": 1105869,
+      "considered": 1101824,
+      "kept": 144,
+      "retention": 0.00013069237918215612,
+      "raw_mesr": 0.7285853751628895,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND64-1",
+      "events": 1002388,
+      "considered": 999424,
+      "kept": 90,
+      "retention": 9.005186987704919e-05,
+      "raw_mesr": 0.8008885825669108,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Ski_Walker-ND00-1",
+      "events": 2040528,
+      "considered": 2039808,
+      "kept": 676644,
+      "retention": 0.3317194559487952,
+      "raw_mesr": 1.041689900559664,
+      "edformer_mesr": 1.0638345633702835
+    },
+    {
+      "recording": "E-MLB/N-END/Ski_Walker-ND04-1",
+      "events": 2502488,
+      "considered": 2498560,
+      "kept": 697399,
+      "retention": 0.27912037333504097,
+      "raw_mesr": 0.9013815854183292,
+      "edformer_mesr": 1.0081939501894148
+    },
+    {
+      "recording": "E-MLB/N-END/Ski_Walker-ND16-1",
+      "events": 1589658,
+      "considered": 1589248,
+      "kept": 204895,
+      "retention": 0.1289257560808634,
+      "raw_mesr": 0.7634610098801649,
+      "edformer_mesr": 0.9781176291307566
+    },
+    {
+      "recording": "E-MLB/N-END/Ski_Walker-ND64-1",
+      "events": 810076,
+      "considered": 806912,
+      "kept": 14747,
+      "retention": 0.01827584668464467,
+      "raw_mesr": 0.7113843613157259,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND00-1",
+      "events": 452912,
+      "considered": 450560,
+      "kept": 169582,
+      "retention": 0.37638050426136366,
+      "raw_mesr": 1.0583564133886638,
+      "edformer_mesr": 0.8877707125646573
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND04-1",
+      "events": 543782,
+      "considered": 540672,
+      "kept": 25191,
+      "retention": 0.04659201882102273,
+      "raw_mesr": 0.9115092133863238,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND16-1",
+      "events": 512499,
+      "considered": 512000,
+      "kept": 782,
+      "retention": 0.00152734375,
+      "raw_mesr": 0.858771760161292,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND64-1",
+      "events": 769981,
+      "considered": 765952,
+      "kept": 207,
+      "retention": 0.00027025192179144385,
+      "raw_mesr": 0.8145239755528907,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Sparkler-ND00-1",
+      "events": 3566900,
+      "considered": 3563520,
+      "kept": 2008006,
+      "retention": 0.5634894710847701,
+      "raw_mesr": 0.9991126331833907,
+      "edformer_mesr": 1.0794749807641257
+    },
+    {
+      "recording": "E-MLB/N-END/Sparkler-ND04-1",
+      "events": 5256205,
+      "considered": 5255168,
+      "kept": 1169301,
+      "retention": 0.2225049703453819,
+      "raw_mesr": 0.8103497225805557,
+      "edformer_mesr": 0.868174347031341
+    },
+    {
+      "recording": "E-MLB/N-END/Sparkler-ND16-1",
+      "events": 5188715,
+      "considered": 5185536,
+      "kept": 1511118,
+      "retention": 0.29141018401954977,
+      "raw_mesr": 1.0603073292156142,
+      "edformer_mesr": 1.148352300092107
+    },
+    {
+      "recording": "E-MLB/N-END/Sparkler-ND64-1",
+      "events": 4433734,
+      "considered": 4431872,
+      "kept": 841190,
+      "retention": 0.18980466944893715,
+      "raw_mesr": 0.9792051494353184,
+      "edformer_mesr": 1.114436182573029
+    },
+    {
+      "recording": "E-MLB/N-END/Squating-ND00-1",
+      "events": 3792655,
+      "considered": 3788800,
+      "kept": 1739837,
+      "retention": 0.4592052892736487,
+      "raw_mesr": 0.9653230674845316,
+      "edformer_mesr": 1.0370613637896073
+    },
+    {
+      "recording": "E-MLB/N-END/Squating-ND04-1",
+      "events": 3074459,
+      "considered": 3072000,
+      "kept": 952690,
+      "retention": 0.31012044270833333,
+      "raw_mesr": 0.9186370669205842,
+      "edformer_mesr": 1.0593397722546982
+    },
+    {
+      "recording": "E-MLB/N-END/Squating-ND16-1",
+      "events": 2489183,
+      "considered": 2486272,
+      "kept": 554087,
+      "retention": 0.2228585609297776,
+      "raw_mesr": 0.8337941230471836,
+      "edformer_mesr": 1.0362589700617137
+    },
+    {
+      "recording": "E-MLB/N-END/Squating-ND64-1",
+      "events": 1394695,
+      "considered": 1392640,
+      "kept": 103388,
+      "retention": 0.07423885569852941,
+      "raw_mesr": 0.730178252986892,
+      "edformer_mesr": 1.2216237109461174
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND00-1",
+      "events": 5379750,
+      "considered": 5378048,
+      "kept": 139726,
+      "retention": 0.025980801956397563,
+      "raw_mesr": 0.5901378130570999,
+      "edformer_mesr": 0.9703383087540505
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND04-1",
+      "events": 3252584,
+      "considered": 3252224,
+      "kept": 78599,
+      "retention": 0.024167769501731738,
+      "raw_mesr": 0.6906716382627378,
+      "edformer_mesr": 1.1704672903265116
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND16-1",
+      "events": 2188171,
+      "considered": 2187264,
+      "kept": 89694,
+      "retention": 0.04100739554073034,
+      "raw_mesr": 0.7715325561936505,
+      "edformer_mesr": 1.1270165451565786
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND64-1",
+      "events": 1681254,
+      "considered": 1679360,
+      "kept": 22686,
+      "retention": 0.013508717606707316,
+      "raw_mesr": 0.7868949836820361,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/String-ND00-1",
+      "events": 2394141,
+      "considered": 2392064,
+      "kept": 1928458,
+      "retention": 0.806189968161387,
+      "raw_mesr": 0.8838685537745047,
+      "edformer_mesr": 0.9041890703560704
+    },
+    {
+      "recording": "E-MLB/N-END/String-ND04-1",
+      "events": 2240099,
+      "considered": 2236416,
+      "kept": 1655452,
+      "retention": 0.7402254321199634,
+      "raw_mesr": 0.8837084280581157,
+      "edformer_mesr": 0.9065943749342977
+    },
+    {
+      "recording": "E-MLB/N-END/String-ND16-1",
+      "events": 3736779,
+      "considered": 3735552,
+      "kept": 1190914,
+      "retention": 0.31880535995751097,
+      "raw_mesr": 0.7959946257455753,
+      "edformer_mesr": 0.8210190919745302
+    },
+    {
+      "recording": "E-MLB/N-END/String-ND64-1",
+      "events": 2048228,
+      "considered": 2048000,
+      "kept": 122426,
+      "retention": 0.0597783203125,
+      "raw_mesr": 0.6489616189539626,
+      "edformer_mesr": 0.7141143139434925
+    },
+    {
+      "recording": "E-MLB/N-END/Tyre-ND00-1",
+      "events": 11481063,
+      "considered": 11476992,
+      "kept": 7134018,
+      "retention": 0.621593009736349,
+      "raw_mesr": 0.9502986497340952,
+      "edformer_mesr": 0.9947947213123294
+    },
+    {
+      "recording": "E-MLB/N-END/Tyre-ND04-1",
+      "events": 6368539,
+      "considered": 6365184,
+      "kept": 2984791,
+      "retention": 0.4689245432653636,
+      "raw_mesr": 1.025844459913979,
+      "edformer_mesr": 1.0429920525523177
+    },
+    {
+      "recording": "E-MLB/N-END/Tyre-ND16-1",
+      "events": 2918296,
+      "considered": 2916352,
+      "kept": 845518,
+      "retention": 0.28992316428195225,
+      "raw_mesr": 1.0026537470368624,
+      "edformer_mesr": 1.0337898784955828
+    },
+    {
+      "recording": "E-MLB/N-END/Tyre-ND64-1",
+      "events": 2101688,
+      "considered": 2101248,
+      "kept": 352452,
+      "retention": 0.1677346034356725,
+      "raw_mesr": 0.8006510124016821,
+      "edformer_mesr": 1.0891033014356457
+    },
+    {
+      "recording": "E-MLB/N-END/Wall-ND00-1",
+      "events": 5367624,
+      "considered": 5365760,
+      "kept": 37682,
+      "retention": 0.007022677123091603,
+      "raw_mesr": 0.4964514456291155,
+      "edformer_mesr": 0.6718675772226582
+    },
+    {
+      "recording": "E-MLB/N-END/Wall-ND04-1",
+      "events": 4915957,
+      "considered": 4915200,
+      "kept": 25109,
+      "retention": 0.005108439127604167,
+      "raw_mesr": 0.45369167742394123,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Wall-ND16-1",
+      "events": 2508356,
+      "considered": 2506752,
+      "kept": 10327,
+      "retention": 0.004119673585580065,
+      "raw_mesr": 0.5244346503081894,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Wall-ND64-1",
+      "events": 1202379,
+      "considered": 1200128,
+      "kept": 165,
+      "retention": 0.00013748533489761093,
+      "raw_mesr": 0.6769070717352392,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Water-ND00-1",
+      "events": 2024714,
+      "considered": 2023424,
+      "kept": 1231643,
+      "retention": 0.6086924935159413,
+      "raw_mesr": 1.1475280055540216,
+      "edformer_mesr": 1.212811246697217
+    },
+    {
+      "recording": "E-MLB/N-END/Water-ND04-1",
+      "events": 2774797,
+      "considered": 2772992,
+      "kept": 792544,
+      "retention": 0.285808253323486,
+      "raw_mesr": 1.0065848047354857,
+      "edformer_mesr": 1.1477111902429888
+    },
+    {
+      "recording": "E-MLB/N-END/Water-ND16-1",
+      "events": 2244828,
+      "considered": 2244608,
+      "kept": 425344,
+      "retention": 0.18949589416058393,
+      "raw_mesr": 0.9630938437583982,
+      "edformer_mesr": 1.1478923935706793
+    },
+    {
+      "recording": "E-MLB/N-END/Water-ND64-1",
+      "events": 1077674,
+      "considered": 1077248,
+      "kept": 118382,
+      "retention": 0.10989298657319392,
+      "raw_mesr": 0.8191128707014016,
+      "edformer_mesr": 1.0810927623918325
+    },
+    {
+      "recording": "E-MLB/N-END/Water_Cooler-ND00-1",
+      "events": 2008629,
+      "considered": 2007040,
+      "kept": 315024,
+      "retention": 0.1569595025510204,
+      "raw_mesr": 1.0084558250224165,
+      "edformer_mesr": 1.0068209843023737
+    },
+    {
+      "recording": "E-MLB/N-END/Water_Cooler-ND04-1",
+      "events": 1557232,
+      "considered": 1556480,
+      "kept": 149150,
+      "retention": 0.0958251953125,
+      "raw_mesr": 0.8097453334940378,
+      "edformer_mesr": 0.9001896658096848
+    },
+    {
+      "recording": "E-MLB/N-END/Water_Cooler-ND16-1",
+      "events": 1174186,
+      "considered": 1171456,
+      "kept": 40284,
+      "retention": 0.034387975305944056,
+      "raw_mesr": 0.7776141378432649,
+      "edformer_mesr": 1.162858849429799
+    },
+    {
+      "recording": "E-MLB/N-END/Water_Cooler-ND64-1",
+      "events": 641065,
+      "considered": 638976,
+      "kept": 10490,
+      "retention": 0.016416892027243588,
+      "raw_mesr": 0.7908051932612883,
+      "edformer_mesr": NaN
+    },
+    {
+      "recording": "E-MLB/N-END/Wheelchair-ND00-1",
+      "events": 1505426,
+      "considered": 1503232,
+      "kept": 1243818,
+      "retention": 0.8274291659570845,
+      "raw_mesr": 0.9466336606235519,
+      "edformer_mesr": 0.9639144966699921
+    },
+    {
+      "recording": "E-MLB/N-END/Wheelchair-ND04-1",
+      "events": 1646434,
+      "considered": 1642496,
+      "kept": 909056,
+      "retention": 0.5534600997506235,
+      "raw_mesr": 0.9108220860413595,
+      "edformer_mesr": 0.9633083592605776
+    },
+    {
+      "recording": "E-MLB/N-END/Wheelchair-ND16-1",
+      "events": 1609203,
+      "considered": 1605632,
+      "kept": 369223,
+      "retention": 0.2299549336336097,
+      "raw_mesr": 0.8523909519620236,
+      "edformer_mesr": 0.9639497558764024
+    },
+    {
+      "recording": "E-MLB/N-END/Wheelchair-ND64-1",
+      "events": 1088414,
+      "considered": 1085440,
+      "kept": 142185,
+      "retention": 0.13099296137971697,
+      "raw_mesr": 0.7644902496460073,
+      "edformer_mesr": 0.8854982655423019
+    },
+    {
+      "recording": "E-MLB/N-END/Windmill-ND00-1",
+      "events": 811256,
+      "considered": 811008,
+      "kept": 599407,
+      "retention": 0.7390888869160354,
+      "raw_mesr": 1.137814890405429,
+      "edformer_mesr": 1.220709698211089
+    },
+    {
+      "recording": "E-MLB/N-END/Windmill-ND04-1",
+      "events": 801683,
+      "considered": 798720,
+      "kept": 480460,
+      "retention": 0.6015374599358975,
+      "raw_mesr": 1.0667361297496334,
+      "edformer_mesr": 1.1577555535089776
+    },
+    {
+      "recording": "E-MLB/N-END/Windmill-ND16-1",
+      "events": 1007516,
+      "considered": 1003520,
+      "kept": 320561,
+      "retention": 0.3194365832270408,
+      "raw_mesr": 0.8790532772839251,
+      "edformer_mesr": 1.0226820262519423
+    },
+    {
+      "recording": "E-MLB/N-END/Windmill-ND64-1",
+      "events": 886343,
+      "considered": 884736,
+      "kept": 39354,
+      "retention": 0.04448106553819445,
+      "raw_mesr": 0.6940290938687809,
+      "edformer_mesr": 0.8219907811391772
+    }
+  ],
+  "wall_seconds": 22477.877823393006
+}

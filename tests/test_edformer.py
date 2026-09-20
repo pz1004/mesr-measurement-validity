@@ -75,7 +75,7 @@ def test_merge_carries_existing_cells_verbatim():
 
 
 def _load(name):
-    path = RESULTS / name
+    path = (RESULTS / name).resolve()
     if not path.exists():
         pytest.skip(f"{name} not present")
     return json.loads(path.read_text())
@@ -106,3 +106,28 @@ def test_native_table_carries_edformer_with_its_null():
     assert row["evaluable"] + row["unevaluable"] == payload["summary"]["recordings"]
     margin = row["filter_minus_null"]
     assert margin["lo"] <= margin["mean"] <= margin["hi"]
+
+
+def test_uncapped_run_reproduces_the_vendored_per_cell_table():
+    """The in-pipeline uncapped run must land where our earlier run of the released script did.
+
+    Not bit for bit: the two differ in accumulation order, and the released 0.005 threshold
+    is sharp enough that a float32 difference flips about one event per million. 1e-6 on a
+    cell mean is four orders below the 0.0092 gap the published table claims.
+    """
+
+    from dataset_assessment.analyze import edformer_reference
+
+    vendored = _load("../reproduction/results/emlb_edformer_mesr.json")["results"]
+    reference = edformer_reference()
+    if not reference:
+        pytest.skip("uncapped run not present")
+    assert reference["source"] == "results/edformer_emlb_uncapped.json"
+    assert len(reference["cells"]) == 8
+    for cell in reference["cells"]:
+        theirs = vendored[cell["part"]][cell["nd"]]
+        assert abs(cell["edformer_mesr"] - theirs["edformer_mesr"]) < 1e-6
+        assert abs(cell["raw_mesr"] - theirs["raw_mesr"]) < 1e-6
+        assert abs(cell["mean_retention"] - theirs["mean_retention"]) < 1e-6
+        assert cell["recordings"] == theirs["sequences"]
+        assert cell["evaluable"] <= cell["recordings"]

@@ -65,7 +65,7 @@ denoiser. The probe therefore runs on DVS Gesture.
 | Repository | Why it is needed | Notes |
 |---|---|---|
 | **cuke-emlb** | Supplies the six classical denoisers (DWF, EvFlow, KNoise, RED, TS, YNoise) and the official ESR implementation the metric core was checked against | Must be **built**; see `BUILD_CUKE_EMLB.md`. Read the pinned-commit warning there — the pinned `dv-toolkit` submodule does not work. |
-| **EDformer** | `dataset_assessment/audit.py` greps its released source; its verified per-cell E-MLB numbers are the published-protocol reference row | Not re-run here — it needs its own pinned environment. Numbers come from `reproduction/results/emlb_edformer_mesr.json`. |
+| **EDformer** | `dataset_assessment/edformer.py` runs its released weights and inference recipe (`model.py` imported unmodified) on the same capped E-MLB inputs as every other row; `audit.py` greps its released source | Needs torch 2.2.1+cu118 and pytorch3d 0.7.5 (a CUDA venv of its own); the rest of the harness is torch-free and reads the cached scores. Run `python -m dataset_assessment.edformer --cap 1000000`, then `native_emlb --methods edformer_native --merge`. |
 | **EDmamba** | `audit.py` greps its released source for the four Table-2 reproducibility claims | Not run at all; only inspected statically. |
 
 `EDnCNN` and `MLPF` are absent from the benchmark because the cuke-emlb release ships no
@@ -75,7 +75,8 @@ audited claims.
 ## Reference values this project relies on
 
 `reproduction/results/emlb_edformer_mesr.json` (vendored, 1.3 MB) holds EDformer's per-cell
-E-MLB MESR from an independent reproduction that matched the published table to **+0.0010**
-(mean 1.0069 against 1.0059), at its released `sigmoid ≥ 0.005` threshold with mean retention
-0.081–0.483. It is the only external numeric input to the analysis, and it is compared on
-Δ-over-Raw rather than absolute MESR because the two runs use different event caps.
+E-MLB MESR from our earlier run of its released evaluation script, uncapped, which matched the
+published table to **+0.0010** (mean 1.0069 against 1.0059) at its released `sigmoid ≥ 0.005`
+threshold, with mean retention 0.081–0.483. It verifies the published table only. EDformer's
+Table IV row is scored inside this pipeline on the capped inputs (`edformer.py`), so it is
+matched to the classical rows on recordings and on the cap.

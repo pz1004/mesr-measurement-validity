@@ -12,6 +12,7 @@ from typing import Callable, Dict, List
 
 import numpy as np
 
+from .denoisors import CLASSICAL
 from .esr import SLICE
 
 RESULTS = Path(__file__).resolve().parents[1] / "results"
@@ -371,6 +372,14 @@ def _benchmark(out: Callable[[str], None]) -> None:
                 mean_r = sum(c["mean_retention"] for c in cells) / len(cells)
                 out(f"  - mean native retention over those {len(cells)} cells: "
                     f"{mean_r:.4f}={mean_r:.2f} (the Table's fourth column)")
+                # A cell mean is over the recordings that HAVE an MESR, as the released
+                # script aggregates. Printing only the cell means hid that the denominator
+                # is not 48 everywhere, which app:edformer's caption now states.
+                span = (min(c["evaluable"] for c in cells),
+                        max(c["evaluable"] for c in cells))
+                out(f"  - recordings per cell with a score: {span[0]} to {span[1]} of "
+                    + ", ".join(f"{c['part']}/{c['nd']} {c['evaluable']}/{c['recordings']}"
+                                for c in cells))
             interval = reference.get("delta_over_raw_ci")
             if interval:
                 out(f"  - EDformer CI [{interval['lo']:+.4f},{interval['hi']:+.4f}] "
@@ -387,17 +396,19 @@ def _benchmark(out: Callable[[str], None]) -> None:
                 out(f"  - **per-cell error span {error['max'] - error['min']:.4f}** "
                     f"(the figure quoted in the abstract, S5.1 and Appendix A; "
                     f"{error['max'] - error['min']:.4f} > 0.0092, the gap the table claims)")
-            sets = reference.get("recording_sets")
+            sets = reference.get("recordings")
             if sets:
-                # Matched on recordings is not matched on the cap. Delta-over-Raw moves
-                # with the cap (S5.3), so the EDformer row stays descriptive either way.
-                verdict = ("matched on recordings but NOT on the event cap"
-                           if sets["matched_on_recordings"] else "NOT matched")
-                out(f"  - recording sets: EDformer "
-                    f"{sets['edformer_recordings']} recordings uncapped; classical rows "
-                    f"{sets['classical_recordings']} over "
-                    f"{sets['classical_scene_clusters']} (scene, lighting) clusters "
-                    f"capped at {sets['classical_cap']:,} -- {verdict}")
+                # This run checks the published table; it is not the row tab:emlb prints.
+                # Delta-over-Raw moves with the cap (S5.3), so the two are not
+                # interchangeable, and EDformer's own capped run supplies the table row.
+                unscored = sets["uncapped_recordings"] - sets["uncapped_evaluable"]
+                out(f"  - this uncapped run: {sets['uncapped_recordings']} recordings, "
+                    f"{sets['uncapped_evaluable']} with a score, {unscored} without "
+                    f"(EDformer keeps less than "
+                    f"one 30,000-event slice on those); the capped rows of tab:emlb are "
+                    f"{sets['capped_recordings']} recordings over "
+                    f"{sets['capped_scene_clusters']} (scene, lighting) clusters at "
+                    f"{sets['cap']:,} events")
 
 
 def _scale(out: Callable[[str], None]) -> None:
@@ -648,6 +659,14 @@ def _paired_contrasts(out: Callable[[str], None]) -> None:
     out(f"- **{payload['pairs_resolved']}/{payload['pairs_total']} pairs separate** under a "
         f"paired difference over {payload['n_recordings']} recordings, bootstrapped over "
         f"{payload['n_scenes']} scene clusters")
+    # The cell total app:emlbgrid's caption prints. rank_analysis's native_eligibility block
+    # counts the six classical rows only (EDformer is not in available_methods), so a paper
+    # that now prints seven rows cannot source the total from there.
+    methods = [m for m in payload["ranked_by_mean"]]
+    reached = sum(payload["marginals"][m]["n_recordings"] for m in methods)
+    cells = len(methods) * payload["n_recordings"]
+    out(f"- **{cells - reached} of {cells} cells over these {len(methods)} methods have no "
+        f"eligible grid point** (the count `tab:emlbgrid`'s caption prints)")
     for pair in payload["pairs"]:
         flag = "separates" if pair["excludes_zero"] else "**NOT resolved**"
         out(f"  - {pair['a']} - {pair['b']}: {pair['mean_difference']:+.4f} "
@@ -1065,7 +1084,8 @@ def _native_emlb(out: Callable[[str], None]) -> None:
             out(f"  - {method}: no evaluable cell ({row['unevaluable']} unevaluable)")
             continue
         d, n, s = row["delta_over_raw"], row["null_delta_over_raw"], row["filter_minus_null"]
-        rows.append((row["native_retention_mean"], d["mean"]))
+        if method in CLASSICAL:        # App F quotes the six filters' correlation only
+            rows.append((row["native_retention_mean"], d["mean"]))
         extra = ""
         if "unevaluable_native_retention_mean" in row:
             extra = f", unevaluable native r mean {row['unevaluable_native_retention_mean']:.2f}"
@@ -1076,7 +1096,8 @@ def _native_emlb(out: Callable[[str], None]) -> None:
             f"[{s['lo']:+.3f}, {s['hi']:+.3f}] above null on "
             f"{row['recordings_filter_above_null']}/{row['evaluable']}")
     rho, p = spearmanr([r for r, _ in rows], [d for _, d in rows])
-    out(f"- rows: Spearman(native r, Delta) = {rho:+.2f}, p = {p:.2f} over {len(rows)} rows")
+    out(f"- classical rows: Spearman(native r, Delta) = {rho:+.2f}, p = {p:.2f} over "
+        f"{len(rows)} rows")
 
     paired = _load("paired_contrasts_native.json")
     out(f"- paired, native outputs: **{paired['pairs_resolved']}/{paired['pairs_total']} "

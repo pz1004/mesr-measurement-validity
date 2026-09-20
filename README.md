@@ -73,7 +73,7 @@ Those three need no dataset. To regenerate everything from raw event data, see
 | `tests/` | 88 tests, including the ESR closed-form hand case, the K-cancellation identity, and the denoiser adapter's ordered-subsequence merge |
 | `results/` | 11 JSON artifacts — every reported number traces to one (`benchmark_emlb_native3d.json` backs none of them; it belongs to a sibling project) |
 | `BUILD_CUKE_EMLB.md` | How the six classical denoisers were built, with verbatim errors and the pinned-commit warning |
-| `reproduction/results/` | EDformer's verified per-cell E-MLB numbers, used as a published-protocol reference |
+| `reproduction/results/` | Our uncapped run of EDformer's released evaluation script, which verifies its published E-MLB table |
 
 Datasets and third-party baselines are **symlinked, not vendored** — see `DATA.md`.
 

@@ -83,12 +83,20 @@ def test_published_contrasts_match_the_artifact():
     if not path.is_file():
         pytest.skip("paired_contrasts.json not generated")
     r = json.loads(path.read_text())
-    assert r["ranked_by_mean"] == ["red", "ynoise", "dwf", "evflow", "ts", "knoise"]
-    assert r["pairs_resolved"] == 10 and r["pairs_total"] == 15
+    # EDformer, scored inside the pipeline, is a seventh row; the classical fifteen are
+    # unchanged by its arrival, since each pair is scored on its own shared recordings.
+    classical = [p for p in r["pairs"] if "edformer_native" not in (p["a"], p["b"])]
+    assert [m for m in r["ranked_by_mean"] if m != "edformer_native"] == [
+        "red", "ynoise", "dwf", "evflow", "ts", "knoise"]
+    assert r["pairs_total"] == 21 and r["pairs_resolved"] == 12
+    assert len(classical) == 15 and sum(p["excludes_zero"] for p in classical) == 10
+    edf = {frozenset((p["a"], p["b"])) - {"edformer_native"}: p["excludes_zero"]
+           for p in r["pairs"] if "edformer_native" in (p["a"], p["b"])}
+    assert {next(iter(k)) for k, v in edf.items() if v} == {"red", "knoise"}
 
     by = {(p["a"], p["b"]): p for p in r["pairs"]}
     # The five unresolved pairs are exactly the four middle methods against each other.
-    unresolved = {frozenset((p["a"], p["b"])) for p in r["pairs"] if not p["excludes_zero"]}
+    unresolved = {frozenset((p["a"], p["b"])) for p in classical if not p["excludes_zero"]}
     middle = {"ynoise", "dwf", "evflow", "ts"}
     assert unresolved == {frozenset(pair) for pair in
                           [("ynoise", "dwf"), ("ynoise", "evflow"), ("ynoise", "ts"),

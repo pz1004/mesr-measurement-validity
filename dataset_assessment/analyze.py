@@ -411,65 +411,70 @@ def null_gain_at_fixed_retention(dataset: str,
 
 
 def edformer_reference() -> Dict:
-    """EDformer's verified E-MLB row, placed on the protocol's Delta-over-Raw axis.
+    """EDformer under its own released protocol, uncapped, run inside this pipeline.
 
-    EDformer cannot be re-run here (it needs its own pinned environment), so its per-cell
-    numbers are taken from the parent project's reproduction. Its curve cannot be swept at
-    all: the operating point is baked into `EDformer/eval_mesr.py` as `sigmoid >= 0.005`.
-    That is not a gap in this benchmark, it is an instance of the problem the paper
-    documents.
+    Table IV does not use this block. There EDformer is scored on the same capped inputs as
+    every other row (`edformer.py --cap 1000000`), which is what makes it pairable. This is
+    the separate uncapped run that reproduces the published per-cell table, and it is what
+    App. D quotes. Its curve cannot be swept at all: the operating point is baked into
+    `EDformer/eval_mesr.py` as `sigmoid >= 0.005`. That is not a gap in this benchmark, it
+    is an instance of the problem the paper documents.
 
-    TWO MISMATCHES A READER MUST SEE, both reported in the returned dict rather than
-    described in prose:
+    `reproduction_error` - the run matches the published table to +0.0010 ON AVERAGE, but
+    that mean is the residue of per-cell errors that cancel (-0.0195 to +0.0402). Since
+    these per-cell values are what this row is built from, and since the paper's unit of
+    scale is the 0.0092 EDformer-EDmamba gap, the per-cell spread is the honest figure: it
+    is larger than the gap it is being compared against.
 
-    `reproduction_error` - the reproduction matches the published table to +0.0010 ON
-    AVERAGE, but that mean is the residue of per-cell errors that cancel (-0.0195 to
-    +0.0402). Since these per-cell values are what this row is built from, and since the
-    paper's unit of scale is the 0.0092 EDformer-EDmamba gap, the per-cell spread is the
-    honest figure: it is larger than the gap it is being compared against.
-
-    `recording_sets` - both runs now cover the same 384 E-MLB recordings; they differ only
-    in the 1,000,000-event cap on the classical rows. Delta-over-Raw is NOT cap-invariant
-    (`cap_sensitivity.py`); the two runs are therefore not matched on the cap, and the
-    comparison is descriptive.
-    Earlier revisions ran the classical rows on a 96-recording subset, and this block
-    reported that as a mismatch; the counts are read from the artifacts so that a divergence
-    reappears here rather than being asserted either way.
+    A cell mean follows the released aggregation, a mean over the recordings that have a
+    score. Where EDformer keeps less than one 30,000-event slice the recording has no MESR
+    at all; `evaluable` counts the ones that do, and it is not 48 everywhere.
     """
 
-    path = (Path(__file__).resolve().parents[1]
-            / "reproduction/results/emlb_edformer_mesr.json")
-    if not path.exists():
+    path = RESULTS / "edformer_emlb_uncapped.json"
+    published_path = (Path(__file__).resolve().parents[1]
+                      / "reproduction/results/emlb_edformer_mesr.json")
+    if not path.exists() or not published_path.exists():
         return {}
-    payload = json.loads(path.read_text())
+    records = json.loads(path.read_text())["records"]
+    published = json.loads(published_path.read_text())["paper_reference"]["edformer"]
+    grouped: Dict = {}
+    for row in records:
+        _, part, base = row["recording"].split("/")
+        grouped.setdefault((part, "ND" + re.search(r"ND(\d\d)", base).group(1)),
+                           []).append(row)
     cells, deltas, retentions = [], [], []
-    for part, levels in payload["results"].items():
-        for level, cell in levels.items():
-            delta = cell["edformer_mesr"] - cell["raw_mesr"]
-            cells.append({"part": part, "nd": level, "raw_mesr": cell["raw_mesr"],
-                          "edformer_mesr": cell["edformer_mesr"],
-                          "delta_over_raw": delta,
-                          "mean_retention": cell["mean_retention"],
-                          "paper_edformer": cell["paper_edformer"]})
-            deltas.append(delta)
-            retentions.append(cell["mean_retention"])
+    for (part, level), rows in sorted(grouped.items()):
+        scored = [r["edformer_mesr"] for r in rows if np.isfinite(r["edformer_mesr"])]
+        filtered = float(np.mean(scored))
+        raw = float(np.mean([r["raw_mesr"] for r in rows]))
+        retention = float(np.mean([r["retention"] for r in rows]))
+        cells.append({"part": part, "nd": level, "raw_mesr": raw,
+                      "edformer_mesr": filtered, "delta_over_raw": filtered - raw,
+                      "mean_retention": retention, "recordings": len(rows),
+                      "evaluable": len(scored),
+                      "paper_edformer": published[part][level]})
+        deltas.append(filtered - raw)
+        retentions.append(retention)
     errors = [c["edformer_mesr"] - c["paper_edformer"] for c in cells]
     return {
-        "source": "reproduction/results/emlb_edformer_mesr.json",
+        "source": "results/edformer_emlb_uncapped.json",
+        "published_table": "reproduction/results/emlb_edformer_mesr.json (paper_reference)",
         "operating_point": "published protocol, sigmoid >= 0.005 (EDformer/eval_mesr.py:75)",
         "sweepable": False,
         "reason_not_sweepable": ("the threshold is hard-coded in the released evaluation "
                                  "script, so no MESR@r curve can be produced from it"),
         "cells": cells,
         "mean_delta_over_raw": float(np.mean(deltas)),
-        # Bootstrapped over the 8 (lighting, ND) cells, not over recordings: the artifact
-        # stores cell aggregates only. It is therefore a coarser interval than the
-        # classical rows' 96-recording one, and is labelled as such wherever it is quoted.
+        # Bootstrapped over the 8 (lighting, ND) cells, not over recordings, so that this
+        # interval stays comparable with the published table it is checked against. The
+        # recording-level interval for EDformer is in results/native_emlb.json, where the
+        # capped run puts EDformer on the same footing as the filters.
         "delta_over_raw_ci": {**bootstrap_delta_ci(deltas),
                               "resampling_unit": "(lighting, ND) cell, n=8",
                               "comparable_to_classical_ci": False},
         "retention_range": [float(np.min(retentions)), float(np.max(retentions))],
-        "max_events_per_sequence": payload["protocol"]["max_events_per_sequence"],
+        "max_events_per_sequence": 0,
         "reproduction_error": {
             "mean": float(np.mean(errors)),
             "min": float(np.min(errors)),
@@ -479,36 +484,35 @@ def edformer_reference() -> Dict:
             "note": ("mean is the residue of cancelling per-cell errors; quote max_abs "
                      "when claiming agreement, not mean"),
         },
-        "recording_sets": _recording_sets(payload),
+        "recordings": _recording_sets(records),
     }
 
 
-def _recording_sets(payload: Dict) -> Dict:
-    """How the EDformer row and the classical rows are drawn, both counted from artifacts.
+def _recording_sets(records: List[Dict]) -> Dict:
+    """How the uncapped EDformer run and the capped rows are drawn, both counted.
 
     Hardcoding these once left `NUMBERS.md` asserting a 96-recording, 12-scene classical run
     for three revisions after that run was extended to the full 384. A digest that states a
     stale fact is worse than one that omits it, because the paper points readers at it.
     """
 
-    edformer = sum(cell["sequences"] for levels in payload["results"].values()
-                   for cell in levels.values())
+    evaluable = sum(1 for r in records if np.isfinite(r["edformer_mesr"]))
     classical_path = Path(__file__).resolve().parents[1] / "results/benchmark_emlb.json"
     classical, clusters = 0, 0
     if classical_path.exists():
-        records = json.loads(classical_path.read_text())["records"]
-        classical = len(records)
-        clusters = len({scene_of(r["recording"]) for r in records})
+        rows = json.loads(classical_path.read_text())["records"]
+        classical = len(rows)
+        clusters = len({scene_of(r["recording"]) for r in rows})
     return {
-        "edformer_recordings": edformer,
-        "edformer_cap": payload["protocol"]["max_events_per_sequence"],
-        "classical_recordings": classical,
-        "classical_scene_clusters": clusters,
-        "classical_cap": 1_000_000,
-        "matched_on_recordings": bool(classical) and classical == edformer,
+        "uncapped_recordings": len(records),
+        "uncapped_evaluable": evaluable,
+        "capped_recordings": classical,
+        "capped_scene_clusters": clusters,
+        "cap": 1_000_000,
         "note": ("Delta-over-Raw is NOT cap-invariant (results/cap_sensitivity.json), so "
-                 "recording sets measured under different caps are NOT matched; the "
-                 "EDformer row beside the capped classical rows is descriptive only"),
+                 "this uncapped run is not interchangeable with the capped rows of "
+                 "tab:emlb; it checks the published table, and EDformer's own capped run "
+                 "supplies its row there"),
     }
 
 

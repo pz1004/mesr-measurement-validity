@@ -334,6 +334,7 @@
             "n": 10,
             "n_clusters": 2,
             "draws": 10000,
+            "alpha": 0.05,
             "excludes_zero": true
           }
         },
@@ -545,6 +546,7 @@
             "n": 10,
             "n_clusters": 2,
             "draws": 10000,
+            "alpha": 0.05,
             "excludes_zero": true
           }
         },
@@ -1192,6 +1194,7 @@
             "n": 10,
             "n_clusters": 5,
             "draws": 10000,
+            "alpha": 0.05,
             "excludes_zero": false
           }
         },
@@ -1394,6 +1397,7 @@
             "n": 10,
             "n_clusters": 5,
             "draws": 10000,
+            "alpha": 0.05,
             "excludes_zero": false
           }
         },
@@ -2010,6 +2014,7 @@
             "n": 384,
             "n_clusters": 96,
             "draws": 10000,
+            "alpha": 0.05,
             "excludes_zero": true
           }
         },
@@ -2221,6 +2226,7 @@
             "n": 384,
             "n_clusters": 96,
             "draws": 10000,
+            "alpha": 0.05,
             "excludes_zero": true
           }
         },
@@ -2550,7 +2556,8 @@
     "rankings_differ": true,
     "gate": "decided",
     "edformer_reference": {
-      "source": "reproduction/results/emlb_edformer_mesr.json",
+      "source": "results/edformer_emlb_uncapped.json",
+      "published_table": "reproduction/results/emlb_edformer_mesr.json (paper_reference)",
       "operating_point": "published protocol, sigmoid >= 0.005 (EDformer/eval_mesr.py:75)",
       "sweepable": false,
       "reason_not_sweepable": "the threshold is hard-coded in the released evaluation script, so no MESR@r curve can be produced from it",
@@ -2558,81 +2565,97 @@
         {
           "part": "D-END",
           "nd": "ND00",
-          "raw_mesr": 0.8244916192280707,
-          "edformer_mesr": 0.9520324576641584,
-          "delta_over_raw": 0.12754083843608777,
+          "raw_mesr": 0.8244915880632216,
+          "edformer_mesr": 0.9520324281134181,
+          "delta_over_raw": 0.1275408400501965,
           "mean_retention": 0.4832529999272099,
+          "recordings": 48,
+          "evaluable": 48,
           "paper_edformer": 0.952
         },
         {
           "part": "D-END",
           "nd": "ND04",
-          "raw_mesr": 0.8223869696155403,
-          "edformer_mesr": 0.9513341608725797,
-          "delta_over_raw": 0.12894719125703946,
+          "raw_mesr": 0.8223869420555686,
+          "edformer_mesr": 0.951334146881534,
+          "delta_over_raw": 0.12894720482596533,
           "mean_retention": 0.4436677510865643,
+          "recordings": 48,
+          "evaluable": 47,
           "paper_edformer": 0.955
         },
         {
           "part": "D-END",
           "nd": "ND16",
-          "raw_mesr": 0.8186495615830737,
-          "edformer_mesr": 0.9364504898492988,
-          "delta_over_raw": 0.11780092826622512,
+          "raw_mesr": 0.8186495148086858,
+          "edformer_mesr": 0.9364504650011309,
+          "delta_over_raw": 0.11780095019244519,
           "mean_retention": 0.398031794687264,
+          "recordings": 48,
+          "evaluable": 47,
           "paper_edformer": 0.956
         },
         {
           "part": "D-END",
           "nd": "ND64",
-          "raw_mesr": 0.7872047169465612,
-          "edformer_mesr": 0.9350158648685823,
-          "delta_over_raw": 0.1478111479220211,
+          "raw_mesr": 0.7872046729202723,
+          "edformer_mesr": 0.9350158373075698,
+          "delta_over_raw": 0.14781116438729747,
           "mean_retention": 0.3005655692951436,
+          "recordings": 48,
+          "evaluable": 44,
           "paper_edformer": 0.942
         },
         {
           "part": "N-END",
           "nd": "ND00",
-          "raw_mesr": 0.8923000918002689,
-          "edformer_mesr": 1.0362627862529636,
-          "delta_over_raw": 0.14396269445269472,
+          "raw_mesr": 0.8923000614495255,
+          "edformer_mesr": 1.036262753242813,
+          "delta_over_raw": 0.14396269179328758,
           "mean_retention": 0.3595606753013402,
+          "recordings": 48,
+          "evaluable": 47,
           "paper_edformer": 1.048
         },
         {
           "part": "N-END",
           "nd": "ND04",
-          "raw_mesr": 0.8301966390775609,
-          "edformer_mesr": 1.0591558101925767,
-          "delta_over_raw": 0.22895917111501574,
+          "raw_mesr": 0.8301966011468404,
+          "edformer_mesr": 1.059155801301212,
+          "delta_over_raw": 0.22895920015437154,
           "mean_retention": 0.23630442802149423,
+          "recordings": 48,
+          "evaluable": 41,
           "paper_edformer": 1.019
         },
         {
           "part": "N-END",
           "nd": "ND16",
-          "raw_mesr": 0.7902069172755827,
-          "edformer_mesr": 1.1015086064416286,
-          "delta_over_raw": 0.31130168916604595,
+          "raw_mesr": 0.7902068871545129,
+          "edformer_mesr": 1.1015085614860447,
+          "delta_over_raw": 0.3113016743315318,
           "mean_retention": 0.1501774700242384,
+          "recordings": 48,
+          "evaluable": 37,
           "paper_edformer": 1.076
         },
         {
           "part": "N-END",
           "nd": "ND64",
-          "raw_mesr": 0.7646365179384128,
-          "edformer_mesr": 1.083437000444596,
-          "delta_over_raw": 0.3188004825061831,
+          "raw_mesr": 0.7646364867155407,
+          "edformer_mesr": 1.0834369834137945,
+          "delta_over_raw": 0.3188004966982537,
           "mean_retention": 0.08105662703745477,
+          "recordings": 48,
+          "evaluable": 31,
           "paper_edformer": 1.099
         }
       ],
-      "mean_delta_over_raw": 0.19064051789016412,
+      "mean_delta_over_raw": 0.19064052780416862,
       "delta_over_raw_ci": {
-        "mean": 0.19064051789016412,
-        "lo": 0.1406641345169022,
-        "hi": 0.24796684522034196,
+        "mean": 0.19064052780416862,
+        "lo": 0.1406641494449361,
+        "hi": 0.24796685711850708,
         "n": 8,
         "draws": 10000,
         "resampling_unit": "(lighting, ND) cell, n=8",
@@ -2644,21 +2667,20 @@
       ],
       "max_events_per_sequence": 0,
       "reproduction_error": {
-        "mean": 0.0010246470732980378,
-        "min": -0.019549510150701166,
-        "max": 0.040155810192576746,
-        "max_abs": 0.040155810192576746,
+        "mean": 0.0010246220934396338,
+        "min": -0.019549534998869023,
+        "max": 0.04015580130121199,
+        "max_abs": 0.04015580130121199,
         "n_cells": 8,
         "note": "mean is the residue of cancelling per-cell errors; quote max_abs when claiming agreement, not mean"
       },
-      "recording_sets": {
-        "edformer_recordings": 384,
-        "edformer_cap": 0,
-        "classical_recordings": 384,
-        "classical_scene_clusters": 96,
-        "classical_cap": 1000000,
-        "matched_on_recordings": true,
-        "note": "Delta-over-Raw is NOT cap-invariant (results/cap_sensitivity.json), so recording sets measured under different caps are NOT matched; the EDformer row beside the capped classical rows is descriptive only"
+      "recordings": {
+        "uncapped_recordings": 384,
+        "uncapped_evaluable": 342,
+        "capped_recordings": 384,
+        "capped_scene_clusters": 96,
+        "cap": 1000000,
+        "note": "Delta-over-Raw is NOT cap-invariant (results/cap_sensitivity.json), so this uncapped run is not interchangeable with the capped rows of tab:emlb; it checks the published table, and EDformer's own capped run supplies its row there"
       }
     }
   },
@@ -2964,6 +2986,7 @@
             "n": 12,
             "n_clusters": 10,
             "draws": 10000,
+            "alpha": 0.05,
             "excludes_zero": true
           }
         },
@@ -3175,6 +3198,7 @@
             "n": 12,
             "n_clusters": 10,
             "draws": 10000,
+            "alpha": 0.05,
             "excludes_zero": true
           }
         },
@@ -3797,6 +3821,7 @@
             "n": 23,
             "n_clusters": 23,
             "draws": 10000,
+            "alpha": 0.05,
             "excludes_zero": false
           }
         },
@@ -4008,6 +4033,7 @@
             "n": 24,
             "n_clusters": 24,
             "draws": 10000,
+            "alpha": 0.05,
             "excludes_zero": true
           }
         },

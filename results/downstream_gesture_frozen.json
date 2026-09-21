@@ -1,0 +1,458 @@
+{
+  "conditions": [
+    {
+      "accuracy": 0.6145833333333334,
+      "actual_kept_fraction": 0.3999999426418357,
+      "evaluable_test_samples": 287,
+      "macro_f1": 0.6162293309032637,
+      "mesr": 1.4306636492292326,
+      "method": "raw",
+      "name": "r040__unfiltered",
+      "retention": 0.4
+    },
+    {
+      "accuracy": 0.71875,
+      "actual_kept_fraction": 0.5000001699640262,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.6979711561181284,
+      "mesr": 1.4318214278460202,
+      "method": "raw",
+      "name": "r050__unfiltered",
+      "retention": 0.5
+    },
+    {
+      "accuracy": 0.7951388888888888,
+      "actual_kept_fraction": 0.6000000573581643,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.7790792010186067,
+      "mesr": 1.430775803122275,
+      "method": "raw",
+      "name": "r060__unfiltered",
+      "retention": 0.6
+    },
+    {
+      "accuracy": 0.9305555555555556,
+      "actual_kept_fraction": 0.8000001265366483,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.9284864014881576,
+      "mesr": 1.4304422401706383,
+      "method": "raw",
+      "name": "r080__unfiltered",
+      "retention": 0.8
+    },
+    {
+      "accuracy": 0.96875,
+      "actual_kept_fraction": 1.0,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.9668157414841424,
+      "mesr": 1.4326925262364274,
+      "method": "all",
+      "name": "clean__unfiltered",
+      "retention": 1.0
+    },
+    {
+      "accuracy": 0.5729166666666666,
+      "actual_kept_fraction": 0.3999999426418357,
+      "evaluable_test_samples": 287,
+      "macro_f1": 0.5591762603083357,
+      "mesr": 1.4103566517327621,
+      "method": "random_null",
+      "name": "r040__random_null",
+      "retention": 0.4
+    },
+    {
+      "accuracy": 0.6631944444444444,
+      "actual_kept_fraction": 0.5000001699640262,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.6535150533895829,
+      "mesr": 1.4144866529098403,
+      "method": "random_null",
+      "name": "r050__random_null",
+      "retention": 0.5
+    },
+    {
+      "accuracy": 0.7638888888888888,
+      "actual_kept_fraction": 0.6000000573581643,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.7665211085143724,
+      "mesr": 1.4170476230984836,
+      "method": "random_null",
+      "name": "r060__random_null",
+      "retention": 0.6
+    },
+    {
+      "accuracy": 0.9131944444444444,
+      "actual_kept_fraction": 0.8000001265366483,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.913445682380786,
+      "mesr": 1.4247806583249198,
+      "method": "random_null",
+      "name": "r080__random_null",
+      "retention": 0.8
+    },
+    {
+      "accuracy": 0.65625,
+      "actual_kept_fraction": 0.3999999426418357,
+      "evaluable_test_samples": 287,
+      "macro_f1": 0.646341099271015,
+      "mesr": 1.4225401327732505,
+      "method": "dwf",
+      "name": "r040__dwf",
+      "retention": 0.4
+    },
+    {
+      "accuracy": 0.7430555555555556,
+      "actual_kept_fraction": 0.5000001699640262,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.7292645676318957,
+      "mesr": 1.4239899348812057,
+      "method": "dwf",
+      "name": "r050__dwf",
+      "retention": 0.5
+    },
+    {
+      "accuracy": 0.7881944444444444,
+      "actual_kept_fraction": 0.6000000573581643,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.7738714402061823,
+      "mesr": 1.423578538458422,
+      "method": "dwf",
+      "name": "r060__dwf",
+      "retention": 0.6
+    },
+    {
+      "accuracy": 0.9305555555555556,
+      "actual_kept_fraction": 0.8000001265366483,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.931254547454434,
+      "mesr": 1.4239648413392691,
+      "method": "dwf",
+      "name": "r080__dwf",
+      "retention": 0.8
+    },
+    {
+      "accuracy": 0.6944444444444444,
+      "actual_kept_fraction": 0.3999999426418357,
+      "evaluable_test_samples": 287,
+      "macro_f1": 0.6802866059689064,
+      "mesr": 1.4861073531002233,
+      "method": "evflow",
+      "name": "r040__evflow",
+      "retention": 0.4
+    },
+    {
+      "accuracy": 0.7534722222222222,
+      "actual_kept_fraction": 0.5000001699640262,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.7482242584999045,
+      "mesr": 1.4726128669829643,
+      "method": "evflow",
+      "name": "r050__evflow",
+      "retention": 0.5
+    },
+    {
+      "accuracy": 0.8368055555555556,
+      "actual_kept_fraction": 0.6000000573581643,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.8340234271326985,
+      "mesr": 1.4597078201788163,
+      "method": "evflow",
+      "name": "r060__evflow",
+      "retention": 0.6
+    },
+    {
+      "accuracy": 0.9236111111111112,
+      "actual_kept_fraction": 0.8000001265366483,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.9239377481646721,
+      "mesr": 1.4424857053341986,
+      "method": "evflow",
+      "name": "r080__evflow",
+      "retention": 0.8
+    },
+    {
+      "accuracy": 0.6354166666666666,
+      "actual_kept_fraction": 0.3999999426418357,
+      "evaluable_test_samples": 287,
+      "macro_f1": 0.6439714580409023,
+      "mesr": 1.4305158373887823,
+      "method": "knoise",
+      "name": "r040__knoise",
+      "retention": 0.4
+    },
+    {
+      "accuracy": 0.7534722222222222,
+      "actual_kept_fraction": 0.5000001699640262,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.760932834655146,
+      "mesr": 1.43682429158355,
+      "method": "knoise",
+      "name": "r050__knoise",
+      "retention": 0.5
+    },
+    {
+      "accuracy": 0.8506944444444444,
+      "actual_kept_fraction": 0.6000000573581643,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.8544076953856621,
+      "mesr": 1.4361493098843805,
+      "method": "knoise",
+      "name": "r060__knoise",
+      "retention": 0.6
+    },
+    {
+      "accuracy": 0.9375,
+      "actual_kept_fraction": 0.8000001265366483,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.9381575507965803,
+      "mesr": 1.4338932434792435,
+      "method": "knoise",
+      "name": "r080__knoise",
+      "retention": 0.8
+    },
+    {
+      "accuracy": 0.6319444444444444,
+      "actual_kept_fraction": 0.3999999426418357,
+      "evaluable_test_samples": 287,
+      "macro_f1": 0.6078234670303435,
+      "mesr": 1.498829619783968,
+      "method": "red",
+      "name": "r040__red",
+      "retention": 0.4
+    },
+    {
+      "accuracy": 0.6423611111111112,
+      "actual_kept_fraction": 0.5000001699640262,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.6276212300390284,
+      "mesr": 1.4954024524658738,
+      "method": "red",
+      "name": "r050__red",
+      "retention": 0.5
+    },
+    {
+      "accuracy": 0.6493055555555556,
+      "actual_kept_fraction": 0.6000000573581643,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.6409218325389309,
+      "mesr": 1.4888491913077664,
+      "method": "red",
+      "name": "r060__red",
+      "retention": 0.6
+    },
+    {
+      "accuracy": 0.8090277777777778,
+      "actual_kept_fraction": 0.8000001265366483,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.8059144973040863,
+      "mesr": 1.4701653407161446,
+      "method": "red",
+      "name": "r080__red",
+      "retention": 0.8
+    },
+    {
+      "accuracy": 0.6458333333333334,
+      "actual_kept_fraction": 0.3999999426418357,
+      "evaluable_test_samples": 287,
+      "macro_f1": 0.6508296440193916,
+      "mesr": 1.4662299280711708,
+      "method": "ts",
+      "name": "r040__ts",
+      "retention": 0.4
+    },
+    {
+      "accuracy": 0.7569444444444444,
+      "actual_kept_fraction": 0.5000001699640262,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.7594687320679835,
+      "mesr": 1.456878523289366,
+      "method": "ts",
+      "name": "r050__ts",
+      "retention": 0.5
+    },
+    {
+      "accuracy": 0.8298611111111112,
+      "actual_kept_fraction": 0.6000000573581643,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.8327478425970295,
+      "mesr": 1.44796855804091,
+      "method": "ts",
+      "name": "r060__ts",
+      "retention": 0.6
+    },
+    {
+      "accuracy": 0.9305555555555556,
+      "actual_kept_fraction": 0.8000001265366483,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.9309001221543715,
+      "mesr": 1.4372631044700626,
+      "method": "ts",
+      "name": "r080__ts",
+      "retention": 0.8
+    },
+    {
+      "accuracy": 0.7604166666666666,
+      "actual_kept_fraction": 0.3999999426418357,
+      "evaluable_test_samples": 287,
+      "macro_f1": 0.7621514919361203,
+      "mesr": 1.4347546273011722,
+      "method": "ynoise",
+      "name": "r040__ynoise",
+      "retention": 0.4
+    },
+    {
+      "accuracy": 0.7708333333333334,
+      "actual_kept_fraction": 0.5000001699640262,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.7765429704453614,
+      "mesr": 1.4355878928405852,
+      "method": "ynoise",
+      "name": "r050__ynoise",
+      "retention": 0.5
+    },
+    {
+      "accuracy": 0.8368055555555556,
+      "actual_kept_fraction": 0.6000000573581643,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.8452260162156143,
+      "mesr": 1.43925622248186,
+      "method": "ynoise",
+      "name": "r060__ynoise",
+      "retention": 0.6
+    },
+    {
+      "accuracy": 0.9305555555555556,
+      "actual_kept_fraction": 0.8000001265366483,
+      "evaluable_test_samples": 288,
+      "macro_f1": 0.9303661646625986,
+      "mesr": 1.4441991812200934,
+      "method": "ynoise",
+      "name": "r080__ynoise",
+      "retention": 0.8
+    }
+  ],
+  "coverage": {
+    "capped_at": null,
+    "gestures_kept": 288,
+    "gestures_offered": 288,
+    "mean_events": 410440.62152777775,
+    "median_events": 341636.5
+  },
+  "detectable_rho": {
+    "alpha": 0.05,
+    "min_detectable_rho": 0.3433089972376546,
+    "n": 33,
+    "note": "a failure to reject bounds the effect only as far as this; the paper reports it so the negative result is not read as a well-powered null",
+    "power": {
+      "rho_03": 0.3956375105707699,
+      "rho_05": 0.8528441206348292
+    }
+  },
+  "gate": {
+    "expected_macro_f1": 0.9668157414841424,
+    "expected_top1": 0.96875,
+    "macro_f1": 0.9668157414841424,
+    "reproduced": true,
+    "samples": 288,
+    "top1": 0.96875
+  },
+  "partial_spearman": {
+    "control": "retention",
+    "n": 33,
+    "p": 0.7122500054646141,
+    "rho": -0.06782491138587755
+  },
+  "protocol": {
+    "checkpoint": "/home/pz1004/Workspaces/dvs-noise-filter/downstream/assets/snn7b/released/checkpoint_max_val_acc1.pth",
+    "classifier": "released SEW 7B-Net, frozen, authors' maximum checkpoint",
+    "deduplicated_conditions": {
+      "after": 33,
+      "before": 40,
+      "why": "retention 1.0 is one condition under eight method labels; the extra rows are exact ties and were counted once"
+    },
+    "event_cap": null,
+    "methods": [
+      "raw",
+      "random_null",
+      "dwf",
+      "evflow",
+      "knoise",
+      "red",
+      "ts",
+      "ynoise"
+    ],
+    "representation": "16 equal-event-count bins, separate ON/OFF planes",
+    "retentions": [
+      0.4,
+      0.5,
+      0.6,
+      0.8,
+      1.0
+    ],
+    "seeds": null,
+    "slice_size": 30000,
+    "test_samples": 288,
+    "trained_here": false
+  },
+  "scored_share": [
+    {
+      "classified": 47282759,
+      "retention": 0.4,
+      "scored_by_mesr": 43200000,
+      "scored_share": 0.9136522680497557
+    },
+    {
+      "classified": 59103458,
+      "retention": 0.5,
+      "scored_by_mesr": 54930000,
+      "scored_share": 0.9293872449899632
+    },
+    {
+      "classified": 70924140,
+      "retention": 0.6,
+      "scored_by_mesr": 66480000,
+      "scored_share": 0.9373395292491385
+    },
+    {
+      "classified": 94565525,
+      "retention": 0.8,
+      "scored_by_mesr": 90330000,
+      "scored_share": 0.9552106859238607
+    },
+    {
+      "classified": 118206899,
+      "retention": 1.0,
+      "scored_by_mesr": 113940000,
+      "scored_share": 0.9639031305609328
+    }
+  ],
+  "wall_seconds": 2005.6410830960376,
+  "within_retention": {
+    "fisher_p": 0.819840860440081,
+    "mean_rho": 0.07310083432378646,
+    "min_detectable_rho_note": "each level has one point per method; Spearman needs |rho| ~ 0.74 at n = 8 to reach p < 0.05",
+    "per_retention": {
+      "0.4": {
+        "n": 8,
+        "p": 0.4197530864197531,
+        "rho": 0.3333333333333334
+      },
+      "0.5": {
+        "n": 8,
+        "p": 0.7775830437712571,
+        "rho": 0.1197626261913259
+      },
+      "0.6": {
+        "n": 8,
+        "p": 0.7342214747617433,
+        "rho": 0.14371515142959107
+      },
+      "0.8": {
+        "n": 8,
+        "p": 0.4635148227616074,
+        "rho": -0.3044077736591046
+      }
+    },
+    "per_seed": {}
+  }
+}

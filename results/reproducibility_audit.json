@@ -1,4 +1,11 @@
 {
+  "pinned_commits": {
+    "EDmamba": "302f758",
+    "EDformer": "820ff16",
+    "cuke-emlb": "105a1c3"
+  },
+  "accessed": "2026-09-21",
+  "read_from": "git blob at the pinned commit, not the working copy",
   "checks": [
     {
       "paper": "EDmamba",
@@ -6,8 +13,10 @@
       "claim": "the ESR computation is commented out in the released tester",
       "verified": true,
       "evidence": {
+        "repo": "EDmamba",
+        "commit": "302f758",
         "file": "EDmamba/pointcept/engines/test.py",
-        "line": 481,
+        "line": 478,
         "text": "# ESR = self.compute_average_esr(X,Y)"
       }
     },
@@ -24,8 +33,10 @@
       "claim": "the E-MLB reader evaluates ND00 only, not 4 ND levels",
       "verified": true,
       "evidence": {
+        "repo": "EDmamba",
+        "commit": "302f758",
         "file": "EDmamba/pointcept/datasets/denoise_emlb.py",
-        "line": 43,
+        "line": 40,
         "text": "test = [\"ND00\"]"
       }
     },
@@ -35,8 +46,10 @@
       "claim": "the E-MLB reader substitutes polarity for labels",
       "verified": true,
       "evidence": {
+        "repo": "EDmamba",
+        "commit": "302f758",
         "file": "EDmamba/pointcept/datasets/denoise_emlb.py",
-        "line": 105,
+        "line": 102,
         "text": "labels = events_slice[:,3]"
       }
     },
@@ -46,6 +59,8 @@
       "claim": "the operating point IS stated in the released code (0.005)",
       "verified": true,
       "evidence": {
+        "repo": "EDformer",
+        "commit": "820ff16",
         "file": "EDformer/eval_mesr.py",
         "line": 75,
         "text": "predictions[predictions >= 0.005] = 1"
@@ -57,6 +72,8 @@
       "claim": "the repo ships an unused ESR variant that median-filters and rescales by 1000 - a silent-error hazard",
       "verified": true,
       "evidence": {
+        "repo": "EDformer",
+        "commit": "820ff16",
         "file": "EDformer/metrics.py",
         "line": 21,
         "text": "class EventStructuralRatioV2(object):"
@@ -68,6 +85,8 @@
       "claim": "cuke-emlb ships a median-filtering V2 variant beside the official EventStructuralRatio, in python/src/utils/metric.py",
       "verified": true,
       "evidence": {
+        "repo": "cuke-emlb",
+        "commit": "105a1c3",
         "file": "cuke-emlb/python/src/utils/metric.py",
         "line": 24,
         "text": "class EventStructuralRatioV2(object):"
@@ -76,9 +95,25 @@
     {
       "paper": "E-MLB (cuke-emlb)",
       "table": "metric definition",
+      "claim": "a time-delimited entry point (33 ms default) ships beside the count-delimited one, and no released driver calls it",
+      "verified": true,
+      "evidence": {
+        "repo": "cuke-emlb",
+        "commit": "105a1c3",
+        "file": "cuke-emlb/python/src/utils/metric.py",
+        "line": 149,
+        "text": "def evalEventStorePerTime(self, events: dv.EventStore,",
+        "callers": []
+      }
+    },
+    {
+      "paper": "E-MLB (cuke-emlb)",
+      "table": "metric definition",
       "claim": "the official ln subtracts from K, so empty pixels contribute 1 each and K cancels; ESR carries no W*H term",
       "verified": true,
       "evidence": {
+        "repo": "cuke-emlb",
+        "commit": "105a1c3",
         "file": "cuke-emlb/python/src/utils/metric.py",
         "line": 188,
         "text": "ln = K - ((1 - M / N) ** n).sum()"
@@ -90,6 +125,8 @@
       "claim": "EDnCNN/MLPF weights are not in the release",
       "verified": true,
       "evidence": {
+        "repo": "cuke-emlb",
+        "commit": "105a1c3",
         "dir": "cuke-emlb/modules/net",
         "contents": [
           ".gitkeep"

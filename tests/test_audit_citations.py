@@ -79,9 +79,36 @@ def test_a_cited_path_is_not_truncated_past_the_repository_root():
             f"repository root cannot find that path")
 
 
-def test_all_nine_claims_are_verified():
-    assert len(AUDIT["checks"]) == 9
-    assert all(c["verified"] for c in AUDIT["checks"])
+def test_every_claim_is_verified():
+    assert AUDIT["checks"], "the audit recorded no checks at all"
+    unverified = [c["claim"] for c in AUDIT["checks"] if not c["verified"]]
+    assert not unverified, f"unverified claims must not be cited: {unverified}"
+
+
+@pytest.mark.skipif(not SUPPLEMENT.exists(), reason="manuscript not in this checkout")
+def test_the_supplement_claims_exactly_as_many_checks_as_the_artifact_holds():
+    """Pinned against the count in the manuscript, not against a literal.
+
+    The count was hard-coded at nine and went stale the moment a tenth check was added, so
+    the test failed for a reason unrelated to anything it exists to catch. The supplement
+    states the count twice - in the section title and in the table caption - and both must
+    agree with the artifact, because a reader who counts the rows is checking exactly that.
+    """
+
+    text = SUPPLEMENT.read_text(encoding="utf-8", errors="replace")
+    words = {"nine": 9, "ten": 10, "eleven": 11, "twelve": 12}
+    titles = re.findall(r"\\section\{The (\w+) audited claims\}", text)
+    assert len(titles) == 1, f"expected one audit section title, found {titles}"
+    assert words.get(titles[0].lower()) == len(AUDIT["checks"]), (
+        f"the supplement's section says {titles[0]!r} claims but the artifact holds "
+        f"{len(AUDIT['checks'])}")
+
+    captions = re.findall(r"Source-level audit, \$(\d+)/(\d+)\$ confirmed", text)
+    assert len(captions) == 1, f"expected one audit caption, found {captions}"
+    confirmed, total = (int(v) for v in captions[0])
+    assert confirmed == total == len(AUDIT["checks"]), (
+        f"the caption says {confirmed}/{total} but the artifact holds "
+        f"{len(AUDIT['checks'])}")
 
 
 def test_the_edformer_row_points_at_the_variant_not_the_helper_it_calls():

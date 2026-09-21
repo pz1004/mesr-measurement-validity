@@ -75,9 +75,11 @@ DOWNSTREAM_ROOT = PROJECT_ROOT.parent
 CHECKPOINT = (DOWNSTREAM_ROOT / "downstream/assets/snn7b/released"
               / "checkpoint_max_val_acc1.pth")
 EVALUATOR = "downstream.evaluate_dvsgesture_variants"
-#: The conda environment the released checkpoint was evaluated in. Overridable; the gate
-#: below is what actually decides whether an interpreter reproduces the published cell.
-SNN_PYTHON = Path("/home/pz1004/anaconda3/envs/snn/bin/python")
+#: Interpreter used to run the released evaluator, which needs torch and spikingjelly.
+#: Set ``SNN_PYTHON`` to that environment's python if it is not the one running this
+#: script; the gate below is what actually decides whether an interpreter reproduces
+#: the published cell, so a wrong choice fails loudly rather than silently.
+SNN_PYTHON = Path(os.environ.get("SNN_PYTHON", sys.executable))
 
 OUT = PROJECT_ROOT / "results/downstream_gesture_frozen.json"
 FRAMES = PROJECT_ROOT / "results/downstream_gesture_frozen_frames"

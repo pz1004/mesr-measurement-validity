@@ -60,6 +60,18 @@ python -m dataset_assessment.analyze                                            
 Every run writes its JSON incrementally, one recording at a time, so a killed job keeps its
 partial output and can be inspected.
 
+### MESR repeatability across E-MLB's repetitions
+
+E-MLB records every (scene, ND) cell three times under nominally identical conditions; every
+other run here reads the first, as the published tables do. This scores all three and reports
+the within-cell spread — a Type A repeatability for the statistic (App. N).
+
+```bash
+python -m dataset_assessment.emlb_repeatability --workers 16   # results/emlb_repeatability.json  ~81 s
+```
+
+Needs no denoiser build: every reading is the unfiltered stream.
+
 ### Matched-retention label quality
 
 Whether a filter that out-scores the label oracle on MESR actually selects events better.
@@ -196,6 +208,19 @@ returns `native3d` and `native3d_gated`, giving 150 trainings instead of 120. Th
 kept in the artifact but excluded from every headline statistic — see `PAPER_METHODS` and the
 `extended_scope` block. Pass `--methods raw random_null dwf evflow knoise red ts ynoise` to
 run the paper's set only.
+
+### How much of the downstream verdict rests on RED
+
+RED holds the highest MESR at every partial retention of the frozen probe and alone produces
+the ranking inversion. This recomputes the Sec. V-F correlations with and without it, from the
+shipped artifacts rather than from the tables that print them.
+
+```bash
+python -m dataset_assessment.red_sensitivity    # results/red_sensitivity.json  <1 s
+```
+
+Reads `downstream_gesture.json` and `downstream_gesture_frozen.json`; reproduces the published
+`+0.135` (trained 2D CNN, 40 conditions) and `+0.073` (frozen, within retention) exactly.
 
 To recompute the statistics after changing how a summary is scoped or defined, without
 retraining anything:

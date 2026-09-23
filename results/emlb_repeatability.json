@@ -1,0 +1,6952 @@
+{
+  "dataset": "emlb",
+  "max_events": 1000000,
+  "repetitions": [
+    1,
+    2,
+    3
+  ],
+  "records": [
+    {
+      "recording": "E-MLB/D-END/Architecture-ND00-1",
+      "cell": "E-MLB/D-END/Architecture-ND00",
+      "events": 1000000,
+      "mesr": 0.7139573676050377
+    },
+    {
+      "recording": "E-MLB/D-END/Architecture-ND00-2",
+      "cell": "E-MLB/D-END/Architecture-ND00",
+      "events": 1000000,
+      "mesr": 0.7011372264110517
+    },
+    {
+      "recording": "E-MLB/D-END/Architecture-ND00-3",
+      "cell": "E-MLB/D-END/Architecture-ND00",
+      "events": 1000000,
+      "mesr": 0.7254022472346153
+    },
+    {
+      "recording": "E-MLB/D-END/Architecture-ND04-1",
+      "cell": "E-MLB/D-END/Architecture-ND04",
+      "events": 1000000,
+      "mesr": 0.6689847681199212
+    },
+    {
+      "recording": "E-MLB/D-END/Architecture-ND04-2",
+      "cell": "E-MLB/D-END/Architecture-ND04",
+      "events": 1000000,
+      "mesr": 0.7168530266882029
+    },
+    {
+      "recording": "E-MLB/D-END/Architecture-ND04-3",
+      "cell": "E-MLB/D-END/Architecture-ND04",
+      "events": 1000000,
+      "mesr": 0.7296475228358207
+    },
+    {
+      "recording": "E-MLB/D-END/Architecture-ND16-1",
+      "cell": "E-MLB/D-END/Architecture-ND16",
+      "events": 1000000,
+      "mesr": 0.711491767168109
+    },
+    {
+      "recording": "E-MLB/D-END/Architecture-ND16-2",
+      "cell": "E-MLB/D-END/Architecture-ND16",
+      "events": 1000000,
+      "mesr": 0.6777419829192756
+    },
+    {
+      "recording": "E-MLB/D-END/Architecture-ND16-3",
+      "cell": "E-MLB/D-END/Architecture-ND16",
+      "events": 1000000,
+      "mesr": 0.6829347208847839
+    },
+    {
+      "recording": "E-MLB/D-END/Architecture-ND64-1",
+      "cell": "E-MLB/D-END/Architecture-ND64",
+      "events": 1000000,
+      "mesr": 0.6925269466304503
+    },
+    {
+      "recording": "E-MLB/D-END/Architecture-ND64-2",
+      "cell": "E-MLB/D-END/Architecture-ND64",
+      "events": 1000000,
+      "mesr": 0.6761121662614545
+    },
+    {
+      "recording": "E-MLB/D-END/Architecture-ND64-3",
+      "cell": "E-MLB/D-END/Architecture-ND64",
+      "events": 1000000,
+      "mesr": 0.6608673424731539
+    },
+    {
+      "recording": "E-MLB/D-END/Bicycle-ND00-1",
+      "cell": "E-MLB/D-END/Bicycle-ND00",
+      "events": 1000000,
+      "mesr": 0.7080181673732092
+    },
+    {
+      "recording": "E-MLB/D-END/Bicycle-ND00-2",
+      "cell": "E-MLB/D-END/Bicycle-ND00",
+      "events": 1000000,
+      "mesr": 0.7082757909187067
+    },
+    {
+      "recording": "E-MLB/D-END/Bicycle-ND00-3",
+      "cell": "E-MLB/D-END/Bicycle-ND00",
+      "events": 1000000,
+      "mesr": 0.6951941729355184
+    },
+    {
+      "recording": "E-MLB/D-END/Bicycle-ND04-1",
+      "cell": "E-MLB/D-END/Bicycle-ND04",
+      "events": 1000000,
+      "mesr": 0.664869409229258
+    },
+    {
+      "recording": "E-MLB/D-END/Bicycle-ND04-2",
+      "cell": "E-MLB/D-END/Bicycle-ND04",
+      "events": 1000000,
+      "mesr": 0.6629333993134675
+    },
+    {
+      "recording": "E-MLB/D-END/Bicycle-ND04-3",
+      "cell": "E-MLB/D-END/Bicycle-ND04",
+      "events": 1000000,
+      "mesr": 0.6820938120852429
+    },
+    {
+      "recording": "E-MLB/D-END/Bicycle-ND16-1",
+      "cell": "E-MLB/D-END/Bicycle-ND16",
+      "events": 1000000,
+      "mesr": 0.6391560377684554
+    },
+    {
+      "recording": "E-MLB/D-END/Bicycle-ND16-2",
+      "cell": "E-MLB/D-END/Bicycle-ND16",
+      "events": 1000000,
+      "mesr": 0.6270819772566122
+    },
+    {
+      "recording": "E-MLB/D-END/Bicycle-ND16-3",
+      "cell": "E-MLB/D-END/Bicycle-ND16",
+      "events": 1000000,
+      "mesr": 0.6295194701780127
+    },
+    {
+      "recording": "E-MLB/D-END/Bicycle-ND64-1",
+      "cell": "E-MLB/D-END/Bicycle-ND64",
+      "events": 1000000,
+      "mesr": 0.5767512774650896
+    },
+    {
+      "recording": "E-MLB/D-END/Bicycle-ND64-2",
+      "cell": "E-MLB/D-END/Bicycle-ND64",
+      "events": 1000000,
+      "mesr": 0.5697288975089164
+    },
+    {
+      "recording": "E-MLB/D-END/Bicycle-ND64-3",
+      "cell": "E-MLB/D-END/Bicycle-ND64",
+      "events": 1000000,
+      "mesr": 0.5772592470033094
+    },
+    {
+      "recording": "E-MLB/D-END/Boat-ND00-1",
+      "cell": "E-MLB/D-END/Boat-ND00",
+      "events": 743308,
+      "mesr": 1.048483866328
+    },
+    {
+      "recording": "E-MLB/D-END/Boat-ND00-2",
+      "cell": "E-MLB/D-END/Boat-ND00",
+      "events": 463006,
+      "mesr": 1.0147757853864876
+    },
+    {
+      "recording": "E-MLB/D-END/Boat-ND00-3",
+      "cell": "E-MLB/D-END/Boat-ND00",
+      "events": 646467,
+      "mesr": 1.078695373812762
+    },
+    {
+      "recording": "E-MLB/D-END/Boat-ND04-1",
+      "cell": "E-MLB/D-END/Boat-ND04",
+      "events": 803141,
+      "mesr": 1.0419019446233404
+    },
+    {
+      "recording": "E-MLB/D-END/Boat-ND04-2",
+      "cell": "E-MLB/D-END/Boat-ND04",
+      "events": 1000000,
+      "mesr": 0.9762405553146394
+    },
+    {
+      "recording": "E-MLB/D-END/Boat-ND04-3",
+      "cell": "E-MLB/D-END/Boat-ND04",
+      "events": 838657,
+      "mesr": 1.077174606932451
+    },
+    {
+      "recording": "E-MLB/D-END/Boat-ND16-1",
+      "cell": "E-MLB/D-END/Boat-ND16",
+      "events": 665862,
+      "mesr": 0.9668391119914502
+    },
+    {
+      "recording": "E-MLB/D-END/Boat-ND16-2",
+      "cell": "E-MLB/D-END/Boat-ND16",
+      "events": 627820,
+      "mesr": 0.9256385825777574
+    },
+    {
+      "recording": "E-MLB/D-END/Boat-ND16-3",
+      "cell": "E-MLB/D-END/Boat-ND16",
+      "events": 450780,
+      "mesr": 1.1175661944002977
+    },
+    {
+      "recording": "E-MLB/D-END/Boat-ND64-1",
+      "cell": "E-MLB/D-END/Boat-ND64",
+      "events": 1000000,
+      "mesr": 0.9337108008668948
+    },
+    {
+      "recording": "E-MLB/D-END/Boat-ND64-2",
+      "cell": "E-MLB/D-END/Boat-ND64",
+      "events": 1000000,
+      "mesr": 1.013804250698992
+    },
+    {
+      "recording": "E-MLB/D-END/Boat-ND64-3",
+      "cell": "E-MLB/D-END/Boat-ND64",
+      "events": 1000000,
+      "mesr": 0.8741042095920097
+    },
+    {
+      "recording": "E-MLB/D-END/Books-ND00-1",
+      "cell": "E-MLB/D-END/Books-ND00",
+      "events": 1000000,
+      "mesr": 0.6250095611916302
+    },
+    {
+      "recording": "E-MLB/D-END/Books-ND00-2",
+      "cell": "E-MLB/D-END/Books-ND00",
+      "events": 1000000,
+      "mesr": 0.6329152782691724
+    },
+    {
+      "recording": "E-MLB/D-END/Books-ND00-3",
+      "cell": "E-MLB/D-END/Books-ND00",
+      "events": 1000000,
+      "mesr": 0.6412066787134624
+    },
+    {
+      "recording": "E-MLB/D-END/Books-ND04-1",
+      "cell": "E-MLB/D-END/Books-ND04",
+      "events": 1000000,
+      "mesr": 0.6582155935446145
+    },
+    {
+      "recording": "E-MLB/D-END/Books-ND04-2",
+      "cell": "E-MLB/D-END/Books-ND04",
+      "events": 1000000,
+      "mesr": 0.6163039889021026
+    },
+    {
+      "recording": "E-MLB/D-END/Books-ND04-3",
+      "cell": "E-MLB/D-END/Books-ND04",
+      "events": 1000000,
+      "mesr": 0.5792984354227091
+    },
+    {
+      "recording": "E-MLB/D-END/Books-ND16-1",
+      "cell": "E-MLB/D-END/Books-ND16",
+      "events": 1000000,
+      "mesr": 0.5549700780906596
+    },
+    {
+      "recording": "E-MLB/D-END/Books-ND16-2",
+      "cell": "E-MLB/D-END/Books-ND16",
+      "events": 1000000,
+      "mesr": 0.5383138945782431
+    },
+    {
+      "recording": "E-MLB/D-END/Books-ND16-3",
+      "cell": "E-MLB/D-END/Books-ND16",
+      "events": 1000000,
+      "mesr": 0.5337652460626
+    },
+    {
+      "recording": "E-MLB/D-END/Books-ND64-1",
+      "cell": "E-MLB/D-END/Books-ND64",
+      "events": 1000000,
+      "mesr": 0.5483322775649002
+    },
+    {
+      "recording": "E-MLB/D-END/Books-ND64-2",
+      "cell": "E-MLB/D-END/Books-ND64",
+      "events": 1000000,
+      "mesr": 0.4985777712637029
+    },
+    {
+      "recording": "E-MLB/D-END/Books-ND64-3",
+      "cell": "E-MLB/D-END/Books-ND64",
+      "events": 1000000,
+      "mesr": 0.4874051426781609
+    },
+    {
+      "recording": "E-MLB/D-END/Bubble-ND00-1",
+      "cell": "E-MLB/D-END/Bubble-ND00",
+      "events": 664841,
+      "mesr": 0.9450772320302767
+    },
+    {
+      "recording": "E-MLB/D-END/Bubble-ND00-2",
+      "cell": "E-MLB/D-END/Bubble-ND00",
+      "events": 636115,
+      "mesr": 0.9722816845512534
+    },
+    {
+      "recording": "E-MLB/D-END/Bubble-ND00-3",
+      "cell": "E-MLB/D-END/Bubble-ND00",
+      "events": 573417,
+      "mesr": 0.9656269077170747
+    },
+    {
+      "recording": "E-MLB/D-END/Bubble-ND04-1",
+      "cell": "E-MLB/D-END/Bubble-ND04",
+      "events": 443256,
+      "mesr": 0.9630150078802894
+    },
+    {
+      "recording": "E-MLB/D-END/Bubble-ND04-2",
+      "cell": "E-MLB/D-END/Bubble-ND04",
+      "events": 734397,
+      "mesr": 0.9652614479039766
+    },
+    {
+      "recording": "E-MLB/D-END/Bubble-ND04-3",
+      "cell": "E-MLB/D-END/Bubble-ND04",
+      "events": 478547,
+      "mesr": 0.9773452067078207
+    },
+    {
+      "recording": "E-MLB/D-END/Bubble-ND16-1",
+      "cell": "E-MLB/D-END/Bubble-ND16",
+      "events": 462407,
+      "mesr": 0.9649247873533765
+    },
+    {
+      "recording": "E-MLB/D-END/Bubble-ND16-2",
+      "cell": "E-MLB/D-END/Bubble-ND16",
+      "events": 480123,
+      "mesr": 0.9711483184452242
+    },
+    {
+      "recording": "E-MLB/D-END/Bubble-ND16-3",
+      "cell": "E-MLB/D-END/Bubble-ND16",
+      "events": 726742,
+      "mesr": 0.9661805102715255
+    },
+    {
+      "recording": "E-MLB/D-END/Bubble-ND64-1",
+      "cell": "E-MLB/D-END/Bubble-ND64",
+      "events": 431204,
+      "mesr": 0.9723621423303394
+    },
+    {
+      "recording": "E-MLB/D-END/Bubble-ND64-2",
+      "cell": "E-MLB/D-END/Bubble-ND64",
+      "events": 325849,
+      "mesr": 1.0222208703877804
+    },
+    {
+      "recording": "E-MLB/D-END/Bubble-ND64-3",
+      "cell": "E-MLB/D-END/Bubble-ND64",
+      "events": 460279,
+      "mesr": 1.031554843888998
+    },
+    {
+      "recording": "E-MLB/D-END/Camera-ND00-1",
+      "cell": "E-MLB/D-END/Camera-ND00",
+      "events": 1000000,
+      "mesr": 0.8955022830550268
+    },
+    {
+      "recording": "E-MLB/D-END/Camera-ND00-2",
+      "cell": "E-MLB/D-END/Camera-ND00",
+      "events": 1000000,
+      "mesr": 0.8737783956884555
+    },
+    {
+      "recording": "E-MLB/D-END/Camera-ND00-3",
+      "cell": "E-MLB/D-END/Camera-ND00",
+      "events": 1000000,
+      "mesr": 0.849717618218417
+    },
+    {
+      "recording": "E-MLB/D-END/Camera-ND04-1",
+      "cell": "E-MLB/D-END/Camera-ND04",
+      "events": 1000000,
+      "mesr": 0.9048737401397
+    },
+    {
+      "recording": "E-MLB/D-END/Camera-ND04-2",
+      "cell": "E-MLB/D-END/Camera-ND04",
+      "events": 1000000,
+      "mesr": 0.8842733786410701
+    },
+    {
+      "recording": "E-MLB/D-END/Camera-ND04-3",
+      "cell": "E-MLB/D-END/Camera-ND04",
+      "events": 1000000,
+      "mesr": 0.9119438561065369
+    },
+    {
+      "recording": "E-MLB/D-END/Camera-ND16-1",
+      "cell": "E-MLB/D-END/Camera-ND16",
+      "events": 1000000,
+      "mesr": 0.8526514863094697
+    },
+    {
+      "recording": "E-MLB/D-END/Camera-ND16-2",
+      "cell": "E-MLB/D-END/Camera-ND16",
+      "events": 1000000,
+      "mesr": 0.8709142098378542
+    },
+    {
+      "recording": "E-MLB/D-END/Camera-ND16-3",
+      "cell": "E-MLB/D-END/Camera-ND16",
+      "events": 1000000,
+      "mesr": 0.8716441776327573
+    },
+    {
+      "recording": "E-MLB/D-END/Camera-ND64-1",
+      "cell": "E-MLB/D-END/Camera-ND64",
+      "events": 1000000,
+      "mesr": 0.8498974883633366
+    },
+    {
+      "recording": "E-MLB/D-END/Camera-ND64-2",
+      "cell": "E-MLB/D-END/Camera-ND64",
+      "events": 1000000,
+      "mesr": 0.8754527904212742
+    },
+    {
+      "recording": "E-MLB/D-END/Camera-ND64-3",
+      "cell": "E-MLB/D-END/Camera-ND64",
+      "events": 1000000,
+      "mesr": 0.796658818267083
+    },
+    {
+      "recording": "E-MLB/D-END/Car_Day-ND00-1",
+      "cell": "E-MLB/D-END/Car_Day-ND00",
+      "events": 1000000,
+      "mesr": 1.0279319227546075
+    },
+    {
+      "recording": "E-MLB/D-END/Car_Day-ND00-2",
+      "cell": "E-MLB/D-END/Car_Day-ND00",
+      "events": 1000000,
+      "mesr": 0.9925306361164057
+    },
+    {
+      "recording": "E-MLB/D-END/Car_Day-ND00-3",
+      "cell": "E-MLB/D-END/Car_Day-ND00",
+      "events": 1000000,
+      "mesr": 1.0432171369440897
+    },
+    {
+      "recording": "E-MLB/D-END/Car_Day-ND04-1",
+      "cell": "E-MLB/D-END/Car_Day-ND04",
+      "events": 1000000,
+      "mesr": 0.9689927406953939
+    },
+    {
+      "recording": "E-MLB/D-END/Car_Day-ND04-2",
+      "cell": "E-MLB/D-END/Car_Day-ND04",
+      "events": 1000000,
+      "mesr": 0.953805525423086
+    },
+    {
+      "recording": "E-MLB/D-END/Car_Day-ND04-3",
+      "cell": "E-MLB/D-END/Car_Day-ND04",
+      "events": 1000000,
+      "mesr": 0.9239715016024851
+    },
+    {
+      "recording": "E-MLB/D-END/Car_Day-ND16-1",
+      "cell": "E-MLB/D-END/Car_Day-ND16",
+      "events": 1000000,
+      "mesr": 1.0078651317917577
+    },
+    {
+      "recording": "E-MLB/D-END/Car_Day-ND16-2",
+      "cell": "E-MLB/D-END/Car_Day-ND16",
+      "events": 1000000,
+      "mesr": 1.0327866879678544
+    },
+    {
+      "recording": "E-MLB/D-END/Car_Day-ND16-3",
+      "cell": "E-MLB/D-END/Car_Day-ND16",
+      "events": 1000000,
+      "mesr": 0.9943437501880883
+    },
+    {
+      "recording": "E-MLB/D-END/Car_Day-ND64-1",
+      "cell": "E-MLB/D-END/Car_Day-ND64",
+      "events": 1000000,
+      "mesr": 0.9979264111768769
+    },
+    {
+      "recording": "E-MLB/D-END/Car_Day-ND64-2",
+      "cell": "E-MLB/D-END/Car_Day-ND64",
+      "events": 1000000,
+      "mesr": 0.9681042592734632
+    },
+    {
+      "recording": "E-MLB/D-END/Car_Day-ND64-3",
+      "cell": "E-MLB/D-END/Car_Day-ND64",
+      "events": 1000000,
+      "mesr": 1.0437449119803235
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Highlight-ND00-1",
+      "cell": "E-MLB/D-END/Checker_Highlight-ND00",
+      "events": 1000000,
+      "mesr": 0.8312746054210283
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Highlight-ND00-2",
+      "cell": "E-MLB/D-END/Checker_Highlight-ND00",
+      "events": 1000000,
+      "mesr": 0.8508070288559356
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Highlight-ND00-3",
+      "cell": "E-MLB/D-END/Checker_Highlight-ND00",
+      "events": 1000000,
+      "mesr": 0.8525419226597306
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Highlight-ND04-1",
+      "cell": "E-MLB/D-END/Checker_Highlight-ND04",
+      "events": 1000000,
+      "mesr": 0.8759001517184942
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Highlight-ND04-2",
+      "cell": "E-MLB/D-END/Checker_Highlight-ND04",
+      "events": 1000000,
+      "mesr": 0.8728948299135975
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Highlight-ND04-3",
+      "cell": "E-MLB/D-END/Checker_Highlight-ND04",
+      "events": 1000000,
+      "mesr": 0.8766766550640397
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Highlight-ND16-1",
+      "cell": "E-MLB/D-END/Checker_Highlight-ND16",
+      "events": 1000000,
+      "mesr": 0.8702331807855335
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Highlight-ND16-2",
+      "cell": "E-MLB/D-END/Checker_Highlight-ND16",
+      "events": 1000000,
+      "mesr": 0.8672936222317722
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Highlight-ND16-3",
+      "cell": "E-MLB/D-END/Checker_Highlight-ND16",
+      "events": 1000000,
+      "mesr": 0.8655462719950666
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Highlight-ND64-1",
+      "cell": "E-MLB/D-END/Checker_Highlight-ND64",
+      "events": 1000000,
+      "mesr": 0.8859376207294818
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Highlight-ND64-2",
+      "cell": "E-MLB/D-END/Checker_Highlight-ND64",
+      "events": 1000000,
+      "mesr": 0.8813930236665112
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Highlight-ND64-3",
+      "cell": "E-MLB/D-END/Checker_Highlight-ND64",
+      "events": 1000000,
+      "mesr": 0.8651844508406736
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Shadow-ND00-1",
+      "cell": "E-MLB/D-END/Checker_Shadow-ND00",
+      "events": 1000000,
+      "mesr": 0.9024216522400418
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Shadow-ND00-2",
+      "cell": "E-MLB/D-END/Checker_Shadow-ND00",
+      "events": 1000000,
+      "mesr": 0.8972055054557213
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Shadow-ND00-3",
+      "cell": "E-MLB/D-END/Checker_Shadow-ND00",
+      "events": 1000000,
+      "mesr": 0.8894854108674524
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Shadow-ND04-1",
+      "cell": "E-MLB/D-END/Checker_Shadow-ND04",
+      "events": 1000000,
+      "mesr": 0.902732634164236
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Shadow-ND04-2",
+      "cell": "E-MLB/D-END/Checker_Shadow-ND04",
+      "events": 1000000,
+      "mesr": 0.8980682110491219
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Shadow-ND04-3",
+      "cell": "E-MLB/D-END/Checker_Shadow-ND04",
+      "events": 1000000,
+      "mesr": 0.894777923592814
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Shadow-ND16-1",
+      "cell": "E-MLB/D-END/Checker_Shadow-ND16",
+      "events": 1000000,
+      "mesr": 0.8860174101465327
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Shadow-ND16-2",
+      "cell": "E-MLB/D-END/Checker_Shadow-ND16",
+      "events": 1000000,
+      "mesr": 0.8826924842887895
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Shadow-ND16-3",
+      "cell": "E-MLB/D-END/Checker_Shadow-ND16",
+      "events": 1000000,
+      "mesr": 0.8836534274799668
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Shadow-ND64-1",
+      "cell": "E-MLB/D-END/Checker_Shadow-ND64",
+      "events": 1000000,
+      "mesr": 0.8995268955420913
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Shadow-ND64-2",
+      "cell": "E-MLB/D-END/Checker_Shadow-ND64",
+      "events": 1000000,
+      "mesr": 0.8925914048547972
+    },
+    {
+      "recording": "E-MLB/D-END/Checker_Shadow-ND64-3",
+      "cell": "E-MLB/D-END/Checker_Shadow-ND64",
+      "events": 1000000,
+      "mesr": 0.8979962565442897
+    },
+    {
+      "recording": "E-MLB/D-END/Consturcture-ND00-1",
+      "cell": "E-MLB/D-END/Consturcture-ND00",
+      "events": 1000000,
+      "mesr": 0.657811677742917
+    },
+    {
+      "recording": "E-MLB/D-END/Consturcture-ND00-2",
+      "cell": "E-MLB/D-END/Consturcture-ND00",
+      "events": 1000000,
+      "mesr": 0.6239630512455066
+    },
+    {
+      "recording": "E-MLB/D-END/Consturcture-ND00-3",
+      "cell": "E-MLB/D-END/Consturcture-ND00",
+      "events": 1000000,
+      "mesr": 0.6715398987245615
+    },
+    {
+      "recording": "E-MLB/D-END/Consturcture-ND04-1",
+      "cell": "E-MLB/D-END/Consturcture-ND04",
+      "events": 1000000,
+      "mesr": 0.572821712654882
+    },
+    {
+      "recording": "E-MLB/D-END/Consturcture-ND04-2",
+      "cell": "E-MLB/D-END/Consturcture-ND04",
+      "events": 1000000,
+      "mesr": 0.6227482372859307
+    },
+    {
+      "recording": "E-MLB/D-END/Consturcture-ND04-3",
+      "cell": "E-MLB/D-END/Consturcture-ND04",
+      "events": 1000000,
+      "mesr": 0.6665163102908059
+    },
+    {
+      "recording": "E-MLB/D-END/Consturcture-ND16-1",
+      "cell": "E-MLB/D-END/Consturcture-ND16",
+      "events": 1000000,
+      "mesr": 0.6429009862843169
+    },
+    {
+      "recording": "E-MLB/D-END/Consturcture-ND16-2",
+      "cell": "E-MLB/D-END/Consturcture-ND16",
+      "events": 1000000,
+      "mesr": 0.6219979650441025
+    },
+    {
+      "recording": "E-MLB/D-END/Consturcture-ND16-3",
+      "cell": "E-MLB/D-END/Consturcture-ND16",
+      "events": 1000000,
+      "mesr": 0.7311936431575561
+    },
+    {
+      "recording": "E-MLB/D-END/Consturcture-ND64-1",
+      "cell": "E-MLB/D-END/Consturcture-ND64",
+      "events": 1000000,
+      "mesr": 0.6792548472522048
+    },
+    {
+      "recording": "E-MLB/D-END/Consturcture-ND64-2",
+      "cell": "E-MLB/D-END/Consturcture-ND64",
+      "events": 1000000,
+      "mesr": 0.641402870489297
+    },
+    {
+      "recording": "E-MLB/D-END/Consturcture-ND64-3",
+      "cell": "E-MLB/D-END/Consturcture-ND64",
+      "events": 1000000,
+      "mesr": 0.6362912059808685
+    },
+    {
+      "recording": "E-MLB/D-END/Corridor-ND00-1",
+      "cell": "E-MLB/D-END/Corridor-ND00",
+      "events": 1000000,
+      "mesr": 0.5924264822850365
+    },
+    {
+      "recording": "E-MLB/D-END/Corridor-ND00-2",
+      "cell": "E-MLB/D-END/Corridor-ND00",
+      "events": 1000000,
+      "mesr": 0.6167690559126424
+    },
+    {
+      "recording": "E-MLB/D-END/Corridor-ND00-3",
+      "cell": "E-MLB/D-END/Corridor-ND00",
+      "events": 1000000,
+      "mesr": 0.6197924705947998
+    },
+    {
+      "recording": "E-MLB/D-END/Corridor-ND04-1",
+      "cell": "E-MLB/D-END/Corridor-ND04",
+      "events": 1000000,
+      "mesr": 0.69769492633151
+    },
+    {
+      "recording": "E-MLB/D-END/Corridor-ND04-2",
+      "cell": "E-MLB/D-END/Corridor-ND04",
+      "events": 1000000,
+      "mesr": 0.7057869353829637
+    },
+    {
+      "recording": "E-MLB/D-END/Corridor-ND04-3",
+      "cell": "E-MLB/D-END/Corridor-ND04",
+      "events": 1000000,
+      "mesr": 0.7150331322768776
+    },
+    {
+      "recording": "E-MLB/D-END/Corridor-ND16-1",
+      "cell": "E-MLB/D-END/Corridor-ND16",
+      "events": 1000000,
+      "mesr": 0.8191418017540903
+    },
+    {
+      "recording": "E-MLB/D-END/Corridor-ND16-2",
+      "cell": "E-MLB/D-END/Corridor-ND16",
+      "events": 1000000,
+      "mesr": 0.7891977289989163
+    },
+    {
+      "recording": "E-MLB/D-END/Corridor-ND16-3",
+      "cell": "E-MLB/D-END/Corridor-ND16",
+      "events": 1000000,
+      "mesr": 0.7785481463449103
+    },
+    {
+      "recording": "E-MLB/D-END/Corridor-ND64-1",
+      "cell": "E-MLB/D-END/Corridor-ND64",
+      "events": 646626,
+      "mesr": 0.8997178397859877
+    },
+    {
+      "recording": "E-MLB/D-END/Corridor-ND64-2",
+      "cell": "E-MLB/D-END/Corridor-ND64",
+      "events": 746281,
+      "mesr": 0.8843500245726771
+    },
+    {
+      "recording": "E-MLB/D-END/Corridor-ND64-3",
+      "cell": "E-MLB/D-END/Corridor-ND64",
+      "events": 669422,
+      "mesr": 0.8522160188692891
+    },
+    {
+      "recording": "E-MLB/D-END/Courtyard-ND00-1",
+      "cell": "E-MLB/D-END/Courtyard-ND00",
+      "events": 1000000,
+      "mesr": 0.595242984536096
+    },
+    {
+      "recording": "E-MLB/D-END/Courtyard-ND00-2",
+      "cell": "E-MLB/D-END/Courtyard-ND00",
+      "events": 1000000,
+      "mesr": 0.6676672067578835
+    },
+    {
+      "recording": "E-MLB/D-END/Courtyard-ND00-3",
+      "cell": "E-MLB/D-END/Courtyard-ND00",
+      "events": 1000000,
+      "mesr": 0.6624897637913112
+    },
+    {
+      "recording": "E-MLB/D-END/Courtyard-ND04-1",
+      "cell": "E-MLB/D-END/Courtyard-ND04",
+      "events": 1000000,
+      "mesr": 0.6164296552348607
+    },
+    {
+      "recording": "E-MLB/D-END/Courtyard-ND04-2",
+      "cell": "E-MLB/D-END/Courtyard-ND04",
+      "events": 1000000,
+      "mesr": 0.6396685495163177
+    },
+    {
+      "recording": "E-MLB/D-END/Courtyard-ND04-3",
+      "cell": "E-MLB/D-END/Courtyard-ND04",
+      "events": 1000000,
+      "mesr": 0.6349746898313794
+    },
+    {
+      "recording": "E-MLB/D-END/Courtyard-ND16-1",
+      "cell": "E-MLB/D-END/Courtyard-ND16",
+      "events": 1000000,
+      "mesr": 0.6076120668773708
+    },
+    {
+      "recording": "E-MLB/D-END/Courtyard-ND16-2",
+      "cell": "E-MLB/D-END/Courtyard-ND16",
+      "events": 1000000,
+      "mesr": 0.6087937484027587
+    },
+    {
+      "recording": "E-MLB/D-END/Courtyard-ND16-3",
+      "cell": "E-MLB/D-END/Courtyard-ND16",
+      "events": 1000000,
+      "mesr": 0.609161468456006
+    },
+    {
+      "recording": "E-MLB/D-END/Courtyard-ND64-1",
+      "cell": "E-MLB/D-END/Courtyard-ND64",
+      "events": 1000000,
+      "mesr": 0.6310926362317846
+    },
+    {
+      "recording": "E-MLB/D-END/Courtyard-ND64-2",
+      "cell": "E-MLB/D-END/Courtyard-ND64",
+      "events": 1000000,
+      "mesr": 0.6087729636446032
+    },
+    {
+      "recording": "E-MLB/D-END/Courtyard-ND64-3",
+      "cell": "E-MLB/D-END/Courtyard-ND64",
+      "events": 1000000,
+      "mesr": 0.5906608346676
+    },
+    {
+      "recording": "E-MLB/D-END/Dance-ND00-1",
+      "cell": "E-MLB/D-END/Dance-ND00",
+      "events": 1000000,
+      "mesr": 0.9553036850103538
+    },
+    {
+      "recording": "E-MLB/D-END/Dance-ND00-2",
+      "cell": "E-MLB/D-END/Dance-ND00",
+      "events": 844530,
+      "mesr": 0.9838141089746835
+    },
+    {
+      "recording": "E-MLB/D-END/Dance-ND00-3",
+      "cell": "E-MLB/D-END/Dance-ND00",
+      "events": 992260,
+      "mesr": 0.9695115356321609
+    },
+    {
+      "recording": "E-MLB/D-END/Dance-ND04-1",
+      "cell": "E-MLB/D-END/Dance-ND04",
+      "events": 1000000,
+      "mesr": 0.9860711952273744
+    },
+    {
+      "recording": "E-MLB/D-END/Dance-ND04-2",
+      "cell": "E-MLB/D-END/Dance-ND04",
+      "events": 841872,
+      "mesr": 0.9997582393863251
+    },
+    {
+      "recording": "E-MLB/D-END/Dance-ND04-3",
+      "cell": "E-MLB/D-END/Dance-ND04",
+      "events": 831082,
+      "mesr": 1.037162403691379
+    },
+    {
+      "recording": "E-MLB/D-END/Dance-ND16-1",
+      "cell": "E-MLB/D-END/Dance-ND16",
+      "events": 707374,
+      "mesr": 0.9994065049648221
+    },
+    {
+      "recording": "E-MLB/D-END/Dance-ND16-2",
+      "cell": "E-MLB/D-END/Dance-ND16",
+      "events": 899557,
+      "mesr": 1.0232076193274005
+    },
+    {
+      "recording": "E-MLB/D-END/Dance-ND16-3",
+      "cell": "E-MLB/D-END/Dance-ND16",
+      "events": 653187,
+      "mesr": 1.006814315312417
+    },
+    {
+      "recording": "E-MLB/D-END/Dance-ND64-1",
+      "cell": "E-MLB/D-END/Dance-ND64",
+      "events": 1000000,
+      "mesr": 0.9890802786331131
+    },
+    {
+      "recording": "E-MLB/D-END/Dance-ND64-2",
+      "cell": "E-MLB/D-END/Dance-ND64",
+      "events": 1000000,
+      "mesr": 1.0370304516917217
+    },
+    {
+      "recording": "E-MLB/D-END/Dance-ND64-3",
+      "cell": "E-MLB/D-END/Dance-ND64",
+      "events": 981488,
+      "mesr": 1.0636391067794313
+    },
+    {
+      "recording": "E-MLB/D-END/Decoration-ND00-1",
+      "cell": "E-MLB/D-END/Decoration-ND00",
+      "events": 1000000,
+      "mesr": 0.46303389689921204
+    },
+    {
+      "recording": "E-MLB/D-END/Decoration-ND00-2",
+      "cell": "E-MLB/D-END/Decoration-ND00",
+      "events": 1000000,
+      "mesr": 0.45328656825102953
+    },
+    {
+      "recording": "E-MLB/D-END/Decoration-ND00-3",
+      "cell": "E-MLB/D-END/Decoration-ND00",
+      "events": 1000000,
+      "mesr": 0.4753894656034375
+    },
+    {
+      "recording": "E-MLB/D-END/Decoration-ND04-1",
+      "cell": "E-MLB/D-END/Decoration-ND04",
+      "events": 1000000,
+      "mesr": 0.5247214012984652
+    },
+    {
+      "recording": "E-MLB/D-END/Decoration-ND04-2",
+      "cell": "E-MLB/D-END/Decoration-ND04",
+      "events": 1000000,
+      "mesr": 0.5294635659905007
+    },
+    {
+      "recording": "E-MLB/D-END/Decoration-ND04-3",
+      "cell": "E-MLB/D-END/Decoration-ND04",
+      "events": 1000000,
+      "mesr": 0.5005766858451164
+    },
+    {
+      "recording": "E-MLB/D-END/Decoration-ND16-1",
+      "cell": "E-MLB/D-END/Decoration-ND16",
+      "events": 1000000,
+      "mesr": 0.5003125430869078
+    },
+    {
+      "recording": "E-MLB/D-END/Decoration-ND16-2",
+      "cell": "E-MLB/D-END/Decoration-ND16",
+      "events": 1000000,
+      "mesr": 0.5071201286263006
+    },
+    {
+      "recording": "E-MLB/D-END/Decoration-ND16-3",
+      "cell": "E-MLB/D-END/Decoration-ND16",
+      "events": 1000000,
+      "mesr": 0.5122147719504996
+    },
+    {
+      "recording": "E-MLB/D-END/Decoration-ND64-1",
+      "cell": "E-MLB/D-END/Decoration-ND64",
+      "events": 1000000,
+      "mesr": 0.4748251509591059
+    },
+    {
+      "recording": "E-MLB/D-END/Decoration-ND64-2",
+      "cell": "E-MLB/D-END/Decoration-ND64",
+      "events": 1000000,
+      "mesr": 0.502609416196853
+    },
+    {
+      "recording": "E-MLB/D-END/Decoration-ND64-3",
+      "cell": "E-MLB/D-END/Decoration-ND64",
+      "events": 1000000,
+      "mesr": 0.4999395317774917
+    },
+    {
+      "recording": "E-MLB/D-END/Drop_Balls-ND00-1",
+      "cell": "E-MLB/D-END/Drop_Balls-ND00",
+      "events": 95480,
+      "mesr": 1.2604894678211416
+    },
+    {
+      "recording": "E-MLB/D-END/Drop_Balls-ND00-2",
+      "cell": "E-MLB/D-END/Drop_Balls-ND00",
+      "events": 142991,
+      "mesr": 1.1475457577188108
+    },
+    {
+      "recording": "E-MLB/D-END/Drop_Balls-ND00-3",
+      "cell": "E-MLB/D-END/Drop_Balls-ND00",
+      "events": 143452,
+      "mesr": 1.210195593326894
+    },
+    {
+      "recording": "E-MLB/D-END/Drop_Balls-ND04-1",
+      "cell": "E-MLB/D-END/Drop_Balls-ND04",
+      "events": 180417,
+      "mesr": 1.0908686619902923
+    },
+    {
+      "recording": "E-MLB/D-END/Drop_Balls-ND04-2",
+      "cell": "E-MLB/D-END/Drop_Balls-ND04",
+      "events": 204821,
+      "mesr": 1.1227306125804972
+    },
+    {
+      "recording": "E-MLB/D-END/Drop_Balls-ND04-3",
+      "cell": "E-MLB/D-END/Drop_Balls-ND04",
+      "events": 181288,
+      "mesr": 1.2443741818405851
+    },
+    {
+      "recording": "E-MLB/D-END/Drop_Balls-ND16-1",
+      "cell": "E-MLB/D-END/Drop_Balls-ND16",
+      "events": 277684,
+      "mesr": 1.4772515630378624
+    },
+    {
+      "recording": "E-MLB/D-END/Drop_Balls-ND16-2",
+      "cell": "E-MLB/D-END/Drop_Balls-ND16",
+      "events": 142034,
+      "mesr": 1.2595367802081305
+    },
+    {
+      "recording": "E-MLB/D-END/Drop_Balls-ND16-3",
+      "cell": "E-MLB/D-END/Drop_Balls-ND16",
+      "events": 249936,
+      "mesr": 1.3619892121762678
+    },
+    {
+      "recording": "E-MLB/D-END/Drop_Balls-ND64-1",
+      "cell": "E-MLB/D-END/Drop_Balls-ND64",
+      "events": 502560,
+      "mesr": 1.067722050560371
+    },
+    {
+      "recording": "E-MLB/D-END/Drop_Balls-ND64-2",
+      "cell": "E-MLB/D-END/Drop_Balls-ND64",
+      "events": 826883,
+      "mesr": 1.110243055084994
+    },
+    {
+      "recording": "E-MLB/D-END/Drop_Balls-ND64-3",
+      "cell": "E-MLB/D-END/Drop_Balls-ND64",
+      "events": 662567,
+      "mesr": 1.075629326991233
+    },
+    {
+      "recording": "E-MLB/D-END/Dump-ND00-1",
+      "cell": "E-MLB/D-END/Dump-ND00",
+      "events": 1000000,
+      "mesr": 0.8384134230548196
+    },
+    {
+      "recording": "E-MLB/D-END/Dump-ND00-2",
+      "cell": "E-MLB/D-END/Dump-ND00",
+      "events": 1000000,
+      "mesr": 0.5560518384202072
+    },
+    {
+      "recording": "E-MLB/D-END/Dump-ND00-3",
+      "cell": "E-MLB/D-END/Dump-ND00",
+      "events": 1000000,
+      "mesr": 0.6127775402399059
+    },
+    {
+      "recording": "E-MLB/D-END/Dump-ND04-1",
+      "cell": "E-MLB/D-END/Dump-ND04",
+      "events": 1000000,
+      "mesr": 0.5096910926691103
+    },
+    {
+      "recording": "E-MLB/D-END/Dump-ND04-2",
+      "cell": "E-MLB/D-END/Dump-ND04",
+      "events": 1000000,
+      "mesr": 0.6566976421116001
+    },
+    {
+      "recording": "E-MLB/D-END/Dump-ND04-3",
+      "cell": "E-MLB/D-END/Dump-ND04",
+      "events": 1000000,
+      "mesr": 0.7604379907208185
+    },
+    {
+      "recording": "E-MLB/D-END/Dump-ND16-1",
+      "cell": "E-MLB/D-END/Dump-ND16",
+      "events": 1000000,
+      "mesr": 0.5737957810766496
+    },
+    {
+      "recording": "E-MLB/D-END/Dump-ND16-2",
+      "cell": "E-MLB/D-END/Dump-ND16",
+      "events": 1000000,
+      "mesr": 0.6007498278931767
+    },
+    {
+      "recording": "E-MLB/D-END/Dump-ND16-3",
+      "cell": "E-MLB/D-END/Dump-ND16",
+      "events": 1000000,
+      "mesr": 0.7067967381638106
+    },
+    {
+      "recording": "E-MLB/D-END/Dump-ND64-1",
+      "cell": "E-MLB/D-END/Dump-ND64",
+      "events": 1000000,
+      "mesr": 0.6093100152841036
+    },
+    {
+      "recording": "E-MLB/D-END/Dump-ND64-2",
+      "cell": "E-MLB/D-END/Dump-ND64",
+      "events": 1000000,
+      "mesr": 0.488739839589643
+    },
+    {
+      "recording": "E-MLB/D-END/Dump-ND64-3",
+      "cell": "E-MLB/D-END/Dump-ND64",
+      "events": 1000000,
+      "mesr": 0.7507643949318326
+    },
+    {
+      "recording": "E-MLB/D-END/Fence-ND00-1",
+      "cell": "E-MLB/D-END/Fence-ND00",
+      "events": 1000000,
+      "mesr": 0.671679656121265
+    },
+    {
+      "recording": "E-MLB/D-END/Fence-ND00-2",
+      "cell": "E-MLB/D-END/Fence-ND00",
+      "events": 1000000,
+      "mesr": 0.538181042442951
+    },
+    {
+      "recording": "E-MLB/D-END/Fence-ND00-3",
+      "cell": "E-MLB/D-END/Fence-ND00",
+      "events": 1000000,
+      "mesr": 0.6569901253573481
+    },
+    {
+      "recording": "E-MLB/D-END/Fence-ND04-1",
+      "cell": "E-MLB/D-END/Fence-ND04",
+      "events": 1000000,
+      "mesr": 0.5487950196563182
+    },
+    {
+      "recording": "E-MLB/D-END/Fence-ND04-2",
+      "cell": "E-MLB/D-END/Fence-ND04",
+      "events": 1000000,
+      "mesr": 0.6426514153468924
+    },
+    {
+      "recording": "E-MLB/D-END/Fence-ND04-3",
+      "cell": "E-MLB/D-END/Fence-ND04",
+      "events": 1000000,
+      "mesr": 0.6719646041975117
+    },
+    {
+      "recording": "E-MLB/D-END/Fence-ND16-1",
+      "cell": "E-MLB/D-END/Fence-ND16",
+      "events": 1000000,
+      "mesr": 0.6404905614352914
+    },
+    {
+      "recording": "E-MLB/D-END/Fence-ND16-2",
+      "cell": "E-MLB/D-END/Fence-ND16",
+      "events": 1000000,
+      "mesr": 0.5372739523105725
+    },
+    {
+      "recording": "E-MLB/D-END/Fence-ND16-3",
+      "cell": "E-MLB/D-END/Fence-ND16",
+      "events": 1000000,
+      "mesr": 0.6455016702492774
+    },
+    {
+      "recording": "E-MLB/D-END/Fence-ND64-1",
+      "cell": "E-MLB/D-END/Fence-ND64",
+      "events": 1000000,
+      "mesr": 0.5817123945641425
+    },
+    {
+      "recording": "E-MLB/D-END/Fence-ND64-2",
+      "cell": "E-MLB/D-END/Fence-ND64",
+      "events": 1000000,
+      "mesr": 0.6425958547848719
+    },
+    {
+      "recording": "E-MLB/D-END/Fence-ND64-3",
+      "cell": "E-MLB/D-END/Fence-ND64",
+      "events": 1000000,
+      "mesr": 0.5866964925872067
+    },
+    {
+      "recording": "E-MLB/D-END/Ferriswheel-ND00-1",
+      "cell": "E-MLB/D-END/Ferriswheel-ND00",
+      "events": 1000000,
+      "mesr": 0.6344983565382333
+    },
+    {
+      "recording": "E-MLB/D-END/Ferriswheel-ND00-2",
+      "cell": "E-MLB/D-END/Ferriswheel-ND00",
+      "events": 1000000,
+      "mesr": 0.7079292873449164
+    },
+    {
+      "recording": "E-MLB/D-END/Ferriswheel-ND00-3",
+      "cell": "E-MLB/D-END/Ferriswheel-ND00",
+      "events": 1000000,
+      "mesr": 0.6135184976648115
+    },
+    {
+      "recording": "E-MLB/D-END/Ferriswheel-ND04-1",
+      "cell": "E-MLB/D-END/Ferriswheel-ND04",
+      "events": 1000000,
+      "mesr": 0.6300606403823308
+    },
+    {
+      "recording": "E-MLB/D-END/Ferriswheel-ND04-2",
+      "cell": "E-MLB/D-END/Ferriswheel-ND04",
+      "events": 1000000,
+      "mesr": 0.6001268386731619
+    },
+    {
+      "recording": "E-MLB/D-END/Ferriswheel-ND04-3",
+      "cell": "E-MLB/D-END/Ferriswheel-ND04",
+      "events": 1000000,
+      "mesr": 0.6472373315052401
+    },
+    {
+      "recording": "E-MLB/D-END/Ferriswheel-ND16-1",
+      "cell": "E-MLB/D-END/Ferriswheel-ND16",
+      "events": 1000000,
+      "mesr": 0.6330094203309725
+    },
+    {
+      "recording": "E-MLB/D-END/Ferriswheel-ND16-2",
+      "cell": "E-MLB/D-END/Ferriswheel-ND16",
+      "events": 1000000,
+      "mesr": 0.66452553176842
+    },
+    {
+      "recording": "E-MLB/D-END/Ferriswheel-ND16-3",
+      "cell": "E-MLB/D-END/Ferriswheel-ND16",
+      "events": 1000000,
+      "mesr": 0.6694954987944052
+    },
+    {
+      "recording": "E-MLB/D-END/Ferriswheel-ND64-1",
+      "cell": "E-MLB/D-END/Ferriswheel-ND64",
+      "events": 1000000,
+      "mesr": 0.666058026681173
+    },
+    {
+      "recording": "E-MLB/D-END/Ferriswheel-ND64-2",
+      "cell": "E-MLB/D-END/Ferriswheel-ND64",
+      "events": 1000000,
+      "mesr": 0.6753636890257703
+    },
+    {
+      "recording": "E-MLB/D-END/Ferriswheel-ND64-3",
+      "cell": "E-MLB/D-END/Ferriswheel-ND64",
+      "events": 1000000,
+      "mesr": 0.6765720308210955
+    },
+    {
+      "recording": "E-MLB/D-END/Food-ND00-1",
+      "cell": "E-MLB/D-END/Food-ND00",
+      "events": 1000000,
+      "mesr": 0.7825754841338205
+    },
+    {
+      "recording": "E-MLB/D-END/Food-ND00-2",
+      "cell": "E-MLB/D-END/Food-ND00",
+      "events": 1000000,
+      "mesr": 0.7933888947321226
+    },
+    {
+      "recording": "E-MLB/D-END/Food-ND00-3",
+      "cell": "E-MLB/D-END/Food-ND00",
+      "events": 1000000,
+      "mesr": 0.7757429200422332
+    },
+    {
+      "recording": "E-MLB/D-END/Food-ND04-1",
+      "cell": "E-MLB/D-END/Food-ND04",
+      "events": 1000000,
+      "mesr": 0.7289158889859106
+    },
+    {
+      "recording": "E-MLB/D-END/Food-ND04-2",
+      "cell": "E-MLB/D-END/Food-ND04",
+      "events": 1000000,
+      "mesr": 0.7448349839926761
+    },
+    {
+      "recording": "E-MLB/D-END/Food-ND04-3",
+      "cell": "E-MLB/D-END/Food-ND04",
+      "events": 1000000,
+      "mesr": 0.7403871200719474
+    },
+    {
+      "recording": "E-MLB/D-END/Food-ND16-1",
+      "cell": "E-MLB/D-END/Food-ND16",
+      "events": 1000000,
+      "mesr": 0.6961269868623892
+    },
+    {
+      "recording": "E-MLB/D-END/Food-ND16-2",
+      "cell": "E-MLB/D-END/Food-ND16",
+      "events": 1000000,
+      "mesr": 0.6997837750742257
+    },
+    {
+      "recording": "E-MLB/D-END/Food-ND16-3",
+      "cell": "E-MLB/D-END/Food-ND16",
+      "events": 1000000,
+      "mesr": 0.7081452741397869
+    },
+    {
+      "recording": "E-MLB/D-END/Food-ND64-1",
+      "cell": "E-MLB/D-END/Food-ND64",
+      "events": 1000000,
+      "mesr": 0.6658621747532654
+    },
+    {
+      "recording": "E-MLB/D-END/Food-ND64-2",
+      "cell": "E-MLB/D-END/Food-ND64",
+      "events": 1000000,
+      "mesr": 0.6655158185171492
+    },
+    {
+      "recording": "E-MLB/D-END/Food-ND64-3",
+      "cell": "E-MLB/D-END/Food-ND64",
+      "events": 1000000,
+      "mesr": 0.6863738559075916
+    },
+    {
+      "recording": "E-MLB/D-END/Hall-ND00-1",
+      "cell": "E-MLB/D-END/Hall-ND00",
+      "events": 1000000,
+      "mesr": 0.7487188861988022
+    },
+    {
+      "recording": "E-MLB/D-END/Hall-ND00-2",
+      "cell": "E-MLB/D-END/Hall-ND00",
+      "events": 1000000,
+      "mesr": 0.7196006296246364
+    },
+    {
+      "recording": "E-MLB/D-END/Hall-ND00-3",
+      "cell": "E-MLB/D-END/Hall-ND00",
+      "events": 1000000,
+      "mesr": 0.7424011529968818
+    },
+    {
+      "recording": "E-MLB/D-END/Hall-ND04-1",
+      "cell": "E-MLB/D-END/Hall-ND04",
+      "events": 1000000,
+      "mesr": 0.7221649440225066
+    },
+    {
+      "recording": "E-MLB/D-END/Hall-ND04-2",
+      "cell": "E-MLB/D-END/Hall-ND04",
+      "events": 1000000,
+      "mesr": 0.7529316215897202
+    },
+    {
+      "recording": "E-MLB/D-END/Hall-ND04-3",
+      "cell": "E-MLB/D-END/Hall-ND04",
+      "events": 1000000,
+      "mesr": 0.6881216245624596
+    },
+    {
+      "recording": "E-MLB/D-END/Hall-ND16-1",
+      "cell": "E-MLB/D-END/Hall-ND16",
+      "events": 1000000,
+      "mesr": 0.6821868699751377
+    },
+    {
+      "recording": "E-MLB/D-END/Hall-ND16-2",
+      "cell": "E-MLB/D-END/Hall-ND16",
+      "events": 1000000,
+      "mesr": 0.7026459640953138
+    },
+    {
+      "recording": "E-MLB/D-END/Hall-ND16-3",
+      "cell": "E-MLB/D-END/Hall-ND16",
+      "events": 1000000,
+      "mesr": 0.6648503657569824
+    },
+    {
+      "recording": "E-MLB/D-END/Hall-ND64-1",
+      "cell": "E-MLB/D-END/Hall-ND64",
+      "events": 1000000,
+      "mesr": 0.6652333815661272
+    },
+    {
+      "recording": "E-MLB/D-END/Hall-ND64-2",
+      "cell": "E-MLB/D-END/Hall-ND64",
+      "events": 1000000,
+      "mesr": 0.669081504921627
+    },
+    {
+      "recording": "E-MLB/D-END/Hall-ND64-3",
+      "cell": "E-MLB/D-END/Hall-ND64",
+      "events": 1000000,
+      "mesr": 0.6692343625158486
+    },
+    {
+      "recording": "E-MLB/D-END/Hands-ND00-1",
+      "cell": "E-MLB/D-END/Hands-ND00",
+      "events": 1000000,
+      "mesr": 0.6437363910574563
+    },
+    {
+      "recording": "E-MLB/D-END/Hands-ND00-2",
+      "cell": "E-MLB/D-END/Hands-ND00",
+      "events": 1000000,
+      "mesr": 0.6004879810018652
+    },
+    {
+      "recording": "E-MLB/D-END/Hands-ND00-3",
+      "cell": "E-MLB/D-END/Hands-ND00",
+      "events": 1000000,
+      "mesr": 0.6518823493889225
+    },
+    {
+      "recording": "E-MLB/D-END/Hands-ND04-1",
+      "cell": "E-MLB/D-END/Hands-ND04",
+      "events": 1000000,
+      "mesr": 0.6163780324974364
+    },
+    {
+      "recording": "E-MLB/D-END/Hands-ND04-2",
+      "cell": "E-MLB/D-END/Hands-ND04",
+      "events": 1000000,
+      "mesr": 0.6123616418205476
+    },
+    {
+      "recording": "E-MLB/D-END/Hands-ND04-3",
+      "cell": "E-MLB/D-END/Hands-ND04",
+      "events": 1000000,
+      "mesr": 0.630578158038089
+    },
+    {
+      "recording": "E-MLB/D-END/Hands-ND16-1",
+      "cell": "E-MLB/D-END/Hands-ND16",
+      "events": 884021,
+      "mesr": 0.7144379148207957
+    },
+    {
+      "recording": "E-MLB/D-END/Hands-ND16-2",
+      "cell": "E-MLB/D-END/Hands-ND16",
+      "events": 772585,
+      "mesr": 0.7063690826658383
+    },
+    {
+      "recording": "E-MLB/D-END/Hands-ND16-3",
+      "cell": "E-MLB/D-END/Hands-ND16",
+      "events": 605926,
+      "mesr": 0.694329335439066
+    },
+    {
+      "recording": "E-MLB/D-END/Hands-ND64-1",
+      "cell": "E-MLB/D-END/Hands-ND64",
+      "events": 803217,
+      "mesr": 0.75741625672671
+    },
+    {
+      "recording": "E-MLB/D-END/Hands-ND64-2",
+      "cell": "E-MLB/D-END/Hands-ND64",
+      "events": 634306,
+      "mesr": 0.7509700987751223
+    },
+    {
+      "recording": "E-MLB/D-END/Hands-ND64-3",
+      "cell": "E-MLB/D-END/Hands-ND64",
+      "events": 713139,
+      "mesr": 0.7623487612037441
+    },
+    {
+      "recording": "E-MLB/D-END/Leaf-ND00-1",
+      "cell": "E-MLB/D-END/Leaf-ND00",
+      "events": 1000000,
+      "mesr": 0.5715785915883409
+    },
+    {
+      "recording": "E-MLB/D-END/Leaf-ND00-2",
+      "cell": "E-MLB/D-END/Leaf-ND00",
+      "events": 1000000,
+      "mesr": 0.5938884297071946
+    },
+    {
+      "recording": "E-MLB/D-END/Leaf-ND00-3",
+      "cell": "E-MLB/D-END/Leaf-ND00",
+      "events": 1000000,
+      "mesr": 0.6012257772454357
+    },
+    {
+      "recording": "E-MLB/D-END/Leaf-ND04-1",
+      "cell": "E-MLB/D-END/Leaf-ND04",
+      "events": 1000000,
+      "mesr": 0.5839053847325391
+    },
+    {
+      "recording": "E-MLB/D-END/Leaf-ND04-2",
+      "cell": "E-MLB/D-END/Leaf-ND04",
+      "events": 1000000,
+      "mesr": 0.6006833597736767
+    },
+    {
+      "recording": "E-MLB/D-END/Leaf-ND04-3",
+      "cell": "E-MLB/D-END/Leaf-ND04",
+      "events": 1000000,
+      "mesr": 0.5628296129240838
+    },
+    {
+      "recording": "E-MLB/D-END/Leaf-ND16-1",
+      "cell": "E-MLB/D-END/Leaf-ND16",
+      "events": 1000000,
+      "mesr": 0.599095950502773
+    },
+    {
+      "recording": "E-MLB/D-END/Leaf-ND16-2",
+      "cell": "E-MLB/D-END/Leaf-ND16",
+      "events": 1000000,
+      "mesr": 0.5986220918200534
+    },
+    {
+      "recording": "E-MLB/D-END/Leaf-ND16-3",
+      "cell": "E-MLB/D-END/Leaf-ND16",
+      "events": 1000000,
+      "mesr": 0.5793112498022749
+    },
+    {
+      "recording": "E-MLB/D-END/Leaf-ND64-1",
+      "cell": "E-MLB/D-END/Leaf-ND64",
+      "events": 1000000,
+      "mesr": 0.5618642401321043
+    },
+    {
+      "recording": "E-MLB/D-END/Leaf-ND64-2",
+      "cell": "E-MLB/D-END/Leaf-ND64",
+      "events": 1000000,
+      "mesr": 0.5685860240926764
+    },
+    {
+      "recording": "E-MLB/D-END/Leaf-ND64-3",
+      "cell": "E-MLB/D-END/Leaf-ND64",
+      "events": 1000000,
+      "mesr": 0.5536954310932058
+    },
+    {
+      "recording": "E-MLB/D-END/Lockers-ND00-1",
+      "cell": "E-MLB/D-END/Lockers-ND00",
+      "events": 1000000,
+      "mesr": 0.8552306855737415
+    },
+    {
+      "recording": "E-MLB/D-END/Lockers-ND00-2",
+      "cell": "E-MLB/D-END/Lockers-ND00",
+      "events": 1000000,
+      "mesr": 0.8290209534434747
+    },
+    {
+      "recording": "E-MLB/D-END/Lockers-ND00-3",
+      "cell": "E-MLB/D-END/Lockers-ND00",
+      "events": 1000000,
+      "mesr": 0.8433280723513075
+    },
+    {
+      "recording": "E-MLB/D-END/Lockers-ND04-1",
+      "cell": "E-MLB/D-END/Lockers-ND04",
+      "events": 1000000,
+      "mesr": 0.8205993485200479
+    },
+    {
+      "recording": "E-MLB/D-END/Lockers-ND04-2",
+      "cell": "E-MLB/D-END/Lockers-ND04",
+      "events": 1000000,
+      "mesr": 0.8290439028493398
+    },
+    {
+      "recording": "E-MLB/D-END/Lockers-ND04-3",
+      "cell": "E-MLB/D-END/Lockers-ND04",
+      "events": 1000000,
+      "mesr": 0.8212364520854584
+    },
+    {
+      "recording": "E-MLB/D-END/Lockers-ND16-1",
+      "cell": "E-MLB/D-END/Lockers-ND16",
+      "events": 1000000,
+      "mesr": 0.7408585603119895
+    },
+    {
+      "recording": "E-MLB/D-END/Lockers-ND16-2",
+      "cell": "E-MLB/D-END/Lockers-ND16",
+      "events": 1000000,
+      "mesr": 0.7249622526902354
+    },
+    {
+      "recording": "E-MLB/D-END/Lockers-ND16-3",
+      "cell": "E-MLB/D-END/Lockers-ND16",
+      "events": 1000000,
+      "mesr": 0.7647990473271354
+    },
+    {
+      "recording": "E-MLB/D-END/Lockers-ND64-1",
+      "cell": "E-MLB/D-END/Lockers-ND64",
+      "events": 1000000,
+      "mesr": 0.7447285983159462
+    },
+    {
+      "recording": "E-MLB/D-END/Lockers-ND64-2",
+      "cell": "E-MLB/D-END/Lockers-ND64",
+      "events": 1000000,
+      "mesr": 0.7575084246937827
+    },
+    {
+      "recording": "E-MLB/D-END/Lockers-ND64-3",
+      "cell": "E-MLB/D-END/Lockers-ND64",
+      "events": 1000000,
+      "mesr": 0.7995096917662012
+    },
+    {
+      "recording": "E-MLB/D-END/Meeting_Room-ND00-1",
+      "cell": "E-MLB/D-END/Meeting_Room-ND00",
+      "events": 1000000,
+      "mesr": 0.8328904824020715
+    },
+    {
+      "recording": "E-MLB/D-END/Meeting_Room-ND00-2",
+      "cell": "E-MLB/D-END/Meeting_Room-ND00",
+      "events": 1000000,
+      "mesr": 0.8863887416299375
+    },
+    {
+      "recording": "E-MLB/D-END/Meeting_Room-ND00-3",
+      "cell": "E-MLB/D-END/Meeting_Room-ND00",
+      "events": 1000000,
+      "mesr": 0.9049357859659819
+    },
+    {
+      "recording": "E-MLB/D-END/Meeting_Room-ND04-1",
+      "cell": "E-MLB/D-END/Meeting_Room-ND04",
+      "events": 1000000,
+      "mesr": 0.9349288715727351
+    },
+    {
+      "recording": "E-MLB/D-END/Meeting_Room-ND04-2",
+      "cell": "E-MLB/D-END/Meeting_Room-ND04",
+      "events": 1000000,
+      "mesr": 0.9516908326640654
+    },
+    {
+      "recording": "E-MLB/D-END/Meeting_Room-ND04-3",
+      "cell": "E-MLB/D-END/Meeting_Room-ND04",
+      "events": 1000000,
+      "mesr": 0.921915275987907
+    },
+    {
+      "recording": "E-MLB/D-END/Meeting_Room-ND16-1",
+      "cell": "E-MLB/D-END/Meeting_Room-ND16",
+      "events": 1000000,
+      "mesr": 0.9266180111326852
+    },
+    {
+      "recording": "E-MLB/D-END/Meeting_Room-ND16-2",
+      "cell": "E-MLB/D-END/Meeting_Room-ND16",
+      "events": 1000000,
+      "mesr": 0.9320492687985987
+    },
+    {
+      "recording": "E-MLB/D-END/Meeting_Room-ND16-3",
+      "cell": "E-MLB/D-END/Meeting_Room-ND16",
+      "events": 1000000,
+      "mesr": 0.930647223906393
+    },
+    {
+      "recording": "E-MLB/D-END/Meeting_Room-ND64-1",
+      "cell": "E-MLB/D-END/Meeting_Room-ND64",
+      "events": 1000000,
+      "mesr": 0.8801460330626332
+    },
+    {
+      "recording": "E-MLB/D-END/Meeting_Room-ND64-2",
+      "cell": "E-MLB/D-END/Meeting_Room-ND64",
+      "events": 1000000,
+      "mesr": 0.8897811958167648
+    },
+    {
+      "recording": "E-MLB/D-END/Meeting_Room-ND64-3",
+      "cell": "E-MLB/D-END/Meeting_Room-ND64",
+      "events": 1000000,
+      "mesr": 0.8920528193917813
+    },
+    {
+      "recording": "E-MLB/D-END/Minions-ND00-1",
+      "cell": "E-MLB/D-END/Minions-ND00",
+      "events": 309979,
+      "mesr": 1.1739179943389648
+    },
+    {
+      "recording": "E-MLB/D-END/Minions-ND00-2",
+      "cell": "E-MLB/D-END/Minions-ND00",
+      "events": 319027,
+      "mesr": 1.1664142543759275
+    },
+    {
+      "recording": "E-MLB/D-END/Minions-ND00-3",
+      "cell": "E-MLB/D-END/Minions-ND00",
+      "events": 337397,
+      "mesr": 1.1617287250109511
+    },
+    {
+      "recording": "E-MLB/D-END/Minions-ND04-1",
+      "cell": "E-MLB/D-END/Minions-ND04",
+      "events": 367889,
+      "mesr": 1.1600229796067003
+    },
+    {
+      "recording": "E-MLB/D-END/Minions-ND04-2",
+      "cell": "E-MLB/D-END/Minions-ND04",
+      "events": 384370,
+      "mesr": 1.1570956648175401
+    },
+    {
+      "recording": "E-MLB/D-END/Minions-ND04-3",
+      "cell": "E-MLB/D-END/Minions-ND04",
+      "events": 403867,
+      "mesr": 1.156068618348852
+    },
+    {
+      "recording": "E-MLB/D-END/Minions-ND16-1",
+      "cell": "E-MLB/D-END/Minions-ND16",
+      "events": 593726,
+      "mesr": 1.138875618383659
+    },
+    {
+      "recording": "E-MLB/D-END/Minions-ND16-2",
+      "cell": "E-MLB/D-END/Minions-ND16",
+      "events": 512312,
+      "mesr": 1.1840177175374438
+    },
+    {
+      "recording": "E-MLB/D-END/Minions-ND16-3",
+      "cell": "E-MLB/D-END/Minions-ND16",
+      "events": 912074,
+      "mesr": 1.068650399566292
+    },
+    {
+      "recording": "E-MLB/D-END/Minions-ND64-1",
+      "cell": "E-MLB/D-END/Minions-ND64",
+      "events": 796331,
+      "mesr": 1.0474286193995677
+    },
+    {
+      "recording": "E-MLB/D-END/Minions-ND64-2",
+      "cell": "E-MLB/D-END/Minions-ND64",
+      "events": 1000000,
+      "mesr": 1.0483785599788755
+    },
+    {
+      "recording": "E-MLB/D-END/Minions-ND64-3",
+      "cell": "E-MLB/D-END/Minions-ND64",
+      "events": 1000000,
+      "mesr": 1.0258885613761852
+    },
+    {
+      "recording": "E-MLB/D-END/Mirror-ND00-1",
+      "cell": "E-MLB/D-END/Mirror-ND00",
+      "events": 1000000,
+      "mesr": 0.8840142316411681
+    },
+    {
+      "recording": "E-MLB/D-END/Mirror-ND00-2",
+      "cell": "E-MLB/D-END/Mirror-ND00",
+      "events": 1000000,
+      "mesr": 0.8785005362081453
+    },
+    {
+      "recording": "E-MLB/D-END/Mirror-ND00-3",
+      "cell": "E-MLB/D-END/Mirror-ND00",
+      "events": 1000000,
+      "mesr": 0.8951579907892967
+    },
+    {
+      "recording": "E-MLB/D-END/Mirror-ND04-1",
+      "cell": "E-MLB/D-END/Mirror-ND04",
+      "events": 1000000,
+      "mesr": 0.8862231455220075
+    },
+    {
+      "recording": "E-MLB/D-END/Mirror-ND04-2",
+      "cell": "E-MLB/D-END/Mirror-ND04",
+      "events": 1000000,
+      "mesr": 0.883109272693868
+    },
+    {
+      "recording": "E-MLB/D-END/Mirror-ND04-3",
+      "cell": "E-MLB/D-END/Mirror-ND04",
+      "events": 1000000,
+      "mesr": 0.8811487482605755
+    },
+    {
+      "recording": "E-MLB/D-END/Mirror-ND16-1",
+      "cell": "E-MLB/D-END/Mirror-ND16",
+      "events": 1000000,
+      "mesr": 0.8376758884570641
+    },
+    {
+      "recording": "E-MLB/D-END/Mirror-ND16-2",
+      "cell": "E-MLB/D-END/Mirror-ND16",
+      "events": 1000000,
+      "mesr": 0.8463282646629654
+    },
+    {
+      "recording": "E-MLB/D-END/Mirror-ND16-3",
+      "cell": "E-MLB/D-END/Mirror-ND16",
+      "events": 1000000,
+      "mesr": 0.821309055264649
+    },
+    {
+      "recording": "E-MLB/D-END/Mirror-ND64-1",
+      "cell": "E-MLB/D-END/Mirror-ND64",
+      "events": 1000000,
+      "mesr": 0.7197591875237425
+    },
+    {
+      "recording": "E-MLB/D-END/Mirror-ND64-2",
+      "cell": "E-MLB/D-END/Mirror-ND64",
+      "events": 1000000,
+      "mesr": 0.7061786927018743
+    },
+    {
+      "recording": "E-MLB/D-END/Mirror-ND64-3",
+      "cell": "E-MLB/D-END/Mirror-ND64",
+      "events": 1000000,
+      "mesr": 0.730435497312197
+    },
+    {
+      "recording": "E-MLB/D-END/Newton-ND00-1",
+      "cell": "E-MLB/D-END/Newton-ND00",
+      "events": 1000000,
+      "mesr": 1.0349832612052663
+    },
+    {
+      "recording": "E-MLB/D-END/Newton-ND00-2",
+      "cell": "E-MLB/D-END/Newton-ND00",
+      "events": 1000000,
+      "mesr": 1.0366361965667168
+    },
+    {
+      "recording": "E-MLB/D-END/Newton-ND00-3",
+      "cell": "E-MLB/D-END/Newton-ND00",
+      "events": 1000000,
+      "mesr": 1.0271776226951403
+    },
+    {
+      "recording": "E-MLB/D-END/Newton-ND04-1",
+      "cell": "E-MLB/D-END/Newton-ND04",
+      "events": 1000000,
+      "mesr": 1.0481973266190263
+    },
+    {
+      "recording": "E-MLB/D-END/Newton-ND04-2",
+      "cell": "E-MLB/D-END/Newton-ND04",
+      "events": 1000000,
+      "mesr": 1.0310023636174965
+    },
+    {
+      "recording": "E-MLB/D-END/Newton-ND04-3",
+      "cell": "E-MLB/D-END/Newton-ND04",
+      "events": 1000000,
+      "mesr": 1.0363628832924998
+    },
+    {
+      "recording": "E-MLB/D-END/Newton-ND16-1",
+      "cell": "E-MLB/D-END/Newton-ND16",
+      "events": 1000000,
+      "mesr": 1.0286903467935133
+    },
+    {
+      "recording": "E-MLB/D-END/Newton-ND16-2",
+      "cell": "E-MLB/D-END/Newton-ND16",
+      "events": 1000000,
+      "mesr": 1.0251916111677553
+    },
+    {
+      "recording": "E-MLB/D-END/Newton-ND16-3",
+      "cell": "E-MLB/D-END/Newton-ND16",
+      "events": 1000000,
+      "mesr": 1.0176000784009638
+    },
+    {
+      "recording": "E-MLB/D-END/Newton-ND64-1",
+      "cell": "E-MLB/D-END/Newton-ND64",
+      "events": 1000000,
+      "mesr": 0.9311074034073558
+    },
+    {
+      "recording": "E-MLB/D-END/Newton-ND64-2",
+      "cell": "E-MLB/D-END/Newton-ND64",
+      "events": 1000000,
+      "mesr": 0.9212968426257435
+    },
+    {
+      "recording": "E-MLB/D-END/Newton-ND64-3",
+      "cell": "E-MLB/D-END/Newton-ND64",
+      "events": 1000000,
+      "mesr": 0.9254639508629207
+    },
+    {
+      "recording": "E-MLB/D-END/Pedestrians-ND00-1",
+      "cell": "E-MLB/D-END/Pedestrians-ND00",
+      "events": 1000000,
+      "mesr": 0.874345896421175
+    },
+    {
+      "recording": "E-MLB/D-END/Pedestrians-ND00-2",
+      "cell": "E-MLB/D-END/Pedestrians-ND00",
+      "events": 1000000,
+      "mesr": 0.9124228217282447
+    },
+    {
+      "recording": "E-MLB/D-END/Pedestrians-ND00-3",
+      "cell": "E-MLB/D-END/Pedestrians-ND00",
+      "events": 1000000,
+      "mesr": 0.8077514237706204
+    },
+    {
+      "recording": "E-MLB/D-END/Pedestrians-ND04-1",
+      "cell": "E-MLB/D-END/Pedestrians-ND04",
+      "events": 1000000,
+      "mesr": 0.8269850031587505
+    },
+    {
+      "recording": "E-MLB/D-END/Pedestrians-ND04-2",
+      "cell": "E-MLB/D-END/Pedestrians-ND04",
+      "events": 1000000,
+      "mesr": 0.9791446704744335
+    },
+    {
+      "recording": "E-MLB/D-END/Pedestrians-ND04-3",
+      "cell": "E-MLB/D-END/Pedestrians-ND04",
+      "events": 1000000,
+      "mesr": 0.9024220533192135
+    },
+    {
+      "recording": "E-MLB/D-END/Pedestrians-ND16-1",
+      "cell": "E-MLB/D-END/Pedestrians-ND16",
+      "events": 898336,
+      "mesr": 0.9029133873951449
+    },
+    {
+      "recording": "E-MLB/D-END/Pedestrians-ND16-2",
+      "cell": "E-MLB/D-END/Pedestrians-ND16",
+      "events": 904994,
+      "mesr": 0.884852660251075
+    },
+    {
+      "recording": "E-MLB/D-END/Pedestrians-ND16-3",
+      "cell": "E-MLB/D-END/Pedestrians-ND16",
+      "events": 1000000,
+      "mesr": 0.9309555652627101
+    },
+    {
+      "recording": "E-MLB/D-END/Pedestrians-ND64-1",
+      "cell": "E-MLB/D-END/Pedestrians-ND64",
+      "events": 1000000,
+      "mesr": 0.903300611572625
+    },
+    {
+      "recording": "E-MLB/D-END/Pedestrians-ND64-2",
+      "cell": "E-MLB/D-END/Pedestrians-ND64",
+      "events": 1000000,
+      "mesr": 0.9797893509089987
+    },
+    {
+      "recording": "E-MLB/D-END/Pedestrians-ND64-3",
+      "cell": "E-MLB/D-END/Pedestrians-ND64",
+      "events": 1000000,
+      "mesr": 0.8792217809187812
+    },
+    {
+      "recording": "E-MLB/D-END/Pendulum-ND00-1",
+      "cell": "E-MLB/D-END/Pendulum-ND00",
+      "events": 1000000,
+      "mesr": 0.9636632235425134
+    },
+    {
+      "recording": "E-MLB/D-END/Pendulum-ND00-2",
+      "cell": "E-MLB/D-END/Pendulum-ND00",
+      "events": 1000000,
+      "mesr": 0.8431943072551893
+    },
+    {
+      "recording": "E-MLB/D-END/Pendulum-ND00-3",
+      "cell": "E-MLB/D-END/Pendulum-ND00",
+      "events": 1000000,
+      "mesr": 0.9153782564243386
+    },
+    {
+      "recording": "E-MLB/D-END/Pendulum-ND04-1",
+      "cell": "E-MLB/D-END/Pendulum-ND04",
+      "events": 1000000,
+      "mesr": 0.8527294027505297
+    },
+    {
+      "recording": "E-MLB/D-END/Pendulum-ND04-2",
+      "cell": "E-MLB/D-END/Pendulum-ND04",
+      "events": 1000000,
+      "mesr": 0.8067176043435453
+    },
+    {
+      "recording": "E-MLB/D-END/Pendulum-ND04-3",
+      "cell": "E-MLB/D-END/Pendulum-ND04",
+      "events": 1000000,
+      "mesr": 0.803115699733408
+    },
+    {
+      "recording": "E-MLB/D-END/Pendulum-ND16-1",
+      "cell": "E-MLB/D-END/Pendulum-ND16",
+      "events": 1000000,
+      "mesr": 0.8987588615788867
+    },
+    {
+      "recording": "E-MLB/D-END/Pendulum-ND16-2",
+      "cell": "E-MLB/D-END/Pendulum-ND16",
+      "events": 1000000,
+      "mesr": 0.8263283167285851
+    },
+    {
+      "recording": "E-MLB/D-END/Pendulum-ND16-3",
+      "cell": "E-MLB/D-END/Pendulum-ND16",
+      "events": 1000000,
+      "mesr": 0.9137568186387173
+    },
+    {
+      "recording": "E-MLB/D-END/Pendulum-ND64-1",
+      "cell": "E-MLB/D-END/Pendulum-ND64",
+      "events": 1000000,
+      "mesr": 0.9703816463121807
+    },
+    {
+      "recording": "E-MLB/D-END/Pendulum-ND64-2",
+      "cell": "E-MLB/D-END/Pendulum-ND64",
+      "events": 1000000,
+      "mesr": 0.8611535593575063
+    },
+    {
+      "recording": "E-MLB/D-END/Pendulum-ND64-3",
+      "cell": "E-MLB/D-END/Pendulum-ND64",
+      "events": 1000000,
+      "mesr": 0.886856495250703
+    },
+    {
+      "recording": "E-MLB/D-END/Poker-ND00-1",
+      "cell": "E-MLB/D-END/Poker-ND00",
+      "events": 1000000,
+      "mesr": 0.8690113979298743
+    },
+    {
+      "recording": "E-MLB/D-END/Poker-ND00-2",
+      "cell": "E-MLB/D-END/Poker-ND00",
+      "events": 1000000,
+      "mesr": 0.9671954958441114
+    },
+    {
+      "recording": "E-MLB/D-END/Poker-ND00-3",
+      "cell": "E-MLB/D-END/Poker-ND00",
+      "events": 1000000,
+      "mesr": 0.9802711057845003
+    },
+    {
+      "recording": "E-MLB/D-END/Poker-ND04-1",
+      "cell": "E-MLB/D-END/Poker-ND04",
+      "events": 1000000,
+      "mesr": 0.9587442741727128
+    },
+    {
+      "recording": "E-MLB/D-END/Poker-ND04-2",
+      "cell": "E-MLB/D-END/Poker-ND04",
+      "events": 1000000,
+      "mesr": 0.9760696762357672
+    },
+    {
+      "recording": "E-MLB/D-END/Poker-ND04-3",
+      "cell": "E-MLB/D-END/Poker-ND04",
+      "events": 1000000,
+      "mesr": 0.832468389958296
+    },
+    {
+      "recording": "E-MLB/D-END/Poker-ND16-1",
+      "cell": "E-MLB/D-END/Poker-ND16",
+      "events": 1000000,
+      "mesr": 0.9288285678656417
+    },
+    {
+      "recording": "E-MLB/D-END/Poker-ND16-2",
+      "cell": "E-MLB/D-END/Poker-ND16",
+      "events": 1000000,
+      "mesr": 0.8292644928208969
+    },
+    {
+      "recording": "E-MLB/D-END/Poker-ND16-3",
+      "cell": "E-MLB/D-END/Poker-ND16",
+      "events": 1000000,
+      "mesr": 0.8784096926711787
+    },
+    {
+      "recording": "E-MLB/D-END/Poker-ND64-1",
+      "cell": "E-MLB/D-END/Poker-ND64",
+      "events": 1000000,
+      "mesr": 0.9285761088816079
+    },
+    {
+      "recording": "E-MLB/D-END/Poker-ND64-2",
+      "cell": "E-MLB/D-END/Poker-ND64",
+      "events": 1000000,
+      "mesr": 0.9332781815865542
+    },
+    {
+      "recording": "E-MLB/D-END/Poker-ND64-3",
+      "cell": "E-MLB/D-END/Poker-ND64",
+      "events": 1000000,
+      "mesr": 0.8884581766686049
+    },
+    {
+      "recording": "E-MLB/D-END/Punch-ND00-1",
+      "cell": "E-MLB/D-END/Punch-ND00",
+      "events": 1000000,
+      "mesr": 0.9391392337901363
+    },
+    {
+      "recording": "E-MLB/D-END/Punch-ND00-2",
+      "cell": "E-MLB/D-END/Punch-ND00",
+      "events": 1000000,
+      "mesr": 0.9439097457081079
+    },
+    {
+      "recording": "E-MLB/D-END/Punch-ND00-3",
+      "cell": "E-MLB/D-END/Punch-ND00",
+      "events": 1000000,
+      "mesr": 0.9257674968286905
+    },
+    {
+      "recording": "E-MLB/D-END/Punch-ND04-1",
+      "cell": "E-MLB/D-END/Punch-ND04",
+      "events": 1000000,
+      "mesr": 0.9398075284972579
+    },
+    {
+      "recording": "E-MLB/D-END/Punch-ND04-2",
+      "cell": "E-MLB/D-END/Punch-ND04",
+      "events": 1000000,
+      "mesr": 0.9060066478644314
+    },
+    {
+      "recording": "E-MLB/D-END/Punch-ND04-3",
+      "cell": "E-MLB/D-END/Punch-ND04",
+      "events": 1000000,
+      "mesr": 0.9190109834446234
+    },
+    {
+      "recording": "E-MLB/D-END/Punch-ND16-1",
+      "cell": "E-MLB/D-END/Punch-ND16",
+      "events": 1000000,
+      "mesr": 0.9293816580881085
+    },
+    {
+      "recording": "E-MLB/D-END/Punch-ND16-2",
+      "cell": "E-MLB/D-END/Punch-ND16",
+      "events": 1000000,
+      "mesr": 0.9141759586602404
+    },
+    {
+      "recording": "E-MLB/D-END/Punch-ND16-3",
+      "cell": "E-MLB/D-END/Punch-ND16",
+      "events": 1000000,
+      "mesr": 0.9272708062957964
+    },
+    {
+      "recording": "E-MLB/D-END/Punch-ND64-1",
+      "cell": "E-MLB/D-END/Punch-ND64",
+      "events": 1000000,
+      "mesr": 0.9057238329826576
+    },
+    {
+      "recording": "E-MLB/D-END/Punch-ND64-2",
+      "cell": "E-MLB/D-END/Punch-ND64",
+      "events": 1000000,
+      "mesr": 0.9003003744296295
+    },
+    {
+      "recording": "E-MLB/D-END/Punch-ND64-3",
+      "cell": "E-MLB/D-END/Punch-ND64",
+      "events": 1000000,
+      "mesr": 0.9092564734176187
+    },
+    {
+      "recording": "E-MLB/D-END/Reflact-ND00-1",
+      "cell": "E-MLB/D-END/Reflact-ND00",
+      "events": 1000000,
+      "mesr": 0.6495682878067206
+    },
+    {
+      "recording": "E-MLB/D-END/Reflact-ND00-2",
+      "cell": "E-MLB/D-END/Reflact-ND00",
+      "events": 1000000,
+      "mesr": 0.6530996667531376
+    },
+    {
+      "recording": "E-MLB/D-END/Reflact-ND00-3",
+      "cell": "E-MLB/D-END/Reflact-ND00",
+      "events": 1000000,
+      "mesr": 0.6439876887043829
+    },
+    {
+      "recording": "E-MLB/D-END/Reflact-ND04-1",
+      "cell": "E-MLB/D-END/Reflact-ND04",
+      "events": 1000000,
+      "mesr": 0.5894465499407096
+    },
+    {
+      "recording": "E-MLB/D-END/Reflact-ND04-2",
+      "cell": "E-MLB/D-END/Reflact-ND04",
+      "events": 1000000,
+      "mesr": 0.6241639159336994
+    },
+    {
+      "recording": "E-MLB/D-END/Reflact-ND04-3",
+      "cell": "E-MLB/D-END/Reflact-ND04",
+      "events": 1000000,
+      "mesr": 0.6344809359228698
+    },
+    {
+      "recording": "E-MLB/D-END/Reflact-ND16-1",
+      "cell": "E-MLB/D-END/Reflact-ND16",
+      "events": 1000000,
+      "mesr": 0.6037945292613403
+    },
+    {
+      "recording": "E-MLB/D-END/Reflact-ND16-2",
+      "cell": "E-MLB/D-END/Reflact-ND16",
+      "events": 1000000,
+      "mesr": 0.5906271289447144
+    },
+    {
+      "recording": "E-MLB/D-END/Reflact-ND16-3",
+      "cell": "E-MLB/D-END/Reflact-ND16",
+      "events": 1000000,
+      "mesr": 0.5720508846067137
+    },
+    {
+      "recording": "E-MLB/D-END/Reflact-ND64-1",
+      "cell": "E-MLB/D-END/Reflact-ND64",
+      "events": 1000000,
+      "mesr": 0.5710529560112518
+    },
+    {
+      "recording": "E-MLB/D-END/Reflact-ND64-2",
+      "cell": "E-MLB/D-END/Reflact-ND64",
+      "events": 1000000,
+      "mesr": 0.5356570193261103
+    },
+    {
+      "recording": "E-MLB/D-END/Reflact-ND64-3",
+      "cell": "E-MLB/D-END/Reflact-ND64",
+      "events": 1000000,
+      "mesr": 0.5418243374971365
+    },
+    {
+      "recording": "E-MLB/D-END/Ride-ND00-1",
+      "cell": "E-MLB/D-END/Ride-ND00",
+      "events": 1000000,
+      "mesr": 0.9183165306588233
+    },
+    {
+      "recording": "E-MLB/D-END/Ride-ND00-2",
+      "cell": "E-MLB/D-END/Ride-ND00",
+      "events": 1000000,
+      "mesr": 0.9336125453660049
+    },
+    {
+      "recording": "E-MLB/D-END/Ride-ND00-3",
+      "cell": "E-MLB/D-END/Ride-ND00",
+      "events": 1000000,
+      "mesr": 0.9258814129856553
+    },
+    {
+      "recording": "E-MLB/D-END/Ride-ND04-1",
+      "cell": "E-MLB/D-END/Ride-ND04",
+      "events": 1000000,
+      "mesr": 0.9398517141925624
+    },
+    {
+      "recording": "E-MLB/D-END/Ride-ND04-2",
+      "cell": "E-MLB/D-END/Ride-ND04",
+      "events": 1000000,
+      "mesr": 0.9085240176093375
+    },
+    {
+      "recording": "E-MLB/D-END/Ride-ND04-3",
+      "cell": "E-MLB/D-END/Ride-ND04",
+      "events": 1000000,
+      "mesr": 0.9113431458986664
+    },
+    {
+      "recording": "E-MLB/D-END/Ride-ND16-1",
+      "cell": "E-MLB/D-END/Ride-ND16",
+      "events": 1000000,
+      "mesr": 0.8455552071904023
+    },
+    {
+      "recording": "E-MLB/D-END/Ride-ND16-2",
+      "cell": "E-MLB/D-END/Ride-ND16",
+      "events": 1000000,
+      "mesr": 0.8804584440705717
+    },
+    {
+      "recording": "E-MLB/D-END/Ride-ND16-3",
+      "cell": "E-MLB/D-END/Ride-ND16",
+      "events": 1000000,
+      "mesr": 0.8273763814563532
+    },
+    {
+      "recording": "E-MLB/D-END/Ride-ND64-1",
+      "cell": "E-MLB/D-END/Ride-ND64",
+      "events": 1000000,
+      "mesr": 0.7646451880148892
+    },
+    {
+      "recording": "E-MLB/D-END/Ride-ND64-2",
+      "cell": "E-MLB/D-END/Ride-ND64",
+      "events": 1000000,
+      "mesr": 0.7588268205007106
+    },
+    {
+      "recording": "E-MLB/D-END/Ride-ND64-3",
+      "cell": "E-MLB/D-END/Ride-ND64",
+      "events": 1000000,
+      "mesr": 0.7541195206342273
+    },
+    {
+      "recording": "E-MLB/D-END/Ruler-ND00-1",
+      "cell": "E-MLB/D-END/Ruler-ND00",
+      "events": 1000000,
+      "mesr": 0.7955684360363837
+    },
+    {
+      "recording": "E-MLB/D-END/Ruler-ND00-2",
+      "cell": "E-MLB/D-END/Ruler-ND00",
+      "events": 1000000,
+      "mesr": 0.8032378467769843
+    },
+    {
+      "recording": "E-MLB/D-END/Ruler-ND00-3",
+      "cell": "E-MLB/D-END/Ruler-ND00",
+      "events": 1000000,
+      "mesr": 0.8178160233877697
+    },
+    {
+      "recording": "E-MLB/D-END/Ruler-ND04-1",
+      "cell": "E-MLB/D-END/Ruler-ND04",
+      "events": 1000000,
+      "mesr": 0.7666261387430103
+    },
+    {
+      "recording": "E-MLB/D-END/Ruler-ND04-2",
+      "cell": "E-MLB/D-END/Ruler-ND04",
+      "events": 1000000,
+      "mesr": 0.8058022381090764
+    },
+    {
+      "recording": "E-MLB/D-END/Ruler-ND04-3",
+      "cell": "E-MLB/D-END/Ruler-ND04",
+      "events": 1000000,
+      "mesr": 0.7880893537256433
+    },
+    {
+      "recording": "E-MLB/D-END/Ruler-ND16-1",
+      "cell": "E-MLB/D-END/Ruler-ND16",
+      "events": 1000000,
+      "mesr": 0.7381931210649113
+    },
+    {
+      "recording": "E-MLB/D-END/Ruler-ND16-2",
+      "cell": "E-MLB/D-END/Ruler-ND16",
+      "events": 1000000,
+      "mesr": 0.7138125152638534
+    },
+    {
+      "recording": "E-MLB/D-END/Ruler-ND16-3",
+      "cell": "E-MLB/D-END/Ruler-ND16",
+      "events": 1000000,
+      "mesr": 0.7908601632396579
+    },
+    {
+      "recording": "E-MLB/D-END/Ruler-ND64-1",
+      "cell": "E-MLB/D-END/Ruler-ND64",
+      "events": 913844,
+      "mesr": 0.6376300212427272
+    },
+    {
+      "recording": "E-MLB/D-END/Ruler-ND64-2",
+      "cell": "E-MLB/D-END/Ruler-ND64",
+      "events": 858338,
+      "mesr": 0.6397150649008634
+    },
+    {
+      "recording": "E-MLB/D-END/Ruler-ND64-3",
+      "cell": "E-MLB/D-END/Ruler-ND64",
+      "events": 1000000,
+      "mesr": 0.6529195355251557
+    },
+    {
+      "recording": "E-MLB/D-END/Shapes_Day-ND00-1",
+      "cell": "E-MLB/D-END/Shapes_Day-ND00",
+      "events": 1000000,
+      "mesr": 0.9454274311970889
+    },
+    {
+      "recording": "E-MLB/D-END/Shapes_Day-ND00-2",
+      "cell": "E-MLB/D-END/Shapes_Day-ND00",
+      "events": 1000000,
+      "mesr": 0.9458588934372228
+    },
+    {
+      "recording": "E-MLB/D-END/Shapes_Day-ND00-3",
+      "cell": "E-MLB/D-END/Shapes_Day-ND00",
+      "events": 1000000,
+      "mesr": 0.9466188347889369
+    },
+    {
+      "recording": "E-MLB/D-END/Shapes_Day-ND04-1",
+      "cell": "E-MLB/D-END/Shapes_Day-ND04",
+      "events": 1000000,
+      "mesr": 0.9472951817421658
+    },
+    {
+      "recording": "E-MLB/D-END/Shapes_Day-ND04-2",
+      "cell": "E-MLB/D-END/Shapes_Day-ND04",
+      "events": 1000000,
+      "mesr": 0.9511221249718038
+    },
+    {
+      "recording": "E-MLB/D-END/Shapes_Day-ND04-3",
+      "cell": "E-MLB/D-END/Shapes_Day-ND04",
+      "events": 1000000,
+      "mesr": 0.9641493654410732
+    },
+    {
+      "recording": "E-MLB/D-END/Shapes_Day-ND16-1",
+      "cell": "E-MLB/D-END/Shapes_Day-ND16",
+      "events": 1000000,
+      "mesr": 0.9144670483706742
+    },
+    {
+      "recording": "E-MLB/D-END/Shapes_Day-ND16-2",
+      "cell": "E-MLB/D-END/Shapes_Day-ND16",
+      "events": 1000000,
+      "mesr": 0.9158959572592362
+    },
+    {
+      "recording": "E-MLB/D-END/Shapes_Day-ND16-3",
+      "cell": "E-MLB/D-END/Shapes_Day-ND16",
+      "events": 1000000,
+      "mesr": 0.9141324724425638
+    },
+    {
+      "recording": "E-MLB/D-END/Shapes_Day-ND64-1",
+      "cell": "E-MLB/D-END/Shapes_Day-ND64",
+      "events": 1000000,
+      "mesr": 0.7410284199449083
+    },
+    {
+      "recording": "E-MLB/D-END/Shapes_Day-ND64-2",
+      "cell": "E-MLB/D-END/Shapes_Day-ND64",
+      "events": 1000000,
+      "mesr": 0.7257441660968214
+    },
+    {
+      "recording": "E-MLB/D-END/Shapes_Day-ND64-3",
+      "cell": "E-MLB/D-END/Shapes_Day-ND64",
+      "events": 1000000,
+      "mesr": 0.7037675807882593
+    },
+    {
+      "recording": "E-MLB/D-END/Shuttlecock-ND00-1",
+      "cell": "E-MLB/D-END/Shuttlecock-ND00",
+      "events": 365538,
+      "mesr": 1.000376618974783
+    },
+    {
+      "recording": "E-MLB/D-END/Shuttlecock-ND00-2",
+      "cell": "E-MLB/D-END/Shuttlecock-ND00",
+      "events": 578129,
+      "mesr": 0.980681390386121
+    },
+    {
+      "recording": "E-MLB/D-END/Shuttlecock-ND00-3",
+      "cell": "E-MLB/D-END/Shuttlecock-ND00",
+      "events": 491729,
+      "mesr": 0.9693196635657285
+    },
+    {
+      "recording": "E-MLB/D-END/Shuttlecock-ND04-1",
+      "cell": "E-MLB/D-END/Shuttlecock-ND04",
+      "events": 676578,
+      "mesr": 0.9648574770618699
+    },
+    {
+      "recording": "E-MLB/D-END/Shuttlecock-ND04-2",
+      "cell": "E-MLB/D-END/Shuttlecock-ND04",
+      "events": 666638,
+      "mesr": 0.9811919850703862
+    },
+    {
+      "recording": "E-MLB/D-END/Shuttlecock-ND04-3",
+      "cell": "E-MLB/D-END/Shuttlecock-ND04",
+      "events": 585012,
+      "mesr": 0.9882902877360256
+    },
+    {
+      "recording": "E-MLB/D-END/Shuttlecock-ND16-1",
+      "cell": "E-MLB/D-END/Shuttlecock-ND16",
+      "events": 399340,
+      "mesr": 0.962050705808836
+    },
+    {
+      "recording": "E-MLB/D-END/Shuttlecock-ND16-2",
+      "cell": "E-MLB/D-END/Shuttlecock-ND16",
+      "events": 506834,
+      "mesr": 0.9601453244656947
+    },
+    {
+      "recording": "E-MLB/D-END/Shuttlecock-ND16-3",
+      "cell": "E-MLB/D-END/Shuttlecock-ND16",
+      "events": 739999,
+      "mesr": 0.9402648380388059
+    },
+    {
+      "recording": "E-MLB/D-END/Shuttlecock-ND64-1",
+      "cell": "E-MLB/D-END/Shuttlecock-ND64",
+      "events": 443170,
+      "mesr": 1.0523024092693753
+    },
+    {
+      "recording": "E-MLB/D-END/Shuttlecock-ND64-2",
+      "cell": "E-MLB/D-END/Shuttlecock-ND64",
+      "events": 527064,
+      "mesr": 0.9792799036742373
+    },
+    {
+      "recording": "E-MLB/D-END/Shuttlecock-ND64-3",
+      "cell": "E-MLB/D-END/Shuttlecock-ND64",
+      "events": 616427,
+      "mesr": 1.0077592739673609
+    },
+    {
+      "recording": "E-MLB/D-END/Snackery-ND00-1",
+      "cell": "E-MLB/D-END/Snackery-ND00",
+      "events": 1000000,
+      "mesr": 0.5314313246126946
+    },
+    {
+      "recording": "E-MLB/D-END/Snackery-ND00-2",
+      "cell": "E-MLB/D-END/Snackery-ND00",
+      "events": 1000000,
+      "mesr": 0.5429327746526991
+    },
+    {
+      "recording": "E-MLB/D-END/Snackery-ND00-3",
+      "cell": "E-MLB/D-END/Snackery-ND00",
+      "events": 1000000,
+      "mesr": 0.5496074526892917
+    },
+    {
+      "recording": "E-MLB/D-END/Snackery-ND04-1",
+      "cell": "E-MLB/D-END/Snackery-ND04",
+      "events": 1000000,
+      "mesr": 0.5186289809547554
+    },
+    {
+      "recording": "E-MLB/D-END/Snackery-ND04-2",
+      "cell": "E-MLB/D-END/Snackery-ND04",
+      "events": 1000000,
+      "mesr": 0.4783994916060497
+    },
+    {
+      "recording": "E-MLB/D-END/Snackery-ND04-3",
+      "cell": "E-MLB/D-END/Snackery-ND04",
+      "events": 1000000,
+      "mesr": 0.47559626086736284
+    },
+    {
+      "recording": "E-MLB/D-END/Snackery-ND16-1",
+      "cell": "E-MLB/D-END/Snackery-ND16",
+      "events": 1000000,
+      "mesr": 0.4451257139456218
+    },
+    {
+      "recording": "E-MLB/D-END/Snackery-ND16-2",
+      "cell": "E-MLB/D-END/Snackery-ND16",
+      "events": 1000000,
+      "mesr": 0.4535785069596071
+    },
+    {
+      "recording": "E-MLB/D-END/Snackery-ND16-3",
+      "cell": "E-MLB/D-END/Snackery-ND16",
+      "events": 1000000,
+      "mesr": 0.44100663230242876
+    },
+    {
+      "recording": "E-MLB/D-END/Snackery-ND64-1",
+      "cell": "E-MLB/D-END/Snackery-ND64",
+      "events": 1000000,
+      "mesr": 0.35409418609439797
+    },
+    {
+      "recording": "E-MLB/D-END/Snackery-ND64-2",
+      "cell": "E-MLB/D-END/Snackery-ND64",
+      "events": 1000000,
+      "mesr": 0.36538331924752654
+    },
+    {
+      "recording": "E-MLB/D-END/Snackery-ND64-3",
+      "cell": "E-MLB/D-END/Snackery-ND64",
+      "events": 1000000,
+      "mesr": 0.3579810584246401
+    },
+    {
+      "recording": "E-MLB/D-END/Snow-ND00-1",
+      "cell": "E-MLB/D-END/Snow-ND00",
+      "events": 90180,
+      "mesr": 0.8684380422498124
+    },
+    {
+      "recording": "E-MLB/D-END/Snow-ND00-2",
+      "cell": "E-MLB/D-END/Snow-ND00",
+      "events": 101209,
+      "mesr": 0.8606431160007837
+    },
+    {
+      "recording": "E-MLB/D-END/Snow-ND00-3",
+      "cell": "E-MLB/D-END/Snow-ND00",
+      "events": 125200,
+      "mesr": 0.8547589258296011
+    },
+    {
+      "recording": "E-MLB/D-END/Snow-ND04-1",
+      "cell": "E-MLB/D-END/Snow-ND04",
+      "events": 148840,
+      "mesr": 0.8753426495000206
+    },
+    {
+      "recording": "E-MLB/D-END/Snow-ND04-2",
+      "cell": "E-MLB/D-END/Snow-ND04",
+      "events": 132422,
+      "mesr": 0.8953661260789442
+    },
+    {
+      "recording": "E-MLB/D-END/Snow-ND04-3",
+      "cell": "E-MLB/D-END/Snow-ND04",
+      "events": 186853,
+      "mesr": 0.8780508504989594
+    },
+    {
+      "recording": "E-MLB/D-END/Snow-ND16-1",
+      "cell": "E-MLB/D-END/Snow-ND16",
+      "events": 227020,
+      "mesr": 0.8785352373762729
+    },
+    {
+      "recording": "E-MLB/D-END/Snow-ND16-2",
+      "cell": "E-MLB/D-END/Snow-ND16",
+      "events": 190432,
+      "mesr": 0.8827749015361405
+    },
+    {
+      "recording": "E-MLB/D-END/Snow-ND16-3",
+      "cell": "E-MLB/D-END/Snow-ND16",
+      "events": 174585,
+      "mesr": 0.8830267949385393
+    },
+    {
+      "recording": "E-MLB/D-END/Snow-ND64-1",
+      "cell": "E-MLB/D-END/Snow-ND64",
+      "events": 319970,
+      "mesr": 0.9414296210327473
+    },
+    {
+      "recording": "E-MLB/D-END/Snow-ND64-2",
+      "cell": "E-MLB/D-END/Snow-ND64",
+      "events": 114465,
+      "mesr": 1.1542950310280566
+    },
+    {
+      "recording": "E-MLB/D-END/Snow-ND64-3",
+      "cell": "E-MLB/D-END/Snow-ND64",
+      "events": 210443,
+      "mesr": 1.0844204492422835
+    },
+    {
+      "recording": "E-MLB/D-END/Spinning-ND00-1",
+      "cell": "E-MLB/D-END/Spinning-ND00",
+      "events": 1000000,
+      "mesr": 1.069894488353167
+    },
+    {
+      "recording": "E-MLB/D-END/Spinning-ND00-2",
+      "cell": "E-MLB/D-END/Spinning-ND00",
+      "events": 1000000,
+      "mesr": 1.067698751868542
+    },
+    {
+      "recording": "E-MLB/D-END/Spinning-ND00-3",
+      "cell": "E-MLB/D-END/Spinning-ND00",
+      "events": 1000000,
+      "mesr": 1.063918921172882
+    },
+    {
+      "recording": "E-MLB/D-END/Spinning-ND04-1",
+      "cell": "E-MLB/D-END/Spinning-ND04",
+      "events": 1000000,
+      "mesr": 1.1380159025613095
+    },
+    {
+      "recording": "E-MLB/D-END/Spinning-ND04-2",
+      "cell": "E-MLB/D-END/Spinning-ND04",
+      "events": 1000000,
+      "mesr": 1.1305251685876165
+    },
+    {
+      "recording": "E-MLB/D-END/Spinning-ND04-3",
+      "cell": "E-MLB/D-END/Spinning-ND04",
+      "events": 1000000,
+      "mesr": 1.1131961823807879
+    },
+    {
+      "recording": "E-MLB/D-END/Spinning-ND16-1",
+      "cell": "E-MLB/D-END/Spinning-ND16",
+      "events": 1000000,
+      "mesr": 1.264308690232388
+    },
+    {
+      "recording": "E-MLB/D-END/Spinning-ND16-2",
+      "cell": "E-MLB/D-END/Spinning-ND16",
+      "events": 1000000,
+      "mesr": 1.2292682399379795
+    },
+    {
+      "recording": "E-MLB/D-END/Spinning-ND16-3",
+      "cell": "E-MLB/D-END/Spinning-ND16",
+      "events": 1000000,
+      "mesr": 1.18805968095169
+    },
+    {
+      "recording": "E-MLB/D-END/Spinning-ND64-1",
+      "cell": "E-MLB/D-END/Spinning-ND64",
+      "events": 1000000,
+      "mesr": 1.429383542140624
+    },
+    {
+      "recording": "E-MLB/D-END/Spinning-ND64-2",
+      "cell": "E-MLB/D-END/Spinning-ND64",
+      "events": 1000000,
+      "mesr": 1.3268898288455833
+    },
+    {
+      "recording": "E-MLB/D-END/Spinning-ND64-3",
+      "cell": "E-MLB/D-END/Spinning-ND64",
+      "events": 1000000,
+      "mesr": 1.2363904398255687
+    },
+    {
+      "recording": "E-MLB/D-END/Stacks-ND00-1",
+      "cell": "E-MLB/D-END/Stacks-ND00",
+      "events": 1000000,
+      "mesr": 0.6820114544175175
+    },
+    {
+      "recording": "E-MLB/D-END/Stacks-ND00-2",
+      "cell": "E-MLB/D-END/Stacks-ND00",
+      "events": 1000000,
+      "mesr": 0.6899391043121259
+    },
+    {
+      "recording": "E-MLB/D-END/Stacks-ND00-3",
+      "cell": "E-MLB/D-END/Stacks-ND00",
+      "events": 1000000,
+      "mesr": 0.7033014537664396
+    },
+    {
+      "recording": "E-MLB/D-END/Stacks-ND04-1",
+      "cell": "E-MLB/D-END/Stacks-ND04",
+      "events": 1000000,
+      "mesr": 0.6507280621002227
+    },
+    {
+      "recording": "E-MLB/D-END/Stacks-ND04-2",
+      "cell": "E-MLB/D-END/Stacks-ND04",
+      "events": 1000000,
+      "mesr": 0.6941459746248728
+    },
+    {
+      "recording": "E-MLB/D-END/Stacks-ND04-3",
+      "cell": "E-MLB/D-END/Stacks-ND04",
+      "events": 1000000,
+      "mesr": 0.6852295316026957
+    },
+    {
+      "recording": "E-MLB/D-END/Stacks-ND16-1",
+      "cell": "E-MLB/D-END/Stacks-ND16",
+      "events": 1000000,
+      "mesr": 0.6734584114016386
+    },
+    {
+      "recording": "E-MLB/D-END/Stacks-ND16-2",
+      "cell": "E-MLB/D-END/Stacks-ND16",
+      "events": 1000000,
+      "mesr": 0.6497388317366652
+    },
+    {
+      "recording": "E-MLB/D-END/Stacks-ND16-3",
+      "cell": "E-MLB/D-END/Stacks-ND16",
+      "events": 1000000,
+      "mesr": 0.6807963543916531
+    },
+    {
+      "recording": "E-MLB/D-END/Stacks-ND64-1",
+      "cell": "E-MLB/D-END/Stacks-ND64",
+      "events": 1000000,
+      "mesr": 0.630623085913649
+    },
+    {
+      "recording": "E-MLB/D-END/Stacks-ND64-2",
+      "cell": "E-MLB/D-END/Stacks-ND64",
+      "events": 1000000,
+      "mesr": 0.6341494943920702
+    },
+    {
+      "recording": "E-MLB/D-END/Stacks-ND64-3",
+      "cell": "E-MLB/D-END/Stacks-ND64",
+      "events": 1000000,
+      "mesr": 0.6672056403853044
+    },
+    {
+      "recording": "E-MLB/D-END/Stairs-ND00-1",
+      "cell": "E-MLB/D-END/Stairs-ND00",
+      "events": 1000000,
+      "mesr": 0.7836746575967889
+    },
+    {
+      "recording": "E-MLB/D-END/Stairs-ND00-2",
+      "cell": "E-MLB/D-END/Stairs-ND00",
+      "events": 1000000,
+      "mesr": 0.774710041026487
+    },
+    {
+      "recording": "E-MLB/D-END/Stairs-ND00-3",
+      "cell": "E-MLB/D-END/Stairs-ND00",
+      "events": 1000000,
+      "mesr": 0.7929762870037589
+    },
+    {
+      "recording": "E-MLB/D-END/Stairs-ND04-1",
+      "cell": "E-MLB/D-END/Stairs-ND04",
+      "events": 1000000,
+      "mesr": 0.7244006171713271
+    },
+    {
+      "recording": "E-MLB/D-END/Stairs-ND04-2",
+      "cell": "E-MLB/D-END/Stairs-ND04",
+      "events": 1000000,
+      "mesr": 0.6922404888051019
+    },
+    {
+      "recording": "E-MLB/D-END/Stairs-ND04-3",
+      "cell": "E-MLB/D-END/Stairs-ND04",
+      "events": 1000000,
+      "mesr": 0.6608574614706024
+    },
+    {
+      "recording": "E-MLB/D-END/Stairs-ND16-1",
+      "cell": "E-MLB/D-END/Stairs-ND16",
+      "events": 1000000,
+      "mesr": 0.5834793077496849
+    },
+    {
+      "recording": "E-MLB/D-END/Stairs-ND16-2",
+      "cell": "E-MLB/D-END/Stairs-ND16",
+      "events": 1000000,
+      "mesr": 0.6308833892842388
+    },
+    {
+      "recording": "E-MLB/D-END/Stairs-ND16-3",
+      "cell": "E-MLB/D-END/Stairs-ND16",
+      "events": 1000000,
+      "mesr": 0.6344507233672443
+    },
+    {
+      "recording": "E-MLB/D-END/Stairs-ND64-1",
+      "cell": "E-MLB/D-END/Stairs-ND64",
+      "events": 1000000,
+      "mesr": 0.5774358103968835
+    },
+    {
+      "recording": "E-MLB/D-END/Stairs-ND64-2",
+      "cell": "E-MLB/D-END/Stairs-ND64",
+      "events": 1000000,
+      "mesr": 0.5798749730692412
+    },
+    {
+      "recording": "E-MLB/D-END/Stairs-ND64-3",
+      "cell": "E-MLB/D-END/Stairs-ND64",
+      "events": 1000000,
+      "mesr": 0.5445707532764393
+    },
+    {
+      "recording": "E-MLB/D-END/Study_Lounge-ND00-1",
+      "cell": "E-MLB/D-END/Study_Lounge-ND00",
+      "events": 1000000,
+      "mesr": 0.9562604228094526
+    },
+    {
+      "recording": "E-MLB/D-END/Study_Lounge-ND00-2",
+      "cell": "E-MLB/D-END/Study_Lounge-ND00",
+      "events": 1000000,
+      "mesr": 0.9794536873240105
+    },
+    {
+      "recording": "E-MLB/D-END/Study_Lounge-ND00-3",
+      "cell": "E-MLB/D-END/Study_Lounge-ND00",
+      "events": 1000000,
+      "mesr": 1.0059402783444777
+    },
+    {
+      "recording": "E-MLB/D-END/Study_Lounge-ND04-1",
+      "cell": "E-MLB/D-END/Study_Lounge-ND04",
+      "events": 1000000,
+      "mesr": 0.9688540721588137
+    },
+    {
+      "recording": "E-MLB/D-END/Study_Lounge-ND04-2",
+      "cell": "E-MLB/D-END/Study_Lounge-ND04",
+      "events": 1000000,
+      "mesr": 0.942016915596818
+    },
+    {
+      "recording": "E-MLB/D-END/Study_Lounge-ND04-3",
+      "cell": "E-MLB/D-END/Study_Lounge-ND04",
+      "events": 1000000,
+      "mesr": 0.97793513269926
+    },
+    {
+      "recording": "E-MLB/D-END/Study_Lounge-ND16-1",
+      "cell": "E-MLB/D-END/Study_Lounge-ND16",
+      "events": 1000000,
+      "mesr": 0.9355291935006891
+    },
+    {
+      "recording": "E-MLB/D-END/Study_Lounge-ND16-2",
+      "cell": "E-MLB/D-END/Study_Lounge-ND16",
+      "events": 1000000,
+      "mesr": 0.9104732521282454
+    },
+    {
+      "recording": "E-MLB/D-END/Study_Lounge-ND16-3",
+      "cell": "E-MLB/D-END/Study_Lounge-ND16",
+      "events": 1000000,
+      "mesr": 0.988715621369327
+    },
+    {
+      "recording": "E-MLB/D-END/Study_Lounge-ND64-1",
+      "cell": "E-MLB/D-END/Study_Lounge-ND64",
+      "events": 1000000,
+      "mesr": 0.9419900574115434
+    },
+    {
+      "recording": "E-MLB/D-END/Study_Lounge-ND64-2",
+      "cell": "E-MLB/D-END/Study_Lounge-ND64",
+      "events": 1000000,
+      "mesr": 0.9361110634142396
+    },
+    {
+      "recording": "E-MLB/D-END/Study_Lounge-ND64-3",
+      "cell": "E-MLB/D-END/Study_Lounge-ND64",
+      "events": 1000000,
+      "mesr": 0.9433562178758963
+    },
+    {
+      "recording": "E-MLB/D-END/Swan-ND00-1",
+      "cell": "E-MLB/D-END/Swan-ND00",
+      "events": 1000000,
+      "mesr": 0.7905690767412605
+    },
+    {
+      "recording": "E-MLB/D-END/Swan-ND00-2",
+      "cell": "E-MLB/D-END/Swan-ND00",
+      "events": 943526,
+      "mesr": 0.9060754301530703
+    },
+    {
+      "recording": "E-MLB/D-END/Swan-ND00-3",
+      "cell": "E-MLB/D-END/Swan-ND00",
+      "events": 1000000,
+      "mesr": 0.652640565076036
+    },
+    {
+      "recording": "E-MLB/D-END/Swan-ND04-1",
+      "cell": "E-MLB/D-END/Swan-ND04",
+      "events": 1000000,
+      "mesr": 0.6370554004550729
+    },
+    {
+      "recording": "E-MLB/D-END/Swan-ND04-2",
+      "cell": "E-MLB/D-END/Swan-ND04",
+      "events": 1000000,
+      "mesr": 0.7865476447557294
+    },
+    {
+      "recording": "E-MLB/D-END/Swan-ND04-3",
+      "cell": "E-MLB/D-END/Swan-ND04",
+      "events": 1000000,
+      "mesr": 0.609562329805262
+    },
+    {
+      "recording": "E-MLB/D-END/Swan-ND16-1",
+      "cell": "E-MLB/D-END/Swan-ND16",
+      "events": 1000000,
+      "mesr": 0.5705291412787816
+    },
+    {
+      "recording": "E-MLB/D-END/Swan-ND16-2",
+      "cell": "E-MLB/D-END/Swan-ND16",
+      "events": 1000000,
+      "mesr": 0.7231875709572323
+    },
+    {
+      "recording": "E-MLB/D-END/Swan-ND16-3",
+      "cell": "E-MLB/D-END/Swan-ND16",
+      "events": 1000000,
+      "mesr": 0.5856191560074253
+    },
+    {
+      "recording": "E-MLB/D-END/Swan-ND64-1",
+      "cell": "E-MLB/D-END/Swan-ND64",
+      "events": 1000000,
+      "mesr": 0.6914072741187485
+    },
+    {
+      "recording": "E-MLB/D-END/Swan-ND64-2",
+      "cell": "E-MLB/D-END/Swan-ND64",
+      "events": 1000000,
+      "mesr": 0.6866014490424609
+    },
+    {
+      "recording": "E-MLB/D-END/Swan-ND64-3",
+      "cell": "E-MLB/D-END/Swan-ND64",
+      "events": 1000000,
+      "mesr": 0.575455987074881
+    },
+    {
+      "recording": "E-MLB/D-END/Temple-ND00-1",
+      "cell": "E-MLB/D-END/Temple-ND00",
+      "events": 1000000,
+      "mesr": 0.787837099976168
+    },
+    {
+      "recording": "E-MLB/D-END/Temple-ND00-2",
+      "cell": "E-MLB/D-END/Temple-ND00",
+      "events": 1000000,
+      "mesr": 0.7821251267742912
+    },
+    {
+      "recording": "E-MLB/D-END/Temple-ND00-3",
+      "cell": "E-MLB/D-END/Temple-ND00",
+      "events": 1000000,
+      "mesr": 0.7430808370213933
+    },
+    {
+      "recording": "E-MLB/D-END/Temple-ND04-1",
+      "cell": "E-MLB/D-END/Temple-ND04",
+      "events": 1000000,
+      "mesr": 0.7824173830814982
+    },
+    {
+      "recording": "E-MLB/D-END/Temple-ND04-2",
+      "cell": "E-MLB/D-END/Temple-ND04",
+      "events": 1000000,
+      "mesr": 0.8008456937391027
+    },
+    {
+      "recording": "E-MLB/D-END/Temple-ND04-3",
+      "cell": "E-MLB/D-END/Temple-ND04",
+      "events": 1000000,
+      "mesr": 0.7797545474004323
+    },
+    {
+      "recording": "E-MLB/D-END/Temple-ND16-1",
+      "cell": "E-MLB/D-END/Temple-ND16",
+      "events": 1000000,
+      "mesr": 0.7877074503535731
+    },
+    {
+      "recording": "E-MLB/D-END/Temple-ND16-2",
+      "cell": "E-MLB/D-END/Temple-ND16",
+      "events": 1000000,
+      "mesr": 0.7935812702882656
+    },
+    {
+      "recording": "E-MLB/D-END/Temple-ND16-3",
+      "cell": "E-MLB/D-END/Temple-ND16",
+      "events": 1000000,
+      "mesr": 0.8074124050508747
+    },
+    {
+      "recording": "E-MLB/D-END/Temple-ND64-1",
+      "cell": "E-MLB/D-END/Temple-ND64",
+      "events": 1000000,
+      "mesr": 0.7613313418692151
+    },
+    {
+      "recording": "E-MLB/D-END/Temple-ND64-2",
+      "cell": "E-MLB/D-END/Temple-ND64",
+      "events": 1000000,
+      "mesr": 0.775028896550165
+    },
+    {
+      "recording": "E-MLB/D-END/Temple-ND64-3",
+      "cell": "E-MLB/D-END/Temple-ND64",
+      "events": 1000000,
+      "mesr": 0.7748194325919456
+    },
+    {
+      "recording": "E-MLB/D-END/Toys-ND00-1",
+      "cell": "E-MLB/D-END/Toys-ND00",
+      "events": 590233,
+      "mesr": 0.946855008273323
+    },
+    {
+      "recording": "E-MLB/D-END/Toys-ND00-2",
+      "cell": "E-MLB/D-END/Toys-ND00",
+      "events": 776177,
+      "mesr": 0.8226051274612075
+    },
+    {
+      "recording": "E-MLB/D-END/Toys-ND00-3",
+      "cell": "E-MLB/D-END/Toys-ND00",
+      "events": 799210,
+      "mesr": 0.919221622181693
+    },
+    {
+      "recording": "E-MLB/D-END/Toys-ND04-1",
+      "cell": "E-MLB/D-END/Toys-ND04",
+      "events": 862722,
+      "mesr": 0.9104833511495574
+    },
+    {
+      "recording": "E-MLB/D-END/Toys-ND04-2",
+      "cell": "E-MLB/D-END/Toys-ND04",
+      "events": 727912,
+      "mesr": 0.856302561296073
+    },
+    {
+      "recording": "E-MLB/D-END/Toys-ND04-3",
+      "cell": "E-MLB/D-END/Toys-ND04",
+      "events": 793822,
+      "mesr": 0.916373944320228
+    },
+    {
+      "recording": "E-MLB/D-END/Toys-ND16-1",
+      "cell": "E-MLB/D-END/Toys-ND16",
+      "events": 599447,
+      "mesr": 0.9566989973467452
+    },
+    {
+      "recording": "E-MLB/D-END/Toys-ND16-2",
+      "cell": "E-MLB/D-END/Toys-ND16",
+      "events": 874949,
+      "mesr": 0.8447998646029297
+    },
+    {
+      "recording": "E-MLB/D-END/Toys-ND16-3",
+      "cell": "E-MLB/D-END/Toys-ND16",
+      "events": 1000000,
+      "mesr": 0.8848079633962889
+    },
+    {
+      "recording": "E-MLB/D-END/Toys-ND64-1",
+      "cell": "E-MLB/D-END/Toys-ND64",
+      "events": 1000000,
+      "mesr": 0.8817428435980303
+    },
+    {
+      "recording": "E-MLB/D-END/Toys-ND64-2",
+      "cell": "E-MLB/D-END/Toys-ND64",
+      "events": 1000000,
+      "mesr": 0.8303987372142463
+    },
+    {
+      "recording": "E-MLB/D-END/Toys-ND64-3",
+      "cell": "E-MLB/D-END/Toys-ND64",
+      "events": 1000000,
+      "mesr": 0.8464050486801392
+    },
+    {
+      "recording": "E-MLB/D-END/Tree-ND00-1",
+      "cell": "E-MLB/D-END/Tree-ND00",
+      "events": 1000000,
+      "mesr": 0.5648760256594559
+    },
+    {
+      "recording": "E-MLB/D-END/Tree-ND00-2",
+      "cell": "E-MLB/D-END/Tree-ND00",
+      "events": 1000000,
+      "mesr": 0.5914608409485684
+    },
+    {
+      "recording": "E-MLB/D-END/Tree-ND00-3",
+      "cell": "E-MLB/D-END/Tree-ND00",
+      "events": 1000000,
+      "mesr": 0.594065287064357
+    },
+    {
+      "recording": "E-MLB/D-END/Tree-ND04-1",
+      "cell": "E-MLB/D-END/Tree-ND04",
+      "events": 1000000,
+      "mesr": 0.6021333133260087
+    },
+    {
+      "recording": "E-MLB/D-END/Tree-ND04-2",
+      "cell": "E-MLB/D-END/Tree-ND04",
+      "events": 1000000,
+      "mesr": 0.6132129606595949
+    },
+    {
+      "recording": "E-MLB/D-END/Tree-ND04-3",
+      "cell": "E-MLB/D-END/Tree-ND04",
+      "events": 1000000,
+      "mesr": 0.6070380216670561
+    },
+    {
+      "recording": "E-MLB/D-END/Tree-ND16-1",
+      "cell": "E-MLB/D-END/Tree-ND16",
+      "events": 1000000,
+      "mesr": 0.5419553172731646
+    },
+    {
+      "recording": "E-MLB/D-END/Tree-ND16-2",
+      "cell": "E-MLB/D-END/Tree-ND16",
+      "events": 1000000,
+      "mesr": 0.5446966003025506
+    },
+    {
+      "recording": "E-MLB/D-END/Tree-ND16-3",
+      "cell": "E-MLB/D-END/Tree-ND16",
+      "events": 1000000,
+      "mesr": 0.5947354898448658
+    },
+    {
+      "recording": "E-MLB/D-END/Tree-ND64-1",
+      "cell": "E-MLB/D-END/Tree-ND64",
+      "events": 1000000,
+      "mesr": 0.5453548063693939
+    },
+    {
+      "recording": "E-MLB/D-END/Tree-ND64-2",
+      "cell": "E-MLB/D-END/Tree-ND64",
+      "events": 1000000,
+      "mesr": 0.5623633975673097
+    },
+    {
+      "recording": "E-MLB/D-END/Tree-ND64-3",
+      "cell": "E-MLB/D-END/Tree-ND64",
+      "events": 1000000,
+      "mesr": 0.5556873230281929
+    },
+    {
+      "recording": "E-MLB/D-END/UAV-ND00-1",
+      "cell": "E-MLB/D-END/UAV-ND00",
+      "events": 416444,
+      "mesr": 1.0539509758785637
+    },
+    {
+      "recording": "E-MLB/D-END/UAV-ND00-2",
+      "cell": "E-MLB/D-END/UAV-ND00",
+      "events": 476608,
+      "mesr": 0.9961251365789487
+    },
+    {
+      "recording": "E-MLB/D-END/UAV-ND00-3",
+      "cell": "E-MLB/D-END/UAV-ND00",
+      "events": 332286,
+      "mesr": 1.058333631545969
+    },
+    {
+      "recording": "E-MLB/D-END/UAV-ND04-1",
+      "cell": "E-MLB/D-END/UAV-ND04",
+      "events": 390390,
+      "mesr": 1.3473509334665392
+    },
+    {
+      "recording": "E-MLB/D-END/UAV-ND04-2",
+      "cell": "E-MLB/D-END/UAV-ND04",
+      "events": 788246,
+      "mesr": 1.199883148631237
+    },
+    {
+      "recording": "E-MLB/D-END/UAV-ND04-3",
+      "cell": "E-MLB/D-END/UAV-ND04",
+      "events": 326147,
+      "mesr": 1.406739207529155
+    },
+    {
+      "recording": "E-MLB/D-END/UAV-ND16-1",
+      "cell": "E-MLB/D-END/UAV-ND16",
+      "events": 426289,
+      "mesr": 1.225235218867439
+    },
+    {
+      "recording": "E-MLB/D-END/UAV-ND16-2",
+      "cell": "E-MLB/D-END/UAV-ND16",
+      "events": 440935,
+      "mesr": 1.2520391119550125
+    },
+    {
+      "recording": "E-MLB/D-END/UAV-ND16-3",
+      "cell": "E-MLB/D-END/UAV-ND16",
+      "events": 361344,
+      "mesr": 1.2098934489678717
+    },
+    {
+      "recording": "E-MLB/D-END/UAV-ND64-1",
+      "cell": "E-MLB/D-END/UAV-ND64",
+      "events": 218530,
+      "mesr": 1.1093441884769795
+    },
+    {
+      "recording": "E-MLB/D-END/UAV-ND64-2",
+      "cell": "E-MLB/D-END/UAV-ND64",
+      "events": 504956,
+      "mesr": 1.0941163741225537
+    },
+    {
+      "recording": "E-MLB/D-END/UAV-ND64-3",
+      "cell": "E-MLB/D-END/UAV-ND64",
+      "events": 630008,
+      "mesr": 1.0793461238806645
+    },
+    {
+      "recording": "E-MLB/D-END/Windows-ND00-1",
+      "cell": "E-MLB/D-END/Windows-ND00",
+      "events": 1000000,
+      "mesr": 0.9706882608961914
+    },
+    {
+      "recording": "E-MLB/D-END/Windows-ND00-2",
+      "cell": "E-MLB/D-END/Windows-ND00",
+      "events": 1000000,
+      "mesr": 0.9795642851675637
+    },
+    {
+      "recording": "E-MLB/D-END/Windows-ND00-3",
+      "cell": "E-MLB/D-END/Windows-ND00",
+      "events": 1000000,
+      "mesr": 0.9504862823707027
+    },
+    {
+      "recording": "E-MLB/D-END/Windows-ND04-1",
+      "cell": "E-MLB/D-END/Windows-ND04",
+      "events": 1000000,
+      "mesr": 0.9629385621562161
+    },
+    {
+      "recording": "E-MLB/D-END/Windows-ND04-2",
+      "cell": "E-MLB/D-END/Windows-ND04",
+      "events": 1000000,
+      "mesr": 0.9756785379242566
+    },
+    {
+      "recording": "E-MLB/D-END/Windows-ND04-3",
+      "cell": "E-MLB/D-END/Windows-ND04",
+      "events": 1000000,
+      "mesr": 0.9498378224889626
+    },
+    {
+      "recording": "E-MLB/D-END/Windows-ND16-1",
+      "cell": "E-MLB/D-END/Windows-ND16",
+      "events": 1000000,
+      "mesr": 0.9960761894145561
+    },
+    {
+      "recording": "E-MLB/D-END/Windows-ND16-2",
+      "cell": "E-MLB/D-END/Windows-ND16",
+      "events": 1000000,
+      "mesr": 0.9784595453668761
+    },
+    {
+      "recording": "E-MLB/D-END/Windows-ND16-3",
+      "cell": "E-MLB/D-END/Windows-ND16",
+      "events": 1000000,
+      "mesr": 0.9777899219692254
+    },
+    {
+      "recording": "E-MLB/D-END/Windows-ND64-1",
+      "cell": "E-MLB/D-END/Windows-ND64",
+      "events": 1000000,
+      "mesr": 0.9655736086309846
+    },
+    {
+      "recording": "E-MLB/D-END/Windows-ND64-2",
+      "cell": "E-MLB/D-END/Windows-ND64",
+      "events": 1000000,
+      "mesr": 0.9569413093627488
+    },
+    {
+      "recording": "E-MLB/D-END/Windows-ND64-3",
+      "cell": "E-MLB/D-END/Windows-ND64",
+      "events": 1000000,
+      "mesr": 0.9642513611587823
+    },
+    {
+      "recording": "E-MLB/N-END/Bat-ND00-1",
+      "cell": "E-MLB/N-END/Bat-ND00",
+      "events": 648689,
+      "mesr": 0.9355902122075319
+    },
+    {
+      "recording": "E-MLB/N-END/Bat-ND00-2",
+      "cell": "E-MLB/N-END/Bat-ND00",
+      "events": 518065,
+      "mesr": 1.0096048116661402
+    },
+    {
+      "recording": "E-MLB/N-END/Bat-ND00-3",
+      "cell": "E-MLB/N-END/Bat-ND00",
+      "events": 559058,
+      "mesr": 1.0284163463464455
+    },
+    {
+      "recording": "E-MLB/N-END/Bat-ND04-1",
+      "cell": "E-MLB/N-END/Bat-ND04",
+      "events": 856509,
+      "mesr": 0.9797580448589744
+    },
+    {
+      "recording": "E-MLB/N-END/Bat-ND04-2",
+      "cell": "E-MLB/N-END/Bat-ND04",
+      "events": 1000000,
+      "mesr": 0.9073750325960144
+    },
+    {
+      "recording": "E-MLB/N-END/Bat-ND04-3",
+      "cell": "E-MLB/N-END/Bat-ND04",
+      "events": 1000000,
+      "mesr": 0.9139633989900801
+    },
+    {
+      "recording": "E-MLB/N-END/Bat-ND16-1",
+      "cell": "E-MLB/N-END/Bat-ND16",
+      "events": 683271,
+      "mesr": 0.8309079322169644
+    },
+    {
+      "recording": "E-MLB/N-END/Bat-ND16-2",
+      "cell": "E-MLB/N-END/Bat-ND16",
+      "events": 990486,
+      "mesr": 0.7947196203212535
+    },
+    {
+      "recording": "E-MLB/N-END/Bat-ND16-3",
+      "cell": "E-MLB/N-END/Bat-ND16",
+      "events": 1000000,
+      "mesr": 0.8193959840170048
+    },
+    {
+      "recording": "E-MLB/N-END/Bat-ND64-1",
+      "cell": "E-MLB/N-END/Bat-ND64",
+      "events": 541968,
+      "mesr": 0.7172987977214291
+    },
+    {
+      "recording": "E-MLB/N-END/Bat-ND64-2",
+      "cell": "E-MLB/N-END/Bat-ND64",
+      "events": 549287,
+      "mesr": 0.7194431899722797
+    },
+    {
+      "recording": "E-MLB/N-END/Bat-ND64-3",
+      "cell": "E-MLB/N-END/Bat-ND64",
+      "events": 563728,
+      "mesr": 0.7503250962869285
+    },
+    {
+      "recording": "E-MLB/N-END/Beams-ND00-1",
+      "cell": "E-MLB/N-END/Beams-ND00",
+      "events": 481835,
+      "mesr": 0.8731594440076136
+    },
+    {
+      "recording": "E-MLB/N-END/Beams-ND00-2",
+      "cell": "E-MLB/N-END/Beams-ND00",
+      "events": 489114,
+      "mesr": 0.8820463514872516
+    },
+    {
+      "recording": "E-MLB/N-END/Beams-ND00-3",
+      "cell": "E-MLB/N-END/Beams-ND00",
+      "events": 825645,
+      "mesr": 0.8592801569299695
+    },
+    {
+      "recording": "E-MLB/N-END/Beams-ND04-1",
+      "cell": "E-MLB/N-END/Beams-ND04",
+      "events": 1000000,
+      "mesr": 0.9322782051992328
+    },
+    {
+      "recording": "E-MLB/N-END/Beams-ND04-2",
+      "cell": "E-MLB/N-END/Beams-ND04",
+      "events": 1000000,
+      "mesr": 0.9444018886885757
+    },
+    {
+      "recording": "E-MLB/N-END/Beams-ND04-3",
+      "cell": "E-MLB/N-END/Beams-ND04",
+      "events": 932512,
+      "mesr": 0.9546910328243512
+    },
+    {
+      "recording": "E-MLB/N-END/Beams-ND16-1",
+      "cell": "E-MLB/N-END/Beams-ND16",
+      "events": 1000000,
+      "mesr": 0.9111707753697256
+    },
+    {
+      "recording": "E-MLB/N-END/Beams-ND16-2",
+      "cell": "E-MLB/N-END/Beams-ND16",
+      "events": 1000000,
+      "mesr": 0.9065030791043258
+    },
+    {
+      "recording": "E-MLB/N-END/Beams-ND16-3",
+      "cell": "E-MLB/N-END/Beams-ND16",
+      "events": 1000000,
+      "mesr": 0.9059089660247786
+    },
+    {
+      "recording": "E-MLB/N-END/Beams-ND64-1",
+      "cell": "E-MLB/N-END/Beams-ND64",
+      "events": 1000000,
+      "mesr": 0.8013819831556633
+    },
+    {
+      "recording": "E-MLB/N-END/Beams-ND64-2",
+      "cell": "E-MLB/N-END/Beams-ND64",
+      "events": 1000000,
+      "mesr": 0.8050770978904496
+    },
+    {
+      "recording": "E-MLB/N-END/Beams-ND64-3",
+      "cell": "E-MLB/N-END/Beams-ND64",
+      "events": 1000000,
+      "mesr": 0.8040430105548169
+    },
+    {
+      "recording": "E-MLB/N-END/Bed-ND00-1",
+      "cell": "E-MLB/N-END/Bed-ND00",
+      "events": 751060,
+      "mesr": 0.9146636085432989
+    },
+    {
+      "recording": "E-MLB/N-END/Bed-ND00-2",
+      "cell": "E-MLB/N-END/Bed-ND00",
+      "events": 1000000,
+      "mesr": 0.8757487087586484
+    },
+    {
+      "recording": "E-MLB/N-END/Bed-ND00-3",
+      "cell": "E-MLB/N-END/Bed-ND00",
+      "events": 1000000,
+      "mesr": 0.8619482955101676
+    },
+    {
+      "recording": "E-MLB/N-END/Bed-ND04-1",
+      "cell": "E-MLB/N-END/Bed-ND04",
+      "events": 1000000,
+      "mesr": 0.8093051855658154
+    },
+    {
+      "recording": "E-MLB/N-END/Bed-ND04-2",
+      "cell": "E-MLB/N-END/Bed-ND04",
+      "events": 1000000,
+      "mesr": 0.8419750119113343
+    },
+    {
+      "recording": "E-MLB/N-END/Bed-ND04-3",
+      "cell": "E-MLB/N-END/Bed-ND04",
+      "events": 1000000,
+      "mesr": 0.817367724510588
+    },
+    {
+      "recording": "E-MLB/N-END/Bed-ND16-1",
+      "cell": "E-MLB/N-END/Bed-ND16",
+      "events": 1000000,
+      "mesr": 0.7128232147452707
+    },
+    {
+      "recording": "E-MLB/N-END/Bed-ND16-2",
+      "cell": "E-MLB/N-END/Bed-ND16",
+      "events": 1000000,
+      "mesr": 0.7171298155832554
+    },
+    {
+      "recording": "E-MLB/N-END/Bed-ND16-3",
+      "cell": "E-MLB/N-END/Bed-ND16",
+      "events": 1000000,
+      "mesr": 0.7145622561266298
+    },
+    {
+      "recording": "E-MLB/N-END/Bed-ND64-1",
+      "cell": "E-MLB/N-END/Bed-ND64",
+      "events": 1000000,
+      "mesr": 0.6791447280742238
+    },
+    {
+      "recording": "E-MLB/N-END/Bed-ND64-2",
+      "cell": "E-MLB/N-END/Bed-ND64",
+      "events": 1000000,
+      "mesr": 0.6618343776848017
+    },
+    {
+      "recording": "E-MLB/N-END/Bed-ND64-3",
+      "cell": "E-MLB/N-END/Bed-ND64",
+      "events": 1000000,
+      "mesr": 0.6945514579638309
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND00-1",
+      "cell": "E-MLB/N-END/Bridge-ND00",
+      "events": 1000000,
+      "mesr": 1.7190202920418511
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND00-2",
+      "cell": "E-MLB/N-END/Bridge-ND00",
+      "events": 1000000,
+      "mesr": 1.7171492760052065
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND00-3",
+      "cell": "E-MLB/N-END/Bridge-ND00",
+      "events": 1000000,
+      "mesr": 1.717657470944482
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND04-1",
+      "cell": "E-MLB/N-END/Bridge-ND04",
+      "events": 1000000,
+      "mesr": 1.531906219600347
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND04-2",
+      "cell": "E-MLB/N-END/Bridge-ND04",
+      "events": 1000000,
+      "mesr": 1.5519997297383892
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND04-3",
+      "cell": "E-MLB/N-END/Bridge-ND04",
+      "events": 1000000,
+      "mesr": 1.5599752708381467
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND16-1",
+      "cell": "E-MLB/N-END/Bridge-ND16",
+      "events": 1000000,
+      "mesr": 0.8211203010116982
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND16-2",
+      "cell": "E-MLB/N-END/Bridge-ND16",
+      "events": 1000000,
+      "mesr": 0.8228559431516801
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND16-3",
+      "cell": "E-MLB/N-END/Bridge-ND16",
+      "events": 1000000,
+      "mesr": 0.827721825922313
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND64-1",
+      "cell": "E-MLB/N-END/Bridge-ND64",
+      "events": 898717,
+      "mesr": 0.8186108519771058
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND64-2",
+      "cell": "E-MLB/N-END/Bridge-ND64",
+      "events": 989929,
+      "mesr": 0.8190013317967721
+    },
+    {
+      "recording": "E-MLB/N-END/Bridge-ND64-3",
+      "cell": "E-MLB/N-END/Bridge-ND64",
+      "events": 898506,
+      "mesr": 0.8284174093172301
+    },
+    {
+      "recording": "E-MLB/N-END/Car_Night-ND00-1",
+      "cell": "E-MLB/N-END/Car_Night-ND00",
+      "events": 1000000,
+      "mesr": 1.0488025647113697
+    },
+    {
+      "recording": "E-MLB/N-END/Car_Night-ND00-2",
+      "cell": "E-MLB/N-END/Car_Night-ND00",
+      "events": 1000000,
+      "mesr": 1.1823323324774773
+    },
+    {
+      "recording": "E-MLB/N-END/Car_Night-ND00-3",
+      "cell": "E-MLB/N-END/Car_Night-ND00",
+      "events": 1000000,
+      "mesr": 0.8623654025586616
+    },
+    {
+      "recording": "E-MLB/N-END/Car_Night-ND04-1",
+      "cell": "E-MLB/N-END/Car_Night-ND04",
+      "events": 1000000,
+      "mesr": 1.0329042896422513
+    },
+    {
+      "recording": "E-MLB/N-END/Car_Night-ND04-2",
+      "cell": "E-MLB/N-END/Car_Night-ND04",
+      "events": 1000000,
+      "mesr": 1.1283505768166657
+    },
+    {
+      "recording": "E-MLB/N-END/Car_Night-ND04-3",
+      "cell": "E-MLB/N-END/Car_Night-ND04",
+      "events": 1000000,
+      "mesr": 1.208723567611834
+    },
+    {
+      "recording": "E-MLB/N-END/Car_Night-ND16-1",
+      "cell": "E-MLB/N-END/Car_Night-ND16",
+      "events": 1000000,
+      "mesr": 1.2022403844603125
+    },
+    {
+      "recording": "E-MLB/N-END/Car_Night-ND16-2",
+      "cell": "E-MLB/N-END/Car_Night-ND16",
+      "events": 1000000,
+      "mesr": 1.0231285408475006
+    },
+    {
+      "recording": "E-MLB/N-END/Car_Night-ND16-3",
+      "cell": "E-MLB/N-END/Car_Night-ND16",
+      "events": 1000000,
+      "mesr": 1.1501581659067739
+    },
+    {
+      "recording": "E-MLB/N-END/Car_Night-ND64-1",
+      "cell": "E-MLB/N-END/Car_Night-ND64",
+      "events": 1000000,
+      "mesr": 0.9909863964225952
+    },
+    {
+      "recording": "E-MLB/N-END/Car_Night-ND64-2",
+      "cell": "E-MLB/N-END/Car_Night-ND64",
+      "events": 1000000,
+      "mesr": 1.169206692457688
+    },
+    {
+      "recording": "E-MLB/N-END/Car_Night-ND64-3",
+      "cell": "E-MLB/N-END/Car_Night-ND64",
+      "events": 1000000,
+      "mesr": 1.136756137269671
+    },
+    {
+      "recording": "E-MLB/N-END/Ceiling-ND00-1",
+      "cell": "E-MLB/N-END/Ceiling-ND00",
+      "events": 1000000,
+      "mesr": 0.6643985162443407
+    },
+    {
+      "recording": "E-MLB/N-END/Ceiling-ND00-2",
+      "cell": "E-MLB/N-END/Ceiling-ND00",
+      "events": 1000000,
+      "mesr": 0.6479126332170825
+    },
+    {
+      "recording": "E-MLB/N-END/Ceiling-ND00-3",
+      "cell": "E-MLB/N-END/Ceiling-ND00",
+      "events": 1000000,
+      "mesr": 0.6362277504916156
+    },
+    {
+      "recording": "E-MLB/N-END/Ceiling-ND04-1",
+      "cell": "E-MLB/N-END/Ceiling-ND04",
+      "events": 1000000,
+      "mesr": 0.5649047479601521
+    },
+    {
+      "recording": "E-MLB/N-END/Ceiling-ND04-2",
+      "cell": "E-MLB/N-END/Ceiling-ND04",
+      "events": 1000000,
+      "mesr": 0.5432225044243274
+    },
+    {
+      "recording": "E-MLB/N-END/Ceiling-ND04-3",
+      "cell": "E-MLB/N-END/Ceiling-ND04",
+      "events": 1000000,
+      "mesr": 0.5404728408590312
+    },
+    {
+      "recording": "E-MLB/N-END/Ceiling-ND16-1",
+      "cell": "E-MLB/N-END/Ceiling-ND16",
+      "events": 973363,
+      "mesr": 0.5761450545713491
+    },
+    {
+      "recording": "E-MLB/N-END/Ceiling-ND16-2",
+      "cell": "E-MLB/N-END/Ceiling-ND16",
+      "events": 1000000,
+      "mesr": 0.5629255962094942
+    },
+    {
+      "recording": "E-MLB/N-END/Ceiling-ND16-3",
+      "cell": "E-MLB/N-END/Ceiling-ND16",
+      "events": 1000000,
+      "mesr": 0.5660461152318549
+    },
+    {
+      "recording": "E-MLB/N-END/Ceiling-ND64-1",
+      "cell": "E-MLB/N-END/Ceiling-ND64",
+      "events": 616354,
+      "mesr": 0.6737220755018755
+    },
+    {
+      "recording": "E-MLB/N-END/Ceiling-ND64-2",
+      "cell": "E-MLB/N-END/Ceiling-ND64",
+      "events": 582221,
+      "mesr": 0.6607919111582105
+    },
+    {
+      "recording": "E-MLB/N-END/Ceiling-ND64-3",
+      "cell": "E-MLB/N-END/Ceiling-ND64",
+      "events": 663586,
+      "mesr": 0.6841181012569112
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Blur-ND00-1",
+      "cell": "E-MLB/N-END/Checker_Blur-ND00",
+      "events": 1000000,
+      "mesr": 0.6751354163767648
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Blur-ND00-2",
+      "cell": "E-MLB/N-END/Checker_Blur-ND00",
+      "events": 1000000,
+      "mesr": 0.6512014229367864
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Blur-ND00-3",
+      "cell": "E-MLB/N-END/Checker_Blur-ND00",
+      "events": 1000000,
+      "mesr": 0.6313728326958666
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Blur-ND04-1",
+      "cell": "E-MLB/N-END/Checker_Blur-ND04",
+      "events": 1000000,
+      "mesr": 0.5067967001170631
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Blur-ND04-2",
+      "cell": "E-MLB/N-END/Checker_Blur-ND04",
+      "events": 1000000,
+      "mesr": 0.4452528574760508
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Blur-ND04-3",
+      "cell": "E-MLB/N-END/Checker_Blur-ND04",
+      "events": 1000000,
+      "mesr": 0.4221276057541845
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Blur-ND16-1",
+      "cell": "E-MLB/N-END/Checker_Blur-ND16",
+      "events": 1000000,
+      "mesr": 0.46552648445832656
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Blur-ND16-2",
+      "cell": "E-MLB/N-END/Checker_Blur-ND16",
+      "events": 1000000,
+      "mesr": 0.4622613081115553
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Blur-ND16-3",
+      "cell": "E-MLB/N-END/Checker_Blur-ND16",
+      "events": 1000000,
+      "mesr": 0.4715899783367641
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Blur-ND64-1",
+      "cell": "E-MLB/N-END/Checker_Blur-ND64",
+      "events": 426004,
+      "mesr": 0.671106418669315
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Blur-ND64-2",
+      "cell": "E-MLB/N-END/Checker_Blur-ND64",
+      "events": 457375,
+      "mesr": 0.6762538563345218
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Blur-ND64-3",
+      "cell": "E-MLB/N-END/Checker_Blur-ND64",
+      "events": 448579,
+      "mesr": 0.6746247998703655
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND00-1",
+      "cell": "E-MLB/N-END/Checker_Lowlight-ND00",
+      "events": 1000000,
+      "mesr": 0.7436874321444497
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND00-2",
+      "cell": "E-MLB/N-END/Checker_Lowlight-ND00",
+      "events": 1000000,
+      "mesr": 0.7110115134849471
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND00-3",
+      "cell": "E-MLB/N-END/Checker_Lowlight-ND00",
+      "events": 1000000,
+      "mesr": 0.6662082345287242
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND04-1",
+      "cell": "E-MLB/N-END/Checker_Lowlight-ND04",
+      "events": 1000000,
+      "mesr": 0.5388069586850524
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND04-2",
+      "cell": "E-MLB/N-END/Checker_Lowlight-ND04",
+      "events": 1000000,
+      "mesr": 0.5137895399242406
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND04-3",
+      "cell": "E-MLB/N-END/Checker_Lowlight-ND04",
+      "events": 1000000,
+      "mesr": 0.5333449015914871
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND16-1",
+      "cell": "E-MLB/N-END/Checker_Lowlight-ND16",
+      "events": 1000000,
+      "mesr": 0.6291253902633992
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND16-2",
+      "cell": "E-MLB/N-END/Checker_Lowlight-ND16",
+      "events": 1000000,
+      "mesr": 0.6354738280552594
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND16-3",
+      "cell": "E-MLB/N-END/Checker_Lowlight-ND16",
+      "events": 1000000,
+      "mesr": 0.6133656432178354
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND64-1",
+      "cell": "E-MLB/N-END/Checker_Lowlight-ND64",
+      "events": 881770,
+      "mesr": 0.7787671488601379
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND64-2",
+      "cell": "E-MLB/N-END/Checker_Lowlight-ND64",
+      "events": 736461,
+      "mesr": 0.7792625965255168
+    },
+    {
+      "recording": "E-MLB/N-END/Checker_Lowlight-ND64-3",
+      "cell": "E-MLB/N-END/Checker_Lowlight-ND64",
+      "events": 806831,
+      "mesr": 0.7822059195453168
+    },
+    {
+      "recording": "E-MLB/N-END/Cloth-ND00-1",
+      "cell": "E-MLB/N-END/Cloth-ND00",
+      "events": 1000000,
+      "mesr": 0.4028077122132402
+    },
+    {
+      "recording": "E-MLB/N-END/Cloth-ND00-2",
+      "cell": "E-MLB/N-END/Cloth-ND00",
+      "events": 1000000,
+      "mesr": 0.43441195694452417
+    },
+    {
+      "recording": "E-MLB/N-END/Cloth-ND00-3",
+      "cell": "E-MLB/N-END/Cloth-ND00",
+      "events": 1000000,
+      "mesr": 0.39499030046712014
+    },
+    {
+      "recording": "E-MLB/N-END/Cloth-ND04-1",
+      "cell": "E-MLB/N-END/Cloth-ND04",
+      "events": 1000000,
+      "mesr": 0.3934803108721656
+    },
+    {
+      "recording": "E-MLB/N-END/Cloth-ND04-2",
+      "cell": "E-MLB/N-END/Cloth-ND04",
+      "events": 1000000,
+      "mesr": 0.38985716338437976
+    },
+    {
+      "recording": "E-MLB/N-END/Cloth-ND04-3",
+      "cell": "E-MLB/N-END/Cloth-ND04",
+      "events": 1000000,
+      "mesr": 0.4105284571345584
+    },
+    {
+      "recording": "E-MLB/N-END/Cloth-ND16-1",
+      "cell": "E-MLB/N-END/Cloth-ND16",
+      "events": 1000000,
+      "mesr": 0.4101207170084876
+    },
+    {
+      "recording": "E-MLB/N-END/Cloth-ND16-2",
+      "cell": "E-MLB/N-END/Cloth-ND16",
+      "events": 1000000,
+      "mesr": 0.39948518193173155
+    },
+    {
+      "recording": "E-MLB/N-END/Cloth-ND16-3",
+      "cell": "E-MLB/N-END/Cloth-ND16",
+      "events": 1000000,
+      "mesr": 0.4004348291165059
+    },
+    {
+      "recording": "E-MLB/N-END/Cloth-ND64-1",
+      "cell": "E-MLB/N-END/Cloth-ND64",
+      "events": 1000000,
+      "mesr": 0.43702039628259903
+    },
+    {
+      "recording": "E-MLB/N-END/Cloth-ND64-2",
+      "cell": "E-MLB/N-END/Cloth-ND64",
+      "events": 1000000,
+      "mesr": 0.44460038116996575
+    },
+    {
+      "recording": "E-MLB/N-END/Cloth-ND64-3",
+      "cell": "E-MLB/N-END/Cloth-ND64",
+      "events": 1000000,
+      "mesr": 0.45057058238496656
+    },
+    {
+      "recording": "E-MLB/N-END/Cola_Can-ND00-1",
+      "cell": "E-MLB/N-END/Cola_Can-ND00",
+      "events": 227831,
+      "mesr": 1.1977226943079526
+    },
+    {
+      "recording": "E-MLB/N-END/Cola_Can-ND00-2",
+      "cell": "E-MLB/N-END/Cola_Can-ND00",
+      "events": 1000000,
+      "mesr": 0.9420323598160875
+    },
+    {
+      "recording": "E-MLB/N-END/Cola_Can-ND00-3",
+      "cell": "E-MLB/N-END/Cola_Can-ND00",
+      "events": 627344,
+      "mesr": 0.9763264543886472
+    },
+    {
+      "recording": "E-MLB/N-END/Cola_Can-ND04-1",
+      "cell": "E-MLB/N-END/Cola_Can-ND04",
+      "events": 569230,
+      "mesr": 1.1557909940325368
+    },
+    {
+      "recording": "E-MLB/N-END/Cola_Can-ND04-2",
+      "cell": "E-MLB/N-END/Cola_Can-ND04",
+      "events": 533735,
+      "mesr": 1.1879811169240522
+    },
+    {
+      "recording": "E-MLB/N-END/Cola_Can-ND04-3",
+      "cell": "E-MLB/N-END/Cola_Can-ND04",
+      "events": 769598,
+      "mesr": 0.8902922666963556
+    },
+    {
+      "recording": "E-MLB/N-END/Cola_Can-ND16-1",
+      "cell": "E-MLB/N-END/Cola_Can-ND16",
+      "events": 437880,
+      "mesr": 1.1942018338789822
+    },
+    {
+      "recording": "E-MLB/N-END/Cola_Can-ND16-2",
+      "cell": "E-MLB/N-END/Cola_Can-ND16",
+      "events": 311277,
+      "mesr": 1.1224861693284987
+    },
+    {
+      "recording": "E-MLB/N-END/Cola_Can-ND16-3",
+      "cell": "E-MLB/N-END/Cola_Can-ND16",
+      "events": 446263,
+      "mesr": 1.0621070925079128
+    },
+    {
+      "recording": "E-MLB/N-END/Cola_Can-ND64-1",
+      "cell": "E-MLB/N-END/Cola_Can-ND64",
+      "events": 470497,
+      "mesr": 0.8797939557094506
+    },
+    {
+      "recording": "E-MLB/N-END/Cola_Can-ND64-2",
+      "cell": "E-MLB/N-END/Cola_Can-ND64",
+      "events": 541091,
+      "mesr": 1.0170425700535348
+    },
+    {
+      "recording": "E-MLB/N-END/Cola_Can-ND64-3",
+      "cell": "E-MLB/N-END/Cola_Can-ND64",
+      "events": 419276,
+      "mesr": 0.9510147447827054
+    },
+    {
+      "recording": "E-MLB/N-END/Dark_Building-ND00-1",
+      "cell": "E-MLB/N-END/Dark_Building-ND00",
+      "events": 1000000,
+      "mesr": 0.5700453451654209
+    },
+    {
+      "recording": "E-MLB/N-END/Dark_Building-ND00-2",
+      "cell": "E-MLB/N-END/Dark_Building-ND00",
+      "events": 1000000,
+      "mesr": 0.5697378357863638
+    },
+    {
+      "recording": "E-MLB/N-END/Dark_Building-ND00-3",
+      "cell": "E-MLB/N-END/Dark_Building-ND00",
+      "events": 1000000,
+      "mesr": 0.6362219527850775
+    },
+    {
+      "recording": "E-MLB/N-END/Dark_Building-ND04-1",
+      "cell": "E-MLB/N-END/Dark_Building-ND04",
+      "events": 1000000,
+      "mesr": 0.5980533392161916
+    },
+    {
+      "recording": "E-MLB/N-END/Dark_Building-ND04-2",
+      "cell": "E-MLB/N-END/Dark_Building-ND04",
+      "events": 1000000,
+      "mesr": 0.53987638037507
+    },
+    {
+      "recording": "E-MLB/N-END/Dark_Building-ND04-3",
+      "cell": "E-MLB/N-END/Dark_Building-ND04",
+      "events": 1000000,
+      "mesr": 0.568863757061536
+    },
+    {
+      "recording": "E-MLB/N-END/Dark_Building-ND16-1",
+      "cell": "E-MLB/N-END/Dark_Building-ND16",
+      "events": 1000000,
+      "mesr": 0.6480153056907928
+    },
+    {
+      "recording": "E-MLB/N-END/Dark_Building-ND16-2",
+      "cell": "E-MLB/N-END/Dark_Building-ND16",
+      "events": 1000000,
+      "mesr": 0.6376294756098125
+    },
+    {
+      "recording": "E-MLB/N-END/Dark_Building-ND16-3",
+      "cell": "E-MLB/N-END/Dark_Building-ND16",
+      "events": 1000000,
+      "mesr": 0.6163072218482225
+    },
+    {
+      "recording": "E-MLB/N-END/Dark_Building-ND64-1",
+      "cell": "E-MLB/N-END/Dark_Building-ND64",
+      "events": 847025,
+      "mesr": 0.6923265163256874
+    },
+    {
+      "recording": "E-MLB/N-END/Dark_Building-ND64-2",
+      "cell": "E-MLB/N-END/Dark_Building-ND64",
+      "events": 710503,
+      "mesr": 0.6954256398591195
+    },
+    {
+      "recording": "E-MLB/N-END/Dark_Building-ND64-3",
+      "cell": "E-MLB/N-END/Dark_Building-ND64",
+      "events": 828693,
+      "mesr": 0.7003650460809754
+    },
+    {
+      "recording": "E-MLB/N-END/Fire-ND00-1",
+      "cell": "E-MLB/N-END/Fire-ND00",
+      "events": 1000000,
+      "mesr": 1.023561292267317
+    },
+    {
+      "recording": "E-MLB/N-END/Fire-ND00-2",
+      "cell": "E-MLB/N-END/Fire-ND00",
+      "events": 1000000,
+      "mesr": 1.0135257104371185
+    },
+    {
+      "recording": "E-MLB/N-END/Fire-ND00-3",
+      "cell": "E-MLB/N-END/Fire-ND00",
+      "events": 1000000,
+      "mesr": 0.9873317968934159
+    },
+    {
+      "recording": "E-MLB/N-END/Fire-ND04-1",
+      "cell": "E-MLB/N-END/Fire-ND04",
+      "events": 1000000,
+      "mesr": 1.0412467706243695
+    },
+    {
+      "recording": "E-MLB/N-END/Fire-ND04-2",
+      "cell": "E-MLB/N-END/Fire-ND04",
+      "events": 1000000,
+      "mesr": 1.0325801776834087
+    },
+    {
+      "recording": "E-MLB/N-END/Fire-ND04-3",
+      "cell": "E-MLB/N-END/Fire-ND04",
+      "events": 1000000,
+      "mesr": 1.0555020597345306
+    },
+    {
+      "recording": "E-MLB/N-END/Fire-ND16-1",
+      "cell": "E-MLB/N-END/Fire-ND16",
+      "events": 1000000,
+      "mesr": 1.006874362214551
+    },
+    {
+      "recording": "E-MLB/N-END/Fire-ND16-2",
+      "cell": "E-MLB/N-END/Fire-ND16",
+      "events": 1000000,
+      "mesr": 1.0538384305987507
+    },
+    {
+      "recording": "E-MLB/N-END/Fire-ND16-3",
+      "cell": "E-MLB/N-END/Fire-ND16",
+      "events": 1000000,
+      "mesr": 1.0157722343600006
+    },
+    {
+      "recording": "E-MLB/N-END/Fire-ND64-1",
+      "cell": "E-MLB/N-END/Fire-ND64",
+      "events": 938884,
+      "mesr": 0.816547901953252
+    },
+    {
+      "recording": "E-MLB/N-END/Fire-ND64-2",
+      "cell": "E-MLB/N-END/Fire-ND64",
+      "events": 845328,
+      "mesr": 0.8103366898513709
+    },
+    {
+      "recording": "E-MLB/N-END/Fire-ND64-3",
+      "cell": "E-MLB/N-END/Fire-ND64",
+      "events": 830718,
+      "mesr": 0.8029756576058404
+    },
+    {
+      "recording": "E-MLB/N-END/Flip_Chariot-ND00-1",
+      "cell": "E-MLB/N-END/Flip_Chariot-ND00",
+      "events": 581412,
+      "mesr": 1.0231163166804038
+    },
+    {
+      "recording": "E-MLB/N-END/Flip_Chariot-ND00-2",
+      "cell": "E-MLB/N-END/Flip_Chariot-ND00",
+      "events": 1000000,
+      "mesr": 0.9824532889589891
+    },
+    {
+      "recording": "E-MLB/N-END/Flip_Chariot-ND00-3",
+      "cell": "E-MLB/N-END/Flip_Chariot-ND00",
+      "events": 1000000,
+      "mesr": 0.9231815309275971
+    },
+    {
+      "recording": "E-MLB/N-END/Flip_Chariot-ND04-1",
+      "cell": "E-MLB/N-END/Flip_Chariot-ND04",
+      "events": 664466,
+      "mesr": 1.0033775153971236
+    },
+    {
+      "recording": "E-MLB/N-END/Flip_Chariot-ND04-2",
+      "cell": "E-MLB/N-END/Flip_Chariot-ND04",
+      "events": 1000000,
+      "mesr": 0.9323000620988482
+    },
+    {
+      "recording": "E-MLB/N-END/Flip_Chariot-ND04-3",
+      "cell": "E-MLB/N-END/Flip_Chariot-ND04",
+      "events": 1000000,
+      "mesr": 0.8880398601797349
+    },
+    {
+      "recording": "E-MLB/N-END/Flip_Chariot-ND16-1",
+      "cell": "E-MLB/N-END/Flip_Chariot-ND16",
+      "events": 715134,
+      "mesr": 0.9696399480030256
+    },
+    {
+      "recording": "E-MLB/N-END/Flip_Chariot-ND16-2",
+      "cell": "E-MLB/N-END/Flip_Chariot-ND16",
+      "events": 1000000,
+      "mesr": 1.0033056268951954
+    },
+    {
+      "recording": "E-MLB/N-END/Flip_Chariot-ND16-3",
+      "cell": "E-MLB/N-END/Flip_Chariot-ND16",
+      "events": 1000000,
+      "mesr": 0.9078366773836862
+    },
+    {
+      "recording": "E-MLB/N-END/Flip_Chariot-ND64-1",
+      "cell": "E-MLB/N-END/Flip_Chariot-ND64",
+      "events": 403128,
+      "mesr": 0.8691199379299847
+    },
+    {
+      "recording": "E-MLB/N-END/Flip_Chariot-ND64-2",
+      "cell": "E-MLB/N-END/Flip_Chariot-ND64",
+      "events": 702090,
+      "mesr": 0.9249834154390063
+    },
+    {
+      "recording": "E-MLB/N-END/Flip_Chariot-ND64-3",
+      "cell": "E-MLB/N-END/Flip_Chariot-ND64",
+      "events": 762362,
+      "mesr": 0.851119812439101
+    },
+    {
+      "recording": "E-MLB/N-END/Fly_Soccer-ND00-1",
+      "cell": "E-MLB/N-END/Fly_Soccer-ND00",
+      "events": 721447,
+      "mesr": 1.3401582563008436
+    },
+    {
+      "recording": "E-MLB/N-END/Fly_Soccer-ND00-2",
+      "cell": "E-MLB/N-END/Fly_Soccer-ND00",
+      "events": 637372,
+      "mesr": 1.492390089827623
+    },
+    {
+      "recording": "E-MLB/N-END/Fly_Soccer-ND00-3",
+      "cell": "E-MLB/N-END/Fly_Soccer-ND00",
+      "events": 690057,
+      "mesr": 1.533665570091124
+    },
+    {
+      "recording": "E-MLB/N-END/Fly_Soccer-ND04-1",
+      "cell": "E-MLB/N-END/Fly_Soccer-ND04",
+      "events": 538899,
+      "mesr": 1.2094435766006706
+    },
+    {
+      "recording": "E-MLB/N-END/Fly_Soccer-ND04-2",
+      "cell": "E-MLB/N-END/Fly_Soccer-ND04",
+      "events": 664676,
+      "mesr": 1.0841215390170666
+    },
+    {
+      "recording": "E-MLB/N-END/Fly_Soccer-ND04-3",
+      "cell": "E-MLB/N-END/Fly_Soccer-ND04",
+      "events": 589986,
+      "mesr": 1.1498610850024924
+    },
+    {
+      "recording": "E-MLB/N-END/Fly_Soccer-ND16-1",
+      "cell": "E-MLB/N-END/Fly_Soccer-ND16",
+      "events": 485169,
+      "mesr": 0.9261701292704031
+    },
+    {
+      "recording": "E-MLB/N-END/Fly_Soccer-ND16-2",
+      "cell": "E-MLB/N-END/Fly_Soccer-ND16",
+      "events": 427107,
+      "mesr": 0.889316536797799
+    },
+    {
+      "recording": "E-MLB/N-END/Fly_Soccer-ND16-3",
+      "cell": "E-MLB/N-END/Fly_Soccer-ND16",
+      "events": 511970,
+      "mesr": 0.910607358922785
+    },
+    {
+      "recording": "E-MLB/N-END/Fly_Soccer-ND64-1",
+      "cell": "E-MLB/N-END/Fly_Soccer-ND64",
+      "events": 327527,
+      "mesr": 0.750780974916719
+    },
+    {
+      "recording": "E-MLB/N-END/Fly_Soccer-ND64-2",
+      "cell": "E-MLB/N-END/Fly_Soccer-ND64",
+      "events": 292377,
+      "mesr": 0.7576821735219093
+    },
+    {
+      "recording": "E-MLB/N-END/Fly_Soccer-ND64-3",
+      "cell": "E-MLB/N-END/Fly_Soccer-ND64",
+      "events": 377921,
+      "mesr": 0.7617580171734694
+    },
+    {
+      "recording": "E-MLB/N-END/Garage-ND00-1",
+      "cell": "E-MLB/N-END/Garage-ND00",
+      "events": 1000000,
+      "mesr": 0.7998210045598488
+    },
+    {
+      "recording": "E-MLB/N-END/Garage-ND00-2",
+      "cell": "E-MLB/N-END/Garage-ND00",
+      "events": 1000000,
+      "mesr": 0.8200657216575937
+    },
+    {
+      "recording": "E-MLB/N-END/Garage-ND00-3",
+      "cell": "E-MLB/N-END/Garage-ND00",
+      "events": 1000000,
+      "mesr": 0.7993124463978275
+    },
+    {
+      "recording": "E-MLB/N-END/Garage-ND04-1",
+      "cell": "E-MLB/N-END/Garage-ND04",
+      "events": 1000000,
+      "mesr": 0.678246926212135
+    },
+    {
+      "recording": "E-MLB/N-END/Garage-ND04-2",
+      "cell": "E-MLB/N-END/Garage-ND04",
+      "events": 1000000,
+      "mesr": 0.7020827371138758
+    },
+    {
+      "recording": "E-MLB/N-END/Garage-ND04-3",
+      "cell": "E-MLB/N-END/Garage-ND04",
+      "events": 1000000,
+      "mesr": 0.7254259199492763
+    },
+    {
+      "recording": "E-MLB/N-END/Garage-ND16-1",
+      "cell": "E-MLB/N-END/Garage-ND16",
+      "events": 1000000,
+      "mesr": 0.6926616084055938
+    },
+    {
+      "recording": "E-MLB/N-END/Garage-ND16-2",
+      "cell": "E-MLB/N-END/Garage-ND16",
+      "events": 1000000,
+      "mesr": 0.6732890389426095
+    },
+    {
+      "recording": "E-MLB/N-END/Garage-ND16-3",
+      "cell": "E-MLB/N-END/Garage-ND16",
+      "events": 1000000,
+      "mesr": 0.6873370395809434
+    },
+    {
+      "recording": "E-MLB/N-END/Garage-ND64-1",
+      "cell": "E-MLB/N-END/Garage-ND64",
+      "events": 1000000,
+      "mesr": 0.6665048298198956
+    },
+    {
+      "recording": "E-MLB/N-END/Garage-ND64-2",
+      "cell": "E-MLB/N-END/Garage-ND64",
+      "events": 1000000,
+      "mesr": 0.6565232780485467
+    },
+    {
+      "recording": "E-MLB/N-END/Garage-ND64-3",
+      "cell": "E-MLB/N-END/Garage-ND64",
+      "events": 1000000,
+      "mesr": 0.6491507394578097
+    },
+    {
+      "recording": "E-MLB/N-END/Gas_Tank-ND00-1",
+      "cell": "E-MLB/N-END/Gas_Tank-ND00",
+      "events": 1000000,
+      "mesr": 0.5811314556837754
+    },
+    {
+      "recording": "E-MLB/N-END/Gas_Tank-ND00-2",
+      "cell": "E-MLB/N-END/Gas_Tank-ND00",
+      "events": 1000000,
+      "mesr": 0.4825609811048207
+    },
+    {
+      "recording": "E-MLB/N-END/Gas_Tank-ND00-3",
+      "cell": "E-MLB/N-END/Gas_Tank-ND00",
+      "events": 1000000,
+      "mesr": 0.4609716052669599
+    },
+    {
+      "recording": "E-MLB/N-END/Gas_Tank-ND04-1",
+      "cell": "E-MLB/N-END/Gas_Tank-ND04",
+      "events": 1000000,
+      "mesr": 0.6073281973179121
+    },
+    {
+      "recording": "E-MLB/N-END/Gas_Tank-ND04-2",
+      "cell": "E-MLB/N-END/Gas_Tank-ND04",
+      "events": 1000000,
+      "mesr": 0.5749248565896092
+    },
+    {
+      "recording": "E-MLB/N-END/Gas_Tank-ND04-3",
+      "cell": "E-MLB/N-END/Gas_Tank-ND04",
+      "events": 1000000,
+      "mesr": 0.5702491834052377
+    },
+    {
+      "recording": "E-MLB/N-END/Gas_Tank-ND16-1",
+      "cell": "E-MLB/N-END/Gas_Tank-ND16",
+      "events": 1000000,
+      "mesr": 0.616702079419263
+    },
+    {
+      "recording": "E-MLB/N-END/Gas_Tank-ND16-2",
+      "cell": "E-MLB/N-END/Gas_Tank-ND16",
+      "events": 1000000,
+      "mesr": 0.6346404523839948
+    },
+    {
+      "recording": "E-MLB/N-END/Gas_Tank-ND16-3",
+      "cell": "E-MLB/N-END/Gas_Tank-ND16",
+      "events": 1000000,
+      "mesr": 0.6446591974750705
+    },
+    {
+      "recording": "E-MLB/N-END/Gas_Tank-ND64-1",
+      "cell": "E-MLB/N-END/Gas_Tank-ND64",
+      "events": 1000000,
+      "mesr": 0.6806012179949643
+    },
+    {
+      "recording": "E-MLB/N-END/Gas_Tank-ND64-2",
+      "cell": "E-MLB/N-END/Gas_Tank-ND64",
+      "events": 1000000,
+      "mesr": 0.7136318020407981
+    },
+    {
+      "recording": "E-MLB/N-END/Gas_Tank-ND64-3",
+      "cell": "E-MLB/N-END/Gas_Tank-ND64",
+      "events": 1000000,
+      "mesr": 0.7238857904483308
+    },
+    {
+      "recording": "E-MLB/N-END/Gun-ND00-1",
+      "cell": "E-MLB/N-END/Gun-ND00",
+      "events": 1000000,
+      "mesr": 1.008775803981003
+    },
+    {
+      "recording": "E-MLB/N-END/Gun-ND00-2",
+      "cell": "E-MLB/N-END/Gun-ND00",
+      "events": 1000000,
+      "mesr": 0.9587760687159244
+    },
+    {
+      "recording": "E-MLB/N-END/Gun-ND00-3",
+      "cell": "E-MLB/N-END/Gun-ND00",
+      "events": 1000000,
+      "mesr": 0.9432778523297496
+    },
+    {
+      "recording": "E-MLB/N-END/Gun-ND04-1",
+      "cell": "E-MLB/N-END/Gun-ND04",
+      "events": 1000000,
+      "mesr": 0.9380979202037911
+    },
+    {
+      "recording": "E-MLB/N-END/Gun-ND04-2",
+      "cell": "E-MLB/N-END/Gun-ND04",
+      "events": 1000000,
+      "mesr": 0.9682747419856104
+    },
+    {
+      "recording": "E-MLB/N-END/Gun-ND04-3",
+      "cell": "E-MLB/N-END/Gun-ND04",
+      "events": 1000000,
+      "mesr": 0.9611044565600575
+    },
+    {
+      "recording": "E-MLB/N-END/Gun-ND16-1",
+      "cell": "E-MLB/N-END/Gun-ND16",
+      "events": 1000000,
+      "mesr": 0.9325235402962506
+    },
+    {
+      "recording": "E-MLB/N-END/Gun-ND16-2",
+      "cell": "E-MLB/N-END/Gun-ND16",
+      "events": 1000000,
+      "mesr": 0.9287256868963533
+    },
+    {
+      "recording": "E-MLB/N-END/Gun-ND16-3",
+      "cell": "E-MLB/N-END/Gun-ND16",
+      "events": 1000000,
+      "mesr": 0.9443684842877551
+    },
+    {
+      "recording": "E-MLB/N-END/Gun-ND64-1",
+      "cell": "E-MLB/N-END/Gun-ND64",
+      "events": 1000000,
+      "mesr": 0.8493106499020184
+    },
+    {
+      "recording": "E-MLB/N-END/Gun-ND64-2",
+      "cell": "E-MLB/N-END/Gun-ND64",
+      "events": 818413,
+      "mesr": 0.8621367721260682
+    },
+    {
+      "recording": "E-MLB/N-END/Gun-ND64-3",
+      "cell": "E-MLB/N-END/Gun-ND64",
+      "events": 897955,
+      "mesr": 0.8558310624222304
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND00-1",
+      "cell": "E-MLB/N-END/Hall_Lowlight-ND00",
+      "events": 1000000,
+      "mesr": 0.6924505186365966
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND00-2",
+      "cell": "E-MLB/N-END/Hall_Lowlight-ND00",
+      "events": 1000000,
+      "mesr": 0.6697625491209713
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND00-3",
+      "cell": "E-MLB/N-END/Hall_Lowlight-ND00",
+      "events": 1000000,
+      "mesr": 0.6346924761415181
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND04-1",
+      "cell": "E-MLB/N-END/Hall_Lowlight-ND04",
+      "events": 1000000,
+      "mesr": 0.7154748014917794
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND04-2",
+      "cell": "E-MLB/N-END/Hall_Lowlight-ND04",
+      "events": 1000000,
+      "mesr": 0.6910930289480353
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND04-3",
+      "cell": "E-MLB/N-END/Hall_Lowlight-ND04",
+      "events": 1000000,
+      "mesr": 0.7176368592344595
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND16-1",
+      "cell": "E-MLB/N-END/Hall_Lowlight-ND16",
+      "events": 1000000,
+      "mesr": 0.7295550371111708
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND16-2",
+      "cell": "E-MLB/N-END/Hall_Lowlight-ND16",
+      "events": 1000000,
+      "mesr": 0.7300761513928828
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND16-3",
+      "cell": "E-MLB/N-END/Hall_Lowlight-ND16",
+      "events": 1000000,
+      "mesr": 0.729395457602104
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND64-1",
+      "cell": "E-MLB/N-END/Hall_Lowlight-ND64",
+      "events": 1000000,
+      "mesr": 0.7594901548681685
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND64-2",
+      "cell": "E-MLB/N-END/Hall_Lowlight-ND64",
+      "events": 972101,
+      "mesr": 0.7538084659400794
+    },
+    {
+      "recording": "E-MLB/N-END/Hall_Lowlight-ND64-3",
+      "cell": "E-MLB/N-END/Hall_Lowlight-ND64",
+      "events": 1000000,
+      "mesr": 0.7466751858352864
+    },
+    {
+      "recording": "E-MLB/N-END/Keyboard-ND00-1",
+      "cell": "E-MLB/N-END/Keyboard-ND00",
+      "events": 1000000,
+      "mesr": 1.1068130960047806
+    },
+    {
+      "recording": "E-MLB/N-END/Keyboard-ND00-2",
+      "cell": "E-MLB/N-END/Keyboard-ND00",
+      "events": 1000000,
+      "mesr": 0.9716094599113776
+    },
+    {
+      "recording": "E-MLB/N-END/Keyboard-ND00-3",
+      "cell": "E-MLB/N-END/Keyboard-ND00",
+      "events": 1000000,
+      "mesr": 1.0455780513406712
+    },
+    {
+      "recording": "E-MLB/N-END/Keyboard-ND04-1",
+      "cell": "E-MLB/N-END/Keyboard-ND04",
+      "events": 1000000,
+      "mesr": 0.8169438772883187
+    },
+    {
+      "recording": "E-MLB/N-END/Keyboard-ND04-2",
+      "cell": "E-MLB/N-END/Keyboard-ND04",
+      "events": 1000000,
+      "mesr": 0.788857965248071
+    },
+    {
+      "recording": "E-MLB/N-END/Keyboard-ND04-3",
+      "cell": "E-MLB/N-END/Keyboard-ND04",
+      "events": 1000000,
+      "mesr": 0.8088063065796602
+    },
+    {
+      "recording": "E-MLB/N-END/Keyboard-ND16-1",
+      "cell": "E-MLB/N-END/Keyboard-ND16",
+      "events": 1000000,
+      "mesr": 0.8473769992912215
+    },
+    {
+      "recording": "E-MLB/N-END/Keyboard-ND16-2",
+      "cell": "E-MLB/N-END/Keyboard-ND16",
+      "events": 1000000,
+      "mesr": 0.8338832840080539
+    },
+    {
+      "recording": "E-MLB/N-END/Keyboard-ND16-3",
+      "cell": "E-MLB/N-END/Keyboard-ND16",
+      "events": 1000000,
+      "mesr": 0.8540594329965497
+    },
+    {
+      "recording": "E-MLB/N-END/Keyboard-ND64-1",
+      "cell": "E-MLB/N-END/Keyboard-ND64",
+      "events": 1000000,
+      "mesr": 0.9135166317496637
+    },
+    {
+      "recording": "E-MLB/N-END/Keyboard-ND64-2",
+      "cell": "E-MLB/N-END/Keyboard-ND64",
+      "events": 1000000,
+      "mesr": 0.9211218859747358
+    },
+    {
+      "recording": "E-MLB/N-END/Keyboard-ND64-3",
+      "cell": "E-MLB/N-END/Keyboard-ND64",
+      "events": 1000000,
+      "mesr": 0.9217408896429125
+    },
+    {
+      "recording": "E-MLB/N-END/LED-ND00-1",
+      "cell": "E-MLB/N-END/LED-ND00",
+      "events": 148849,
+      "mesr": 1.175739183704384
+    },
+    {
+      "recording": "E-MLB/N-END/LED-ND00-2",
+      "cell": "E-MLB/N-END/LED-ND00",
+      "events": 286190,
+      "mesr": 1.0896437493609819
+    },
+    {
+      "recording": "E-MLB/N-END/LED-ND00-3",
+      "cell": "E-MLB/N-END/LED-ND00",
+      "events": 278483,
+      "mesr": 1.1794469119472692
+    },
+    {
+      "recording": "E-MLB/N-END/LED-ND04-1",
+      "cell": "E-MLB/N-END/LED-ND04",
+      "events": 525038,
+      "mesr": 0.9384344827925766
+    },
+    {
+      "recording": "E-MLB/N-END/LED-ND04-2",
+      "cell": "E-MLB/N-END/LED-ND04",
+      "events": 522262,
+      "mesr": 0.92492114272944
+    },
+    {
+      "recording": "E-MLB/N-END/LED-ND04-3",
+      "cell": "E-MLB/N-END/LED-ND04",
+      "events": 626221,
+      "mesr": 0.9637131090249863
+    },
+    {
+      "recording": "E-MLB/N-END/LED-ND16-1",
+      "cell": "E-MLB/N-END/LED-ND16",
+      "events": 604290,
+      "mesr": 0.9126572911555151
+    },
+    {
+      "recording": "E-MLB/N-END/LED-ND16-2",
+      "cell": "E-MLB/N-END/LED-ND16",
+      "events": 730372,
+      "mesr": 0.8766667606753651
+    },
+    {
+      "recording": "E-MLB/N-END/LED-ND16-3",
+      "cell": "E-MLB/N-END/LED-ND16",
+      "events": 764024,
+      "mesr": 0.8923145293121578
+    },
+    {
+      "recording": "E-MLB/N-END/LED-ND64-1",
+      "cell": "E-MLB/N-END/LED-ND64",
+      "events": 564533,
+      "mesr": 0.8757255147216887
+    },
+    {
+      "recording": "E-MLB/N-END/LED-ND64-2",
+      "cell": "E-MLB/N-END/LED-ND64",
+      "events": 634073,
+      "mesr": 0.8628352535563509
+    },
+    {
+      "recording": "E-MLB/N-END/LED-ND64-3",
+      "cell": "E-MLB/N-END/LED-ND64",
+      "events": 627840,
+      "mesr": 0.8534260915018699
+    },
+    {
+      "recording": "E-MLB/N-END/LEGO-ND00-1",
+      "cell": "E-MLB/N-END/LEGO-ND00",
+      "events": 1000000,
+      "mesr": 0.7480306565355419
+    },
+    {
+      "recording": "E-MLB/N-END/LEGO-ND00-2",
+      "cell": "E-MLB/N-END/LEGO-ND00",
+      "events": 1000000,
+      "mesr": 0.7407191681265862
+    },
+    {
+      "recording": "E-MLB/N-END/LEGO-ND00-3",
+      "cell": "E-MLB/N-END/LEGO-ND00",
+      "events": 1000000,
+      "mesr": 0.7485393673338538
+    },
+    {
+      "recording": "E-MLB/N-END/LEGO-ND04-1",
+      "cell": "E-MLB/N-END/LEGO-ND04",
+      "events": 1000000,
+      "mesr": 0.7343503044009062
+    },
+    {
+      "recording": "E-MLB/N-END/LEGO-ND04-2",
+      "cell": "E-MLB/N-END/LEGO-ND04",
+      "events": 1000000,
+      "mesr": 0.7245887064573296
+    },
+    {
+      "recording": "E-MLB/N-END/LEGO-ND04-3",
+      "cell": "E-MLB/N-END/LEGO-ND04",
+      "events": 1000000,
+      "mesr": 0.714192595763139
+    },
+    {
+      "recording": "E-MLB/N-END/LEGO-ND16-1",
+      "cell": "E-MLB/N-END/LEGO-ND16",
+      "events": 1000000,
+      "mesr": 0.6903502316651571
+    },
+    {
+      "recording": "E-MLB/N-END/LEGO-ND16-2",
+      "cell": "E-MLB/N-END/LEGO-ND16",
+      "events": 1000000,
+      "mesr": 0.6686253365526537
+    },
+    {
+      "recording": "E-MLB/N-END/LEGO-ND16-3",
+      "cell": "E-MLB/N-END/LEGO-ND16",
+      "events": 1000000,
+      "mesr": 0.6781809495788268
+    },
+    {
+      "recording": "E-MLB/N-END/LEGO-ND64-1",
+      "cell": "E-MLB/N-END/LEGO-ND64",
+      "events": 1000000,
+      "mesr": 0.6224586996572214
+    },
+    {
+      "recording": "E-MLB/N-END/LEGO-ND64-2",
+      "cell": "E-MLB/N-END/LEGO-ND64",
+      "events": 1000000,
+      "mesr": 0.6320858130640292
+    },
+    {
+      "recording": "E-MLB/N-END/LEGO-ND64-3",
+      "cell": "E-MLB/N-END/LEGO-ND64",
+      "events": 1000000,
+      "mesr": 0.6618877139636817
+    },
+    {
+      "recording": "E-MLB/N-END/Landmark-ND00-1",
+      "cell": "E-MLB/N-END/Landmark-ND00",
+      "events": 1000000,
+      "mesr": 0.763238729620396
+    },
+    {
+      "recording": "E-MLB/N-END/Landmark-ND00-2",
+      "cell": "E-MLB/N-END/Landmark-ND00",
+      "events": 1000000,
+      "mesr": 0.700256917872508
+    },
+    {
+      "recording": "E-MLB/N-END/Landmark-ND00-3",
+      "cell": "E-MLB/N-END/Landmark-ND00",
+      "events": 1000000,
+      "mesr": 0.7883863122459183
+    },
+    {
+      "recording": "E-MLB/N-END/Landmark-ND04-1",
+      "cell": "E-MLB/N-END/Landmark-ND04",
+      "events": 1000000,
+      "mesr": 0.9188281896640221
+    },
+    {
+      "recording": "E-MLB/N-END/Landmark-ND04-2",
+      "cell": "E-MLB/N-END/Landmark-ND04",
+      "events": 1000000,
+      "mesr": 0.9340167562087411
+    },
+    {
+      "recording": "E-MLB/N-END/Landmark-ND04-3",
+      "cell": "E-MLB/N-END/Landmark-ND04",
+      "events": 1000000,
+      "mesr": 0.8994840659863642
+    },
+    {
+      "recording": "E-MLB/N-END/Landmark-ND16-1",
+      "cell": "E-MLB/N-END/Landmark-ND16",
+      "events": 1000000,
+      "mesr": 0.7865618286249111
+    },
+    {
+      "recording": "E-MLB/N-END/Landmark-ND16-2",
+      "cell": "E-MLB/N-END/Landmark-ND16",
+      "events": 1000000,
+      "mesr": 0.8008090002216258
+    },
+    {
+      "recording": "E-MLB/N-END/Landmark-ND16-3",
+      "cell": "E-MLB/N-END/Landmark-ND16",
+      "events": 1000000,
+      "mesr": 0.8092292802718914
+    },
+    {
+      "recording": "E-MLB/N-END/Landmark-ND64-1",
+      "cell": "E-MLB/N-END/Landmark-ND64",
+      "events": 1000000,
+      "mesr": 0.6954551166738646
+    },
+    {
+      "recording": "E-MLB/N-END/Landmark-ND64-2",
+      "cell": "E-MLB/N-END/Landmark-ND64",
+      "events": 1000000,
+      "mesr": 0.6995005226832668
+    },
+    {
+      "recording": "E-MLB/N-END/Landmark-ND64-3",
+      "cell": "E-MLB/N-END/Landmark-ND64",
+      "events": 1000000,
+      "mesr": 0.7146473752779413
+    },
+    {
+      "recording": "E-MLB/N-END/Lantern-ND00-1",
+      "cell": "E-MLB/N-END/Lantern-ND00",
+      "events": 1000000,
+      "mesr": 0.7972470606173921
+    },
+    {
+      "recording": "E-MLB/N-END/Lantern-ND00-2",
+      "cell": "E-MLB/N-END/Lantern-ND00",
+      "events": 1000000,
+      "mesr": 0.9902604094405919
+    },
+    {
+      "recording": "E-MLB/N-END/Lantern-ND00-3",
+      "cell": "E-MLB/N-END/Lantern-ND00",
+      "events": 1000000,
+      "mesr": 0.9451693227514226
+    },
+    {
+      "recording": "E-MLB/N-END/Lantern-ND04-1",
+      "cell": "E-MLB/N-END/Lantern-ND04",
+      "events": 1000000,
+      "mesr": 0.8481810498919503
+    },
+    {
+      "recording": "E-MLB/N-END/Lantern-ND04-2",
+      "cell": "E-MLB/N-END/Lantern-ND04",
+      "events": 1000000,
+      "mesr": 0.8895465233221327
+    },
+    {
+      "recording": "E-MLB/N-END/Lantern-ND04-3",
+      "cell": "E-MLB/N-END/Lantern-ND04",
+      "events": 1000000,
+      "mesr": 0.8110455106302584
+    },
+    {
+      "recording": "E-MLB/N-END/Lantern-ND16-1",
+      "cell": "E-MLB/N-END/Lantern-ND16",
+      "events": 1000000,
+      "mesr": 0.7708575207464987
+    },
+    {
+      "recording": "E-MLB/N-END/Lantern-ND16-2",
+      "cell": "E-MLB/N-END/Lantern-ND16",
+      "events": 1000000,
+      "mesr": 0.8017607947737836
+    },
+    {
+      "recording": "E-MLB/N-END/Lantern-ND16-3",
+      "cell": "E-MLB/N-END/Lantern-ND16",
+      "events": 1000000,
+      "mesr": 0.817617140510503
+    },
+    {
+      "recording": "E-MLB/N-END/Lantern-ND64-1",
+      "cell": "E-MLB/N-END/Lantern-ND64",
+      "events": 1000000,
+      "mesr": 0.6056894015123898
+    },
+    {
+      "recording": "E-MLB/N-END/Lantern-ND64-2",
+      "cell": "E-MLB/N-END/Lantern-ND64",
+      "events": 1000000,
+      "mesr": 0.660734409035165
+    },
+    {
+      "recording": "E-MLB/N-END/Lantern-ND64-3",
+      "cell": "E-MLB/N-END/Lantern-ND64",
+      "events": 1000000,
+      "mesr": 0.645129152706479
+    },
+    {
+      "recording": "E-MLB/N-END/Light_Board-ND00-1",
+      "cell": "E-MLB/N-END/Light_Board-ND00",
+      "events": 1000000,
+      "mesr": 0.7417749927512327
+    },
+    {
+      "recording": "E-MLB/N-END/Light_Board-ND00-2",
+      "cell": "E-MLB/N-END/Light_Board-ND00",
+      "events": 1000000,
+      "mesr": 0.7446069303963956
+    },
+    {
+      "recording": "E-MLB/N-END/Light_Board-ND00-3",
+      "cell": "E-MLB/N-END/Light_Board-ND00",
+      "events": 1000000,
+      "mesr": 0.7245390761169362
+    },
+    {
+      "recording": "E-MLB/N-END/Light_Board-ND04-1",
+      "cell": "E-MLB/N-END/Light_Board-ND04",
+      "events": 1000000,
+      "mesr": 0.7023604711140408
+    },
+    {
+      "recording": "E-MLB/N-END/Light_Board-ND04-2",
+      "cell": "E-MLB/N-END/Light_Board-ND04",
+      "events": 1000000,
+      "mesr": 0.7327352215752941
+    },
+    {
+      "recording": "E-MLB/N-END/Light_Board-ND04-3",
+      "cell": "E-MLB/N-END/Light_Board-ND04",
+      "events": 1000000,
+      "mesr": 0.7258793078199487
+    },
+    {
+      "recording": "E-MLB/N-END/Light_Board-ND16-1",
+      "cell": "E-MLB/N-END/Light_Board-ND16",
+      "events": 1000000,
+      "mesr": 0.7326033207750153
+    },
+    {
+      "recording": "E-MLB/N-END/Light_Board-ND16-2",
+      "cell": "E-MLB/N-END/Light_Board-ND16",
+      "events": 1000000,
+      "mesr": 0.7088633984891898
+    },
+    {
+      "recording": "E-MLB/N-END/Light_Board-ND16-3",
+      "cell": "E-MLB/N-END/Light_Board-ND16",
+      "events": 1000000,
+      "mesr": 0.7666231870627885
+    },
+    {
+      "recording": "E-MLB/N-END/Light_Board-ND64-1",
+      "cell": "E-MLB/N-END/Light_Board-ND64",
+      "events": 1000000,
+      "mesr": 0.7909193390117385
+    },
+    {
+      "recording": "E-MLB/N-END/Light_Board-ND64-2",
+      "cell": "E-MLB/N-END/Light_Board-ND64",
+      "events": 1000000,
+      "mesr": 0.7804794496821383
+    },
+    {
+      "recording": "E-MLB/N-END/Light_Board-ND64-3",
+      "cell": "E-MLB/N-END/Light_Board-ND64",
+      "events": 1000000,
+      "mesr": 0.8411585911946945
+    },
+    {
+      "recording": "E-MLB/N-END/Lounge-ND00-1",
+      "cell": "E-MLB/N-END/Lounge-ND00",
+      "events": 1000000,
+      "mesr": 0.6129143335574299
+    },
+    {
+      "recording": "E-MLB/N-END/Lounge-ND00-2",
+      "cell": "E-MLB/N-END/Lounge-ND00",
+      "events": 1000000,
+      "mesr": 0.6275359370255124
+    },
+    {
+      "recording": "E-MLB/N-END/Lounge-ND00-3",
+      "cell": "E-MLB/N-END/Lounge-ND00",
+      "events": 1000000,
+      "mesr": 0.6372516172164243
+    },
+    {
+      "recording": "E-MLB/N-END/Lounge-ND04-1",
+      "cell": "E-MLB/N-END/Lounge-ND04",
+      "events": 1000000,
+      "mesr": 0.607326328757038
+    },
+    {
+      "recording": "E-MLB/N-END/Lounge-ND04-2",
+      "cell": "E-MLB/N-END/Lounge-ND04",
+      "events": 1000000,
+      "mesr": 0.6290494310063752
+    },
+    {
+      "recording": "E-MLB/N-END/Lounge-ND04-3",
+      "cell": "E-MLB/N-END/Lounge-ND04",
+      "events": 1000000,
+      "mesr": 0.6362097417461461
+    },
+    {
+      "recording": "E-MLB/N-END/Lounge-ND16-1",
+      "cell": "E-MLB/N-END/Lounge-ND16",
+      "events": 1000000,
+      "mesr": 0.6905723902774932
+    },
+    {
+      "recording": "E-MLB/N-END/Lounge-ND16-2",
+      "cell": "E-MLB/N-END/Lounge-ND16",
+      "events": 1000000,
+      "mesr": 0.6435507668863829
+    },
+    {
+      "recording": "E-MLB/N-END/Lounge-ND16-3",
+      "cell": "E-MLB/N-END/Lounge-ND16",
+      "events": 1000000,
+      "mesr": 0.6337372162296748
+    },
+    {
+      "recording": "E-MLB/N-END/Lounge-ND64-1",
+      "cell": "E-MLB/N-END/Lounge-ND64",
+      "events": 1000000,
+      "mesr": 0.7464254933407389
+    },
+    {
+      "recording": "E-MLB/N-END/Lounge-ND64-2",
+      "cell": "E-MLB/N-END/Lounge-ND64",
+      "events": 1000000,
+      "mesr": 0.7921987633883201
+    },
+    {
+      "recording": "E-MLB/N-END/Lounge-ND64-3",
+      "cell": "E-MLB/N-END/Lounge-ND64",
+      "events": 1000000,
+      "mesr": 0.7832314829143412
+    },
+    {
+      "recording": "E-MLB/N-END/Machine-ND00-1",
+      "cell": "E-MLB/N-END/Machine-ND00",
+      "events": 1000000,
+      "mesr": 1.433313901677961
+    },
+    {
+      "recording": "E-MLB/N-END/Machine-ND00-2",
+      "cell": "E-MLB/N-END/Machine-ND00",
+      "events": 1000000,
+      "mesr": 1.1482891717561996
+    },
+    {
+      "recording": "E-MLB/N-END/Machine-ND00-3",
+      "cell": "E-MLB/N-END/Machine-ND00",
+      "events": 1000000,
+      "mesr": 1.3182864267581784
+    },
+    {
+      "recording": "E-MLB/N-END/Machine-ND04-1",
+      "cell": "E-MLB/N-END/Machine-ND04",
+      "events": 1000000,
+      "mesr": 0.9086043628945805
+    },
+    {
+      "recording": "E-MLB/N-END/Machine-ND04-2",
+      "cell": "E-MLB/N-END/Machine-ND04",
+      "events": 1000000,
+      "mesr": 0.8843841920282338
+    },
+    {
+      "recording": "E-MLB/N-END/Machine-ND04-3",
+      "cell": "E-MLB/N-END/Machine-ND04",
+      "events": 1000000,
+      "mesr": 0.79107423670791
+    },
+    {
+      "recording": "E-MLB/N-END/Machine-ND16-1",
+      "cell": "E-MLB/N-END/Machine-ND16",
+      "events": 1000000,
+      "mesr": 0.798093638963781
+    },
+    {
+      "recording": "E-MLB/N-END/Machine-ND16-2",
+      "cell": "E-MLB/N-END/Machine-ND16",
+      "events": 1000000,
+      "mesr": 0.8391539796995037
+    },
+    {
+      "recording": "E-MLB/N-END/Machine-ND16-3",
+      "cell": "E-MLB/N-END/Machine-ND16",
+      "events": 1000000,
+      "mesr": 0.8363995811747456
+    },
+    {
+      "recording": "E-MLB/N-END/Machine-ND64-1",
+      "cell": "E-MLB/N-END/Machine-ND64",
+      "events": 1000000,
+      "mesr": 0.7592483875404703
+    },
+    {
+      "recording": "E-MLB/N-END/Machine-ND64-2",
+      "cell": "E-MLB/N-END/Machine-ND64",
+      "events": 1000000,
+      "mesr": 0.7966797078584555
+    },
+    {
+      "recording": "E-MLB/N-END/Machine-ND64-3",
+      "cell": "E-MLB/N-END/Machine-ND64",
+      "events": 1000000,
+      "mesr": 0.780523123235763
+    },
+    {
+      "recording": "E-MLB/N-END/Mall-ND00-1",
+      "cell": "E-MLB/N-END/Mall-ND00",
+      "events": 1000000,
+      "mesr": 0.8001405096134513
+    },
+    {
+      "recording": "E-MLB/N-END/Mall-ND00-2",
+      "cell": "E-MLB/N-END/Mall-ND00",
+      "events": 1000000,
+      "mesr": 0.7666142128803913
+    },
+    {
+      "recording": "E-MLB/N-END/Mall-ND00-3",
+      "cell": "E-MLB/N-END/Mall-ND00",
+      "events": 1000000,
+      "mesr": 0.7175369619695634
+    },
+    {
+      "recording": "E-MLB/N-END/Mall-ND04-1",
+      "cell": "E-MLB/N-END/Mall-ND04",
+      "events": 1000000,
+      "mesr": 0.677476354517464
+    },
+    {
+      "recording": "E-MLB/N-END/Mall-ND04-2",
+      "cell": "E-MLB/N-END/Mall-ND04",
+      "events": 1000000,
+      "mesr": 0.5862332611775809
+    },
+    {
+      "recording": "E-MLB/N-END/Mall-ND04-3",
+      "cell": "E-MLB/N-END/Mall-ND04",
+      "events": 1000000,
+      "mesr": 0.6187557290044778
+    },
+    {
+      "recording": "E-MLB/N-END/Mall-ND16-1",
+      "cell": "E-MLB/N-END/Mall-ND16",
+      "events": 1000000,
+      "mesr": 0.6744215013829625
+    },
+    {
+      "recording": "E-MLB/N-END/Mall-ND16-2",
+      "cell": "E-MLB/N-END/Mall-ND16",
+      "events": 1000000,
+      "mesr": 0.6188341692884638
+    },
+    {
+      "recording": "E-MLB/N-END/Mall-ND16-3",
+      "cell": "E-MLB/N-END/Mall-ND16",
+      "events": 1000000,
+      "mesr": 0.617432015677015
+    },
+    {
+      "recording": "E-MLB/N-END/Mall-ND64-1",
+      "cell": "E-MLB/N-END/Mall-ND64",
+      "events": 1000000,
+      "mesr": 0.7194011453816306
+    },
+    {
+      "recording": "E-MLB/N-END/Mall-ND64-2",
+      "cell": "E-MLB/N-END/Mall-ND64",
+      "events": 1000000,
+      "mesr": 0.6976903330687352
+    },
+    {
+      "recording": "E-MLB/N-END/Mall-ND64-3",
+      "cell": "E-MLB/N-END/Mall-ND64",
+      "events": 1000000,
+      "mesr": 0.6966526637361301
+    },
+    {
+      "recording": "E-MLB/N-END/Office-ND00-1",
+      "cell": "E-MLB/N-END/Office-ND00",
+      "events": 1000000,
+      "mesr": 0.8623803531999419
+    },
+    {
+      "recording": "E-MLB/N-END/Office-ND00-2",
+      "cell": "E-MLB/N-END/Office-ND00",
+      "events": 1000000,
+      "mesr": 0.8678778236013936
+    },
+    {
+      "recording": "E-MLB/N-END/Office-ND00-3",
+      "cell": "E-MLB/N-END/Office-ND00",
+      "events": 1000000,
+      "mesr": 0.8824325384080542
+    },
+    {
+      "recording": "E-MLB/N-END/Office-ND04-1",
+      "cell": "E-MLB/N-END/Office-ND04",
+      "events": 1000000,
+      "mesr": 0.8282785942163208
+    },
+    {
+      "recording": "E-MLB/N-END/Office-ND04-2",
+      "cell": "E-MLB/N-END/Office-ND04",
+      "events": 1000000,
+      "mesr": 0.8194077932278805
+    },
+    {
+      "recording": "E-MLB/N-END/Office-ND04-3",
+      "cell": "E-MLB/N-END/Office-ND04",
+      "events": 1000000,
+      "mesr": 0.8152063132106973
+    },
+    {
+      "recording": "E-MLB/N-END/Office-ND16-1",
+      "cell": "E-MLB/N-END/Office-ND16",
+      "events": 1000000,
+      "mesr": 0.7810149374814214
+    },
+    {
+      "recording": "E-MLB/N-END/Office-ND16-2",
+      "cell": "E-MLB/N-END/Office-ND16",
+      "events": 1000000,
+      "mesr": 0.7880040803193522
+    },
+    {
+      "recording": "E-MLB/N-END/Office-ND16-3",
+      "cell": "E-MLB/N-END/Office-ND16",
+      "events": 1000000,
+      "mesr": 0.7670741454434526
+    },
+    {
+      "recording": "E-MLB/N-END/Office-ND64-1",
+      "cell": "E-MLB/N-END/Office-ND64",
+      "events": 1000000,
+      "mesr": 0.7093848708753495
+    },
+    {
+      "recording": "E-MLB/N-END/Office-ND64-2",
+      "cell": "E-MLB/N-END/Office-ND64",
+      "events": 1000000,
+      "mesr": 0.6979602121553479
+    },
+    {
+      "recording": "E-MLB/N-END/Office-ND64-3",
+      "cell": "E-MLB/N-END/Office-ND64",
+      "events": 1000000,
+      "mesr": 0.7005790936380885
+    },
+    {
+      "recording": "E-MLB/N-END/Party-ND00-1",
+      "cell": "E-MLB/N-END/Party-ND00",
+      "events": 1000000,
+      "mesr": 0.5597540036940162
+    },
+    {
+      "recording": "E-MLB/N-END/Party-ND00-2",
+      "cell": "E-MLB/N-END/Party-ND00",
+      "events": 1000000,
+      "mesr": 0.5589389849669987
+    },
+    {
+      "recording": "E-MLB/N-END/Party-ND00-3",
+      "cell": "E-MLB/N-END/Party-ND00",
+      "events": 1000000,
+      "mesr": 0.5589839726108928
+    },
+    {
+      "recording": "E-MLB/N-END/Party-ND04-1",
+      "cell": "E-MLB/N-END/Party-ND04",
+      "events": 1000000,
+      "mesr": 0.4992758878467288
+    },
+    {
+      "recording": "E-MLB/N-END/Party-ND04-2",
+      "cell": "E-MLB/N-END/Party-ND04",
+      "events": 1000000,
+      "mesr": 0.539403043939683
+    },
+    {
+      "recording": "E-MLB/N-END/Party-ND04-3",
+      "cell": "E-MLB/N-END/Party-ND04",
+      "events": 1000000,
+      "mesr": 0.5727883388524527
+    },
+    {
+      "recording": "E-MLB/N-END/Party-ND16-1",
+      "cell": "E-MLB/N-END/Party-ND16",
+      "events": 1000000,
+      "mesr": 0.5607169547358083
+    },
+    {
+      "recording": "E-MLB/N-END/Party-ND16-2",
+      "cell": "E-MLB/N-END/Party-ND16",
+      "events": 1000000,
+      "mesr": 0.6107034488476215
+    },
+    {
+      "recording": "E-MLB/N-END/Party-ND16-3",
+      "cell": "E-MLB/N-END/Party-ND16",
+      "events": 1000000,
+      "mesr": 0.5627155728101885
+    },
+    {
+      "recording": "E-MLB/N-END/Party-ND64-1",
+      "cell": "E-MLB/N-END/Party-ND64",
+      "events": 1000000,
+      "mesr": 0.5394331956641025
+    },
+    {
+      "recording": "E-MLB/N-END/Party-ND64-2",
+      "cell": "E-MLB/N-END/Party-ND64",
+      "events": 1000000,
+      "mesr": 0.5664935176021356
+    },
+    {
+      "recording": "E-MLB/N-END/Party-ND64-3",
+      "cell": "E-MLB/N-END/Party-ND64",
+      "events": 1000000,
+      "mesr": 0.55033418470963
+    },
+    {
+      "recording": "E-MLB/N-END/Pedestrian-ND00-1",
+      "cell": "E-MLB/N-END/Pedestrian-ND00",
+      "events": 1000000,
+      "mesr": 0.8473013919298783
+    },
+    {
+      "recording": "E-MLB/N-END/Pedestrian-ND00-2",
+      "cell": "E-MLB/N-END/Pedestrian-ND00",
+      "events": 1000000,
+      "mesr": 0.9238814716286899
+    },
+    {
+      "recording": "E-MLB/N-END/Pedestrian-ND00-3",
+      "cell": "E-MLB/N-END/Pedestrian-ND00",
+      "events": 1000000,
+      "mesr": 1.0969102797041872
+    },
+    {
+      "recording": "E-MLB/N-END/Pedestrian-ND04-1",
+      "cell": "E-MLB/N-END/Pedestrian-ND04",
+      "events": 1000000,
+      "mesr": 0.8690432625881449
+    },
+    {
+      "recording": "E-MLB/N-END/Pedestrian-ND04-2",
+      "cell": "E-MLB/N-END/Pedestrian-ND04",
+      "events": 1000000,
+      "mesr": 0.8618232099103721
+    },
+    {
+      "recording": "E-MLB/N-END/Pedestrian-ND04-3",
+      "cell": "E-MLB/N-END/Pedestrian-ND04",
+      "events": 1000000,
+      "mesr": 0.8295398504938345
+    },
+    {
+      "recording": "E-MLB/N-END/Pedestrian-ND16-1",
+      "cell": "E-MLB/N-END/Pedestrian-ND16",
+      "events": 1000000,
+      "mesr": 0.8410044366271345
+    },
+    {
+      "recording": "E-MLB/N-END/Pedestrian-ND16-2",
+      "cell": "E-MLB/N-END/Pedestrian-ND16",
+      "events": 1000000,
+      "mesr": 0.8172683690204456
+    },
+    {
+      "recording": "E-MLB/N-END/Pedestrian-ND16-3",
+      "cell": "E-MLB/N-END/Pedestrian-ND16",
+      "events": 1000000,
+      "mesr": 0.7675818118414218
+    },
+    {
+      "recording": "E-MLB/N-END/Pedestrian-ND64-1",
+      "cell": "E-MLB/N-END/Pedestrian-ND64",
+      "events": 1000000,
+      "mesr": 0.7509996072699247
+    },
+    {
+      "recording": "E-MLB/N-END/Pedestrian-ND64-2",
+      "cell": "E-MLB/N-END/Pedestrian-ND64",
+      "events": 939333,
+      "mesr": 0.7930278679893084
+    },
+    {
+      "recording": "E-MLB/N-END/Pedestrian-ND64-3",
+      "cell": "E-MLB/N-END/Pedestrian-ND64",
+      "events": 1000000,
+      "mesr": 0.7409069613815008
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND00-1",
+      "cell": "E-MLB/N-END/Rain-ND00",
+      "events": 1000000,
+      "mesr": 0.8584023345538712
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND00-2",
+      "cell": "E-MLB/N-END/Rain-ND00",
+      "events": 1000000,
+      "mesr": 0.8565063160479693
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND00-3",
+      "cell": "E-MLB/N-END/Rain-ND00",
+      "events": 1000000,
+      "mesr": 0.8650664488677663
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND04-1",
+      "cell": "E-MLB/N-END/Rain-ND04",
+      "events": 1000000,
+      "mesr": 0.7969772758795152
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND04-2",
+      "cell": "E-MLB/N-END/Rain-ND04",
+      "events": 1000000,
+      "mesr": 0.7996352471878336
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND04-3",
+      "cell": "E-MLB/N-END/Rain-ND04",
+      "events": 1000000,
+      "mesr": 0.7887866603302806
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND16-1",
+      "cell": "E-MLB/N-END/Rain-ND16",
+      "events": 1000000,
+      "mesr": 0.8132538697153122
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND16-2",
+      "cell": "E-MLB/N-END/Rain-ND16",
+      "events": 1000000,
+      "mesr": 0.8153429684598831
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND16-3",
+      "cell": "E-MLB/N-END/Rain-ND16",
+      "events": 1000000,
+      "mesr": 0.8154179403226034
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND64-1",
+      "cell": "E-MLB/N-END/Rain-ND64",
+      "events": 1000000,
+      "mesr": 0.8036338100390498
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND64-2",
+      "cell": "E-MLB/N-END/Rain-ND64",
+      "events": 1000000,
+      "mesr": 0.8072397114308791
+    },
+    {
+      "recording": "E-MLB/N-END/Rain-ND64-3",
+      "cell": "E-MLB/N-END/Rain-ND64",
+      "events": 1000000,
+      "mesr": 0.8091488170146652
+    },
+    {
+      "recording": "E-MLB/N-END/Rowing-ND00-1",
+      "cell": "E-MLB/N-END/Rowing-ND00",
+      "events": 1000000,
+      "mesr": 1.0920338985668983
+    },
+    {
+      "recording": "E-MLB/N-END/Rowing-ND00-2",
+      "cell": "E-MLB/N-END/Rowing-ND00",
+      "events": 1000000,
+      "mesr": 1.0877091478680079
+    },
+    {
+      "recording": "E-MLB/N-END/Rowing-ND00-3",
+      "cell": "E-MLB/N-END/Rowing-ND00",
+      "events": 1000000,
+      "mesr": 1.080934700968021
+    },
+    {
+      "recording": "E-MLB/N-END/Rowing-ND04-1",
+      "cell": "E-MLB/N-END/Rowing-ND04",
+      "events": 1000000,
+      "mesr": 1.0608566705008358
+    },
+    {
+      "recording": "E-MLB/N-END/Rowing-ND04-2",
+      "cell": "E-MLB/N-END/Rowing-ND04",
+      "events": 1000000,
+      "mesr": 1.074939641975296
+    },
+    {
+      "recording": "E-MLB/N-END/Rowing-ND04-3",
+      "cell": "E-MLB/N-END/Rowing-ND04",
+      "events": 1000000,
+      "mesr": 1.0666570703321365
+    },
+    {
+      "recording": "E-MLB/N-END/Rowing-ND16-1",
+      "cell": "E-MLB/N-END/Rowing-ND16",
+      "events": 1000000,
+      "mesr": 1.092005076333489
+    },
+    {
+      "recording": "E-MLB/N-END/Rowing-ND16-2",
+      "cell": "E-MLB/N-END/Rowing-ND16",
+      "events": 1000000,
+      "mesr": 1.0838168835954876
+    },
+    {
+      "recording": "E-MLB/N-END/Rowing-ND16-3",
+      "cell": "E-MLB/N-END/Rowing-ND16",
+      "events": 1000000,
+      "mesr": 1.0843541401515393
+    },
+    {
+      "recording": "E-MLB/N-END/Rowing-ND64-1",
+      "cell": "E-MLB/N-END/Rowing-ND64",
+      "events": 1000000,
+      "mesr": 1.2222673663508177
+    },
+    {
+      "recording": "E-MLB/N-END/Rowing-ND64-2",
+      "cell": "E-MLB/N-END/Rowing-ND64",
+      "events": 1000000,
+      "mesr": 1.197389479919306
+    },
+    {
+      "recording": "E-MLB/N-END/Rowing-ND64-3",
+      "cell": "E-MLB/N-END/Rowing-ND64",
+      "events": 1000000,
+      "mesr": 1.197584779304464
+    },
+    {
+      "recording": "E-MLB/N-END/School-ND00-1",
+      "cell": "E-MLB/N-END/School-ND00",
+      "events": 1000000,
+      "mesr": 0.6589070683223444
+    },
+    {
+      "recording": "E-MLB/N-END/School-ND00-2",
+      "cell": "E-MLB/N-END/School-ND00",
+      "events": 1000000,
+      "mesr": 0.6735788830126707
+    },
+    {
+      "recording": "E-MLB/N-END/School-ND00-3",
+      "cell": "E-MLB/N-END/School-ND00",
+      "events": 1000000,
+      "mesr": 0.6920861731072809
+    },
+    {
+      "recording": "E-MLB/N-END/School-ND04-1",
+      "cell": "E-MLB/N-END/School-ND04",
+      "events": 1000000,
+      "mesr": 0.6453939347746741
+    },
+    {
+      "recording": "E-MLB/N-END/School-ND04-2",
+      "cell": "E-MLB/N-END/School-ND04",
+      "events": 1000000,
+      "mesr": 0.6160469224506735
+    },
+    {
+      "recording": "E-MLB/N-END/School-ND04-3",
+      "cell": "E-MLB/N-END/School-ND04",
+      "events": 1000000,
+      "mesr": 0.6224497463612454
+    },
+    {
+      "recording": "E-MLB/N-END/School-ND16-1",
+      "cell": "E-MLB/N-END/School-ND16",
+      "events": 1000000,
+      "mesr": 0.6198091906331058
+    },
+    {
+      "recording": "E-MLB/N-END/School-ND16-2",
+      "cell": "E-MLB/N-END/School-ND16",
+      "events": 1000000,
+      "mesr": 0.5177073993605618
+    },
+    {
+      "recording": "E-MLB/N-END/School-ND16-3",
+      "cell": "E-MLB/N-END/School-ND16",
+      "events": 1000000,
+      "mesr": 0.6339209274084444
+    },
+    {
+      "recording": "E-MLB/N-END/School-ND64-1",
+      "cell": "E-MLB/N-END/School-ND64",
+      "events": 1000000,
+      "mesr": 0.6782137527467802
+    },
+    {
+      "recording": "E-MLB/N-END/School-ND64-2",
+      "cell": "E-MLB/N-END/School-ND64",
+      "events": 1000000,
+      "mesr": 0.7211278509681094
+    },
+    {
+      "recording": "E-MLB/N-END/School-ND64-3",
+      "cell": "E-MLB/N-END/School-ND64",
+      "events": 1000000,
+      "mesr": 0.7234621267766256
+    },
+    {
+      "recording": "E-MLB/N-END/Screen-ND00-1",
+      "cell": "E-MLB/N-END/Screen-ND00",
+      "events": 1000000,
+      "mesr": 1.014857364606471
+    },
+    {
+      "recording": "E-MLB/N-END/Screen-ND00-2",
+      "cell": "E-MLB/N-END/Screen-ND00",
+      "events": 1000000,
+      "mesr": 1.0004950175276497
+    },
+    {
+      "recording": "E-MLB/N-END/Screen-ND00-3",
+      "cell": "E-MLB/N-END/Screen-ND00",
+      "events": 1000000,
+      "mesr": 1.0059921298438719
+    },
+    {
+      "recording": "E-MLB/N-END/Screen-ND04-1",
+      "cell": "E-MLB/N-END/Screen-ND04",
+      "events": 1000000,
+      "mesr": 1.0235808696696909
+    },
+    {
+      "recording": "E-MLB/N-END/Screen-ND04-2",
+      "cell": "E-MLB/N-END/Screen-ND04",
+      "events": 1000000,
+      "mesr": 0.9800643677403824
+    },
+    {
+      "recording": "E-MLB/N-END/Screen-ND04-3",
+      "cell": "E-MLB/N-END/Screen-ND04",
+      "events": 1000000,
+      "mesr": 0.9961532875509503
+    },
+    {
+      "recording": "E-MLB/N-END/Screen-ND16-1",
+      "cell": "E-MLB/N-END/Screen-ND16",
+      "events": 1000000,
+      "mesr": 0.9794241947582716
+    },
+    {
+      "recording": "E-MLB/N-END/Screen-ND16-2",
+      "cell": "E-MLB/N-END/Screen-ND16",
+      "events": 1000000,
+      "mesr": 0.9753155182936621
+    },
+    {
+      "recording": "E-MLB/N-END/Screen-ND16-3",
+      "cell": "E-MLB/N-END/Screen-ND16",
+      "events": 1000000,
+      "mesr": 0.9984728806284826
+    },
+    {
+      "recording": "E-MLB/N-END/Screen-ND64-1",
+      "cell": "E-MLB/N-END/Screen-ND64",
+      "events": 1000000,
+      "mesr": 0.850244553232534
+    },
+    {
+      "recording": "E-MLB/N-END/Screen-ND64-2",
+      "cell": "E-MLB/N-END/Screen-ND64",
+      "events": 1000000,
+      "mesr": 0.8720037924343877
+    },
+    {
+      "recording": "E-MLB/N-END/Screen-ND64-3",
+      "cell": "E-MLB/N-END/Screen-ND64",
+      "events": 1000000,
+      "mesr": 0.9548492298985721
+    },
+    {
+      "recording": "E-MLB/N-END/Shapes_Night-ND00-1",
+      "cell": "E-MLB/N-END/Shapes_Night-ND00",
+      "events": 1000000,
+      "mesr": 0.9396589318389256
+    },
+    {
+      "recording": "E-MLB/N-END/Shapes_Night-ND00-2",
+      "cell": "E-MLB/N-END/Shapes_Night-ND00",
+      "events": 1000000,
+      "mesr": 0.9485738882213189
+    },
+    {
+      "recording": "E-MLB/N-END/Shapes_Night-ND00-3",
+      "cell": "E-MLB/N-END/Shapes_Night-ND00",
+      "events": 1000000,
+      "mesr": 0.9354967299233918
+    },
+    {
+      "recording": "E-MLB/N-END/Shapes_Night-ND04-1",
+      "cell": "E-MLB/N-END/Shapes_Night-ND04",
+      "events": 1000000,
+      "mesr": 0.7348537289716769
+    },
+    {
+      "recording": "E-MLB/N-END/Shapes_Night-ND04-2",
+      "cell": "E-MLB/N-END/Shapes_Night-ND04",
+      "events": 1000000,
+      "mesr": 0.7466253976048116
+    },
+    {
+      "recording": "E-MLB/N-END/Shapes_Night-ND04-3",
+      "cell": "E-MLB/N-END/Shapes_Night-ND04",
+      "events": 1000000,
+      "mesr": 0.7263027374212863
+    },
+    {
+      "recording": "E-MLB/N-END/Shapes_Night-ND16-1",
+      "cell": "E-MLB/N-END/Shapes_Night-ND16",
+      "events": 846577,
+      "mesr": 0.6309485792795834
+    },
+    {
+      "recording": "E-MLB/N-END/Shapes_Night-ND16-2",
+      "cell": "E-MLB/N-END/Shapes_Night-ND16",
+      "events": 783654,
+      "mesr": 0.6445253774265355
+    },
+    {
+      "recording": "E-MLB/N-END/Shapes_Night-ND16-3",
+      "cell": "E-MLB/N-END/Shapes_Night-ND16",
+      "events": 873848,
+      "mesr": 0.632105023005143
+    },
+    {
+      "recording": "E-MLB/N-END/Shapes_Night-ND64-1",
+      "cell": "E-MLB/N-END/Shapes_Night-ND64",
+      "events": 467251,
+      "mesr": 0.6819393879371953
+    },
+    {
+      "recording": "E-MLB/N-END/Shapes_Night-ND64-2",
+      "cell": "E-MLB/N-END/Shapes_Night-ND64",
+      "events": 547434,
+      "mesr": 0.6861157355892582
+    },
+    {
+      "recording": "E-MLB/N-END/Shapes_Night-ND64-3",
+      "cell": "E-MLB/N-END/Shapes_Night-ND64",
+      "events": 547986,
+      "mesr": 0.6832072307321634
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND00-1",
+      "cell": "E-MLB/N-END/Signage-ND00",
+      "events": 1000000,
+      "mesr": 0.7606485802292576
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND00-2",
+      "cell": "E-MLB/N-END/Signage-ND00",
+      "events": 1000000,
+      "mesr": 0.7772538288560449
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND00-3",
+      "cell": "E-MLB/N-END/Signage-ND00",
+      "events": 1000000,
+      "mesr": 0.772710595008913
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND04-1",
+      "cell": "E-MLB/N-END/Signage-ND04",
+      "events": 1000000,
+      "mesr": 0.6892883882732005
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND04-2",
+      "cell": "E-MLB/N-END/Signage-ND04",
+      "events": 1000000,
+      "mesr": 0.6531886664973128
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND04-3",
+      "cell": "E-MLB/N-END/Signage-ND04",
+      "events": 1000000,
+      "mesr": 0.6810777831370546
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND16-1",
+      "cell": "E-MLB/N-END/Signage-ND16",
+      "events": 1000000,
+      "mesr": 0.727318894434587
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND16-2",
+      "cell": "E-MLB/N-END/Signage-ND16",
+      "events": 1000000,
+      "mesr": 0.724885587853331
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND16-3",
+      "cell": "E-MLB/N-END/Signage-ND16",
+      "events": 1000000,
+      "mesr": 0.7352315664715559
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND64-1",
+      "cell": "E-MLB/N-END/Signage-ND64",
+      "events": 1000000,
+      "mesr": 0.8008885825669108
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND64-2",
+      "cell": "E-MLB/N-END/Signage-ND64",
+      "events": 921880,
+      "mesr": 0.8068108952054315
+    },
+    {
+      "recording": "E-MLB/N-END/Signage-ND64-3",
+      "cell": "E-MLB/N-END/Signage-ND64",
+      "events": 856319,
+      "mesr": 0.8035304605903832
+    },
+    {
+      "recording": "E-MLB/N-END/Ski_Walker-ND00-1",
+      "cell": "E-MLB/N-END/Ski_Walker-ND00",
+      "events": 1000000,
+      "mesr": 1.0391128943354808
+    },
+    {
+      "recording": "E-MLB/N-END/Ski_Walker-ND00-2",
+      "cell": "E-MLB/N-END/Ski_Walker-ND00",
+      "events": 1000000,
+      "mesr": 1.033263564618706
+    },
+    {
+      "recording": "E-MLB/N-END/Ski_Walker-ND00-3",
+      "cell": "E-MLB/N-END/Ski_Walker-ND00",
+      "events": 1000000,
+      "mesr": 1.0215330049130897
+    },
+    {
+      "recording": "E-MLB/N-END/Ski_Walker-ND04-1",
+      "cell": "E-MLB/N-END/Ski_Walker-ND04",
+      "events": 1000000,
+      "mesr": 0.9018970584360304
+    },
+    {
+      "recording": "E-MLB/N-END/Ski_Walker-ND04-2",
+      "cell": "E-MLB/N-END/Ski_Walker-ND04",
+      "events": 1000000,
+      "mesr": 0.9073372671846478
+    },
+    {
+      "recording": "E-MLB/N-END/Ski_Walker-ND04-3",
+      "cell": "E-MLB/N-END/Ski_Walker-ND04",
+      "events": 1000000,
+      "mesr": 0.90128044230093
+    },
+    {
+      "recording": "E-MLB/N-END/Ski_Walker-ND16-1",
+      "cell": "E-MLB/N-END/Ski_Walker-ND16",
+      "events": 1000000,
+      "mesr": 0.7693812622149163
+    },
+    {
+      "recording": "E-MLB/N-END/Ski_Walker-ND16-2",
+      "cell": "E-MLB/N-END/Ski_Walker-ND16",
+      "events": 1000000,
+      "mesr": 0.766542331374482
+    },
+    {
+      "recording": "E-MLB/N-END/Ski_Walker-ND16-3",
+      "cell": "E-MLB/N-END/Ski_Walker-ND16",
+      "events": 1000000,
+      "mesr": 0.7675562202520585
+    },
+    {
+      "recording": "E-MLB/N-END/Ski_Walker-ND64-1",
+      "cell": "E-MLB/N-END/Ski_Walker-ND64",
+      "events": 810076,
+      "mesr": 0.7113843613157262
+    },
+    {
+      "recording": "E-MLB/N-END/Ski_Walker-ND64-2",
+      "cell": "E-MLB/N-END/Ski_Walker-ND64",
+      "events": 931011,
+      "mesr": 0.7096621434915947
+    },
+    {
+      "recording": "E-MLB/N-END/Ski_Walker-ND64-3",
+      "cell": "E-MLB/N-END/Ski_Walker-ND64",
+      "events": 927120,
+      "mesr": 0.7113902482953862
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND00-1",
+      "cell": "E-MLB/N-END/Snowball-ND00",
+      "events": 452912,
+      "mesr": 1.058356413388664
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND00-2",
+      "cell": "E-MLB/N-END/Snowball-ND00",
+      "events": 573581,
+      "mesr": 1.1479218511021314
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND00-3",
+      "cell": "E-MLB/N-END/Snowball-ND00",
+      "events": 377538,
+      "mesr": 1.1369408075738971
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND04-1",
+      "cell": "E-MLB/N-END/Snowball-ND04",
+      "events": 543782,
+      "mesr": 0.9115092133863238
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND04-2",
+      "cell": "E-MLB/N-END/Snowball-ND04",
+      "events": 487540,
+      "mesr": 0.9198829997966211
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND04-3",
+      "cell": "E-MLB/N-END/Snowball-ND04",
+      "events": 581049,
+      "mesr": 0.9155824274859438
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND16-1",
+      "cell": "E-MLB/N-END/Snowball-ND16",
+      "events": 512499,
+      "mesr": 0.858771760161292
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND16-2",
+      "cell": "E-MLB/N-END/Snowball-ND16",
+      "events": 527331,
+      "mesr": 0.857529149396601
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND16-3",
+      "cell": "E-MLB/N-END/Snowball-ND16",
+      "events": 517772,
+      "mesr": 0.8615094093866162
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND64-1",
+      "cell": "E-MLB/N-END/Snowball-ND64",
+      "events": 769981,
+      "mesr": 0.8145239755528909
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND64-2",
+      "cell": "E-MLB/N-END/Snowball-ND64",
+      "events": 653716,
+      "mesr": 0.8125149251441817
+    },
+    {
+      "recording": "E-MLB/N-END/Snowball-ND64-3",
+      "cell": "E-MLB/N-END/Snowball-ND64",
+      "events": 816878,
+      "mesr": 0.815476361250692
+    },
+    {
+      "recording": "E-MLB/N-END/Sparkler-ND00-1",
+      "cell": "E-MLB/N-END/Sparkler-ND00",
+      "events": 1000000,
+      "mesr": 1.039123434529554
+    },
+    {
+      "recording": "E-MLB/N-END/Sparkler-ND00-2",
+      "cell": "E-MLB/N-END/Sparkler-ND00",
+      "events": 1000000,
+      "mesr": 0.9958084411980767
+    },
+    {
+      "recording": "E-MLB/N-END/Sparkler-ND00-3",
+      "cell": "E-MLB/N-END/Sparkler-ND00",
+      "events": 1000000,
+      "mesr": 0.8943982300533495
+    },
+    {
+      "recording": "E-MLB/N-END/Sparkler-ND04-1",
+      "cell": "E-MLB/N-END/Sparkler-ND04",
+      "events": 1000000,
+      "mesr": 0.858874651769761
+    },
+    {
+      "recording": "E-MLB/N-END/Sparkler-ND04-2",
+      "cell": "E-MLB/N-END/Sparkler-ND04",
+      "events": 1000000,
+      "mesr": 0.8627288879414208
+    },
+    {
+      "recording": "E-MLB/N-END/Sparkler-ND04-3",
+      "cell": "E-MLB/N-END/Sparkler-ND04",
+      "events": 1000000,
+      "mesr": 0.9549979301661449
+    },
+    {
+      "recording": "E-MLB/N-END/Sparkler-ND16-1",
+      "cell": "E-MLB/N-END/Sparkler-ND16",
+      "events": 1000000,
+      "mesr": 1.0175508976015706
+    },
+    {
+      "recording": "E-MLB/N-END/Sparkler-ND16-2",
+      "cell": "E-MLB/N-END/Sparkler-ND16",
+      "events": 1000000,
+      "mesr": 0.9937075830441374
+    },
+    {
+      "recording": "E-MLB/N-END/Sparkler-ND16-3",
+      "cell": "E-MLB/N-END/Sparkler-ND16",
+      "events": 1000000,
+      "mesr": 1.059637718086803
+    },
+    {
+      "recording": "E-MLB/N-END/Sparkler-ND64-1",
+      "cell": "E-MLB/N-END/Sparkler-ND64",
+      "events": 1000000,
+      "mesr": 0.9501873162821997
+    },
+    {
+      "recording": "E-MLB/N-END/Sparkler-ND64-2",
+      "cell": "E-MLB/N-END/Sparkler-ND64",
+      "events": 1000000,
+      "mesr": 0.8517427324858664
+    },
+    {
+      "recording": "E-MLB/N-END/Sparkler-ND64-3",
+      "cell": "E-MLB/N-END/Sparkler-ND64",
+      "events": 1000000,
+      "mesr": 0.8895496053284183
+    },
+    {
+      "recording": "E-MLB/N-END/Squating-ND00-1",
+      "cell": "E-MLB/N-END/Squating-ND00",
+      "events": 1000000,
+      "mesr": 0.9656192713227142
+    },
+    {
+      "recording": "E-MLB/N-END/Squating-ND00-2",
+      "cell": "E-MLB/N-END/Squating-ND00",
+      "events": 1000000,
+      "mesr": 0.9750381150837958
+    },
+    {
+      "recording": "E-MLB/N-END/Squating-ND00-3",
+      "cell": "E-MLB/N-END/Squating-ND00",
+      "events": 1000000,
+      "mesr": 0.9774258218316387
+    },
+    {
+      "recording": "E-MLB/N-END/Squating-ND04-1",
+      "cell": "E-MLB/N-END/Squating-ND04",
+      "events": 1000000,
+      "mesr": 0.9193085338823139
+    },
+    {
+      "recording": "E-MLB/N-END/Squating-ND04-2",
+      "cell": "E-MLB/N-END/Squating-ND04",
+      "events": 1000000,
+      "mesr": 0.9217640995071736
+    },
+    {
+      "recording": "E-MLB/N-END/Squating-ND04-3",
+      "cell": "E-MLB/N-END/Squating-ND04",
+      "events": 1000000,
+      "mesr": 0.9237744104531918
+    },
+    {
+      "recording": "E-MLB/N-END/Squating-ND16-1",
+      "cell": "E-MLB/N-END/Squating-ND16",
+      "events": 1000000,
+      "mesr": 0.8308048105329525
+    },
+    {
+      "recording": "E-MLB/N-END/Squating-ND16-2",
+      "cell": "E-MLB/N-END/Squating-ND16",
+      "events": 1000000,
+      "mesr": 0.8361282133856505
+    },
+    {
+      "recording": "E-MLB/N-END/Squating-ND16-3",
+      "cell": "E-MLB/N-END/Squating-ND16",
+      "events": 1000000,
+      "mesr": 0.8424316946950278
+    },
+    {
+      "recording": "E-MLB/N-END/Squating-ND64-1",
+      "cell": "E-MLB/N-END/Squating-ND64",
+      "events": 1000000,
+      "mesr": 0.7364197789666428
+    },
+    {
+      "recording": "E-MLB/N-END/Squating-ND64-2",
+      "cell": "E-MLB/N-END/Squating-ND64",
+      "events": 1000000,
+      "mesr": 0.7170975875440876
+    },
+    {
+      "recording": "E-MLB/N-END/Squating-ND64-3",
+      "cell": "E-MLB/N-END/Squating-ND64",
+      "events": 1000000,
+      "mesr": 0.724764488448932
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND00-1",
+      "cell": "E-MLB/N-END/Station-ND00",
+      "events": 1000000,
+      "mesr": 0.6775720687359337
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND00-2",
+      "cell": "E-MLB/N-END/Station-ND00",
+      "events": 1000000,
+      "mesr": 0.6859115913516093
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND00-3",
+      "cell": "E-MLB/N-END/Station-ND00",
+      "events": 1000000,
+      "mesr": 0.6659259181071944
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND04-1",
+      "cell": "E-MLB/N-END/Station-ND04",
+      "events": 1000000,
+      "mesr": 0.7103062523341432
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND04-2",
+      "cell": "E-MLB/N-END/Station-ND04",
+      "events": 1000000,
+      "mesr": 0.7108782513938091
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND04-3",
+      "cell": "E-MLB/N-END/Station-ND04",
+      "events": 1000000,
+      "mesr": 0.747571639450095
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND16-1",
+      "cell": "E-MLB/N-END/Station-ND16",
+      "events": 1000000,
+      "mesr": 0.7805361169302244
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND16-2",
+      "cell": "E-MLB/N-END/Station-ND16",
+      "events": 1000000,
+      "mesr": 0.7474802515954054
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND16-3",
+      "cell": "E-MLB/N-END/Station-ND16",
+      "events": 1000000,
+      "mesr": 0.832980929186084
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND64-1",
+      "cell": "E-MLB/N-END/Station-ND64",
+      "events": 1000000,
+      "mesr": 0.7860946884063165
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND64-2",
+      "cell": "E-MLB/N-END/Station-ND64",
+      "events": 1000000,
+      "mesr": 0.7918347871585978
+    },
+    {
+      "recording": "E-MLB/N-END/Station-ND64-3",
+      "cell": "E-MLB/N-END/Station-ND64",
+      "events": 1000000,
+      "mesr": 0.7822901050403143
+    },
+    {
+      "recording": "E-MLB/N-END/String-ND00-1",
+      "cell": "E-MLB/N-END/String-ND00",
+      "events": 1000000,
+      "mesr": 0.9012869304298009
+    },
+    {
+      "recording": "E-MLB/N-END/String-ND00-2",
+      "cell": "E-MLB/N-END/String-ND00",
+      "events": 1000000,
+      "mesr": 0.9098627643330558
+    },
+    {
+      "recording": "E-MLB/N-END/String-ND00-3",
+      "cell": "E-MLB/N-END/String-ND00",
+      "events": 1000000,
+      "mesr": 0.9110758083700723
+    },
+    {
+      "recording": "E-MLB/N-END/String-ND04-1",
+      "cell": "E-MLB/N-END/String-ND04",
+      "events": 1000000,
+      "mesr": 0.8888512559314911
+    },
+    {
+      "recording": "E-MLB/N-END/String-ND04-2",
+      "cell": "E-MLB/N-END/String-ND04",
+      "events": 1000000,
+      "mesr": 0.8889503749400488
+    },
+    {
+      "recording": "E-MLB/N-END/String-ND04-3",
+      "cell": "E-MLB/N-END/String-ND04",
+      "events": 1000000,
+      "mesr": 0.8957776389153506
+    },
+    {
+      "recording": "E-MLB/N-END/String-ND16-1",
+      "cell": "E-MLB/N-END/String-ND16",
+      "events": 1000000,
+      "mesr": 0.8346466332951141
+    },
+    {
+      "recording": "E-MLB/N-END/String-ND16-2",
+      "cell": "E-MLB/N-END/String-ND16",
+      "events": 1000000,
+      "mesr": 0.8274090402992699
+    },
+    {
+      "recording": "E-MLB/N-END/String-ND16-3",
+      "cell": "E-MLB/N-END/String-ND16",
+      "events": 1000000,
+      "mesr": 0.8278620000862414
+    },
+    {
+      "recording": "E-MLB/N-END/String-ND64-1",
+      "cell": "E-MLB/N-END/String-ND64",
+      "events": 1000000,
+      "mesr": 0.6741499577896243
+    },
+    {
+      "recording": "E-MLB/N-END/String-ND64-2",
+      "cell": "E-MLB/N-END/String-ND64",
+      "events": 1000000,
+      "mesr": 0.6615420406061242
+    },
+    {
+      "recording": "E-MLB/N-END/String-ND64-3",
+      "cell": "E-MLB/N-END/String-ND64",
+      "events": 1000000,
+      "mesr": 0.7044103155464821
+    },
+    {
+      "recording": "E-MLB/N-END/Tyre-ND00-1",
+      "cell": "E-MLB/N-END/Tyre-ND00",
+      "events": 1000000,
+      "mesr": 0.9291850610406057
+    },
+    {
+      "recording": "E-MLB/N-END/Tyre-ND00-2",
+      "cell": "E-MLB/N-END/Tyre-ND00",
+      "events": 1000000,
+      "mesr": 0.9913755569682661
+    },
+    {
+      "recording": "E-MLB/N-END/Tyre-ND00-3",
+      "cell": "E-MLB/N-END/Tyre-ND00",
+      "events": 1000000,
+      "mesr": 1.0224534463558577
+    },
+    {
+      "recording": "E-MLB/N-END/Tyre-ND04-1",
+      "cell": "E-MLB/N-END/Tyre-ND04",
+      "events": 1000000,
+      "mesr": 1.01573478579937
+    },
+    {
+      "recording": "E-MLB/N-END/Tyre-ND04-2",
+      "cell": "E-MLB/N-END/Tyre-ND04",
+      "events": 1000000,
+      "mesr": 0.9990548930126344
+    },
+    {
+      "recording": "E-MLB/N-END/Tyre-ND04-3",
+      "cell": "E-MLB/N-END/Tyre-ND04",
+      "events": 1000000,
+      "mesr": 0.9761666840415116
+    },
+    {
+      "recording": "E-MLB/N-END/Tyre-ND16-1",
+      "cell": "E-MLB/N-END/Tyre-ND16",
+      "events": 1000000,
+      "mesr": 1.0150145507625024
+    },
+    {
+      "recording": "E-MLB/N-END/Tyre-ND16-2",
+      "cell": "E-MLB/N-END/Tyre-ND16",
+      "events": 1000000,
+      "mesr": 0.9672257904168533
+    },
+    {
+      "recording": "E-MLB/N-END/Tyre-ND16-3",
+      "cell": "E-MLB/N-END/Tyre-ND16",
+      "events": 1000000,
+      "mesr": 0.9319032743150143
+    },
+    {
+      "recording": "E-MLB/N-END/Tyre-ND64-1",
+      "cell": "E-MLB/N-END/Tyre-ND64",
+      "events": 1000000,
+      "mesr": 0.7995391007666266
+    },
+    {
+      "recording": "E-MLB/N-END/Tyre-ND64-2",
+      "cell": "E-MLB/N-END/Tyre-ND64",
+      "events": 1000000,
+      "mesr": 0.8073690199144621
+    },
+    {
+      "recording": "E-MLB/N-END/Tyre-ND64-3",
+      "cell": "E-MLB/N-END/Tyre-ND64",
+      "events": 1000000,
+      "mesr": 0.7889651714649306
+    },
+    {
+      "recording": "E-MLB/N-END/Wall-ND00-1",
+      "cell": "E-MLB/N-END/Wall-ND00",
+      "events": 1000000,
+      "mesr": 0.5030365492609551
+    },
+    {
+      "recording": "E-MLB/N-END/Wall-ND00-2",
+      "cell": "E-MLB/N-END/Wall-ND00",
+      "events": 1000000,
+      "mesr": 0.5047551598016813
+    },
+    {
+      "recording": "E-MLB/N-END/Wall-ND00-3",
+      "cell": "E-MLB/N-END/Wall-ND00",
+      "events": 1000000,
+      "mesr": 0.4834410542478538
+    },
+    {
+      "recording": "E-MLB/N-END/Wall-ND04-1",
+      "cell": "E-MLB/N-END/Wall-ND04",
+      "events": 1000000,
+      "mesr": 0.4668499348054943
+    },
+    {
+      "recording": "E-MLB/N-END/Wall-ND04-2",
+      "cell": "E-MLB/N-END/Wall-ND04",
+      "events": 1000000,
+      "mesr": 0.45684167181848545
+    },
+    {
+      "recording": "E-MLB/N-END/Wall-ND04-3",
+      "cell": "E-MLB/N-END/Wall-ND04",
+      "events": 1000000,
+      "mesr": 0.44640153688319845
+    },
+    {
+      "recording": "E-MLB/N-END/Wall-ND16-1",
+      "cell": "E-MLB/N-END/Wall-ND16",
+      "events": 1000000,
+      "mesr": 0.5533085970719831
+    },
+    {
+      "recording": "E-MLB/N-END/Wall-ND16-2",
+      "cell": "E-MLB/N-END/Wall-ND16",
+      "events": 1000000,
+      "mesr": 0.5173150852267552
+    },
+    {
+      "recording": "E-MLB/N-END/Wall-ND16-3",
+      "cell": "E-MLB/N-END/Wall-ND16",
+      "events": 1000000,
+      "mesr": 0.5046692119880536
+    },
+    {
+      "recording": "E-MLB/N-END/Wall-ND64-1",
+      "cell": "E-MLB/N-END/Wall-ND64",
+      "events": 1000000,
+      "mesr": 0.6760999133872836
+    },
+    {
+      "recording": "E-MLB/N-END/Wall-ND64-2",
+      "cell": "E-MLB/N-END/Wall-ND64",
+      "events": 1000000,
+      "mesr": 0.6851618784066725
+    },
+    {
+      "recording": "E-MLB/N-END/Wall-ND64-3",
+      "cell": "E-MLB/N-END/Wall-ND64",
+      "events": 1000000,
+      "mesr": 0.6800190245139218
+    },
+    {
+      "recording": "E-MLB/N-END/Water-ND00-1",
+      "cell": "E-MLB/N-END/Water-ND00",
+      "events": 1000000,
+      "mesr": 1.1453316498939121
+    },
+    {
+      "recording": "E-MLB/N-END/Water-ND00-2",
+      "cell": "E-MLB/N-END/Water-ND00",
+      "events": 1000000,
+      "mesr": 1.167297990806794
+    },
+    {
+      "recording": "E-MLB/N-END/Water-ND00-3",
+      "cell": "E-MLB/N-END/Water-ND00",
+      "events": 1000000,
+      "mesr": 1.2005724579351091
+    },
+    {
+      "recording": "E-MLB/N-END/Water-ND04-1",
+      "cell": "E-MLB/N-END/Water-ND04",
+      "events": 1000000,
+      "mesr": 1.0049339136344406
+    },
+    {
+      "recording": "E-MLB/N-END/Water-ND04-2",
+      "cell": "E-MLB/N-END/Water-ND04",
+      "events": 1000000,
+      "mesr": 1.040748949043468
+    },
+    {
+      "recording": "E-MLB/N-END/Water-ND04-3",
+      "cell": "E-MLB/N-END/Water-ND04",
+      "events": 1000000,
+      "mesr": 1.0068625054515425
+    },
+    {
+      "recording": "E-MLB/N-END/Water-ND16-1",
+      "cell": "E-MLB/N-END/Water-ND16",
+      "events": 1000000,
+      "mesr": 0.9410883576822084
+    },
+    {
+      "recording": "E-MLB/N-END/Water-ND16-2",
+      "cell": "E-MLB/N-END/Water-ND16",
+      "events": 1000000,
+      "mesr": 0.9069914659953238
+    },
+    {
+      "recording": "E-MLB/N-END/Water-ND16-3",
+      "cell": "E-MLB/N-END/Water-ND16",
+      "events": 1000000,
+      "mesr": 0.9100878824145328
+    },
+    {
+      "recording": "E-MLB/N-END/Water-ND64-1",
+      "cell": "E-MLB/N-END/Water-ND64",
+      "events": 1000000,
+      "mesr": 0.8126001409637118
+    },
+    {
+      "recording": "E-MLB/N-END/Water-ND64-2",
+      "cell": "E-MLB/N-END/Water-ND64",
+      "events": 1000000,
+      "mesr": 0.8895981642197454
+    },
+    {
+      "recording": "E-MLB/N-END/Water-ND64-3",
+      "cell": "E-MLB/N-END/Water-ND64",
+      "events": 1000000,
+      "mesr": 0.821685876400005
+    },
+    {
+      "recording": "E-MLB/N-END/Water_Cooler-ND00-1",
+      "cell": "E-MLB/N-END/Water_Cooler-ND00",
+      "events": 1000000,
+      "mesr": 0.9927658143369544
+    },
+    {
+      "recording": "E-MLB/N-END/Water_Cooler-ND00-2",
+      "cell": "E-MLB/N-END/Water_Cooler-ND00",
+      "events": 1000000,
+      "mesr": 0.974879284039386
+    },
+    {
+      "recording": "E-MLB/N-END/Water_Cooler-ND00-3",
+      "cell": "E-MLB/N-END/Water_Cooler-ND00",
+      "events": 1000000,
+      "mesr": 1.095378102283398
+    },
+    {
+      "recording": "E-MLB/N-END/Water_Cooler-ND04-1",
+      "cell": "E-MLB/N-END/Water_Cooler-ND04",
+      "events": 1000000,
+      "mesr": 0.8055424680682267
+    },
+    {
+      "recording": "E-MLB/N-END/Water_Cooler-ND04-2",
+      "cell": "E-MLB/N-END/Water_Cooler-ND04",
+      "events": 1000000,
+      "mesr": 0.8207506905970204
+    },
+    {
+      "recording": "E-MLB/N-END/Water_Cooler-ND04-3",
+      "cell": "E-MLB/N-END/Water_Cooler-ND04",
+      "events": 1000000,
+      "mesr": 0.7985487490047507
+    },
+    {
+      "recording": "E-MLB/N-END/Water_Cooler-ND16-1",
+      "cell": "E-MLB/N-END/Water_Cooler-ND16",
+      "events": 1000000,
+      "mesr": 0.7714351644496734
+    },
+    {
+      "recording": "E-MLB/N-END/Water_Cooler-ND16-2",
+      "cell": "E-MLB/N-END/Water_Cooler-ND16",
+      "events": 1000000,
+      "mesr": 0.7826483716729961
+    },
+    {
+      "recording": "E-MLB/N-END/Water_Cooler-ND16-3",
+      "cell": "E-MLB/N-END/Water_Cooler-ND16",
+      "events": 944555,
+      "mesr": 0.8068315332069252
+    },
+    {
+      "recording": "E-MLB/N-END/Water_Cooler-ND64-1",
+      "cell": "E-MLB/N-END/Water_Cooler-ND64",
+      "events": 641065,
+      "mesr": 0.7908051932612883
+    },
+    {
+      "recording": "E-MLB/N-END/Water_Cooler-ND64-2",
+      "cell": "E-MLB/N-END/Water_Cooler-ND64",
+      "events": 674597,
+      "mesr": 0.760182416612381
+    },
+    {
+      "recording": "E-MLB/N-END/Water_Cooler-ND64-3",
+      "cell": "E-MLB/N-END/Water_Cooler-ND64",
+      "events": 777542,
+      "mesr": 0.7933974278738704
+    },
+    {
+      "recording": "E-MLB/N-END/Wheelchair-ND00-1",
+      "cell": "E-MLB/N-END/Wheelchair-ND00",
+      "events": 1000000,
+      "mesr": 0.9385998720588344
+    },
+    {
+      "recording": "E-MLB/N-END/Wheelchair-ND00-2",
+      "cell": "E-MLB/N-END/Wheelchair-ND00",
+      "events": 1000000,
+      "mesr": 0.9419035248396028
+    },
+    {
+      "recording": "E-MLB/N-END/Wheelchair-ND00-3",
+      "cell": "E-MLB/N-END/Wheelchair-ND00",
+      "events": 1000000,
+      "mesr": 0.9422815859484792
+    },
+    {
+      "recording": "E-MLB/N-END/Wheelchair-ND04-1",
+      "cell": "E-MLB/N-END/Wheelchair-ND04",
+      "events": 1000000,
+      "mesr": 0.9158734750821768
+    },
+    {
+      "recording": "E-MLB/N-END/Wheelchair-ND04-2",
+      "cell": "E-MLB/N-END/Wheelchair-ND04",
+      "events": 1000000,
+      "mesr": 0.9176339747538664
+    },
+    {
+      "recording": "E-MLB/N-END/Wheelchair-ND04-3",
+      "cell": "E-MLB/N-END/Wheelchair-ND04",
+      "events": 1000000,
+      "mesr": 0.8947874465728161
+    },
+    {
+      "recording": "E-MLB/N-END/Wheelchair-ND16-1",
+      "cell": "E-MLB/N-END/Wheelchair-ND16",
+      "events": 1000000,
+      "mesr": 0.8566549927542089
+    },
+    {
+      "recording": "E-MLB/N-END/Wheelchair-ND16-2",
+      "cell": "E-MLB/N-END/Wheelchair-ND16",
+      "events": 1000000,
+      "mesr": 0.8532594522426368
+    },
+    {
+      "recording": "E-MLB/N-END/Wheelchair-ND16-3",
+      "cell": "E-MLB/N-END/Wheelchair-ND16",
+      "events": 1000000,
+      "mesr": 0.8610238313525901
+    },
+    {
+      "recording": "E-MLB/N-END/Wheelchair-ND64-1",
+      "cell": "E-MLB/N-END/Wheelchair-ND64",
+      "events": 1000000,
+      "mesr": 0.7686458264921963
+    },
+    {
+      "recording": "E-MLB/N-END/Wheelchair-ND64-2",
+      "cell": "E-MLB/N-END/Wheelchair-ND64",
+      "events": 1000000,
+      "mesr": 0.7805774171317386
+    },
+    {
+      "recording": "E-MLB/N-END/Wheelchair-ND64-3",
+      "cell": "E-MLB/N-END/Wheelchair-ND64",
+      "events": 1000000,
+      "mesr": 0.7653403716405288
+    },
+    {
+      "recording": "E-MLB/N-END/Windmill-ND00-1",
+      "cell": "E-MLB/N-END/Windmill-ND00",
+      "events": 811256,
+      "mesr": 1.137814890405429
+    },
+    {
+      "recording": "E-MLB/N-END/Windmill-ND00-2",
+      "cell": "E-MLB/N-END/Windmill-ND00",
+      "events": 735665,
+      "mesr": 1.1582438382544138
+    },
+    {
+      "recording": "E-MLB/N-END/Windmill-ND00-3",
+      "cell": "E-MLB/N-END/Windmill-ND00",
+      "events": 846448,
+      "mesr": 1.0785433286279966
+    },
+    {
+      "recording": "E-MLB/N-END/Windmill-ND04-1",
+      "cell": "E-MLB/N-END/Windmill-ND04",
+      "events": 801683,
+      "mesr": 1.0667361297496332
+    },
+    {
+      "recording": "E-MLB/N-END/Windmill-ND04-2",
+      "cell": "E-MLB/N-END/Windmill-ND04",
+      "events": 799532,
+      "mesr": 1.066196765592706
+    },
+    {
+      "recording": "E-MLB/N-END/Windmill-ND04-3",
+      "cell": "E-MLB/N-END/Windmill-ND04",
+      "events": 898879,
+      "mesr": 0.9607227602788813
+    },
+    {
+      "recording": "E-MLB/N-END/Windmill-ND16-1",
+      "cell": "E-MLB/N-END/Windmill-ND16",
+      "events": 1000000,
+      "mesr": 0.8790532772839253
+    },
+    {
+      "recording": "E-MLB/N-END/Windmill-ND16-2",
+      "cell": "E-MLB/N-END/Windmill-ND16",
+      "events": 1000000,
+      "mesr": 0.9526295078855881
+    },
+    {
+      "recording": "E-MLB/N-END/Windmill-ND16-3",
+      "cell": "E-MLB/N-END/Windmill-ND16",
+      "events": 1000000,
+      "mesr": 0.9753816963160892
+    },
+    {
+      "recording": "E-MLB/N-END/Windmill-ND64-1",
+      "cell": "E-MLB/N-END/Windmill-ND64",
+      "events": 886343,
+      "mesr": 0.6940290938687809
+    },
+    {
+      "recording": "E-MLB/N-END/Windmill-ND64-2",
+      "cell": "E-MLB/N-END/Windmill-ND64",
+      "events": 1000000,
+      "mesr": 0.6526546061860262
+    },
+    {
+      "recording": "E-MLB/N-END/Windmill-ND64-3",
+      "cell": "E-MLB/N-END/Windmill-ND64",
+      "events": 1000000,
+      "mesr": 0.5885892727284389
+    }
+  ],
+  "wall_seconds": 81.43565523100551,
+  "summary": {
+    "cells": 384,
+    "incomplete_cells": [],
+    "repetition_readings": 1152,
+    "published_gap": 0.0092,
+    "spread": {
+      "mean": 0.05043197090193948,
+      "median": 0.030715852935153887,
+      "min": 0.0006806937907788413,
+      "max": 0.3199669299188157
+    },
+    "repeatability_sd": 0.038762750058825325,
+    "cells_exceeding_gap": 333,
+    "fraction_exceeding_gap": 0.8671875,
+    "median_spread_in_gaps": 3.338679666864553,
+    "worst_cell": {
+      "cell": "E-MLB/N-END/Car_Night-ND00",
+      "repetitions": 3,
+      "mesr": [
+        1.0488025647113697,
+        1.1823323324774773,
+        0.8623654025586616
+      ],
+      "mean": 1.0311667665825028,
+      "spread": 0.3199669299188157,
+      "sd": 0.1607108431069593
+    }
+  }
+}

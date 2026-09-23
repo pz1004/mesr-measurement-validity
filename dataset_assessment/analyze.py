@@ -761,6 +761,15 @@ def figures(report: Dict) -> List[Path]:
             axis.grid(alpha=0.25, linewidth=0.3)
             axis.set_xlim(0, 1.02)
             axis.tick_params(labelbottom=False)
+            # The panels' vertical scales differ by >30x (0.50 on DVSCLEAN against 15.47 on
+            # Pure_BA), so a slope reads across them but a height does not. Printing each span
+            # states that where the eye would otherwise compare the panels directly. Read
+            # after set_xlim so autoscaling has settled.
+            # Top-right, not under the name: every panel's curves sit low or converge right,
+            # so the left shoulder the name occupies is the only other clear corner.
+            low, high = axis.get_ylim()
+            axis.text(0.975, 0.94, f"span {high - low:.2f}", transform=axis.transAxes,
+                      ha="right", va="top", fontsize=4.8, color="#505050")
             # No axis labels: at five panels they are five copies of the caption's first
             # clause, and the height they cost is the height the panels need.
 

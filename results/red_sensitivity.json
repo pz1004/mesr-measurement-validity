@@ -1,0 +1,283 @@
+{
+  "excluded": "red",
+  "frozen": {
+    "with_red": {
+      "pooled": {
+        "n": 33,
+        "rho": -0.05436603608203023,
+        "p": 0.7638040009421712
+      },
+      "within_retention": {
+        "levels": [
+          {
+            "retention": 0.4,
+            "n": 8,
+            "rho": 0.3333333333333334,
+            "p": 0.4197530864197531
+          },
+          {
+            "retention": 0.5,
+            "n": 8,
+            "rho": 0.1197626261913259,
+            "p": 0.7775830437712571
+          },
+          {
+            "retention": 0.6,
+            "n": 8,
+            "rho": 0.14371515142959107,
+            "p": 0.7342214747617433
+          },
+          {
+            "retention": 0.8,
+            "n": 8,
+            "rho": -0.3044077736591046,
+            "p": 0.4635148227616074
+          }
+        ],
+        "mean_rho": 0.07310083432378646
+      },
+      "inversion": {
+        "levels": [
+          {
+            "retention": 0.4,
+            "top_mesr_method": "red",
+            "accuracy": 0.6319444444444444,
+            "accuracy_rank": 3,
+            "methods": 8
+          },
+          {
+            "retention": 0.5,
+            "top_mesr_method": "red",
+            "accuracy": 0.6423611111111112,
+            "accuracy_rank": 1,
+            "methods": 8
+          },
+          {
+            "retention": 0.6,
+            "top_mesr_method": "red",
+            "accuracy": 0.6493055555555556,
+            "accuracy_rank": 1,
+            "methods": 8
+          },
+          {
+            "retention": 0.8,
+            "top_mesr_method": "red",
+            "accuracy": 0.8090277777777778,
+            "accuracy_rank": 1,
+            "methods": 8
+          }
+        ],
+        "levels_least_accurate": 3
+      }
+    },
+    "without_red": {
+      "pooled": {
+        "n": 29,
+        "rho": 0.16477571080767425,
+        "p": 0.39300904491896604
+      },
+      "within_retention": {
+        "levels": [
+          {
+            "retention": 0.4,
+            "n": 7,
+            "rho": 0.6071428571428572,
+            "p": 0.1482311614811614
+          },
+          {
+            "retention": 0.5,
+            "n": 7,
+            "rho": 0.6847124716486249,
+            "p": 0.08966645319106824
+          },
+          {
+            "retention": 0.6,
+            "n": 7,
+            "rho": 0.7207499701564473,
+            "p": 0.06763499473028148
+          },
+          {
+            "retention": 0.8,
+            "n": 7,
+            "rho": 0.07881104062391008,
+            "p": 0.8666213432418689
+          }
+        ],
+        "mean_rho": 0.5228540848929598
+      },
+      "inversion": {
+        "levels": [
+          {
+            "retention": 0.4,
+            "top_mesr_method": "evflow",
+            "accuracy": 0.6944444444444444,
+            "accuracy_rank": 6,
+            "methods": 7
+          },
+          {
+            "retention": 0.5,
+            "top_mesr_method": "evflow",
+            "accuracy": 0.7534722222222222,
+            "accuracy_rank": 4,
+            "methods": 7
+          },
+          {
+            "retention": 0.6,
+            "top_mesr_method": "evflow",
+            "accuracy": 0.8368055555555556,
+            "accuracy_rank": 5,
+            "methods": 7
+          },
+          {
+            "retention": 0.8,
+            "top_mesr_method": "ynoise",
+            "accuracy": 0.9305555555555556,
+            "accuracy_rank": 6,
+            "methods": 7
+          }
+        ],
+        "levels_least_accurate": 0
+      }
+    }
+  },
+  "trained_cnn2d": {
+    "with_red": {
+      "pooled": {
+        "n": 40,
+        "rho": 0.13533194870409643,
+        "p": 0.4050626205595146
+      },
+      "within_retention": {
+        "levels": [
+          {
+            "retention": 0.4,
+            "n": 8,
+            "rho": 0.5988131309566295,
+            "p": 0.11675354405796776
+          },
+          {
+            "retention": 0.5,
+            "n": 8,
+            "rho": 0.5952380952380953,
+            "p": 0.11952980613879259
+          },
+          {
+            "retention": 0.6,
+            "n": 8,
+            "rho": 0.8263621207201486,
+            "p": 0.01144276499994122
+          },
+          {
+            "retention": 0.8,
+            "n": 8,
+            "rho": -0.4285714285714286,
+            "p": 0.2894032248467901
+          }
+        ],
+        "mean_rho": 0.39796047958586117
+      },
+      "inversion": {
+        "levels": [
+          {
+            "retention": 0.4,
+            "top_mesr_method": "red",
+            "accuracy": 0.4421052631578947,
+            "accuracy_rank": 8,
+            "methods": 8
+          },
+          {
+            "retention": 0.5,
+            "top_mesr_method": "red",
+            "accuracy": 0.43859649122807015,
+            "accuracy_rank": 7,
+            "methods": 8
+          },
+          {
+            "retention": 0.6,
+            "top_mesr_method": "red",
+            "accuracy": 0.41169590643274856,
+            "accuracy_rank": 7,
+            "methods": 8
+          },
+          {
+            "retention": 0.8,
+            "top_mesr_method": "red",
+            "accuracy": 0.33918128654970764,
+            "accuracy_rank": 1,
+            "methods": 8
+          }
+        ],
+        "levels_least_accurate": 1
+      }
+    },
+    "without_red": {
+      "pooled": {
+        "n": 35,
+        "rho": 0.1625247170146812,
+        "p": 0.3509169630274598
+      },
+      "within_retention": {
+        "levels": [
+          {
+            "retention": 0.4,
+            "n": 7,
+            "rho": 0.396412483586046,
+            "p": 0.378634709500413
+          },
+          {
+            "retention": 0.5,
+            "n": 7,
+            "rho": 0.42857142857142866,
+            "p": 0.337368311085824
+          },
+          {
+            "retention": 0.6,
+            "n": 7,
+            "rho": 0.8108437164260032,
+            "p": 0.02691632884316199
+          },
+          {
+            "retention": 0.8,
+            "n": 7,
+            "rho": -0.14285714285714288,
+            "p": 0.7599453002180929
+          }
+        ],
+        "mean_rho": 0.37324262143158377
+      },
+      "inversion": {
+        "levels": [
+          {
+            "retention": 0.4,
+            "top_mesr_method": "evflow",
+            "accuracy": 0.3964912280701754,
+            "accuracy_rank": 5,
+            "methods": 7
+          },
+          {
+            "retention": 0.5,
+            "top_mesr_method": "evflow",
+            "accuracy": 0.4514619883040936,
+            "accuracy_rank": 7,
+            "methods": 7
+          },
+          {
+            "retention": 0.6,
+            "top_mesr_method": "evflow",
+            "accuracy": 0.3730994152046783,
+            "accuracy_rank": 4,
+            "methods": 7
+          },
+          {
+            "retention": 0.8,
+            "top_mesr_method": "ynoise",
+            "accuracy": 0.43157894736842106,
+            "accuracy_rank": 6,
+            "methods": 7
+          }
+        ],
+        "levels_least_accurate": 0
+      }
+    }
+  }
+}

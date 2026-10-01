@@ -64,13 +64,37 @@ partial output and can be inspected.
 
 E-MLB records every (scene, ND) cell three times under nominally identical conditions; every
 other run here reads the first, as the published tables do. This scores all three and reports
-the within-cell spread — a Type A repeatability for the statistic (App. N).
+the within-cell spread — a Type A repeatability for the statistic (App. H).
 
 ```bash
 python -m dataset_assessment.emlb_repeatability --workers 16   # results/emlb_repeatability.json  ~81 s
 ```
 
 Needs no denoiser build: every reading is the unfiltered stream.
+
+### How much of the null's gain is its draw
+
+`random_null` is seeded, so every number the paper quotes for it reads one realisation per
+recording, and the scene bootstrap behind those numbers resamples recordings rather than the
+selector. This re-scores the null under ten draws on the two corpora carrying the specificity
+and blank-sample verdicts, and reports the across-draw spread of the quantities the main text
+states (Sec. V-B, Sec. V-C).
+
+```bash
+for S in 20260726 20260727 20260728 20260729 20260730 \
+         20260731 20260732 20260733 20260734 20260735; do
+  for D in dvsd22 pure_ba; do
+    python -m dataset_assessment.run_benchmark --dataset "$D" --methods random_null \
+           --null-seed "$S" --out "results/null_seeds/${D}_s${S}.json"
+  done
+done
+python -m dataset_assessment.null_seed_sensitivity   # results/null_seed_sensitivity.json  <1 s
+```
+
+The grid runs take about 10 min in total; the aggregator is instant. The filters do not depend
+on the seed, so the blank-sample lead reads their side from `benchmark_pure_ba.json` and varies
+only the control. Seed 20260726 is the released default and reproduces the published
+`+1.3052`, which is the check that the aggregator matches the paper's definition.
 
 ### Matched-retention label quality
 

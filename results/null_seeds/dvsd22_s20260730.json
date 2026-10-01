@@ -1,0 +1,1963 @@
+{
+  "dataset": "dvsd22",
+  "retentions": [
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    1.0
+  ],
+  "max_events": 1000000,
+  "hot_pixel_removal": false,
+  "null_seed": 20260730,
+  "records": [
+    {
+      "recording": "DVSD22/HDD/2x100Hz",
+      "synthetic": false,
+      "sensor": [
+        346,
+        260
+      ],
+      "events": 1000000,
+      "hot_pixel_removal": null,
+      "raw_mesr": 2.9758536385513112,
+      "raw_decomposition": {
+        "ntss": 0.005204840161338711,
+        "ln": 4257.878757219252,
+        "occupied_px": 5852,
+        "n_events": 30000
+      },
+      "methods": {
+        "random_null": {
+          "method": "random_null",
+          "sensor": [
+            346,
+            260
+          ],
+          "r_star": 0.05,
+          "mesr_star": 3.7638812648498883,
+          "auc_over_r": 3.0712836027427657,
+          "evaluable_range": [
+            0.05,
+            1.0
+          ],
+          "optimum_at_evaluable_floor": true,
+          "raw_mesr": 2.9758536385513112,
+          "delta_over_raw_at_r_star": 0.788027626298577,
+          "native_retention": NaN,
+          "is_oracle": false,
+          "is_null": true,
+          "curve": [
+            {
+              "r": 0.05,
+              "mesr": 3.7638812648498883,
+              "kept_events": 50000,
+              "evaluable": true
+            },
+            {
+              "r": 0.1,
+              "mesr": 3.2972742392456476,
+              "kept_events": 100000,
+              "evaluable": true
+            },
+            {
+              "r": 0.15,
+              "mesr": 3.29987558073703,
+              "kept_events": 150000,
+              "evaluable": true
+            },
+            {
+              "r": 0.2,
+              "mesr": 2.9372075125873103,
+              "kept_events": 200000,
+              "evaluable": true
+            },
+            {
+              "r": 0.25,
+              "mesr": 3.12351444338386,
+              "kept_events": 250000,
+              "evaluable": true
+            },
+            {
+              "r": 0.3,
+              "mesr": 3.104341110470851,
+              "kept_events": 300000,
+              "evaluable": true
+            },
+            {
+              "r": 0.35,
+              "mesr": 3.0813605449649875,
+              "kept_events": 350000,
+              "evaluable": true
+            },
+            {
+              "r": 0.4,
+              "mesr": 3.0344108684660633,
+              "kept_events": 400000,
+              "evaluable": true
+            },
+            {
+              "r": 0.45,
+              "mesr": 3.0626341182722663,
+              "kept_events": 450000,
+              "evaluable": true
+            },
+            {
+              "r": 0.5,
+              "mesr": 2.9918685678172823,
+              "kept_events": 500000,
+              "evaluable": true
+            },
+            {
+              "r": 0.55,
+              "mesr": 3.043728720173574,
+              "kept_events": 550000,
+              "evaluable": true
+            },
+            {
+              "r": 0.6,
+              "mesr": 3.0319103693749505,
+              "kept_events": 600000,
+              "evaluable": true
+            },
+            {
+              "r": 0.65,
+              "mesr": 3.0050775961192944,
+              "kept_events": 650000,
+              "evaluable": true
+            },
+            {
+              "r": 0.7,
+              "mesr": 2.983836626790608,
+              "kept_events": 700000,
+              "evaluable": true
+            },
+            {
+              "r": 0.75,
+              "mesr": 3.0191572692816986,
+              "kept_events": 750000,
+              "evaluable": true
+            },
+            {
+              "r": 0.8,
+              "mesr": 3.0003001839723216,
+              "kept_events": 800000,
+              "evaluable": true
+            },
+            {
+              "r": 0.85,
+              "mesr": 2.9865589692338523,
+              "kept_events": 850000,
+              "evaluable": true
+            },
+            {
+              "r": 0.9,
+              "mesr": 3.0027165723371083,
+              "kept_events": 900000,
+              "evaluable": true
+            },
+            {
+              "r": 0.95,
+              "mesr": 2.9787477071832424,
+              "kept_events": 950000,
+              "evaluable": true
+            },
+            {
+              "r": 1.0,
+              "mesr": 2.9758536385513112,
+              "kept_events": 1000000,
+              "evaluable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "recording": "DVSD22/HDD/2x110Hz",
+      "synthetic": false,
+      "sensor": [
+        346,
+        260
+      ],
+      "events": 1000000,
+      "hot_pixel_removal": null,
+      "raw_mesr": 3.9501929393475104,
+      "raw_decomposition": {
+        "ntss": 0.005321555162949876,
+        "ln": 2979.273690004892,
+        "occupied_px": 3730,
+        "n_events": 30000
+      },
+      "methods": {
+        "random_null": {
+          "method": "random_null",
+          "sensor": [
+            346,
+            260
+          ],
+          "r_star": 0.05,
+          "mesr_star": 4.800274623785451,
+          "auc_over_r": 4.192358528103899,
+          "evaluable_range": [
+            0.05,
+            1.0
+          ],
+          "optimum_at_evaluable_floor": true,
+          "raw_mesr": 3.9501929393475104,
+          "delta_over_raw_at_r_star": 0.8500816844379404,
+          "native_retention": NaN,
+          "is_oracle": false,
+          "is_null": true,
+          "curve": [
+            {
+              "r": 0.05,
+              "mesr": 4.800274623785451,
+              "kept_events": 50000,
+              "evaluable": true
+            },
+            {
+              "r": 0.1,
+              "mesr": 4.655318196336434,
+              "kept_events": 100000,
+              "evaluable": true
+            },
+            {
+              "r": 0.15,
+              "mesr": 4.560841858892605,
+              "kept_events": 150000,
+              "evaluable": true
+            },
+            {
+              "r": 0.2,
+              "mesr": 4.506463964326541,
+              "kept_events": 200000,
+              "evaluable": true
+            },
+            {
+              "r": 0.25,
+              "mesr": 4.2481160220937975,
+              "kept_events": 250000,
+              "evaluable": true
+            },
+            {
+              "r": 0.3,
+              "mesr": 4.272342926578475,
+              "kept_events": 300000,
+              "evaluable": true
+            },
+            {
+              "r": 0.35,
+              "mesr": 4.245288699241346,
+              "kept_events": 350000,
+              "evaluable": true
+            },
+            {
+              "r": 0.4,
+              "mesr": 4.178829727863183,
+              "kept_events": 400000,
+              "evaluable": true
+            },
+            {
+              "r": 0.45,
+              "mesr": 4.12994915850893,
+              "kept_events": 450000,
+              "evaluable": true
+            },
+            {
+              "r": 0.5,
+              "mesr": 4.1148511523999165,
+              "kept_events": 500000,
+              "evaluable": true
+            },
+            {
+              "r": 0.55,
+              "mesr": 4.07828509934948,
+              "kept_events": 550000,
+              "evaluable": true
+            },
+            {
+              "r": 0.6,
+              "mesr": 4.109586303574433,
+              "kept_events": 600000,
+              "evaluable": true
+            },
+            {
+              "r": 0.65,
+              "mesr": 4.075112500974546,
+              "kept_events": 650000,
+              "evaluable": true
+            },
+            {
+              "r": 0.7,
+              "mesr": 3.9883173609700604,
+              "kept_events": 700000,
+              "evaluable": true
+            },
+            {
+              "r": 0.75,
+              "mesr": 4.0747785574976945,
+              "kept_events": 750000,
+              "evaluable": true
+            },
+            {
+              "r": 0.8,
+              "mesr": 4.0476099695534336,
+              "kept_events": 800000,
+              "evaluable": true
+            },
+            {
+              "r": 0.85,
+              "mesr": 3.9674669306751684,
+              "kept_events": 850000,
+              "evaluable": true
+            },
+            {
+              "r": 0.9,
+              "mesr": 4.030614649692163,
+              "kept_events": 900000,
+              "evaluable": true
+            },
+            {
+              "r": 0.95,
+              "mesr": 3.995805173879386,
+              "kept_events": 950000,
+              "evaluable": true
+            },
+            {
+              "r": 1.0,
+              "mesr": 3.9501929393475104,
+              "kept_events": 1000000,
+              "evaluable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "recording": "DVSD22/HDD/2x30Hz_a",
+      "synthetic": false,
+      "sensor": [
+        346,
+        260
+      ],
+      "events": 1000000,
+      "hot_pixel_removal": null,
+      "raw_mesr": 1.442117081068424,
+      "raw_decomposition": {
+        "ntss": 0.0018702667866706667,
+        "ln": 4064.913865747594,
+        "occupied_px": 4917,
+        "n_events": 30000
+      },
+      "methods": {
+        "random_null": {
+          "method": "random_null",
+          "sensor": [
+            346,
+            260
+          ],
+          "r_star": 0.05,
+          "mesr_star": 2.273711851879713,
+          "auc_over_r": 1.4984881160309895,
+          "evaluable_range": [
+            0.05,
+            1.0
+          ],
+          "optimum_at_evaluable_floor": true,
+          "raw_mesr": 1.442117081068424,
+          "delta_over_raw_at_r_star": 0.831594770811289,
+          "native_retention": NaN,
+          "is_oracle": false,
+          "is_null": true,
+          "curve": [
+            {
+              "r": 0.05,
+              "mesr": 2.273711851879713,
+              "kept_events": 50000,
+              "evaluable": true
+            },
+            {
+              "r": 0.1,
+              "mesr": 1.6394428473582392,
+              "kept_events": 100000,
+              "evaluable": true
+            },
+            {
+              "r": 0.15,
+              "mesr": 1.4451229298234645,
+              "kept_events": 150000,
+              "evaluable": true
+            },
+            {
+              "r": 0.2,
+              "mesr": 1.5621788152625415,
+              "kept_events": 200000,
+              "evaluable": true
+            },
+            {
+              "r": 0.25,
+              "mesr": 1.5355360771284612,
+              "kept_events": 250000,
+              "evaluable": true
+            },
+            {
+              "r": 0.3,
+              "mesr": 1.4567992912678123,
+              "kept_events": 300000,
+              "evaluable": true
+            },
+            {
+              "r": 0.35,
+              "mesr": 1.5188516373307572,
+              "kept_events": 350000,
+              "evaluable": true
+            },
+            {
+              "r": 0.4,
+              "mesr": 1.4797850127596324,
+              "kept_events": 400000,
+              "evaluable": true
+            },
+            {
+              "r": 0.45,
+              "mesr": 1.4369719638027258,
+              "kept_events": 450000,
+              "evaluable": true
+            },
+            {
+              "r": 0.5,
+              "mesr": 1.4955383986069481,
+              "kept_events": 500000,
+              "evaluable": true
+            },
+            {
+              "r": 0.55,
+              "mesr": 1.4582799350574656,
+              "kept_events": 550000,
+              "evaluable": true
+            },
+            {
+              "r": 0.6,
+              "mesr": 1.4445808049887372,
+              "kept_events": 600000,
+              "evaluable": true
+            },
+            {
+              "r": 0.65,
+              "mesr": 1.4663413842748154,
+              "kept_events": 650000,
+              "evaluable": true
+            },
+            {
+              "r": 0.7,
+              "mesr": 1.4602814573516876,
+              "kept_events": 700000,
+              "evaluable": true
+            },
+            {
+              "r": 0.75,
+              "mesr": 1.4443448932604261,
+              "kept_events": 750000,
+              "evaluable": true
+            },
+            {
+              "r": 0.8,
+              "mesr": 1.4497401879457283,
+              "kept_events": 800000,
+              "evaluable": true
+            },
+            {
+              "r": 0.85,
+              "mesr": 1.4501596974565185,
+              "kept_events": 850000,
+              "evaluable": true
+            },
+            {
+              "r": 0.9,
+              "mesr": 1.4324973024899426,
+              "kept_events": 900000,
+              "evaluable": true
+            },
+            {
+              "r": 0.95,
+              "mesr": 1.4369071019488278,
+              "kept_events": 950000,
+              "evaluable": true
+            },
+            {
+              "r": 1.0,
+              "mesr": 1.442117081068424,
+              "kept_events": 1000000,
+              "evaluable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "recording": "DVSD22/HDD/2x30Hz_b",
+      "synthetic": false,
+      "sensor": [
+        346,
+        260
+      ],
+      "events": 1000000,
+      "hot_pixel_removal": null,
+      "raw_mesr": 2.5030085095380628,
+      "raw_decomposition": {
+        "ntss": 0.004884929497649922,
+        "ln": 2836.0386391876973,
+        "occupied_px": 3635,
+        "n_events": 30000
+      },
+      "methods": {
+        "random_null": {
+          "method": "random_null",
+          "sensor": [
+            346,
+            260
+          ],
+          "r_star": 0.05,
+          "mesr_star": 4.370792586175508,
+          "auc_over_r": 2.724875535869535,
+          "evaluable_range": [
+            0.05,
+            1.0
+          ],
+          "optimum_at_evaluable_floor": true,
+          "raw_mesr": 2.5030085095380628,
+          "delta_over_raw_at_r_star": 1.8677840766374452,
+          "native_retention": NaN,
+          "is_oracle": false,
+          "is_null": true,
+          "curve": [
+            {
+              "r": 0.05,
+              "mesr": 4.370792586175508,
+              "kept_events": 50000,
+              "evaluable": true
+            },
+            {
+              "r": 0.1,
+              "mesr": 3.2101705028963594,
+              "kept_events": 100000,
+              "evaluable": true
+            },
+            {
+              "r": 0.15,
+              "mesr": 2.858222664714095,
+              "kept_events": 150000,
+              "evaluable": true
+            },
+            {
+              "r": 0.2,
+              "mesr": 2.80644627655842,
+              "kept_events": 200000,
+              "evaluable": true
+            },
+            {
+              "r": 0.25,
+              "mesr": 2.8233130005592106,
+              "kept_events": 250000,
+              "evaluable": true
+            },
+            {
+              "r": 0.3,
+              "mesr": 2.7472946898765676,
+              "kept_events": 300000,
+              "evaluable": true
+            },
+            {
+              "r": 0.35,
+              "mesr": 2.7274993970452317,
+              "kept_events": 350000,
+              "evaluable": true
+            },
+            {
+              "r": 0.4,
+              "mesr": 2.642699641136607,
+              "kept_events": 400000,
+              "evaluable": true
+            },
+            {
+              "r": 0.45,
+              "mesr": 2.6489001053616974,
+              "kept_events": 450000,
+              "evaluable": true
+            },
+            {
+              "r": 0.5,
+              "mesr": 2.6747807318748267,
+              "kept_events": 500000,
+              "evaluable": true
+            },
+            {
+              "r": 0.55,
+              "mesr": 2.6133724755315897,
+              "kept_events": 550000,
+              "evaluable": true
+            },
+            {
+              "r": 0.6,
+              "mesr": 2.579618888716216,
+              "kept_events": 600000,
+              "evaluable": true
+            },
+            {
+              "r": 0.65,
+              "mesr": 2.5980783244009835,
+              "kept_events": 650000,
+              "evaluable": true
+            },
+            {
+              "r": 0.7,
+              "mesr": 2.5990234770063223,
+              "kept_events": 700000,
+              "evaluable": true
+            },
+            {
+              "r": 0.75,
+              "mesr": 2.5815653386723767,
+              "kept_events": 750000,
+              "evaluable": true
+            },
+            {
+              "r": 0.8,
+              "mesr": 2.5814378849420168,
+              "kept_events": 800000,
+              "evaluable": true
+            },
+            {
+              "r": 0.85,
+              "mesr": 2.545555995358163,
+              "kept_events": 850000,
+              "evaluable": true
+            },
+            {
+              "r": 0.9,
+              "mesr": 2.563192506654747,
+              "kept_events": 900000,
+              "evaluable": true
+            },
+            {
+              "r": 0.95,
+              "mesr": 2.534562732358933,
+              "kept_events": 950000,
+              "evaluable": true
+            },
+            {
+              "r": 1.0,
+              "mesr": 2.5030085095380628,
+              "kept_events": 1000000,
+              "evaluable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "recording": "DVSD22/HDD/2x30Hz_c",
+      "synthetic": false,
+      "sensor": [
+        346,
+        260
+      ],
+      "events": 1000000,
+      "hot_pixel_removal": null,
+      "raw_mesr": 2.2414937427127835,
+      "raw_decomposition": {
+        "ntss": 0.00039604431258819737,
+        "ln": 9385.456851206469,
+        "occupied_px": 10687,
+        "n_events": 30000
+      },
+      "methods": {
+        "random_null": {
+          "method": "random_null",
+          "sensor": [
+            346,
+            260
+          ],
+          "r_star": 0.05,
+          "mesr_star": 3.363743087755827,
+          "auc_over_r": 2.4371648965165362,
+          "evaluable_range": [
+            0.05,
+            1.0
+          ],
+          "optimum_at_evaluable_floor": true,
+          "raw_mesr": 2.2414937427127835,
+          "delta_over_raw_at_r_star": 1.1222493450430435,
+          "native_retention": NaN,
+          "is_oracle": false,
+          "is_null": true,
+          "curve": [
+            {
+              "r": 0.05,
+              "mesr": 3.363743087755827,
+              "kept_events": 50000,
+              "evaluable": true
+            },
+            {
+              "r": 0.1,
+              "mesr": 2.7556151451990214,
+              "kept_events": 100000,
+              "evaluable": true
+            },
+            {
+              "r": 0.15,
+              "mesr": 2.786903402818953,
+              "kept_events": 150000,
+              "evaluable": true
+            },
+            {
+              "r": 0.2,
+              "mesr": 2.569837842637071,
+              "kept_events": 200000,
+              "evaluable": true
+            },
+            {
+              "r": 0.25,
+              "mesr": 2.624782969693406,
+              "kept_events": 250000,
+              "evaluable": true
+            },
+            {
+              "r": 0.3,
+              "mesr": 2.5380489796038006,
+              "kept_events": 300000,
+              "evaluable": true
+            },
+            {
+              "r": 0.35,
+              "mesr": 2.46991784265373,
+              "kept_events": 350000,
+              "evaluable": true
+            },
+            {
+              "r": 0.4,
+              "mesr": 2.507138390677398,
+              "kept_events": 400000,
+              "evaluable": true
+            },
+            {
+              "r": 0.45,
+              "mesr": 2.413610803710912,
+              "kept_events": 450000,
+              "evaluable": true
+            },
+            {
+              "r": 0.5,
+              "mesr": 2.398927233016758,
+              "kept_events": 500000,
+              "evaluable": true
+            },
+            {
+              "r": 0.55,
+              "mesr": 2.3283193615253084,
+              "kept_events": 550000,
+              "evaluable": true
+            },
+            {
+              "r": 0.6,
+              "mesr": 2.3209414318027908,
+              "kept_events": 600000,
+              "evaluable": true
+            },
+            {
+              "r": 0.65,
+              "mesr": 2.2593409611609894,
+              "kept_events": 650000,
+              "evaluable": true
+            },
+            {
+              "r": 0.7,
+              "mesr": 2.2798348657565586,
+              "kept_events": 700000,
+              "evaluable": true
+            },
+            {
+              "r": 0.75,
+              "mesr": 2.2805854872583287,
+              "kept_events": 750000,
+              "evaluable": true
+            },
+            {
+              "r": 0.8,
+              "mesr": 2.294042812370218,
+              "kept_events": 800000,
+              "evaluable": true
+            },
+            {
+              "r": 0.85,
+              "mesr": 2.2515230790780842,
+              "kept_events": 850000,
+              "evaluable": true
+            },
+            {
+              "r": 0.9,
+              "mesr": 2.215847748369102,
+              "kept_events": 900000,
+              "evaluable": true
+            },
+            {
+              "r": 0.95,
+              "mesr": 2.208296261247451,
+              "kept_events": 950000,
+              "evaluable": true
+            },
+            {
+              "r": 1.0,
+              "mesr": 2.2414937427127835,
+              "kept_events": 1000000,
+              "evaluable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "recording": "DVSD22/HDD/2x45Hz",
+      "synthetic": false,
+      "sensor": [
+        346,
+        260
+      ],
+      "events": 1000000,
+      "hot_pixel_removal": null,
+      "raw_mesr": 1.4049824462244676,
+      "raw_decomposition": {
+        "ntss": 6.76311432603309e-05,
+        "ln": 12756.142495763634,
+        "occupied_px": 15901,
+        "n_events": 30000
+      },
+      "methods": {
+        "random_null": {
+          "method": "random_null",
+          "sensor": [
+            346,
+            260
+          ],
+          "r_star": 0.1,
+          "mesr_star": 1.5445418205752415,
+          "auc_over_r": 1.4581722958907157,
+          "evaluable_range": [
+            0.05,
+            1.0
+          ],
+          "optimum_at_evaluable_floor": false,
+          "raw_mesr": 1.4049824462244676,
+          "delta_over_raw_at_r_star": 0.13955937435077392,
+          "native_retention": NaN,
+          "is_oracle": false,
+          "is_null": true,
+          "curve": [
+            {
+              "r": 0.05,
+              "mesr": 1.5256284094964263,
+              "kept_events": 50000,
+              "evaluable": true
+            },
+            {
+              "r": 0.1,
+              "mesr": 1.5445418205752415,
+              "kept_events": 100000,
+              "evaluable": true
+            },
+            {
+              "r": 0.15,
+              "mesr": 1.4930129863778265,
+              "kept_events": 150000,
+              "evaluable": true
+            },
+            {
+              "r": 0.2,
+              "mesr": 1.523332121062874,
+              "kept_events": 200000,
+              "evaluable": true
+            },
+            {
+              "r": 0.25,
+              "mesr": 1.499077998717072,
+              "kept_events": 250000,
+              "evaluable": true
+            },
+            {
+              "r": 0.3,
+              "mesr": 1.458065772973464,
+              "kept_events": 300000,
+              "evaluable": true
+            },
+            {
+              "r": 0.35,
+              "mesr": 1.4938595077352077,
+              "kept_events": 350000,
+              "evaluable": true
+            },
+            {
+              "r": 0.4,
+              "mesr": 1.4686308515664817,
+              "kept_events": 400000,
+              "evaluable": true
+            },
+            {
+              "r": 0.45,
+              "mesr": 1.4485573447801985,
+              "kept_events": 450000,
+              "evaluable": true
+            },
+            {
+              "r": 0.5,
+              "mesr": 1.466932855848571,
+              "kept_events": 500000,
+              "evaluable": true
+            },
+            {
+              "r": 0.55,
+              "mesr": 1.4409638206030275,
+              "kept_events": 550000,
+              "evaluable": true
+            },
+            {
+              "r": 0.6,
+              "mesr": 1.4354094971860292,
+              "kept_events": 600000,
+              "evaluable": true
+            },
+            {
+              "r": 0.65,
+              "mesr": 1.4376702318160492,
+              "kept_events": 650000,
+              "evaluable": true
+            },
+            {
+              "r": 0.7,
+              "mesr": 1.4477368172655685,
+              "kept_events": 700000,
+              "evaluable": true
+            },
+            {
+              "r": 0.75,
+              "mesr": 1.409064513121288,
+              "kept_events": 750000,
+              "evaluable": true
+            },
+            {
+              "r": 0.8,
+              "mesr": 1.4323417372867249,
+              "kept_events": 800000,
+              "evaluable": true
+            },
+            {
+              "r": 0.85,
+              "mesr": 1.4211895281551712,
+              "kept_events": 850000,
+              "evaluable": true
+            },
+            {
+              "r": 0.9,
+              "mesr": 1.4071976072342072,
+              "kept_events": 900000,
+              "evaluable": true
+            },
+            {
+              "r": 0.95,
+              "mesr": 1.4123831817581511,
+              "kept_events": 950000,
+              "evaluable": true
+            },
+            {
+              "r": 1.0,
+              "mesr": 1.4049824462244676,
+              "kept_events": 1000000,
+              "evaluable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "recording": "DVSD22/HDD/2x50Hz",
+      "synthetic": false,
+      "sensor": [
+        346,
+        260
+      ],
+      "events": 1000000,
+      "hot_pixel_removal": null,
+      "raw_mesr": 1.222281177714136,
+      "raw_decomposition": {
+        "ntss": 3.9914663822127405e-05,
+        "ln": 14669.051797579143,
+        "occupied_px": 19027,
+        "n_events": 30000
+      },
+      "methods": {
+        "random_null": {
+          "method": "random_null",
+          "sensor": [
+            346,
+            260
+          ],
+          "r_star": 0.15,
+          "mesr_star": 1.2795030782694337,
+          "auc_over_r": 1.198903149929034,
+          "evaluable_range": [
+            0.05,
+            1.0
+          ],
+          "optimum_at_evaluable_floor": false,
+          "raw_mesr": 1.222281177714136,
+          "delta_over_raw_at_r_star": 0.05722190055529763,
+          "native_retention": NaN,
+          "is_oracle": false,
+          "is_null": true,
+          "curve": [
+            {
+              "r": 0.05,
+              "mesr": 0.8153344768827544,
+              "kept_events": 50000,
+              "evaluable": true
+            },
+            {
+              "r": 0.1,
+              "mesr": 0.9920118717676111,
+              "kept_events": 100000,
+              "evaluable": true
+            },
+            {
+              "r": 0.15,
+              "mesr": 1.2795030782694337,
+              "kept_events": 150000,
+              "evaluable": true
+            },
+            {
+              "r": 0.2,
+              "mesr": 1.0091657394042863,
+              "kept_events": 200000,
+              "evaluable": true
+            },
+            {
+              "r": 0.25,
+              "mesr": 1.239036416749013,
+              "kept_events": 250000,
+              "evaluable": true
+            },
+            {
+              "r": 0.3,
+              "mesr": 1.2715758467067015,
+              "kept_events": 300000,
+              "evaluable": true
+            },
+            {
+              "r": 0.35,
+              "mesr": 1.2163924975047578,
+              "kept_events": 350000,
+              "evaluable": true
+            },
+            {
+              "r": 0.4,
+              "mesr": 1.2639888660327097,
+              "kept_events": 400000,
+              "evaluable": true
+            },
+            {
+              "r": 0.45,
+              "mesr": 1.2209722304767336,
+              "kept_events": 450000,
+              "evaluable": true
+            },
+            {
+              "r": 0.5,
+              "mesr": 1.2496029692037525,
+              "kept_events": 500000,
+              "evaluable": true
+            },
+            {
+              "r": 0.55,
+              "mesr": 1.2336362986321026,
+              "kept_events": 550000,
+              "evaluable": true
+            },
+            {
+              "r": 0.6,
+              "mesr": 1.2422328400351677,
+              "kept_events": 600000,
+              "evaluable": true
+            },
+            {
+              "r": 0.65,
+              "mesr": 1.223276736111477,
+              "kept_events": 650000,
+              "evaluable": true
+            },
+            {
+              "r": 0.7,
+              "mesr": 1.2286682855344735,
+              "kept_events": 700000,
+              "evaluable": true
+            },
+            {
+              "r": 0.75,
+              "mesr": 1.2159256318159364,
+              "kept_events": 750000,
+              "evaluable": true
+            },
+            {
+              "r": 0.8,
+              "mesr": 1.1996378602086515,
+              "kept_events": 800000,
+              "evaluable": true
+            },
+            {
+              "r": 0.85,
+              "mesr": 1.2329909399279857,
+              "kept_events": 850000,
+              "evaluable": true
+            },
+            {
+              "r": 0.9,
+              "mesr": 1.2147378351199545,
+              "kept_events": 900000,
+              "evaluable": true
+            },
+            {
+              "r": 0.95,
+              "mesr": 1.226996077852449,
+              "kept_events": 950000,
+              "evaluable": true
+            },
+            {
+              "r": 1.0,
+              "mesr": 1.222281177714136,
+              "kept_events": 1000000,
+              "evaluable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "recording": "DVSD22/HDD/2x60Hz",
+      "synthetic": false,
+      "sensor": [
+        346,
+        260
+      ],
+      "events": 1000000,
+      "hot_pixel_removal": null,
+      "raw_mesr": 0.9789345920402555,
+      "raw_decomposition": {
+        "ntss": 0.0017254308476949232,
+        "ln": 7133.482962493874,
+        "occupied_px": 8622,
+        "n_events": 30000
+      },
+      "methods": {
+        "random_null": {
+          "method": "random_null",
+          "sensor": [
+            346,
+            260
+          ],
+          "r_star": 0.65,
+          "mesr_star": 0.9827108746698324,
+          "auc_over_r": 0.9620371619836738,
+          "evaluable_range": [
+            0.05,
+            1.0
+          ],
+          "optimum_at_evaluable_floor": false,
+          "raw_mesr": 0.9789345920402555,
+          "delta_over_raw_at_r_star": 0.003776282629576966,
+          "native_retention": NaN,
+          "is_oracle": false,
+          "is_null": true,
+          "curve": [
+            {
+              "r": 0.05,
+              "mesr": 0.9781939605137061,
+              "kept_events": 50000,
+              "evaluable": true
+            },
+            {
+              "r": 0.1,
+              "mesr": 0.9101898370723589,
+              "kept_events": 100000,
+              "evaluable": true
+            },
+            {
+              "r": 0.15,
+              "mesr": 0.9180843655257114,
+              "kept_events": 150000,
+              "evaluable": true
+            },
+            {
+              "r": 0.2,
+              "mesr": 0.9325305171071839,
+              "kept_events": 200000,
+              "evaluable": true
+            },
+            {
+              "r": 0.25,
+              "mesr": 0.94365402489346,
+              "kept_events": 250000,
+              "evaluable": true
+            },
+            {
+              "r": 0.3,
+              "mesr": 0.9562563819231539,
+              "kept_events": 300000,
+              "evaluable": true
+            },
+            {
+              "r": 0.35,
+              "mesr": 0.9602171464266873,
+              "kept_events": 350000,
+              "evaluable": true
+            },
+            {
+              "r": 0.4,
+              "mesr": 0.9444603815393549,
+              "kept_events": 400000,
+              "evaluable": true
+            },
+            {
+              "r": 0.45,
+              "mesr": 0.959487622568911,
+              "kept_events": 450000,
+              "evaluable": true
+            },
+            {
+              "r": 0.5,
+              "mesr": 0.9644036222360435,
+              "kept_events": 500000,
+              "evaluable": true
+            },
+            {
+              "r": 0.55,
+              "mesr": 0.9784160381602369,
+              "kept_events": 550000,
+              "evaluable": true
+            },
+            {
+              "r": 0.6,
+              "mesr": 0.9749032365500059,
+              "kept_events": 600000,
+              "evaluable": true
+            },
+            {
+              "r": 0.65,
+              "mesr": 0.9827108746698324,
+              "kept_events": 650000,
+              "evaluable": true
+            },
+            {
+              "r": 0.7,
+              "mesr": 0.9787973706247061,
+              "kept_events": 700000,
+              "evaluable": true
+            },
+            {
+              "r": 0.75,
+              "mesr": 0.9736043130769917,
+              "kept_events": 750000,
+              "evaluable": true
+            },
+            {
+              "r": 0.8,
+              "mesr": 0.9784937387861026,
+              "kept_events": 800000,
+              "evaluable": true
+            },
+            {
+              "r": 0.85,
+              "mesr": 0.9823708777635155,
+              "kept_events": 850000,
+              "evaluable": true
+            },
+            {
+              "r": 0.9,
+              "mesr": 0.9814942168204861,
+              "kept_events": 900000,
+              "evaluable": true
+            },
+            {
+              "r": 0.95,
+              "mesr": 0.9800672356680772,
+              "kept_events": 950000,
+              "evaluable": true
+            },
+            {
+              "r": 1.0,
+              "mesr": 0.9789345920402555,
+              "kept_events": 1000000,
+              "evaluable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "recording": "DVSD22/HDD/2x70Hz",
+      "synthetic": false,
+      "sensor": [
+        346,
+        260
+      ],
+      "events": 1000000,
+      "hot_pixel_removal": null,
+      "raw_mesr": 2.146829745735057,
+      "raw_decomposition": {
+        "ntss": 0.0003054568485616187,
+        "ln": 10146.110441214725,
+        "occupied_px": 11581,
+        "n_events": 30000
+      },
+      "methods": {
+        "random_null": {
+          "method": "random_null",
+          "sensor": [
+            346,
+            260
+          ],
+          "r_star": 0.05,
+          "mesr_star": 4.030330748795322,
+          "auc_over_r": 2.3375936240661943,
+          "evaluable_range": [
+            0.05,
+            1.0
+          ],
+          "optimum_at_evaluable_floor": true,
+          "raw_mesr": 2.146829745735057,
+          "delta_over_raw_at_r_star": 1.8835010030602648,
+          "native_retention": NaN,
+          "is_oracle": false,
+          "is_null": true,
+          "curve": [
+            {
+              "r": 0.05,
+              "mesr": 4.030330748795322,
+              "kept_events": 50000,
+              "evaluable": true
+            },
+            {
+              "r": 0.1,
+              "mesr": 2.692945746341124,
+              "kept_events": 100000,
+              "evaluable": true
+            },
+            {
+              "r": 0.15,
+              "mesr": 2.5298748529960724,
+              "kept_events": 150000,
+              "evaluable": true
+            },
+            {
+              "r": 0.2,
+              "mesr": 2.5183299421566305,
+              "kept_events": 200000,
+              "evaluable": true
+            },
+            {
+              "r": 0.25,
+              "mesr": 2.289592363133019,
+              "kept_events": 250000,
+              "evaluable": true
+            },
+            {
+              "r": 0.3,
+              "mesr": 2.4221091561526653,
+              "kept_events": 300000,
+              "evaluable": true
+            },
+            {
+              "r": 0.35,
+              "mesr": 2.3306052362781413,
+              "kept_events": 350000,
+              "evaluable": true
+            },
+            {
+              "r": 0.4,
+              "mesr": 2.2985112862674137,
+              "kept_events": 400000,
+              "evaluable": true
+            },
+            {
+              "r": 0.45,
+              "mesr": 2.281606875225764,
+              "kept_events": 450000,
+              "evaluable": true
+            },
+            {
+              "r": 0.5,
+              "mesr": 2.2143186822765304,
+              "kept_events": 500000,
+              "evaluable": true
+            },
+            {
+              "r": 0.55,
+              "mesr": 2.259392752920673,
+              "kept_events": 550000,
+              "evaluable": true
+            },
+            {
+              "r": 0.6,
+              "mesr": 2.1776841191092196,
+              "kept_events": 600000,
+              "evaluable": true
+            },
+            {
+              "r": 0.65,
+              "mesr": 2.2138610418217723,
+              "kept_events": 650000,
+              "evaluable": true
+            },
+            {
+              "r": 0.7,
+              "mesr": 2.2095731486109456,
+              "kept_events": 700000,
+              "evaluable": true
+            },
+            {
+              "r": 0.75,
+              "mesr": 2.163682543853986,
+              "kept_events": 750000,
+              "evaluable": true
+            },
+            {
+              "r": 0.8,
+              "mesr": 2.229206646120979,
+              "kept_events": 800000,
+              "evaluable": true
+            },
+            {
+              "r": 0.85,
+              "mesr": 2.172635875299913,
+              "kept_events": 850000,
+              "evaluable": true
+            },
+            {
+              "r": 0.9,
+              "mesr": 2.153681903834544,
+              "kept_events": 900000,
+              "evaluable": true
+            },
+            {
+              "r": 0.95,
+              "mesr": 2.1680864375931033,
+              "kept_events": 950000,
+              "evaluable": true
+            },
+            {
+              "r": 1.0,
+              "mesr": 2.146829745735057,
+              "kept_events": 1000000,
+              "evaluable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "recording": "DVSD22/HDD/2x80Hz",
+      "synthetic": false,
+      "sensor": [
+        346,
+        260
+      ],
+      "events": 1000000,
+      "hot_pixel_removal": null,
+      "raw_mesr": 3.03350086347557,
+      "raw_decomposition": {
+        "ntss": 0.0038822249630543243,
+        "ln": 5141.400394813161,
+        "occupied_px": 6769,
+        "n_events": 30000
+      },
+      "methods": {
+        "random_null": {
+          "method": "random_null",
+          "sensor": [
+            346,
+            260
+          ],
+          "r_star": 0.05,
+          "mesr_star": 3.7532826945742843,
+          "auc_over_r": 3.1996685174635693,
+          "evaluable_range": [
+            0.05,
+            1.0
+          ],
+          "optimum_at_evaluable_floor": true,
+          "raw_mesr": 3.03350086347557,
+          "delta_over_raw_at_r_star": 0.7197818310987145,
+          "native_retention": NaN,
+          "is_oracle": false,
+          "is_null": true,
+          "curve": [
+            {
+              "r": 0.05,
+              "mesr": 3.7532826945742843,
+              "kept_events": 50000,
+              "evaluable": true
+            },
+            {
+              "r": 0.1,
+              "mesr": 3.5578298660853647,
+              "kept_events": 100000,
+              "evaluable": true
+            },
+            {
+              "r": 0.15,
+              "mesr": 3.5640071339889396,
+              "kept_events": 150000,
+              "evaluable": true
+            },
+            {
+              "r": 0.2,
+              "mesr": 3.3239140122232342,
+              "kept_events": 200000,
+              "evaluable": true
+            },
+            {
+              "r": 0.25,
+              "mesr": 3.216752245594064,
+              "kept_events": 250000,
+              "evaluable": true
+            },
+            {
+              "r": 0.3,
+              "mesr": 3.257296172914226,
+              "kept_events": 300000,
+              "evaluable": true
+            },
+            {
+              "r": 0.35,
+              "mesr": 3.1586769912846067,
+              "kept_events": 350000,
+              "evaluable": true
+            },
+            {
+              "r": 0.4,
+              "mesr": 3.2041723383785414,
+              "kept_events": 400000,
+              "evaluable": true
+            },
+            {
+              "r": 0.45,
+              "mesr": 3.1760234641441687,
+              "kept_events": 450000,
+              "evaluable": true
+            },
+            {
+              "r": 0.5,
+              "mesr": 3.1641754530597734,
+              "kept_events": 500000,
+              "evaluable": true
+            },
+            {
+              "r": 0.55,
+              "mesr": 3.0994338387781704,
+              "kept_events": 550000,
+              "evaluable": true
+            },
+            {
+              "r": 0.6,
+              "mesr": 3.1547476138237256,
+              "kept_events": 600000,
+              "evaluable": true
+            },
+            {
+              "r": 0.65,
+              "mesr": 3.064404295010914,
+              "kept_events": 650000,
+              "evaluable": true
+            },
+            {
+              "r": 0.7,
+              "mesr": 3.120973902908863,
+              "kept_events": 700000,
+              "evaluable": true
+            },
+            {
+              "r": 0.75,
+              "mesr": 3.0886325257115153,
+              "kept_events": 750000,
+              "evaluable": true
+            },
+            {
+              "r": 0.8,
+              "mesr": 3.081767304392908,
+              "kept_events": 800000,
+              "evaluable": true
+            },
+            {
+              "r": 0.85,
+              "mesr": 3.0629652130380802,
+              "kept_events": 850000,
+              "evaluable": true
+            },
+            {
+              "r": 0.9,
+              "mesr": 3.0634241350637907,
+              "kept_events": 900000,
+              "evaluable": true
+            },
+            {
+              "r": 0.95,
+              "mesr": 3.0411135463820083,
+              "kept_events": 950000,
+              "evaluable": true
+            },
+            {
+              "r": 1.0,
+              "mesr": 3.03350086347557,
+              "kept_events": 1000000,
+              "evaluable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "recording": "DVSD22/HDD/2x90Hz",
+      "synthetic": false,
+      "sensor": [
+        346,
+        260
+      ],
+      "events": 1000000,
+      "hot_pixel_removal": null,
+      "raw_mesr": 3.304493850492157,
+      "raw_decomposition": {
+        "ntss": 0.005176843672566863,
+        "ln": 3449.507639682636,
+        "occupied_px": 4528,
+        "n_events": 30000
+      },
+      "methods": {
+        "random_null": {
+          "method": "random_null",
+          "sensor": [
+            346,
+            260
+          ],
+          "r_star": 0.05,
+          "mesr_star": 4.640006849278877,
+          "auc_over_r": 3.6689104238847436,
+          "evaluable_range": [
+            0.05,
+            1.0
+          ],
+          "optimum_at_evaluable_floor": true,
+          "raw_mesr": 3.304493850492157,
+          "delta_over_raw_at_r_star": 1.33551299878672,
+          "native_retention": NaN,
+          "is_oracle": false,
+          "is_null": true,
+          "curve": [
+            {
+              "r": 0.05,
+              "mesr": 4.640006849278877,
+              "kept_events": 50000,
+              "evaluable": true
+            },
+            {
+              "r": 0.1,
+              "mesr": 4.228171125666026,
+              "kept_events": 100000,
+              "evaluable": true
+            },
+            {
+              "r": 0.15,
+              "mesr": 3.973510839297365,
+              "kept_events": 150000,
+              "evaluable": true
+            },
+            {
+              "r": 0.2,
+              "mesr": 3.8989780115055717,
+              "kept_events": 200000,
+              "evaluable": true
+            },
+            {
+              "r": 0.25,
+              "mesr": 3.8433102364286267,
+              "kept_events": 250000,
+              "evaluable": true
+            },
+            {
+              "r": 0.3,
+              "mesr": 3.814981249108507,
+              "kept_events": 300000,
+              "evaluable": true
+            },
+            {
+              "r": 0.35,
+              "mesr": 3.8359814659919595,
+              "kept_events": 350000,
+              "evaluable": true
+            },
+            {
+              "r": 0.4,
+              "mesr": 3.6448616482891456,
+              "kept_events": 400000,
+              "evaluable": true
+            },
+            {
+              "r": 0.45,
+              "mesr": 3.629615927805899,
+              "kept_events": 450000,
+              "evaluable": true
+            },
+            {
+              "r": 0.5,
+              "mesr": 3.631814949434233,
+              "kept_events": 500000,
+              "evaluable": true
+            },
+            {
+              "r": 0.55,
+              "mesr": 3.5184800239941474,
+              "kept_events": 550000,
+              "evaluable": true
+            },
+            {
+              "r": 0.6,
+              "mesr": 3.5727367497888496,
+              "kept_events": 600000,
+              "evaluable": true
+            },
+            {
+              "r": 0.65,
+              "mesr": 3.5522708900427307,
+              "kept_events": 650000,
+              "evaluable": true
+            },
+            {
+              "r": 0.7,
+              "mesr": 3.490039485288764,
+              "kept_events": 700000,
+              "evaluable": true
+            },
+            {
+              "r": 0.75,
+              "mesr": 3.5129705743393806,
+              "kept_events": 750000,
+              "evaluable": true
+            },
+            {
+              "r": 0.8,
+              "mesr": 3.46428322870472,
+              "kept_events": 800000,
+              "evaluable": true
+            },
+            {
+              "r": 0.85,
+              "mesr": 3.3869597537571035,
+              "kept_events": 850000,
+              "evaluable": true
+            },
+            {
+              "r": 0.9,
+              "mesr": 3.4018483282919263,
+              "kept_events": 900000,
+              "evaluable": true
+            },
+            {
+              "r": 0.95,
+              "mesr": 3.3362332161896435,
+              "kept_events": 950000,
+              "evaluable": true
+            },
+            {
+              "r": 1.0,
+              "mesr": 3.304493850492157,
+              "kept_events": 1000000,
+              "evaluable": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "recording": "DVSD22/IV/staircase",
+      "synthetic": false,
+      "sensor": [
+        346,
+        260
+      ],
+      "events": 1000000,
+      "hot_pixel_removal": null,
+      "raw_mesr": 1.6609473320432515,
+      "raw_decomposition": {
+        "ntss": 0.0003595764303254553,
+        "ln": 6635.216533270046,
+        "occupied_px": 7807,
+        "n_events": 30000
+      },
+      "methods": {
+        "random_null": {
+          "method": "random_null",
+          "sensor": [
+            346,
+            260
+          ],
+          "r_star": 0.95,
+          "mesr_star": 1.6689914386340174,
+          "auc_over_r": 1.6002819356902003,
+          "evaluable_range": [
+            0.05,
+            1.0
+          ],
+          "optimum_at_evaluable_floor": false,
+          "raw_mesr": 1.6609473320432515,
+          "delta_over_raw_at_r_star": 0.008044106590765931,
+          "native_retention": NaN,
+          "is_oracle": false,
+          "is_null": true,
+          "curve": [
+            {
+              "r": 0.05,
+              "mesr": 1.6340026705154842,
+              "kept_events": 50000,
+              "evaluable": true
+            },
+            {
+              "r": 0.1,
+              "mesr": 1.5330613038156644,
+              "kept_events": 100000,
+              "evaluable": true
+            },
+            {
+              "r": 0.15,
+              "mesr": 1.5300178183581272,
+              "kept_events": 150000,
+              "evaluable": true
+            },
+            {
+              "r": 0.2,
+              "mesr": 1.56377340269386,
+              "kept_events": 200000,
+              "evaluable": true
+            },
+            {
+              "r": 0.25,
+              "mesr": 1.5558040441397898,
+              "kept_events": 250000,
+              "evaluable": true
+            },
+            {
+              "r": 0.3,
+              "mesr": 1.5643176423148542,
+              "kept_events": 300000,
+              "evaluable": true
+            },
+            {
+              "r": 0.35,
+              "mesr": 1.6032579111144918,
+              "kept_events": 350000,
+              "evaluable": true
+            },
+            {
+              "r": 0.4,
+              "mesr": 1.5795550953820778,
+              "kept_events": 400000,
+              "evaluable": true
+            },
+            {
+              "r": 0.45,
+              "mesr": 1.5717150208734243,
+              "kept_events": 450000,
+              "evaluable": true
+            },
+            {
+              "r": 0.5,
+              "mesr": 1.594988371958887,
+              "kept_events": 500000,
+              "evaluable": true
+            },
+            {
+              "r": 0.55,
+              "mesr": 1.5908982144520145,
+              "kept_events": 550000,
+              "evaluable": true
+            },
+            {
+              "r": 0.6,
+              "mesr": 1.5857080203788796,
+              "kept_events": 600000,
+              "evaluable": true
+            },
+            {
+              "r": 0.65,
+              "mesr": 1.6352458282572262,
+              "kept_events": 650000,
+              "evaluable": true
+            },
+            {
+              "r": 0.7,
+              "mesr": 1.6317630942248014,
+              "kept_events": 700000,
+              "evaluable": true
+            },
+            {
+              "r": 0.75,
+              "mesr": 1.6252065673011125,
+              "kept_events": 750000,
+              "evaluable": true
+            },
+            {
+              "r": 0.8,
+              "mesr": 1.611106760170943,
+              "kept_events": 800000,
+              "evaluable": true
+            },
+            {
+              "r": 0.85,
+              "mesr": 1.6658221876554002,
+              "kept_events": 850000,
+              "evaluable": true
+            },
+            {
+              "r": 0.9,
+              "mesr": 1.6466490551088668,
+              "kept_events": 900000,
+              "evaluable": true
+            },
+            {
+              "r": 0.95,
+              "mesr": 1.6689914386340174,
+              "kept_events": 950000,
+              "evaluable": true
+            },
+            {
+              "r": 1.0,
+              "mesr": 1.6609473320432515,
+              "kept_events": 1000000,
+              "evaluable": true
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "wall_seconds": 20.114878936001332
+}

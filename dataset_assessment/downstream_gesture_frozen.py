@@ -33,11 +33,17 @@ reported rather than absorbed:
                   here it is emitted once, as `clean__unfiltered`, so it cannot inflate n in
                   any pooled statistic. Correlations are computed within retention anyway.
 
-The known confound, stated because it is not removable: equal-event-count binning couples
-bin duration to retention. At r = 0.4 each of the 16 bins spans about 2.5x more wall-clock
-time than the checkpoint was trained on. That hits every method equally and so does not
-bias the *ranking* at a fixed retention - which is what the correlations test - but it does
-mean accuracy falls with r partly from temporal rescaling and not only from lost content.
+The known confound, stated because it is not removable, is frame *density* and not frame
+duration. `events_to_number_frames` clips to the annotated interval and splits the events
+inside that fixed window by count, so the window does not depend on r and the mean frame
+duration is (t_end - t_start) / 16 at every retention -- the thinning factor cancels. (A fixed
+*count* window, like one 30,000-event MESR slice, would stretch as 1/r; this is not one.) What
+thinning changes is that each frame carries floor(r*E/16) events where the checkpoint was
+trained on floor(E/16), about 40% as many at r = 0.4, and the boundaries fall elsewhere because
+the integrator sets them per stream. At a fixed r the retained count, and hence the events per
+frame, is equal across methods; where the boundaries land is not. So the *ranking* at a fixed
+retention -- what the correlations test -- is not biased by density, but accuracy falls with r
+partly because the frames are sparser than the trained-on ones and not only from lost content.
 Comparisons across retention levels should not be read as content loss alone.
 """
 

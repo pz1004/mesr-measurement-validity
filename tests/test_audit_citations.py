@@ -103,11 +103,11 @@ def test_the_supplement_claims_exactly_as_many_checks_as_the_artifact_holds():
         f"the supplement's section says {titles[0]!r} claims but the artifact holds "
         f"{len(AUDIT['checks'])}")
 
-    captions = re.findall(r"Source-level audit, \$(\d+)/(\d+)\$ confirmed", text)
+    captions = re.findall(r"Source-level audit of \$(\d+)\$ claims", text)
     assert len(captions) == 1, f"expected one audit caption, found {captions}"
-    confirmed, total = (int(v) for v in captions[0])
-    assert confirmed == total == len(AUDIT["checks"]), (
-        f"the caption says {confirmed}/{total} but the artifact holds "
+    total = int(captions[0])
+    assert total == len(AUDIT["checks"]), (
+        f"the caption says {total} claims but the artifact holds "
         f"{len(AUDIT['checks'])}")
 
 

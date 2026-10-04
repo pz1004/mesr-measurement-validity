@@ -1,10 +1,9 @@
 """The audit table's Location column must match the artifact it claims to summarise.
 
-Three rows cited `engines/test.py` and `datasets/denoise_emlb.py`; EDmamba ships both
-under `pointcept/`, so a reviewer checking the claim would not have found the files. The
-artifact had the full path all along -- only the manuscript was short. A fourth row cited
-the `median_filter` helper for a claim about the variant that calls it. These are claims
-about third parties' released code, so the citation is the whole evidence.
+EDmamba ships `engines/test.py` and `datasets/denoise_emlb.py` under `pointcept/`, so a
+location that drops that prefix names a file a reader cannot find. A row must also cite the
+code that makes its claim: the variant class, not the `median_filter` helper it calls. These
+are claims about third parties' released code, so the citation is the whole evidence.
 """
 
 from __future__ import annotations

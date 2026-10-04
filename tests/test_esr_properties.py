@@ -1,18 +1,15 @@
-"""Section IV-A's mechanism was stated at a generality Eq.~(1) does not support.
+"""Three properties of ESR that bound the mechanism the paper states.
 
-Two claims were wrong and one useful claim was missing:
-
-* "ESR is a monotone function of how concentrated a sample is" -- false. `ntss` is
-  Schur-convex and `ell_n` is Schur-concave, so majorisation pushes the two factors in
-  opposite directions and their product has no fixed sign.
-* "the null's direction tracks hot-pixel share" -- underdetermined. Under stationary rates,
-  uniform thinning leaves the pixel distribution unchanged at any concentration, so the share
-  alone predicts nothing; the sign needs a *nonstationary* scene component to contrast with.
+* ESR is not a monotone function of how concentrated a sample is. `ntss` is Schur-convex and
+  `ell_n` is Schur-concave, so majorisation pushes the two factors in opposite directions and
+  their product has no fixed sign.
+* Hot-pixel share alone does not fix the null's direction. Under stationary rates, uniform
+  thinning leaves the pixel distribution unchanged at any concentration, so the share alone
+  predicts nothing; the sign needs a *nonstationary* scene component to contrast with.
 * ESR is invariant to a bijection of the pixel grid. Provable in one line and it bounds what
   "structural" can mean.
 
-A regression on any of these would restore a mechanism the paper cannot support, which is the
-one defect that would let a reviewer discard the empirical result along with the explanation.
+A regression on any of these would attribute to ESR a mechanism Eq. (1) does not support.
 """
 
 import numpy as np
@@ -92,7 +89,7 @@ def test_a_blob_and_the_same_counts_scattered_score_identically():
 
 @pytest.mark.parametrize("hot_share", [0.20, 0.01])
 def test_a_stationary_stream_is_unmoved_by_thinning_however_hot(hot_share):
-    """The reviewer's Poisson argument, run: concentration alone predicts no direction."""
+    """The stationary-Poisson argument, run: concentration alone predicts no direction."""
 
     rng = np.random.default_rng(0)
     stream = _synthetic_stream(rng, 600_000, hot_share, drifting=False)

@@ -36,7 +36,7 @@ def test_block_quota_reproduces_retain_mask():
 
 
 def test_the_symmetric_difference_equals_the_block_identity():
-    """`|F_native XOR F_adapted| = sum_b |a_b - k_b|`, the reviewer's identity."""
+    """`|F_native XOR F_adapted| = sum_b |a_b - k_b|`, the block identity."""
 
     scores = _two_level([1000, 9000, 5000, 200])
     native = float((scores == 0.0).mean())

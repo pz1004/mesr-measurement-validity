@@ -1,13 +1,12 @@
-"""The paper said the unused ESR variant returns values "three orders of magnitude out".
+"""The unused ESR variant has no fixed factor relative to the official ESR.
 
-It does not, and the reason it does not is the point. The variant makes four changes at once
--- a size-3 median filter on the count surface, `ln` divided by `K`, `n^2` in place of
-`n(n-1)`, and a `1000` multiplier -- and the `/K` cancels most of the `1000`. What is left is
-the median filter, which erases every isolated pixel. So the variant *overshoots* on dense
-slices and *collapses* on sparse ones, and there is no fixed factor at all.
+The variant makes four changes at once -- a size-3 median filter on the count surface, `ln`
+divided by `K`, `n^2` in place of `n(n-1)`, and a `1000` multiplier -- and the `/K` cancels
+most of the `1000`. What is left is the median filter, which erases every isolated pixel. So
+the variant *overshoots* on dense slices and *collapses* on sparse ones, and there is no fixed
+factor at all.
 
-These tests exist so the corrected claim cannot silently regress to the old one. The old
-claim was wrong about a third party's released code, printed in the article body.
+These tests pin that claim, which the paper makes about a third party's released code.
 """
 
 import numpy as np

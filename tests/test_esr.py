@@ -118,8 +118,7 @@ def test_m_is_constant_because_slices_are_count_delimited():
     """Every complete slice holds exactly `slice_size` events, so M never varies.
 
     This is why E-MLB's "M is fixed during the entire evaluation process" and the reference
-    code's `M = int(N * 2/3)` do not conflict -- a distinction a previous revision briefly
-    got wrong in the other direction.
+    code's `M = int(N * 2/3)` do not conflict.
     """
 
     rng = np.random.default_rng(1)

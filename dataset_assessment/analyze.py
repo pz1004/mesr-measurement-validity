@@ -491,9 +491,9 @@ def edformer_reference() -> Dict:
 def _recording_sets(records: List[Dict]) -> Dict:
     """How the uncapped EDformer run and the capped rows are drawn, both counted.
 
-    Hardcoding these once left `NUMBERS.md` asserting a 96-recording, 12-scene classical run
-    for three revisions after that run was extended to the full 384. A digest that states a
-    stale fact is worse than one that omits it, because the paper points readers at it.
+    Both counts are read from the result files rather than hardcoded, so `NUMBERS.md` cannot
+    state a recording count the runs no longer have. A digest that states a stale fact is
+    worse than one that omits it, because the paper points readers at it.
     """
 
     evaluable = sum(1 for r in records if np.isfinite(r["edformer_mesr"]))

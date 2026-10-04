@@ -11,16 +11,15 @@ Corpora, all capped at CAP events so no single recording dominates:
              Pure_BA (346x260, signal-free captures - real background activity with no
              signal to confound the statistics)
 
-DVSD22 and Pure_BA were not in the original plan. They matter because without them the
-"real" group is E-MLB alone, and a two-group test with one real corpus cannot distinguish
-"synthetic differs from real" from "synthetic differs from E-MLB".
+DVSD22 and Pure_BA matter because without them the "real" group is E-MLB alone, and a
+two-group test with one real corpus cannot distinguish "synthetic differs from real" from
+"synthetic differs from E-MLB".
 
-Every corpus is profiled in full. Earlier revisions capped E-MLB at 40 recordings and
-Pure_BA at 20 for speed, and neither cap was a neutral subsample: corpora are iterated in
-name order, so E-MLB's first 40 are 40 daylight recordings and no night ones, and Pure_BA's
-first 20 are the lowest 20 grades of a monotonic background-activity gradient, understating
-its event rate by 43x. A `limit=` here silently selects a stratum, so there is none. The
-whole run costs ~220 s.
+Every corpus is profiled in full. A cap would not be a neutral subsample: corpora are iterated
+in name order, so E-MLB's first 40 recordings are all daylight ones, and Pure_BA's first 20 are
+the lowest 20 grades of a monotonic background-activity gradient, which understates its event
+rate by 43x. A `limit=` here silently selects a stratum, so there is none. The whole run costs
+~220 s.
 """
 
 from __future__ import annotations

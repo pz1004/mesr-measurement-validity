@@ -77,6 +77,18 @@ def _metric_dependencies(out: Callable[[str], None]) -> None:
         out(f"  - as a multiple of the 0.0092 published gap: **{summary['mean'] / 0.0092:.0f}x** "
             f"[{summary['lo'] / 0.0092:.0f}x, {summary['hi'] / 0.0092:.0f}x]")
 
+    def _by_base_scene(out: Callable[[str], None], block: dict, what: str) -> None:
+        """The same spread per DND21 base scene: the ten recordings are two scenes at five
+        injected rates, so the scene, not the recording, is the independent unit."""
+
+        scenes: Dict[str, List[float]] = {}
+        for row in block["per_recording"]:
+            scene = row["recording"].split("_", 1)[1]
+            scenes.setdefault(scene, []).append(row["spread"])
+        out(f"  - {what} spread by base scene: " + ", ".join(
+            f"**{scene} {np.mean(values):.4f}** (n={len(values)}, {min(values):.4f} to "
+            f"{max(values):.4f})" for scene, values in sorted(scenes.items(), reverse=True)))
+
     payload = _load("metric_dependencies.json")
     retention = payload["retention_dependence"]
     out("## S3.2 retention dependence  (results/metric_dependencies.json)")
@@ -85,6 +97,7 @@ def _metric_dependencies(out: Callable[[str], None]) -> None:
         f"spread {retention['spread']:.4f} argmax r={retention['argmax_r']} "
         f"(single recording, kept for continuity with the stored curve)")
     _spread_over_recordings(out, retention, "retention")
+    _by_base_scene(out, retention, "retention")
 
     resolution = payload["resolution_dependence"]
     out("\n## S3.1 declared-resolution invariance")
@@ -103,6 +116,7 @@ def _metric_dependencies(out: Callable[[str], None]) -> None:
     out("- " + ", ".join(f"{r['slice']}:{r['mesr']:.4f}" for r in slices["rows"])
         + f"  spread {slices['spread']:.4f} (single recording)")
     _spread_over_recordings(out, slices, "slice-size")
+    _by_base_scene(out, slices, "slice-size")
     out(f"- monotone increasing on {slices['monotone_increasing_share']:.0%} of recordings")
     # Same-corpus scale for the verdict: the same ten DND21 recordings, each filter on its own
     # output (first 10^6 events), paired where both filters are scored.
@@ -1111,6 +1125,127 @@ def _native_emlb(out: Callable[[str], None]) -> None:
             f"{pair['share_a_above_b']:.0%} -> {flag}{fam}")
 
 
+def _downstream_frozen(out: Callable[[str], None]) -> None:
+    """S8.2: the task's released classifier, frozen, on the same method-retention grid.
+
+    Accuracy contrasts are paired on the same test clips, which come from six held-out
+    subjects, so they are resampled over subjects; the per-subject signs are printed beside
+    the interval because six clusters make a percentile interval coarse.
+    """
+
+    payload = _load("downstream_gesture_frozen.json")
+    comparisons = _load("downstream_gesture_frozen_evaluation.json")["comparisons"]
+    red = _load("red_sensitivity.json")
+    gate = payload["gate"]
+    subjects = sorted(next(iter(comparisons.values()))["by_subject"])
+    out("\n## S8.2 the released classifier, frozen (`results/downstream_gesture_frozen.json`, "
+        "`results/downstream_gesture_frozen_evaluation.json`, `results/red_sensitivity.json`)\n")
+    out(f"- reproduced unfiltered accuracy **{gate['top1']:.4f}** over {gate['samples']} test "
+        f"clips (reported {gate['expected_top1']:.4f}, reproduced={gate['reproduced']}) from "
+        f"**{len(subjects)} held-out subjects** ({', '.join(subjects)})")
+    out("- MESR's share of the classified stream: " + ", ".join(
+        f"r={s['retention']}: {s['scored_share']:.1%}" for s in payload["scored_share"]))
+    grid: Dict[float, Dict[str, Dict]] = {}
+    for cell in payload["conditions"]:
+        grid.setdefault(float(cell["retention"]), {})[cell["method"]] = cell
+    for r, cells in sorted(grid.items()):
+        out(f"- r={r}: accuracy / MESR " + ", ".join(
+            f"{m} {c['accuracy']:.4f}/{c['mesr']:.4f}" for m, c in sorted(cells.items())))
+    for r in sorted(grid):
+        tag = f"r{int(round(r * 100)):03d}"
+        key = f"{tag}__red_vs_{tag}__unfiltered"
+        if key not in comparisons:
+            continue
+        c = comparisons[key]
+        deltas = [s["accuracy_delta"] for s in c["by_subject"].values()]
+        lo, hi = c["accuracy_delta_95ci"]
+        out(f"- red minus raw (block-prefix control) at r={r}: **{c['accuracy_delta']:+.4f}** "
+            f"[{lo:+.4f}, {hi:+.4f}], {c['cluster_bootstrap_replicates']} draws over "
+            f"{len(deltas)} {c['cluster_bootstrap_unit']}s; red lower on "
+            f"**{sum(d < 0 for d in deltas)}/{len(deltas)}** subjects, tied on "
+            f"{sum(d == 0 for d in deltas)} (per subject {min(deltas):+.4f} to "
+            f"{max(deltas):+.4f})")
+    frozen = red["frozen"]
+    for label, block in (("with red", frozen["with_red"]), ("without red", frozen["without_red"])):
+        within = block["within_retention"]
+        out(f"- within-retention Spearman, {label}: " + ", ".join(
+            f"r={level['retention']}: {level['rho']:+.2f}" for level in within["levels"])
+            + f"; mean **{within['mean_rho']:+.2f}**; least accurate at the MESR-first method "
+              f"on {block['inversion']['levels_least_accurate']} of "
+              f"{len(block['inversion']['levels'])} retentions")
+    partial = payload["partial_spearman"]
+    out(f"- partial Spearman (MESR, accuracy | retention) over {partial['n']} distinct "
+        f"conditions: **{partial['rho']:+.2f}**")
+    trained = red["trained_cnn2d"]
+    out(f"- 2D CNN pooled Spearman with red {trained['with_red']['pooled']['rho']:+.3f}, "
+        f"without red **{trained['without_red']['pooled']['rho']:+.3f}**")
+
+
+def _blank_levels(out: Callable[[str], None]) -> None:
+    """S5-C level by level: Pure_BA is one graded series, so each recording is a level.
+
+    Resampling levels describes which levels enter a mean, not repeated acquisition, so the
+    blank's lead is also given as a count over levels.
+    """
+
+    payload = _load("benchmark_pure_ba.json")
+    leads = []
+    for record in payload["records"]:
+        methods = record["methods"]
+        points = {}
+        for method in ("red", "random_null"):
+            for point in methods.get(method, {}).get("curve", []):
+                if abs(float(point["r"]) - 0.6) < 1e-9 and point.get("evaluable"):
+                    points[method] = float(point["mesr"])
+        if len(points) == 2:
+            leads.append(points["red"] - points["random_null"])
+    out("\n## S5-C2 the blank, level by level (`results/benchmark_pure_ba.json`)\n")
+    out(f"- red over random_null at r = 0.60: mean {np.mean(leads):+.4f}, positive on "
+        f"**{sum(v > 0 for v in leads)}/{len(leads)}** levels, from **{min(leads):+.4f}** to "
+        f"**{max(leads):+.4f}**")
+
+
+def _null_matched_span(out: Callable[[str], None]) -> None:
+    """S5-B on a matched span: both streams scored over the same leading input frame."""
+
+    payload = _load("null_matched_span.json")
+    out("\n## S5-B2 the random subsampler on a matched span (`results/null_matched_span.json`)\n")
+    out(f"- frame rule: {payload['frame_rule']}, slice {payload['slice']:,}, block "
+        f"{payload['block']:,}, cap {payload['max_events']:,}")
+    for dataset, block in payload["corpora"].items():
+        first = block["by_seed"][0]
+        n = len(block["across_seeds"])
+        out(f"- **{dataset}**: {block['n_recordings']} recordings, {len(block['seeds'])} "
+            f"draw(s); matched mean positive at **{first['n_positive_matched']}/"
+            f"{first['n_retentions']}** retentions (same cohort, original: "
+            f"{first['n_positive_original']}); under every draw positive at "
+            f"**{block['retentions_positive_under_every_seed']}/{n}**, negative at "
+            f"**{block['retentions_negative_under_every_seed']}/{n}**, of the original's sign "
+            f"at **{block['retentions_same_sign_under_every_seed']}/{n}**")
+        counts = [entry["n_positive_matched"] for entry in block["by_seed"]]
+        if len(counts) > 1:
+            out(f"  - retentions with a positive matched mean, per draw: {counts}")
+        for entry in block["by_seed"]:
+            for r in entry["sign_changes"]:
+                row = next(p for p in entry["by_retention"] if p["r"] == r)
+                out(f"  - draw {entry['seed']}, r={r:.2f}: matched {row['mean_matched']:+.4f} "
+                    f"against original {row['mean_original']:+.4f}, opposite signs")
+        for row in first["by_retention"]:
+            if not row["n"]:
+                out(f"  - r={row['r']:.2f}: no recording holds a frame")
+                continue
+            spread = next((a for a in block["across_seeds"] if a["r"] == row["r"]), None)
+            draws = (f"; over draws {spread['matched_mean_min']:+.4f} to "
+                     f"{spread['matched_mean_max']:+.4f}, positive in {spread['seeds_positive']}/"
+                     f"{spread['seeds']}" if spread and spread["seeds"] > 1 else "")
+            out(f"  - r={row['r']:.2f}: n={row['n']} of {row['n_original']} (frame "
+                f"{row['frame_share_median']:.2f} of the stream); original "
+                f"{row['mean_original']:+.4f} (all {row['mean_original_all']:+.4f}), positive on "
+                f"{row['positive_original']}; matched **{row['mean_matched']:+.4f}**, positive on "
+                f"{row['positive_matched']}; scored span thinned {row['span_thinned_median']:.2f} "
+                f"vs unfiltered {row['span_unfiltered_median']:.2f}{draws}")
+
+
 def main() -> None:
     out = print
     out("# Every number in the paper, with its source file\n")
@@ -1142,6 +1277,9 @@ def main() -> None:
     _downstream(out)
     _architectures(out)
     _paired_seeds(out)
+    _downstream_frozen(out)
+    _blank_levels(out)
+    _null_matched_span(out)
 
 
 if __name__ == "__main__":

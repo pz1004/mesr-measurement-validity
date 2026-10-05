@@ -10,7 +10,7 @@ GTX 1660 SUPER.
 ```bash
 pip install -r requirements.txt
 python -m pytest -q tests/                          #  88 passed
-python -m dataset_assessment.audit                  # 9/9 claims verified from source
+python -m dataset_assessment.audit                  # 10/10 claims verified from source
 python -m dataset_assessment.analyze                # rank_analysis.json + results/figures/
 python -m dataset_assessment.make_numbers_digest > NUMBERS.md
 ```

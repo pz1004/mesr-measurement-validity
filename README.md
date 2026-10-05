@@ -58,7 +58,7 @@ spans. That is the whole mechanism.
 ```bash
 pip install -r requirements.txt
 python -m pytest -q tests/                      # expect: 166 passed
-python -m dataset_assessment.audit              # expect: 9/9 claims verified from source
+python -m dataset_assessment.audit              # expect: 10/10 claims verified from source
 python -m dataset_assessment.analyze            # regenerates rank_analysis.json + figures
 ```
 

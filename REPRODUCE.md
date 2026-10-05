@@ -96,6 +96,17 @@ on the seed, so the blank-sample lead reads their side from `benchmark_pure_ba.j
 only the control. Seed 20260726 is the released default and reproduces the published
 `+1.3052`, which is the check that the aggregator matches the paper's definition.
 
+### The null's gain on a matched span
+
+MESR scores whole slices, so at a low retention the subsampler's scored events come from a
+shorter leading span of the input than the unfiltered stream's. This scores both on one leading
+frame that leaves neither an incomplete slice, under the same ten draws on all five corpora
+(App. M).
+
+```bash
+python -m dataset_assessment.null_matched_span --workers 16   # results/null_matched_span.json  ~24 min
+```
+
 ### Matched-retention label quality
 
 Whether a filter that out-scores the label oracle on MESR actually selects events better.

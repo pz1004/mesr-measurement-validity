@@ -2,13 +2,15 @@
 
 Nothing in this section is vendored here. The corpora total roughly 250 GB and are
 redistributed by their original authors under their own terms; the baselines are separate
-repositories with their own licences. In this working tree each is a **symlink to a sibling
-directory**, so the harness resolves them without copying:
+repositories with their own licences, and the downstream probe's classifier checkpoint is a
+third-party release. In this working tree each is a **symlink to a sibling directory**, so the
+harness resolves them without copying:
 
 ```
 E-MLB -> ../E-MLB              DVSGesture -> ../DVSGesture      cuke-emlb -> ../cuke-emlb
 DVSCLEAN -> ../DVSCLEAN        DVSD22 -> ../DVSD22              EDformer -> ../EDformer
 ECCV2024_datasets -> ../ECCV2024_datasets                       EDmamba -> ../EDmamba
+sew7b-checkpoint -> ../downstream/assets/snn7b/released
 ```
 
 Replace each symlink with a real checkout (or re-point it) to run elsewhere. Every reader
@@ -67,9 +69,10 @@ denoiser. The probe therefore runs on DVS Gesture.
 | **cuke-emlb** | Supplies the six classical denoisers (DWF, EvFlow, KNoise, RED, TS, YNoise) and the official ESR implementation the metric core was checked against | Must be **built**; see `BUILD_CUKE_EMLB.md`. Read the pinned-commit warning there — the pinned `dv-toolkit` submodule does not work. |
 | **EDformer** | `dataset_assessment/edformer.py` runs its released weights and inference recipe (`model.py` imported unmodified) on the same capped E-MLB inputs as every other row; `audit.py` greps its released source | Needs torch 2.2.1+cu118 and pytorch3d 0.7.5 (a CUDA venv of its own); the rest of the harness is torch-free and reads the cached scores. Run `python -m dataset_assessment.edformer --cap 1000000`, then `native_emlb --methods edformer_native --merge`. |
 | **EDmamba** | `audit.py` greps its released source for the four Table-2 reproducibility claims | Not run at all; only inspected statically. |
+| **SEW 7B-Net checkpoint** | `downstream_gesture_frozen` scores filtered DVS Gesture clips with this released classifier (Fang et al., *Deep Residual Learning in Spiking Neural Networks*, NeurIPS 2021, `fang2021sew`), held frozen | From `dvsgesture_log_weight.zip` in the authors' [checkpoint release](https://figshare.com/articles/software/Spike-Element-Wise-ResNet/14752998) (MIT): extract `best/DVSGNetSEW32_b16_T16_Ttrain12_steplr64_0.1_sgd_cnf_add/lr0.001/checkpoint_max_val_acc1.pth` to `sew7b-checkpoint/` (SHA-256 `7f6f4bf971d087376386ae5c276b19e38f78bba49afc28bc0da829cd75b8815e`). The network and its evaluator are in `dataset_assessment/sew7b/` and run in an environment with torch and SpikingJelly 0.0.0.0.15, named by `SNN_PYTHON`; the module stops unless the 288 unfiltered test clips reproduce the published top-1, 0.9792, in full precision. |
 
 `EDnCNN` and `MLPF` are absent from the benchmark because the cuke-emlb release ships no
-weights for them — `modules/net/` contains only `.gitkeep`. That is itself one of the nine
+weights for them — `modules/net/` contains only `.gitkeep`. That is itself one of the ten
 audited claims.
 
 ## Reference values this project relies on

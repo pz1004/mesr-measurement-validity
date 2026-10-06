@@ -8,9 +8,12 @@ classifiers may simply be too weak to resolve what the filters did.
 This module removes that objection instead of mitigating it. It scores the same conditions
 with the *released* DVS Gesture classifier - the SEW 7B-Net of the SEW-ResNet paper, at the
 authors' own maximum checkpoint - held frozen. Nothing is trained here, so there is no seed
-variance, no schedule, and no capacity argument left to make. The checkpoint reproduces
-0.968750 top-1 / 0.966816 macro-F1 on the 288 unfiltered test clips, which is the gate this
-module refuses to proceed past (`--smoke`).
+variance, no schedule, and no capacity argument left to make. Scored in full precision, the
+checkpoint reproduces its published top-1 on the 288 unfiltered test clips, 0.979167 (282 of
+288), with 0.977321 macro-F1; that cell is the gate this module refuses to proceed past
+(`--smoke`). The evaluator is never run in half precision: on a GTX 1660 SUPER, fp16 rounding
+near the firing threshold flips spikes and changes four unfiltered predictions, three of them
+to wrong ones (0.968750).
 
 Three protocol differences from the trained probe, each forced by the frozen model and each
 reported rather than absorbed:
@@ -23,10 +26,10 @@ reported rather than absorbed:
   event budget    No 80,000-event cap. The cap exists in `downstream_gesture` so that
                   r = 0.4 still leaves one complete 30,000-event MESR slice; the frozen
                   model needs no such budget, and dropping it *improves* the coupling. Mean
-                  clip length is ~587k events, so MESR reads ~89-97% of what the classifier
+                  clip length is ~410k events, so MESR reads ~91-96% of what the classifier
                   sees instead of the capped run's 62.5-93.75%. The two quantities are still
                   read off different event sets - that disclosure stands - but the gap
-                  narrows from 31 points to about 8.
+                  narrows from 31 points to about 5.
 
   retention grid  At r = 1.0 `retain_mask` keeps everything, so all methods produce the
                   identical stream. The trained probe carries that as eight identical rows;
@@ -73,18 +76,17 @@ from .downstream_gesture import (
 )
 from .esr import SLICE, mesr, retain_mask
 from .readers import Recording, read_aedat31
+from .sew7b.frames import events_to_number_frames
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-#: The frozen classifier and its released integrator live in the sibling downstream study,
-#: exactly like `native3d` in `denoisors`. Optional: absent checkout, this module declines.
-DOWNSTREAM_ROOT = PROJECT_ROOT.parent
-CHECKPOINT = (DOWNSTREAM_ROOT / "downstream/assets/snn7b/released"
-              / "checkpoint_max_val_acc1.pth")
-EVALUATOR = "downstream.evaluate_dvsgesture_variants"
+#: The released checkpoint is third-party and not redistributed (DATA.md); the network,
+#: its evaluator and the released integrator are in `sew7b`.
+CHECKPOINT = PROJECT_ROOT / "sew7b-checkpoint" / "checkpoint_max_val_acc1.pth"
+EVALUATOR = "dataset_assessment.sew7b.evaluate_dvsgesture_variants"
 #: Interpreter used to run the released evaluator, which needs torch and spikingjelly.
 #: Set ``SNN_PYTHON`` to that environment's python if it is not the one running this
 #: script; the gate below is what actually decides whether an interpreter reproduces
-#: the published cell, so a wrong choice fails loudly rather than silently.
+#: the recorded cell, so a wrong choice fails loudly rather than silently.
 SNN_PYTHON = Path(os.environ.get("SNN_PYTHON", sys.executable))
 
 OUT = PROJECT_ROOT / "results/downstream_gesture_frozen.json"
@@ -93,10 +95,16 @@ FRAMES = PROJECT_ROOT / "results/downstream_gesture_frozen_frames"
 BINS = 16
 RETENTIONS = (0.4, 0.5, 0.6, 0.8, 1.0)
 PAPER_METHODS = ("raw", RANDOM_NULL, "dwf", "evflow", "knoise", "red", "ts", "ynoise")
-#: The published cell this module must reproduce before any filtered condition is trusted.
-GATE_TOP1 = 0.968750
-GATE_MACRO_F1 = 0.9668157414841424
+#: The unfiltered cell in full precision: the published top-1, 282 of 288 clips, and the
+#: macro-F1 that cell has. The module must reproduce it before any filtered condition is
+#: trusted.
+GATE_TOP1 = 282 / 288
+GATE_MACRO_F1 = 0.9773213717410268
 GATE_TOLERANCE = 1e-6
+#: Top-1 its authors report for the checkpoint: Fang et al. (NeurIPS 2021), Table 5, 7B-Net at
+#: T = 16. The checkpoint records the same, `max_test_acc1` = 97.9167, i.e. 282 of the 288
+#: test clips.
+PUBLISHED_TOP1 = 0.9792
 
 
 def _condition_name(method: str, retention: float) -> str:
@@ -267,19 +275,27 @@ def build_conditions(events, labels, clips, methods, retentions, frames_dir: Pat
     return manifest, rows
 
 
+def evaluator_command(manifest_path: Path, output_path: Path, python: Path,
+                      checkpoint: Path) -> List[str]:
+    """The released evaluator, unchanged, as a module, in full precision (`--no-amp`)."""
+
+    return [str(python), "-m", EVALUATOR,
+            "--manifest", str(manifest_path),
+            "--checkpoint", str(checkpoint),
+            "--output", str(output_path),
+            "--no-amp"]
+
+
 def run_evaluator(manifest_path: Path, output_path: Path, python: Path,
                   checkpoint: Path) -> dict:
-    """Invoke the released evaluator unchanged, as a module, from the sibling checkout."""
+    """Invoke the released evaluator from this checkout."""
 
-    command = [str(python), "-m", EVALUATOR,
-               "--manifest", str(manifest_path),
-               "--checkpoint", str(checkpoint),
-               "--output", str(output_path)]
+    command = evaluator_command(manifest_path, output_path, python, checkpoint)
     print(f"$ {' '.join(command)}", flush=True)
     # Inherit the environment: the released evaluator runs under a conda interpreter whose
     # CUDA libraries are found through variables a minimal env would drop.
-    environment = dict(os.environ, PYTHONPATH=str(DOWNSTREAM_ROOT))
-    completed = subprocess.run(command, cwd=str(DOWNSTREAM_ROOT), text=True,
+    environment = dict(os.environ, PYTHONPATH=str(PROJECT_ROOT))
+    completed = subprocess.run(command, cwd=str(PROJECT_ROOT), text=True,
                                env=environment, capture_output=True)
     if completed.returncode != 0:
         raise SystemExit(f"evaluator failed ({completed.returncode}):\n"
@@ -376,9 +392,6 @@ def main() -> None:
     if not args.checkpoint.is_file():
         raise SystemExit(f"released checkpoint not found at {args.checkpoint}")
 
-    sys.path.insert(0, str(DOWNSTREAM_ROOT))
-    from downstream.dvsgesture import events_to_number_frames
-
     started = time.perf_counter()
     methods = ["raw"] if args.smoke else args.methods
     retentions = (1.0,) if args.smoke else RETENTIONS
@@ -417,6 +430,7 @@ def main() -> None:
             "classifier": "released SEW 7B-Net, frozen, authors' maximum checkpoint",
             "checkpoint": str(args.checkpoint.resolve()),
             "trained_here": False,
+            "precision": "fp32 (evaluator --no-amp)",
             "seeds": None,
             "representation": f"{BINS} equal-event-count bins, separate ON/OFF planes",
             "event_cap": None,

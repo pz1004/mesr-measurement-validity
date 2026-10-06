@@ -5,19 +5,21 @@ later ones, so a failure never silently corrupts a downstream number. Wall times
 measured values from the run that produced the shipped artifacts, on 20 cores + one
 GTX 1660 SUPER.
 
-## Tier 0 — no dataset needed (~15 s total)
+## Tier 0 — no dataset needed (~35 s total)
 
 ```bash
 pip install -r requirements.txt
-python -m pytest -q tests/                          #  88 passed
-python -m dataset_assessment.audit                  # 10/10 claims verified from source
 python -m dataset_assessment.analyze                # rank_analysis.json + results/figures/
+python -m dataset_assessment.figures_protocol       # the two protocol figures
+python -m pytest -q tests/                          # 364 passed with every checkout in place
+python -m dataset_assessment.audit                  # 10/10 claims verified from source
 python -m dataset_assessment.make_numbers_digest > NUMBERS.md
 ```
 
-`audit` needs the `EDformer/`, `EDmamba/` and `cuke-emlb/` symlinks (source inspection only,
-nothing is executed). `analyze` needs `results/benchmark_*.json`, which ship with this
-repository.
+`analyze` needs `results/benchmark_*.json`, which ship with this repository; the figure tests
+read what it and `figures_protocol` draw, so run those first. Without the corpora, 12 tests
+skip and none fails. `audit` needs the `EDformer/`, `EDmamba/` and `cuke-emlb/` symlinks
+(source inspection only, nothing is executed) and writes `results/reproducibility_audit.json`.
 
 `analyze` also writes **Figure 1** (`results/figures/fig_retention_curves.pdf`). It is drawn
 at the size it is printed at -- 516 x 63 pt, the full text width of a two-column IEEEtran
@@ -28,14 +30,16 @@ figure silently costs a page at $265. Bands are `cluster_bootstrap_delta_ci` at 
 on the same seed as the reported intervals, and the strip under each panel is `n(r)`,
 asserted equal to `common_support.coverage`.
 
-## Tier 1 — metric analysis (needs DND21 + DVSCLEAN, ~3 min)
+## Tier 1 — metric analysis (needs the five corpora, ~4 min)
 
 ```bash
 python -m dataset_assessment.measure_metric_deps    # results/metric_dependencies.json
 python -m dataset_assessment.profile_datasets       # results/noise_regimes.json  (211 s)
+python -m dataset_assessment.nd_levels              # results/nd_levels.json  (<1 s)
 ```
 
-`profile_datasets` reads all five corpora at a 300,000-event cap.
+`profile_datasets` reads all five corpora at a 300,000-event cap; `nd_levels` reads its output
+and tests what E-MLB's neutral-density levels do to busiest-pixel share (App. J).
 
 ## Tier 2 — the benchmark grid (needs the classical denoisers built)
 
@@ -49,7 +53,7 @@ python -m dataset_assessment.run_benchmark --dataset dnd21    --max-events 10000
 python -m dataset_assessment.run_benchmark --dataset dvsclean --max-events 1000000 \
     --methods raw random_null dwf evflow knoise red ts ynoise label_oracle      #  122 s
 python -m dataset_assessment.run_benchmark --dataset emlb     --max-events 1000000 \
-    --scene-stride 4 --methods raw random_null dwf evflow knoise red ts ynoise  # 2098 s
+    --methods raw random_null dwf evflow knoise red ts ynoise                   # 4880 s
 python -m dataset_assessment.run_benchmark --dataset pure_ba  --max-events 1000000 \
     --methods raw random_null dwf evflow knoise red ts ynoise                   # 3420 s
 python -m dataset_assessment.run_benchmark --dataset dvsd22 --max-events 1000000 \
@@ -59,6 +63,73 @@ python -m dataset_assessment.analyze                                            
 
 Every run writes its JSON incrementally, one recording at a time, so a killed job keeps its
 partial output and can be inspected.
+
+### Scene intervals for the nulls
+
+Whether each null's gain exceeds scene-resampling variation at every retention, with the
+Bonferroni-corrected count (Sec. V-B). Reads the five `results/benchmark_*.json`; a few seconds.
+
+```bash
+python -m dataset_assessment.null_intervals   # results/null_intervals.json
+```
+
+### The busiest 0.1% of pixels removed first
+
+Specificity and the blank-sample response fail only on DVSD22 and Pure_BA. These runs repeat
+both with the busiest 0.1% of occupied pixels removed from the input first; the comparison reads
+each pair of runs on the recordings evaluable under both (Sec. V-B, Sec. V-C).
+
+```bash
+python -m dataset_assessment.run_benchmark --dataset dvsd22  --hot-pixel-removal \
+    --methods raw random_null --out results/benchmark_dvsd22_hotpixel.json          #   20 s
+python -m dataset_assessment.run_benchmark --dataset pure_ba --hot-pixel-removal \
+    --methods raw random_null --out results/benchmark_pure_ba_hotpixel.json         #   36 s
+python -m dataset_assessment.run_benchmark --dataset pure_ba --hot-pixel-removal \
+    --methods raw random_null dwf evflow knoise red ts ynoise \
+    --out results/benchmark_pure_ba_hotpixel_all.json                               # 2266 s
+python -m dataset_assessment.hotpixel_contrast   # results/hotpixel_contrast.json
+```
+
+### The filters' own outputs
+
+The label-quality test and the E-MLB table read each filter's native output, not a quota near
+it. `native_oracle` scores every filter against a label oracle matched to it per block on the
+two labelled corpora, as released and with the busiest pixels removed; `native_emlb` applies
+protocol item 1 to E-MLB; `paired_contrasts --source native` differences its rows within
+recordings.
+
+```bash
+python -m dataset_assessment.native_oracle --dataset dnd21                          #   69 s
+python -m dataset_assessment.native_oracle --dataset dvsclean                       #   79 s
+python -m dataset_assessment.native_oracle --dataset dnd21    --hot-pixel-removal   #   70 s
+python -m dataset_assessment.native_oracle --dataset dvsclean --hot-pixel-removal   #  612 s
+python -m dataset_assessment.native_emlb --workers 16                               #   37 s
+python -m dataset_assessment.paired_contrasts --dataset emlb --source native        # paired_contrasts_native.json
+```
+
+### Slice size on the filters' own outputs
+
+Whether the slice-size convention reorders filters or shifts every score together, on DND21
+(Sec. V-E).
+
+```bash
+python -m dataset_assessment.slice_ranking   # results/slice_ranking_dnd21.json  70 s
+```
+
+### EDformer
+
+The two `edformer` commands run in EDformer's own environment (Python 3.10, torch 2.2.1+cu118,
+pytorch3d 0.7.5; `DATA.md`). The first caches its per-recording scores on the capped E-MLB
+inputs, which the rest of the harness reads; the last follows EDformer's released protocol,
+uncapped, so its per-cell MESR is comparable with the published table.
+
+```bash
+python -m dataset_assessment.edformer --cap 1000000      # results/edformer_emlb_manifest.json  6639 s
+python -m dataset_assessment.run_benchmark --dataset emlb --max-events 1000000 \
+    --methods raw edformer_native --out results/benchmark_emlb_edformer.json      #  429 s
+python -m dataset_assessment.native_emlb --methods edformer_native --merge
+python -m dataset_assessment.edformer --cap 0 --out results/edformer_emlb_uncapped.json   # 22478 s
+```
 
 ### MESR repeatability across E-MLB's repetitions
 
@@ -113,8 +184,8 @@ Whether a filter that out-scores the label oracle on MESR actually selects event
 Needs per-event labels, so it runs on the two labelled corpora only.
 
 ```bash
-python -m dataset_assessment.label_quality --dataset dnd21     # results/label_quality_dnd21.json     ~90 s
-python -m dataset_assessment.label_quality --dataset dvsclean  # results/label_quality_dvsclean.json  ~110 s
+python -m dataset_assessment.label_quality --dataset dnd21     # results/label_quality_dnd21.json     ~108 s
+python -m dataset_assessment.label_quality --dataset dvsclean  # results/label_quality_dvsclean.json  ~125 s
 ```
 
 ### Properties of ESR
@@ -156,9 +227,10 @@ this differences within each recording and bootstraps the scene clusters. Reads
 python -m dataset_assessment.paired_contrasts --dataset emlb   # results/paired_contrasts.json
 ```
 
-It replaced reasoning from whether two marginal intervals overlap, which is invalid in both
-directions the table used it. 10 of the 15 pairs separate; the five that do not are the four
-middle methods against each other. Both this and Table IV apply
+Differencing within recordings avoids reading the overlap of two marginal intervals, which is
+invalid in both directions. 12 of the 21 pairs separate; the nine that do not all lie among the
+five middle methods (YNoise, EDformer, DWF, EvFlow, TS), of which only YNoise and DWF separate.
+Both this and Table IV apply
 `protocol.native_point_is_eligible`, which drops the 445 of 2304 E-MLB cells whose native
 retention is below the recording's measurable floor -- cells the sweep can only score at a
 retention the filter never chose.
@@ -178,16 +250,17 @@ python -m dataset_assessment.native_mask --dataset dnd21 --recordings 4
 
 ### How far off is the unused ESR variant?
 
-The paper once said "three orders of magnitude". It is not: the `/K` in
-`EventStructuralRatioV2` cancels most of its `1000`, and what remains is a size-3 median
-filter that erases isolated pixels. Needs the corpora; about a minute.
+Not by orders of magnitude: the `/K` in `EventStructuralRatioV2` cancels most of its `1000`,
+and what remains is a size-3 median filter that erases isolated pixels. Needs the corpora;
+about a minute.
 
 ```bash
 python -m dataset_assessment.esr_variant     # results/esr_variant.json
 ```
 
-It reports 3.27x the official value on E-MLB, 2.13x on DND21, 1.03x on DVSCLEAN, 0.003x on
-Pure_BA and exactly zero on the sparse DVSD22 slices.
+It reports median ratios to the official value of 3.27x on E-MLB, 2.13x on DND21, 1.03x on
+DVSCLEAN, 0.003x on Pure_BA and 0.0001x on the sparse DVSD22 slices, three of which collapse to
+exactly zero.
 
 ### Event-cap sensitivity
 
@@ -216,33 +289,67 @@ python -m dataset_assessment.cap_sensitivity \
     --out results/cap_sensitivity/pair_1M_vs_2M.json   # the pair with an identical grid
 ```
 
-**`--scene-stride` is omitted deliberately: the sweep needs all 384 recordings.** An earlier
-48-recording run at `--scene-stride 8` is kept under `results/cap_sensitivity/subset48/`, and
-it does not support the paper's numbers. Two of its conclusions are false at full scale: it
-found the evaluable range moving on every cell, where 294 of 2688 hold still, and it found
-every corpus mean steady between 1M and 2M, where RED's passes the unit of scale on both
-cohorts (0.0395 over the cells the cap binds, 0.0317 over all 384 recordings). Scene stride selects
-which recordings are scored and changes nothing about how one is scored — all 7,296 evaluable
-curve points shared with the full run match it exactly at the 500,000-event cap — so the
-subset was unrepresentative, not wrong.
+**`--scene-stride` is omitted deliberately: the sweep needs all 384 recordings.** A
+48-recording sweep at `--scene-stride 8`, summarised in `results/cap_sensitivity_subset48.json`
+(its per-cap runs are not shipped), does not support the paper's numbers. Two of its
+conclusions are false at full scale: it finds the evaluable range moving on every cell, where
+294 of 2688 hold still, and every corpus mean steady between 1M and 2M, where RED's passes the
+unit of scale on both cohorts (0.0395 over the cells the cap binds, 0.0317 over all 384
+recordings). Scene stride selects which recordings are scored and changes nothing about how one
+is scored, so the subset was unrepresentative, not wrong.
 
-**`--scene-stride 4` on E-MLB is deliberate.** It keeps 96 recordings balanced at 48 daylight
-/ 48 night and 24 per ND level. Capping by `--max-recordings 96` instead would truncate inside
-D-END and drop N-END entirely, because iteration runs part → scene → ND.
+**For a quick E-MLB check, use `--scene-stride 4`, not `--max-recordings`.** It keeps 96
+recordings balanced at 48 daylight / 48 night and 24 per ND level; capping by
+`--max-recordings 96` would truncate inside D-END and drop N-END entirely, because iteration
+runs part → scene → ND. The shipped `results/benchmark_emlb.json` scores all 384.
 
-## Tier 3 — downstream validity (needs DVS Gesture + a GPU, ~2 h)
+## Tier 3 — downstream validity (needs DVS Gesture + a GPU, ~10 h in all)
 
 ```bash
-python -m dataset_assessment.downstream_gesture     # results/downstream_gesture.json
+python -m dataset_assessment.downstream_gesture     # results/downstream_gesture.json  2339 s
+python -m dataset_assessment.downstream_gesture --arch cnn3d \
+    --out results/downstream_gesture_cnn3d.json                                  # 28335 s
+python -m dataset_assessment.downstream_gesture --arch mlp \
+    --out results/downstream_gesture_mlp.json                                    #  1863 s
+python -m dataset_assessment.downstream_paired      # results/downstream_paired_seeds.json  <1 s
 ```
 
-5 retentions x **3 seeds** (`20260726/7/8`) per method, with identical architecture, epochs,
+The default architecture is the 2D CNN. Each trains 5 retentions x **3 seeds**
+(`20260726/7/8`) per method, with identical architecture, epochs,
 batch size and optimiser in every one. `available_methods()` returns the eight the paper
 reports; if the sibling checkout `../zero-parameter-event-denoising` is present it also
 returns `native3d` and `native3d_gated`, giving 150 trainings instead of 120. Those rows are
-kept in the artifact but excluded from every headline statistic — see `PAPER_METHODS` and the
+kept in the artifact but excluded from every reported statistic — see `PAPER_METHODS` and the
 `extended_scope` block. Pass `--methods raw random_null dwf evflow knoise red ts ynoise` to
 run the paper's set only.
+
+### The released classifier, frozen
+
+`downstream_gesture_frozen` scores the same conditions with the task's released classifier, the
+SEW 7B-Net in `dataset_assessment/sew7b/`, held frozen, so no seed or training schedule enters.
+Its evaluator runs in an environment with torch and SpikingJelly 0.0.0.0.15, named by
+`SNN_PYTHON`, and reads the released checkpoint from `sew7b-checkpoint/` (`DATA.md`). The
+module stops unless the 288 unfiltered test clips reproduce the published 0.979167 top-1 (282 of
+288) and the 0.977321 macro-F1 that cell has; `--smoke` runs that gate alone and writes
+`results/downstream_gesture_frozen.smoke.json`.
+
+```bash
+export SNN_PYTHON=/path/to/snn-env/bin/python
+python -m dataset_assessment.downstream_gesture_frozen --smoke   # the gate alone, ~30 s
+python -m dataset_assessment.downstream_gesture_frozen           # results/downstream_gesture_frozen.json  1620 s
+cp results/downstream_gesture_frozen_frames/evaluation.json \
+   results/downstream_gesture_frozen_evaluation.json
+```
+
+The evaluator writes its per-clip predictions and the paired comparisons, bootstrapped over the
+six held-out subjects (10,000 draws), beside the frames; the last line ships them. Run the gate
+before the full run, not after: both write `evaluation.json` to the same frames directory, and
+the copy must take the full run's.
+
+The evaluator always runs in full precision (`--no-amp`). In half precision, on a GTX 1660 SUPER,
+rounding near the firing threshold flips spikes and changes four unfiltered predictions, three
+of them to wrong ones (0.968750); the released training script used half precision on other
+hardware.
 
 ### How much of the downstream verdict rests on RED
 
@@ -255,7 +362,7 @@ python -m dataset_assessment.red_sensitivity    # results/red_sensitivity.json  
 ```
 
 Reads `downstream_gesture.json` and `downstream_gesture_frozen.json`; reproduces the published
-`+0.135` (trained 2D CNN, 40 conditions) and `+0.073` (frozen, within retention) exactly.
+`+0.135` (trained 2D CNN, 40 conditions) and `+0.036` (frozen, within retention) exactly.
 
 To recompute the statistics after changing how a summary is scoped or defined, without
 retraining anything:
@@ -272,10 +379,8 @@ If they differ, determinism has broken and nothing else in that file should be t
 than `MAX_EVENTS` events cannot be evaluated at the lowest retention and is excluded, and
 that exclusion is not class-neutral — low-activity gestures are lost first. The current
 settings (whole gesture eligible, 80,000 events, `r >= 0.4`) keep 285/288 test gestures with
-at least 92% of every class. An earlier version used the first 4 s and 160,000 events and
-kept 205/288, with only 21% of class 1; the correlations were not qualitatively different,
-but the task being measured was. If you change `MAX_EVENTS` or `RETENTIONS`, re-read
-`coverage` — the two move together.
+at least 92% of every class. If you change `MAX_EVENTS` or `RETENTIONS`, re-read `coverage` —
+the two move together.
 
 ## Verifying a reported claim
 
@@ -320,16 +425,22 @@ checked against `cuke-emlb/python/src/utils/metric.py::EventStructuralRatio._cal
 | Python | 3.13.9 (Anaconda) |
 | numpy / scipy / pandas / scikit-learn / h5py | 2.3.5 / 1.16.3 / 2.3.3 / 1.7.2 / 3.15.1 |
 | torch | 2.10.0+cu128, CUDA on GTX 1660 SUPER |
+| classifier environment (`SNN_PYTHON`) | Python 3.12.12, torch 2.10.0+cu128, SpikingJelly 0.0.0.0.15, numpy 1.26.4, scipy 1.17.1, scikit-learn 1.8.0 |
+| EDformer environment | Python 3.10.12, torch 2.2.1+cu118, pytorch3d 0.7.5 |
 | dv-processing | 2.0.3 |
 | dv_toolkit | 0.2.0, built from `yam-toolkit` @ `0fe3b3832187c07e09069d1df4006f4682268ab5` |
 | compiler | **gcc-13 / g++-13 (13.4.0)** — dv-processing 2.0.3 rejects gcc < 13 |
 | CMake | 3.22.1 |
 
-Randomness is confined to three places, all seeded: `random_null`'s ranking
-(`RANDOM_NULL_SEED = 20260726`), the downstream classifier (`SEEDS = 20260726/7/8`, with
-`cudnn.deterministic = True`), and the bootstrap intervals in `analyze.py`
-(`bootstrap_delta_ci(seed=20260726)`, and Figure 1's bands through the same seeded path at
-2,000 draws instead of 10,000). Everything else is deterministic given the inputs.
+Every random draw is seeded. `random_null`'s ranking uses `RANDOM_NULL_SEED = 20260726`
+(`--null-seed` overrides it; `results/null_seeds/` and `null_matched_span` use
+20260726–20260735); the random control on E-MLB's native outputs uses `CONTROL_SEED = 20260917`
+(`native_emlb`); the trained classifiers use `SEEDS = 20260726/7/8` with
+`cudnn.deterministic = True`; EDformer keeps its released seed (230086), and the frozen
+classifier's evaluator seeds its run and its subject bootstrap from 1024. Bootstrap intervals
+draw from generators seeded with 20260726 (`analyze.py`, `measure_metric_deps.py`; 10,000
+draws, and 2,000 for Figure 1's bands), and the synthetic streams in `esr_properties` and
+`measure_metric_deps` use seed 0. Everything else is deterministic given the inputs.
 
 **Two cohorts, and they are not interchangeable.** `per_method` in the comparison averages
 over the cells the cap can bind — the recordings longer than the smallest cap, times six

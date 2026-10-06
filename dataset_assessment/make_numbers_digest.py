@@ -13,6 +13,7 @@ from typing import Callable, Dict, List
 import numpy as np
 
 from .denoisors import CLASSICAL
+from .downstream_gesture_frozen import PUBLISHED_TOP1
 from .esr import SLICE
 
 RESULTS = Path(__file__).resolve().parents[1] / "results"
@@ -1140,9 +1141,12 @@ def _downstream_frozen(out: Callable[[str], None]) -> None:
     subjects = sorted(next(iter(comparisons.values()))["by_subject"])
     out("\n## S8.2 the released classifier, frozen (`results/downstream_gesture_frozen.json`, "
         "`results/downstream_gesture_frozen_evaluation.json`, `results/red_sensitivity.json`)\n")
-    out(f"- reproduced unfiltered accuracy **{gate['top1']:.4f}** over {gate['samples']} test "
-        f"clips (reported {gate['expected_top1']:.4f}, reproduced={gate['reproduced']}) from "
-        f"**{len(subjects)} held-out subjects** ({', '.join(subjects)})")
+    out(f"- unfiltered accuracy on this pipeline **{gate['top1']:.4f}** over {gate['samples']} "
+        f"test clips (gate {gate['expected_top1']:.4f}, met={gate['reproduced']}) from "
+        f"**{len(subjects)} held-out subjects** ({', '.join(subjects)}); its authors report "
+        f"**{PUBLISHED_TOP1:.4f}** for the checkpoint (Fang et al. 2021, Table 5, T = 16), "
+        f"{round(PUBLISHED_TOP1 * gate['samples'])} of {gate['samples']} clips against "
+        f"{round(gate['top1'] * gate['samples'])}")
     out("- MESR's share of the classified stream: " + ", ".join(
         f"r={s['retention']}: {s['scored_share']:.1%}" for s in payload["scored_share"]))
     grid: Dict[float, Dict[str, Dict]] = {}

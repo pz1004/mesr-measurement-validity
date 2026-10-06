@@ -24,6 +24,7 @@ __pycache__/
 /cuke-emlb
 /EDformer
 /EDmamba
+/sew7b-checkpoint
 *.aedat
 *.aedat4
 *.hdf5
@@ -46,3 +47,8 @@ __pycache__/
 # which is already tracked. REPRODUCE.md documents the `cp` that recreates it.
 /results/cap_sensitivity/emlb_cap_1000000.json
 /results/cap_sensitivity/subset48/
+
+# Frames, manifest and raw evaluator output that downstream_gesture_frozen regenerates;
+# REPRODUCE.md documents the copy that ships the evaluator output.
+/results/downstream_gesture_frozen_frames/
+/results/downstream_gesture_frozen.smoke.json

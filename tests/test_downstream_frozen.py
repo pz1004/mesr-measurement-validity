@@ -16,8 +16,12 @@ whose n is inflated by duplicate rows is exactly that.
 
 from __future__ import annotations
 
-from dataset_assessment.downstream_gesture_frozen import (PAPER_METHODS, RETENTIONS,
-                                                          _condition_name, dedupe_rows)
+from pathlib import Path
+
+from dataset_assessment.downstream_gesture_frozen import (GATE_TOP1, PAPER_METHODS,
+                                                          PUBLISHED_TOP1, RETENTIONS,
+                                                          _condition_name, dedupe_rows,
+                                                          evaluator_command)
 
 
 def _row(method: str, retention: float, mesr: float, accuracy: float) -> dict:
@@ -61,3 +65,17 @@ def test_dedupe_is_idempotent():
     rows = [_row(m, r, 1.4, 0.6) for m in PAPER_METHODS for r in RETENTIONS]
     once = dedupe_rows(rows)
     assert len(dedupe_rows(once)) == len(once)
+
+
+def test_the_evaluator_runs_in_full_precision(tmp_path):
+    """Half precision flips spikes near the firing threshold: on a GTX 1660 SUPER it changes four
+    unfiltered predictions and costs three clips, so the probe never asks for it."""
+
+    command = evaluator_command(tmp_path / "manifest.json", tmp_path / "out.json",
+                                Path("python"), tmp_path / "checkpoint.pth")
+    assert "--no-amp" in command
+
+
+def test_the_gate_is_the_published_cell():
+    assert GATE_TOP1 == 282 / 288
+    assert round(GATE_TOP1, 4) == PUBLISHED_TOP1

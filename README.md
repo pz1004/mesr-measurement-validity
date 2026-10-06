@@ -3,110 +3,133 @@
 **A Measurement-Validity Study of the Event Structural Ratio**
 Sooyoung Jang (Hanbat National University) and Kyuseung Han (ETRI)
 
-What the no-reference event-camera denoising metric actually measures — a harness, five
-corpora, and the evidence that the field's headline metric rewards throwing events away.
+Event-camera denoisers are compared by MESR, the mean Event Structural Ratio, a no-reference
+score introduced with the E-MLB benchmark. This repository holds the code and the output of
+every run behind a study that tests MESR against four validation criteria on five corpora, and
+a reporting protocol for papers that use it.
 
-This repository is the artifact cited in the paper's Data Availability statement:
+It is the artifact cited in the paper's Data availability statement:
 <https://github.com/pz1004/mesr-measurement-validity>
 
-**Headline.** A seeded uniform-random subsampler — a filter that removes signal and noise in
-exactly the proportion they occur — **raises** MESR on **both real unfiltered corpora**, at a
-retention common to every recording, by up to **85×** the published gap between the two most
-recent methods. On DND21, real denoisers beat a filter that ranks events by their
-**ground-truth labels** in **62%** of cases. And across 40 matched conditions of a downstream
-classifier — run under three architectures, each trained under three seeds — MESR predicts
-accuracy for one of the three classifiers and neither of the other two.
+## Findings
 
-| Result | Measured | For scale |
+Scored on their own outputs, filters out-score a label oracle that keeps as many events from
+each input block, signal first, in 76 of 81 (method, recording) cells, while keeping less signal
+and more noise. A seeded random subsampler, which selects nothing, raises MESR at all 19
+retentions on two of the three real unfiltered corpora and lowers it on the third. Against the
+released DVS Gesture classifier, the filter MESR ranks first is the least accurate at three of
+four retentions.
+
+| Criterion | Test | What MESR returns |
 |---|---|---|
-| Random subsampler's MESR gain (DVSD22, common *r*=0.05) | **+0.7786** [+0.3839, +1.1660] | 85× the EDformer–EDmamba gap (0.0092) |
-| Random subsampler's MESR gain (Pure_BA, common *r*=0.20) | **+0.0684** [+0.0072, +0.1430] | 7× that gap |
-| Operating point, one *fixed* denoiser (mean over 10 recordings) | **0.3029** | 33× that gap |
-| Slice-size convention, 10k → 100k events (mean over 10 recordings) | **0.5267** | 57× that gap |
-| Cells beating a ground-truth oracle (DND21) | **37/60 (62%)** | nothing can denoise better than labels |
-| Signal-free corpus, best filter's gain | **+14.41** | every retained event is a false positive |
-| MESR vs downstream accuracy, 2D CNN / 3D CNN | **ρ = +0.135 / +0.111** | p = 0.405 / 0.495 |
-| Same grid, MLP (no spatial prior) | **ρ = +0.874** | p < 0.001 — the one that shares MESR's bias |
-| Retention → accuracy, the sign that splits them | **+0.521 / +0.257 / −0.244** | only the MLP improves as events are discarded |
-| Across-seed accuracy sd in one fixed condition | **0.058** (max 0.127) | larger than most method gaps |
-| Declared sensor size (346×260 → 4096×4096) | **2.065e-14** | ESR carries no `W·H` term |
+| Label-quality ordering | Each filter's own scored output against a label oracle that keeps signal first, matched to it per block | **Not preserved.** Strict reversals (higher score, less signal, more noise) in 52/55 DND21 and 24/26 DVSCLEAN cells, 76 in all; 75 with the busiest 0.1% of occupied pixels removed first |
+| Specificity | A random subsampler and a block-prefix control on a common retention axis | **Fails as released.** Random removal raises MESR at 19/19 retentions on DVSD22 and Pure_BA, by up to +0.7786, under each of ten draws and with both streams scored over the same input span; it lowers MESR on E-MLB and DND21. With the busiest pixels removed: 5/19 and 0/19 |
+| Blank-sample response | Quota-adapted filters against the random subsampler at equal count, on a nominally blank capture | **Fails as released.** The best of six filters gains +1.35 against the subsampler's +0.05; with the busiest pixels removed, the lead falls from +1.1291 to +0.0111 on the 25 recordings evaluable both ways |
+| Influence quantities | Slice size swept from 10⁴ to 10⁵ events on a fixed output; retention swept at a fixed ranking (ROC AUC 0.93) | **Two undeclared.** The slice size moves MESR by 0.5267, over four times the widest gap between filters on the same DND21 recordings, and reorders filters on 9 of 10 recordings; the operating point moves it by 0.3029 |
+| Criterion validity | DVS Gesture: the task's released classifier, frozen, and three architectures trained under three seeds | **Counterexample.** With the released classifier (0.9792, its published accuracy), quota-adapted RED, first by MESR at every retention below 1, is the least accurate at three of four and trails the block-prefix control by 0.1181 at r = 0.6 on each of the six test subjects. For the trained classifiers the association depends on the architecture (MLP ρ = +0.87; CNNs +0.135 and +0.111) |
+| Published known-input check | Noise added to a fixed stream, re-run on DND21's injected series | **Reproduces.** MESR falls as injected noise rises |
+| Declared grid size | Cancellation proof, and one stream re-scored at four declared resolutions | **Invariant.** The pixel count K = W·H cancels; spread 2.1×10⁻¹⁴ |
 
-Each subsampler gain is quoted at one retention held common to every recording in that
-corpus — Table II's `random_null` column — not at the per-recording argmax, which is a
-metric-oracle and is reported separately. DVSCLEAN also scores positive over its ten
-recordings, but its interval includes zero once the bootstrap resamples its five *scenes*
-instead, so it is reported and not counted.
+*Quota-adapted* filters keep the same count per 10,240-event input block as the controls, so
+their retained set is not the filter's own. A filter's own output is its *native* output.
 
-Every number above is regenerated by the code here and mapped to its source artifact by
-`python -m dataset_assessment.make_numbers_digest`, which prints the claim-to-artifact map.
-The manuscript itself is not part of this release.
+On E-MLB, EDmamba's released test script does not compute MESR and its loader reads one of the
+four ND levels, so the released code does not regenerate the published EDformer–EDmamba
+difference of 0.0092.
 
-## The claim in one block
+Every number above is in the paper, and `python -m dataset_assessment.make_numbers_digest`
+maps each to the output that produces it. The manuscript itself is not part of this release.
+
+## Why removal alone can move the score
+
+ESR scores a slice of N = 30,000 events, with M = 20,000 and n_p events at pixel p of K:
 
 ```
-ln = K − Σ_all_px (1 − M/N)^n          # an empty pixel contributes exactly 1
-   = Σ_occupied_px [1 − (1 − M/N)^n]   # K cancels — ESR has no sensor-size term
+ntss = Σ_p n_p (n_p − 1) / (N (N − 1))
+ℓn   = K − Σ_all p (1 − M/N)^n_p
+     = Σ_occupied p [1 − (1 − M/N)^n_p]      # an empty pixel contributes exactly 1: K cancels
+ESR  = √(ntss · ℓn)
 ```
 
-MESR = mean over 30,000-event slices of `√(ntss · ln)`. Both factors rise when a stream is
-concentrated, and a stream gets *more* concentrated when you delete events from it — because
-slices are cut by event **count**, so discarding events silently lengthens the time each slice
-spans. That is the whole mechanism.
+MESR is the mean of ESR over a recording's complete slices. A slice holds a fixed count of
+events, so a filter that keeps half of them is scored over a window about twice as long.
+Whether that moves the score, and in which direction, depends on the stream. Under stationary
+Poisson rates it moves nothing, and concentrating a slice's counts raises ntss but lowers ℓn. On
+DVSD22 and Pure_BA random removal raises MESR, and removing the busiest 0.1% of occupied pixels
+first removes almost all of that gain; on E-MLB and DND21 it lowers MESR. The paper states its
+account of why, a stationary hot component set against a drifting one, as a hypothesis.
 
 ## Quick start
 
 ```bash
 pip install -r requirements.txt
-python -m pytest -q tests/                      # expect: 166 passed
+python -m dataset_assessment.analyze            # rank_analysis.json + Figure 1
+python -m dataset_assessment.figures_protocol   # the two protocol figures the tests check
+python -m pytest -q tests/                      # expect: no failures
 python -m dataset_assessment.audit              # expect: 10/10 claims verified from source
-python -m dataset_assessment.analyze            # regenerates rank_analysis.json + figures
 ```
 
-Those three need no dataset. To regenerate everything from raw event data, see
-[`REPRODUCE.md`](REPRODUCE.md); to obtain the corpora, see [`DATA.md`](DATA.md).
+None of these needs a corpus. Without the corpora, 352 tests pass and 12 skip: 8 read the
+corpora, 3 check the manuscript and 1 needs EDformer's score cache. `audit` reads the EDformer,
+EDmamba and cuke-emlb sources at pinned commits, so it needs those checkouts. To regenerate
+everything from raw event data, see [`REPRODUCE.md`](REPRODUCE.md); to obtain the corpora, see
+[`DATA.md`](DATA.md).
 
 ## What is here
 
 | Path | Contents |
 |---|---|
-| `dataset_assessment/` | The harness: verified metric core, unified readers for six corpora, denoiser adapter, protocol, grid runner, analysis |
-| `tests/` | 88 tests, including the ESR closed-form hand case, the K-cancellation identity, and the denoiser adapter's ordered-subsequence merge |
-| `results/` | 11 JSON artifacts — every reported number traces to one (`benchmark_emlb_native3d.json` backs none of them; it belongs to a sibling project) |
-| `BUILD_CUKE_EMLB.md` | How the six classical denoisers were built, with verbatim errors and the pinned-commit warning |
+| `dataset_assessment/` | The harness: the metric core, checked against E-MLB's reference implementation; readers for every corpus used; the denoiser adapter; the grid runner; and one module per analysis |
+| `dataset_assessment/sew7b/` | The released DVS Gesture classifier's network, its evaluator and the frame integrator, used by `downstream_gesture_frozen` (the checkpoint is third-party; see `DATA.md`) |
+| `tests/` | 364 tests, including the ESR closed-form hand case, the K-cancellation identity and the denoiser adapter's ordered-subsequence merge |
+| `results/` | 46 JSON artifacts, with `null_seeds/` (the subsampler under ten draws) and `cap_sensitivity/`; every reported number traces to one (`benchmark_emlb_native3d.json` belongs to a sibling project and backs none) |
 | `reproduction/results/` | Our uncapped run of EDformer's released evaluation script, which verifies its published E-MLB table |
+| `BUILD_CUKE_EMLB.md` | How the six classical denoisers were built, with verbatim errors and the pinned-commit warning |
+| `REPRODUCE.md`, `DATA.md` | The command, wall time and environment for every artifact; where each corpus, baseline and checkpoint comes from |
 
-Datasets and third-party baselines are **symlinked, not vendored** — see `DATA.md`.
+Datasets, third-party baselines and the classifier checkpoint are **not redistributed**; in the
+authors' working tree they are symlinks to sibling checkouts (`DATA.md`).
 
-## The protocol this proposes
+## Reporting protocol
 
-Four lines per table, one per defect measured:
+A paper that reports MESR should print four items. They make a MESR number interpretable; they
+do not make MESR valid.
 
-1. **The curve, not a scalar.** MESR at a stated retention grid, summarised by `AUC_r`.
-   `r*`/`MESR*` are argmaxes over the *test* metric and are metric-oracles — label them.
-2. **Δ-over-Raw beside every absolute number**, since absolute MESR moves with the event cap.
-3. **The `(ntss, ln, occupied_px)` decomposition**, so a cross-sensor gap is attributed to
-   occupancy. Do **not** normalise by `√K`; there is no `K` to divide out.
-4. **The nulls.** `raw` and `random_null` on the same axis, plus `label_oracle` where labels
-   exist. A method that does not beat the nulls has not been shown to denoise.
+1. **What the method is.** A fixed binary filter has one operating point: report its score on
+   its native output, the retention it achieves, whether it is evaluable, the matched nulls,
+   and the scoring convention (N, M, event cap, hot-pixel rule, incomplete-slice handling). A
+   method with genuine configurations gets a curve over those: MESR at a stated grid of
+   retentions, summarised by (r\*, MESR\*) and by AUC_r over a stated span. r\* is the argmax of
+   the test metric, so it bounds what a method could reach; rank on AUC_r over a common range,
+   or on the value at the method's own operating point.
+2. **Δ-over-Raw beside every absolute number.** It removes the recording's own baseline, though
+   not the event cap's effect.
+3. **The (ntss, ℓn, #occupied) decomposition**, so a cross-sensor gap can be attributed to
+   occupancy. No grid-size normalisation applies, since K cancels.
+4. **The nulls, on a common retention axis**: the block-prefix control, the random subsampler
+   and, where labels exist, the label oracle. A method that does not beat them has not been
+   shown to denoise; one that beats them has been shown to select, not to denoise. Score the
+   nulls at one retention common to every recording, or report the count of retentions at
+   which they gain.
 
-## Honest limits
+## Limits
 
-- We evaluate the *released implementations* at their default parameters, not the published
-  methods in the abstract.
-- Binary filters cannot be swept; their curves are informative only near their own operating
-  point. That is why the eight-method comparison is quoted at native operating points, while
-  the sweepable null is quoted at a retention held common to every recording in a corpus.
-- The downstream probe is three architectures on one task, three seeds each, and all three
-  are far from the task ceiling (0.4503 / 0.5146 / 0.4082 unfiltered). One task cannot
-  establish what MESR predicts in general; what the three architectures establish is that the
-  answer is not pipeline-independent. The seed alone moves accuracy by 0.058 (median, within
-  one fixed condition), so these pipelines cannot resolve small differences between filters.
-- The synthetic-vs-real result is **not** a clean negative: over all 457 recordings, two of
-  the four statistics clear the pre-registered bar once the ND-filtered E-MLB corpus is
-  withheld — hot-pixel share separates the groups perfectly, and neighbour occupancy
-  separates them in the opposite direction.
-- We do **not** propose a replacement metric. Diagnosing that a no-reference metric rewards
-  event removal does not by itself yield a better one.
+- The study evaluates the released implementations at their default parameters, as a reader
+  reproducing a published table would; a filter that underperforms here may be misconfigured
+  in the reference benchmark rather than weak.
+- Binary filters have no retention parameter, so their curves are quota-adapted constructions;
+  only their native outputs are the filters' own.
+- The downstream probe is one task. The three trained architectures reach 0.4503, 0.5146 and
+  0.4082 unfiltered, far below what the task allows, and three seeds bound their variability
+  without removing it; the frozen released classifier has neither limitation.
+- One filter, RED, dominates several results. The RED-excluded reading is reported wherever it
+  changes a verdict; without RED, the frozen classifier's mean within-retention ρ is +0.45 and
+  no retention inverts.
+- Four corpus statistics leave open whether injected noise resembles real background activity:
+  none clears the separation bar set in advance. Withholding E-MLB makes busiest-pixel share
+  separate the groups perfectly, but a grouping that ignores noise origin separates about as
+  sharply.
+- No replacement metric is proposed. The paper states the requirements one would have to meet.
 
 ## How to cite
 
@@ -129,5 +152,5 @@ tag you ran, so the numbers you quote are the ones that version produces.
 
 ## License
 
-Code and documents in this repository: MIT (see `LICENSE`). Datasets and third-party
-baselines keep their original authors' terms; none are redistributed here.
+Code and documents in this repository: MIT (see `LICENSE`). Datasets, third-party baselines and
+the classifier checkpoint keep their original authors' terms; none are redistributed here.

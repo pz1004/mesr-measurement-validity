@@ -2,9 +2,20 @@ import numpy as np
 import pytest
 
 from dataset_assessment.readers import (
-    Recording, iter_dnd21, iter_dvsd22, iter_dvsclean, iter_ed24, iter_emlb,
+    PROJECT_ROOT, Recording, iter_dnd21, iter_dvsd22, iter_dvsclean, iter_ed24, iter_emlb,
     iter_pure_ba_noise,
 )
+
+
+def needs(corpus: str):
+    """Skip where the corpus is not checked out beside the code (see DATA.md).
+
+    A dangling link is not skipped: the corpus was meant to be there, so the test fails.
+    """
+
+    root = PROJECT_ROOT / corpus
+    return pytest.mark.skipif(not (root.exists() or root.is_symlink()),
+                              reason=f"{corpus} not in this checkout (DATA.md)")
 
 
 def assert_valid(rec: Recording):
@@ -20,6 +31,7 @@ def assert_valid(rec: Recording):
         assert set(np.unique(rec.labels)).issubset({0, 1})
 
 
+@needs("ECCV2024_datasets")
 def test_dnd21_first_recording_is_labeled_and_synthetic():
     rec = next(iter_dnd21())
     assert_valid(rec)
@@ -27,6 +39,7 @@ def test_dnd21_first_recording_is_labeled_and_synthetic():
     assert (rec.width, rec.height) == (346, 260)
 
 
+@needs("DVSCLEAN")
 def test_dvsclean_is_labeled_synthetic_and_hd():
     rec = next(iter_dvsclean())
     assert_valid(rec)
@@ -34,6 +47,7 @@ def test_dvsclean_is_labeled_synthetic_and_hd():
     assert (rec.width, rec.height) == (1280, 720)
 
 
+@needs("DVSCLEAN")
 def test_dvsclean_timestamps_are_microseconds_not_seconds():
     """The file stores float32 SECONDS; a reader that forgets to scale collapses the
     stream into a handful of distinct timestamps and silently breaks any time-windowed
@@ -44,6 +58,7 @@ def test_dvsclean_timestamps_are_microseconds_not_seconds():
     assert len(np.unique(rec.events[:, 0])) > len(rec.events) // 100
 
 
+@needs("E-MLB")
 def test_emlb_is_unlabeled_and_real():
     rec = next(iter_emlb(max_events=60_000))
     assert_valid(rec)
@@ -51,6 +66,7 @@ def test_emlb_is_unlabeled_and_real():
     assert len(rec.events) <= 60_000
 
 
+@needs("ECCV2024_datasets")
 def test_ed24_is_labeled_and_synthetic():
     rec = next(iter_ed24(scenes=("Bicycle_01",), levels=("0.0",)))
     assert_valid(rec)
@@ -58,6 +74,7 @@ def test_ed24_is_labeled_and_synthetic():
     assert (rec.width, rec.height) == (346, 260)
 
 
+@needs("ECCV2024_datasets")
 def test_pure_ba_noise_is_all_noise():
     rec = next(iter_pure_ba_noise(max_events=60_000))
     assert_valid(rec)
@@ -66,6 +83,7 @@ def test_pure_ba_noise_is_all_noise():
     assert rec.synthetic is False
 
 
+@needs("DVSD22")
 def test_dvsd22_reads_aedat2_from_a_davis346():
     rec = next(iter_dvsd22(max_events=200_000))
     assert_valid(rec)
@@ -74,6 +92,7 @@ def test_dvsd22_reads_aedat2_from_a_davis346():
     assert len(rec.events) == 200_000
 
 
+@needs("DVSD22")
 def test_dvsd22_exposes_the_drop_frequency_factor():
     """The controlled signal-rate axis is the reason this corpus is in the paper, so it
     must survive into the Recording rather than being buried in the filename."""
@@ -84,6 +103,6 @@ def test_dvsd22_exposes_the_drop_frequency_factor():
 
 
 def test_recording_is_immutable():
-    rec = next(iter_dnd21())
+    rec = Recording(np.zeros((1, 4), dtype=np.int64), None, 1, 1, "toy", False)
     with pytest.raises(Exception):
         rec.width = 1

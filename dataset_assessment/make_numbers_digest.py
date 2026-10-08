@@ -269,7 +269,8 @@ def _benchmark(out: Callable[[str], None]) -> None:
         # and is kept only so the two can be compared.
         lq = RESULTS / f"label_quality_{dataset}.json"
         if lq.is_file():
-            s = json.loads(lq.read_text())["summary"]
+            quality = json.loads(lq.read_text())
+            s = quality["summary"]
             n = s["at_native"]
             out(f"- **label quality at MATCHED retention, at each method's own operating "
                 f"point: {n['mesr_wins']}/{n['eligible_pairs']} cells score above the label "
@@ -277,10 +278,16 @@ def _benchmark(out: Callable[[str], None]) -> None:
                 f"{n['total_pairs']} (recording, method) pairs")
             out(f"  - of those wins: **{n['strict_reversals']} strict reversals** "
                 f"(strictly less signal AND more noise retained at the identical count), "
-                f"{n['ties']} ties, {n['impossible']} impossible")
+                f"{n['ties']} ties, {n['impossible']} impossible; largest MESR margin over "
+                f"the oracle among them {s.get('max_mesr_margin_strict', float('nan')):+.4f}")
+            # The artifact's own maximum is scoped to the native cohort; the whole grid's
+            # is taken from the cells, so a sentence about every matched retention quotes it.
+            margins = [c["mesr"] - c["oracle_mesr"] for c in quality["cells"]
+                       if c["mesr_win"] and c["label_class"] == "strict"]
             out(f"  - all-retention view: {s['all_matched']['mesr_wins']}/"
                 f"{s['all_matched']['cells']} matched cells, "
-                f"{s['all_matched']['strict_reversals']} strict")
+                f"{s['all_matched']['strict_reversals']} strict; largest MESR margin over "
+                f"the oracle among them {max(margins, default=float('nan')):+.4f}")
             # Every label rate is quoted on the events MESR scored, because `esr.mesr`
             # drops the incomplete tail; the full-mask tally is printed beside it so the
             # two domains can be compared rather than conflated.
@@ -407,7 +414,7 @@ def _benchmark(out: Callable[[str], None]) -> None:
                 # says never happens.
                 out(f"  - reproduction vs published table: mean {error['mean']:+.4f}, "
                     f"per-cell range {error['min']:+.4f} to {error['max']:+.4f} "
-                    f"over {error['n_cells']} cells -- quote the range, not the mean")
+                    f"over {error['n_cells']} cells -- quote the range beside the mean")
                 out(f"  - **per-cell error span {error['max'] - error['min']:.4f}** "
                     f"(the figure quoted in the abstract, S5.1 and Appendix A; "
                     f"{error['max'] - error['min']:.4f} > 0.0092, the gap the table claims)")
@@ -552,6 +559,9 @@ def _architectures(out: Callable[[str], None]) -> None:
             f"**rho={stats['all']['rho']:+.3f} p={stats['all']['p']:.3f}**")
         out(f"  - partial | retention: rho={stats['partial_given_retention']['rho']:+.3f} "
             f"p={stats['partial_given_retention']['p']:.3f}")
+        out(f"  - on the {stats['distinct_inputs']['n']} distinct inputs: rho="
+            f"{stats['distinct_inputs']['rho']:+.3f}, partial | retention "
+            f"{stats['partial_given_retention_distinct']['rho']:+.3f}")
         out(f"  - within-retention Fisher: mean rho="
             f"{stats['within_retention']['mean_rho']:+.3f} "
             f"p={stats['within_retention']['fisher_p']:.3f}")
@@ -968,6 +978,14 @@ def _downstream(out: Callable[[str], None]) -> None:
         f"mesr={best_accuracy['mesr']:.4f} acc={best_accuracy['accuracy']:.4f}")
     out(f"- lowest accuracy: {worst_accuracy['method']} r={worst_accuracy['retention']} "
         f"mesr={worst_accuracy['mesr']:.4f} acc={worst_accuracy['accuracy']:.4f}")
+    # The whole grid, cell by cell: the supplement prints it as a table.
+    by_retention: Dict[float, List[Dict]] = {}
+    for c in scoped:
+        by_retention.setdefault(float(c["retention"]), []).append(c)
+    for r, cells in sorted(by_retention.items()):
+        out(f"- 2D CNN grid, r={r}: accuracy / MESR " + ", ".join(
+            f"{c['method']} {c['accuracy']:.4f}/{c['mesr']:.4f}"
+            for c in sorted(cells, key=lambda c: c["method"])))
     # The unfiltered point. Every method is the same stream at r=1, so this is both the
     # determinism check S8 describes and the accuracy S8/S9 quote when conceding how far
     # the probe sits below the task ceiling. It was absent from this digest.
@@ -1029,12 +1047,19 @@ def _native_oracle(out: Callable[[str], None]) -> None:
             payload = _load(f"native_oracle_{dataset}{suffix}.json")
             s, cells = payload["summary"], payload["cells"]
             wins = [c for c in cells if c["mesr_win"]]
-            margins = sorted(c["mesr"] - c["oracle_mesr"] for c in wins)
+            reversals = [c for c in wins if c["oracle_tp_scored"] > c["tp_scored"]]
+            margins = sorted(c["mesr"] - c["oracle_mesr"] for c in reversals)
             out(f"- {dataset} {label}: **{s['reversals']}/{s['cells']} evaluable cells reverse**, "
                 f"strict {s['eligible_strict']}, ties {s['tie']}, impossible {s['impossible']}, "
                 f"unevaluable {s['unevaluable']}; largest margin "
                 f"{max(c['mesr'] - c['oracle_mesr'] for c in cells):+.4f}, median margin among "
                 f"reversals {float(np.median(margins)):+.4f}")
+            deficits = sorted((c["oracle_tp_scored"] - c["tp_scored"]) / c["scored"]
+                              for c in reversals)
+            out(f"  - retained-purity deficit to the oracle among reversals (Fig. native "
+                f"oracle): {deficits[0]:.4f} to {deficits[-1]:.4f}, median "
+                f"{float(np.median(deficits)):.4f}; at most "
+                f"{max(c['mesr'] - c['oracle_mesr'] for c in reversals):+.4f} in MESR")
             if payload.get("removals"):
                 shares = [r["share_removed"] for r in payload["removals"]]
                 out(f"  - median share of events removed {float(np.median(shares)):.2%}")
@@ -1250,6 +1275,130 @@ def _null_matched_span(out: Callable[[str], None]) -> None:
                 f"vs unfiltered {row['span_unfiltered_median']:.2f}{draws}")
 
 
+def _identity_audit(out: Callable[[str], None]) -> None:
+    """S5-A0: identical events in the inputs, and the packet route against one pass."""
+
+    path = RESULTS / "identity_audit.json"
+    out("\n## S5-A0 identical events and attribution (`results/identity_audit.json`)\n")
+    if not path.exists():
+        out("- not run")
+        return
+    payload = json.loads(path.read_text())
+    for name, block in payload["corpora"].items():
+        s = block["summary"]
+        # `largest` counts single events as size 1, so it is quoted only where groups exist.
+        size = f", largest {s['largest']}" if s["groups"] else ""
+        line = (f"- {name}: {s['recordings']} recordings, {s['events']:,} events; "
+                f"**{s['groups']:,} groups of identical events** ({s['events_in_groups']:,} "
+                f"events{size}), in {s['recordings_with_groups']} recordings")
+        if "mixed_groups" in s:
+            line += (f"; **{s['mixed_groups']} mixing signal and noise** (at most "
+                     f"{s['max_mixed_in_one_recording']} in one recording)")
+        out(line)
+        routes = block.get("routes")
+        if routes:
+            text = (f"  - packet route vs one pass: **{routes['one_pass_equal']}/{routes['cells']} "
+                    f"cells identical**; a whole-stream merge would move {routes['events_moved']:,} "
+                    f"kept events in {routes['cells_moved']} cells (at most {routes['max_moved']})")
+            if "tp_changed_cells" in routes:
+                text += (f", changing the scored signal count in {routes['tp_changed_cells']} "
+                         f"cells (over by at most {routes['max_tp_overcount']}, under by at most "
+                         f"{routes['max_tp_undercount']})")
+            out(text)
+
+
+def _null_shuffle(out: Callable[[str], None]) -> None:
+    """S5-B: the label-blind controls with the marks shuffled within windows of k events."""
+
+    path = RESULTS / "null_shuffle.json"
+    out("\n## S5-B the controls on mark-shuffled streams (`results/null_shuffle.json`)\n")
+    if not path.exists():
+        out("- not run")
+        return
+    payload = json.loads(path.read_text())
+    out(f"- windows (input events; 0 = as recorded, None = whole stream): {payload['windows']}; "
+        f"shuffle seeds {payload['seeds']}; subsampler seed {payload['null_seed']}")
+    for dataset, block in payload["corpora"].items():
+        out(f"- **{dataset}** ({block['recordings']} recordings; unshuffled cells matching the "
+            f"benchmark {block['unshuffled_cells_matching_benchmark']}), at r = "
+            f"{block['reference_r']}:")
+        for row in block["summary"]:
+            lo, hi = row["at_reference_min"], row["at_reference_max"]
+            delta = "unevaluable" if lo is None else f"{lo:+.4f} to {hi:+.4f}"
+            largest = [s["largest_positive"] for s in row["per_seed"]]
+            out(f"  - k={row['window']}, {row['control']}: positive mean at {row['positive']} of "
+                f"{row['evaluable']}; Delta {delta}; largest positive mean "
+                + ", ".join("none" if v != v else f"{v:+.4f}" for v in largest))
+            if row["control"] != "random_null":
+                continue
+            # Per retention, the mean over shuffle seeds and the largest |mean| over seeds.
+            per_r = np.array([[np.nan if m is None else m for m in s["means"]]
+                              for s in row["per_seed"]])
+            out("    - per r, mean over seeds: " + ", ".join(
+                f"{r:.2f}: {v:+.4f}" for r, v in zip(payload["grid"], np.nanmean(per_r, axis=0))))
+            out("    - per r, largest |mean| over seeds: " + ", ".join(
+                f"{r:.2f}: {v:.4f}" for r, v in zip(payload["grid"],
+                                                     np.nanmax(np.abs(per_r), axis=0))))
+
+
+def _tiebreak(out: Callable[[str], None]) -> None:
+    """S8.2b: the frozen classifier at r = 0.6 with a random tie-break inside the quota."""
+
+    path = RESULTS / "downstream_gesture_tiebreak.json"
+    out("\n## S8.2b the released classifier under a random tie-break "
+        "(`results/downstream_gesture_tiebreak.json`)\n")
+    if not path.exists():
+        out("- not run")
+        return
+    payload = json.loads(path.read_text())
+    s, arrival = payload["summary"], payload.get("arrival_order") or {}
+    out(f"- r = {payload['protocol']['retention']}, {s['seeds']} random orders "
+        f"(seeds {payload['protocol']['seeds'][0]}-{payload['protocol']['seeds'][-1]}); gate "
+        f"{payload['gate']['top1']:.4f}")
+    for method, m in s["methods"].items():
+        ref = arrival.get(method, {})
+        out(f"  - {method}: accuracy {m['accuracy_mean']:.4f} [{m['accuracy_min']:.4f}, "
+            f"{m['accuracy_max']:.4f}], MESR {m['mesr_mean']:.4f} [{m['mesr_min']:.4f}, "
+            f"{m['mesr_max']:.4f}]; arrival order "
+            + (f"{ref['accuracy']:.4f} / {ref['mesr']:.4f}" if ref else "n/a"))
+    deltas, lower, intervals = [], [], []
+    for key, c in payload["comparisons"].items():
+        if key.split("__")[1].startswith("red_vs_"):
+            deltas.append(c["accuracy_delta"])
+            lower.append(sum(v["accuracy_delta"] < 0 for v in c["by_subject"].values()))
+            intervals.append(c["accuracy_delta_95ci"])
+    if deltas:
+        out(f"- red minus the block-prefix control, per order: **{min(deltas):+.4f} to "
+            f"{max(deltas):+.4f}** (mean {float(np.mean(deltas)):+.4f}); red lower on "
+            f"{min(lower)} to {max(lower)} of 6 subjects; interval upper ends "
+            f"{min(i[1] for i in intervals):+.4f} to {max(i[1] for i in intervals):+.4f}")
+    out(f"- red least accurate of the eight in **{s['red_least_accurate_in_seeds']}/{s['seeds']}** "
+        f"orders ({s['red_least_accurate_alone_in_seeds']} alone); first by MESR in "
+        f"**{s['red_first_by_mesr_in_seeds']}/{s['seeds']}**")
+    # The within-retention association at r = 0.6, one point per method, order by order: the
+    # same statistic S8.2 reports for the arrival-order tie-break.
+    from scipy.stats import spearmanr
+    with_red, without_red = [], []
+    for seed in payload["protocol"]["seeds"]:
+        cell = [r for r in payload["rows"] if r["seed"] == seed]
+        with_red.append(spearmanr([r["mesr"] for r in cell], [r["accuracy"] for r in cell])[0])
+        rest = [r for r in cell if r["method"] != "red"]
+        without_red.append(spearmanr([r["mesr"] for r in rest], [r["accuracy"] for r in rest])[0])
+    for label, values in (("eight methods", with_red), ("without red", without_red)):
+        out(f"- within-retention Spearman at r = {payload['protocol']['retention']}, {label}, per "
+            f"order: **{min(values):+.2f} to {max(values):+.2f}** (mean {float(np.mean(values)):+.2f})")
+    firsts, inverted = set(), 0
+    for seed in payload["protocol"]["seeds"]:
+        by_method = {r["method"]: r for r in payload["rows"]
+                     if r["seed"] == seed and r["method"] != "red"}
+        first = max(by_method, key=lambda m: by_method[m]["mesr"])
+        lowest = min(r["accuracy"] for r in by_method.values())
+        firsts.add(first)
+        inverted += by_method[first]["accuracy"] == lowest
+    out(f"- without red, the MESR-first method ({', '.join(sorted(firsts))}) is the least "
+        f"accurate of the seven in **{inverted}/{len(payload['protocol']['seeds'])}** orders")
+
+
 def main() -> None:
     out = print
     out("# Every number in the paper, with its source file\n")
@@ -1271,7 +1420,9 @@ def main() -> None:
     _blank_signature(out)
     _cap_sensitivity(out)
     _esr_properties(out)
+    _identity_audit(out)
     _native_oracle(out)
+    _null_shuffle(out)
     _hotpixel_contrast(out)
     _paired_contrasts(out)
     _native_emlb(out)
@@ -1282,6 +1433,7 @@ def main() -> None:
     _architectures(out)
     _paired_seeds(out)
     _downstream_frozen(out)
+    _tiebreak(out)
     _blank_levels(out)
     _null_matched_span(out)
 

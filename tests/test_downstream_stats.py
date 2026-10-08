@@ -280,29 +280,44 @@ def test_the_partial_correlation_is_reported_on_both_weightings():
     assert distinct["duplicate_cells_collapsed"] == 7
 
 
-def test_deduplicating_the_endpoint_does_not_overturn_the_downstream_verdict():
-    """Section 9 reports that the pre-designated within-condition test fails to reject. That
-    verdict must survive the endpoint repair, or the section's conclusion changes. It does:
-    the correlation rises from +0.261 to +0.333 and stays above 0.05."""
-
+def _cnn2d_spearman() -> dict:
     import json
     from pathlib import Path
 
     path = (Path(__file__).resolve().parents[1] / "results" / "downstream_gesture.json")
     if not path.is_file():
         pytest.skip("downstream_gesture.json not generated")
-    s = json.loads(path.read_text())["spearman_mesr_vs_accuracy"]
+    return json.loads(path.read_text())["spearman_mesr_vs_accuracy"]
+
+
+def test_collapsing_the_duplicated_endpoint_raises_the_partial_correlation():
+    """App. K quotes the 2D CNN's partial correlation on the full grid (+0.290) and on the 33
+    distinct inputs (+0.379). Collapsing the duplicated endpoint raises it, since eight tied
+    copies of one input pulled the pooled value toward zero. The paper draws no significance
+    verdict from either: the conditions share test streams and seeds, so each coefficient
+    describes the grid."""
+
+    s = _cnn2d_spearman()
     pooled = s["partial_given_retention"]
     distinct = s["partial_given_retention_distinct"]
     assert pooled["n"] == 40 and distinct["n"] == 33
-    assert pooled["rho"] == pytest.approx(0.261, abs=5e-4)
-    assert distinct["rho"] == pytest.approx(0.333, abs=5e-4)
+    assert pooled["rho"] == pytest.approx(0.290, abs=5e-4)
+    assert distinct["rho"] == pytest.approx(0.379, abs=5e-4)
     assert distinct["rho"] > pooled["rho"]          # the pooled value was biased downward
-    assert distinct["p"] > 0.05                     # and the verdict is unchanged
+
+
+def test_the_across_seed_mean_exceeds_every_seed_estimate():
+    """App. K's reading of the 2D CNN's within-retention mean: averaging accuracies over the
+    three seeds before correlating gives a larger mean rho than any one seed does, which is
+    what averaging produces when it attenuates seed variation. Scoped to the 2D CNN, as the
+    paper scopes it; the 3D CNN does not show it."""
+
+    within = _cnn2d_spearman()["within_retention"]
+    assert within["mean_rho"] > max(row["mean_rho"] for row in within["per_seed"].values())
 
 
 def test_published_downstream_correlations_match_the_artifact():
-    """+0.135 over 40 pooled cells and +0.292 over 33 distinct inputs, both quoted."""
+    """+0.187 over 40 pooled cells and +0.362 over 33 distinct inputs, both quoted."""
 
     import json
     from pathlib import Path
@@ -312,8 +327,6 @@ def test_published_downstream_correlations_match_the_artifact():
         pytest.skip("downstream_gesture.json not generated")
     s = json.loads(path.read_text())["spearman_mesr_vs_accuracy"]
     assert s["all"]["n"] == 40
-    assert s["all"]["rho"] == pytest.approx(0.135, abs=5e-4)
+    assert s["all"]["rho"] == pytest.approx(0.187, abs=5e-4)
     assert s["distinct_inputs"]["n"] == 33
-    assert s["distinct_inputs"]["rho"] == pytest.approx(0.292, abs=5e-4)
-    # The headline claim has to survive the repair, and it does: still not significant.
-    assert s["distinct_inputs"]["p"] > 0.05
+    assert s["distinct_inputs"]["rho"] == pytest.approx(0.362, abs=5e-4)

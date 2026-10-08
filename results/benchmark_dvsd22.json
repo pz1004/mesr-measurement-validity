@@ -23,6 +23,8 @@
     1.0
   ],
   "max_events": 1000000,
+  "hot_pixel_removal": false,
+  "null_seed": 20260726,
   "records": [
     {
       "recording": "DVSD22/HDD/2x100Hz",
@@ -32,6 +34,7 @@
         260
       ],
       "events": 1000000,
+      "hot_pixel_removal": null,
       "raw_mesr": 2.9758536385513112,
       "raw_decomposition": {
         "ntss": 0.005204840161338711,
@@ -198,7 +201,7 @@
           "optimum_at_evaluable_floor": true,
           "raw_mesr": 2.9758536385513112,
           "delta_over_raw_at_r_star": 0.8294218138130858,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -1186,6 +1189,7 @@
         260
       ],
       "events": 1000000,
+      "hot_pixel_removal": null,
       "raw_mesr": 3.9501929393475104,
       "raw_decomposition": {
         "ntss": 0.005321555162949876,
@@ -1352,7 +1356,7 @@
           "optimum_at_evaluable_floor": true,
           "raw_mesr": 3.9501929393475104,
           "delta_over_raw_at_r_star": 0.8424261603090812,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -2340,6 +2344,7 @@
         260
       ],
       "events": 1000000,
+      "hot_pixel_removal": null,
       "raw_mesr": 1.442117081068424,
       "raw_decomposition": {
         "ntss": 0.0018702667866706667,
@@ -2506,7 +2511,7 @@
           "optimum_at_evaluable_floor": true,
           "raw_mesr": 1.442117081068424,
           "delta_over_raw_at_r_star": 0.8140570164119016,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -3494,6 +3499,7 @@
         260
       ],
       "events": 1000000,
+      "hot_pixel_removal": null,
       "raw_mesr": 2.5030085095380628,
       "raw_decomposition": {
         "ntss": 0.004884929497649922,
@@ -3660,7 +3666,7 @@
           "optimum_at_evaluable_floor": true,
           "raw_mesr": 2.5030085095380628,
           "delta_over_raw_at_r_star": 1.8671846007609068,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -4648,6 +4654,7 @@
         260
       ],
       "events": 1000000,
+      "hot_pixel_removal": null,
       "raw_mesr": 2.2414937427127835,
       "raw_decomposition": {
         "ntss": 0.00039604431258819737,
@@ -4814,7 +4821,7 @@
           "optimum_at_evaluable_floor": true,
           "raw_mesr": 2.2414937427127835,
           "delta_over_raw_at_r_star": 1.1346566028502396,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -5802,6 +5809,7 @@
         260
       ],
       "events": 1000000,
+      "hot_pixel_removal": null,
       "raw_mesr": 1.4049824462244676,
       "raw_decomposition": {
         "ntss": 6.76311432603309e-05,
@@ -5968,7 +5976,7 @@
           "optimum_at_evaluable_floor": false,
           "raw_mesr": 1.4049824462244676,
           "delta_over_raw_at_r_star": 0.11808424310989629,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -6956,6 +6964,7 @@
         260
       ],
       "events": 1000000,
+      "hot_pixel_removal": null,
       "raw_mesr": 1.222281177714136,
       "raw_decomposition": {
         "ntss": 3.9914663822127405e-05,
@@ -7122,7 +7131,7 @@
           "optimum_at_evaluable_floor": false,
           "raw_mesr": 1.222281177714136,
           "delta_over_raw_at_r_star": 0.05238644867427311,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -8110,6 +8119,7 @@
         260
       ],
       "events": 1000000,
+      "hot_pixel_removal": null,
       "raw_mesr": 0.9789345920402555,
       "raw_decomposition": {
         "ntss": 0.0017254308476949232,
@@ -8276,7 +8286,7 @@
           "optimum_at_evaluable_floor": false,
           "raw_mesr": 0.9789345920402555,
           "delta_over_raw_at_r_star": 0.005817915098084936,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -9264,6 +9274,7 @@
         260
       ],
       "events": 1000000,
+      "hot_pixel_removal": null,
       "raw_mesr": 2.146829745735057,
       "raw_decomposition": {
         "ntss": 0.0003054568485616187,
@@ -9430,7 +9441,7 @@
           "optimum_at_evaluable_floor": true,
           "raw_mesr": 2.146829745735057,
           "delta_over_raw_at_r_star": 1.9015910985159525,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -10418,6 +10429,7 @@
         260
       ],
       "events": 1000000,
+      "hot_pixel_removal": null,
       "raw_mesr": 3.03350086347557,
       "raw_decomposition": {
         "ntss": 0.0038822249630543243,
@@ -10584,7 +10596,7 @@
           "optimum_at_evaluable_floor": true,
           "raw_mesr": 3.03350086347557,
           "delta_over_raw_at_r_star": 0.8079844798911844,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -11572,6 +11584,7 @@
         260
       ],
       "events": 1000000,
+      "hot_pixel_removal": null,
       "raw_mesr": 3.304493850492157,
       "raw_decomposition": {
         "ntss": 0.005176843672566863,
@@ -11738,7 +11751,7 @@
           "optimum_at_evaluable_floor": true,
           "raw_mesr": 3.304493850492157,
           "delta_over_raw_at_r_star": 1.343778216577641,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -12726,6 +12739,7 @@
         260
       ],
       "events": 1000000,
+      "hot_pixel_removal": null,
       "raw_mesr": 1.6609473320432515,
       "raw_decomposition": {
         "ntss": 0.0003595764303254553,
@@ -12892,7 +12906,7 @@
           "optimum_at_evaluable_floor": true,
           "raw_mesr": 1.6609473320432515,
           "delta_over_raw_at_r_star": 0.12167104772039039,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -13873,5 +13887,5 @@
       }
     }
   ],
-  "wall_seconds": 878.2423595329747
+  "wall_seconds": 958.5524800219573
 }

@@ -1034,7 +1034,7 @@
       "reason": "native output is shorter than one complete slice"
     }
   ],
-  "wall_seconds": 611.688845663999,
+  "wall_seconds": 148.1163682299666,
   "summary": {
     "cells": 26,
     "unevaluable": 34,

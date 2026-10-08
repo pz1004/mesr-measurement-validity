@@ -1,9 +1,10 @@
-"""The two protocol figures carry printed numbers, so their data contracts are pinned.
+"""The protocol figures carry printed numbers, so their data contracts are pinned.
 
-Figure~2's caption prints the null's peak and Figure~3's panel titles print Spearman
-$\\rho$. Both are drawn from released artifacts rather than typed, and both restate values the
-body prints, so a figure that silently disagreed with the prose would be invisible in a build
-that reports every counter as zero. Each is asserted against the artifact here.
+The protocol view's caption prints the null's peak, the rank figure's panel titles print
+Spearman $\\rho$, and the native-oracle scatter prints the reversal counts. All are drawn from
+released artifacts rather than typed, and all restate values the body prints, so a figure that
+silently disagreed with the prose would be invisible in a build that reports every counter as
+zero. Each is asserted against the artifact here.
 """
 
 from __future__ import annotations
@@ -16,14 +17,16 @@ import numpy as np
 import pytest
 
 from dataset_assessment.analyze import RESULTS
-from dataset_assessment.figures_protocol import (RANK_DATASETS, RANK_INCHES, RANK_KEYS,
+from dataset_assessment.figures_protocol import (ORACLE_CORPORA, ORACLE_INCHES,
+                                                 RANK_DATASETS, RANK_INCHES, RANK_KEYS,
                                                  RANK_RHO, VIEW_DATASET, VIEW_INCHES,
                                                  VIEW_METHODS, _scalar_at_native,
-                                                 delta_over_raw_curve)
+                                                 delta_over_raw_curve, native_oracle_points)
 
 FIGURES = Path(__file__).resolve().parents[1] / "results/figures"
 VIEW_PDF = FIGURES / "fig_protocol_view.pdf"
 RANK_PDF = FIGURES / "fig_rank_instability.pdf"
+ORACLE_PDF = FIGURES / "fig_native_oracle.pdf"
 REGENERATE = "run `python -m dataset_assessment.figures_protocol` first"
 
 
@@ -140,3 +143,26 @@ def test_the_view_panel_covers_every_filter_the_benchmark_scores():
     scalars = report[VIEW_DATASET]["delta_over_raw_at_native"]
     assert set(VIEW_METHODS) | {"raw"} == set(scalars)
     assert all(np.isfinite(scalars[m]) for m in VIEW_METHODS)
+
+
+def test_native_oracle_view_fits_one_column():
+    assert ORACLE_PDF.exists(), REGENERATE
+    width, height = media_box(ORACLE_PDF)
+    assert width == pytest.approx(ORACLE_INCHES[0] * 72, abs=0.5)
+    assert height == pytest.approx(ORACLE_INCHES[1] * 72, abs=0.5)
+    assert width <= 252.0, "wider than an IEEEtran column"
+
+
+@pytest.mark.parametrize("removal", [False, True])
+def test_the_scatter_plots_every_cell_and_counts_what_the_paper_counts(removal):
+    """The figure prints the reversal counts; they must be the artifacts' own, and no point
+    may sit right of zero, where a filter would hold more signal than its oracle."""
+
+    for dataset, *_style in ORACLE_CORPORA:
+        suffix = "_hotpixel" if removal else ""
+        summary = json.loads((RESULTS / f"native_oracle_{dataset}{suffix}.json").read_text())
+        points = native_oracle_points(dataset, removal)
+        assert len(points) == summary["summary"]["cells"]
+        assert sum(p["reversal"] for p in points) == summary["summary"]["reversals"]
+        assert all(p["purity"] < 0 for p in points)
+        assert all((p["mesr"] > 0) == p["reversal"] for p in points)

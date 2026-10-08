@@ -52,3 +52,13 @@ __pycache__/
 # REPRODUCE.md documents the copy that ships the evaluator output.
 /results/downstream_gesture_frozen_frames/
 /results/downstream_gesture_frozen.smoke.json
+
+# Frames and per-seed evaluator output of the tie-break check. A run that finishes deletes
+# them; a failed run leaves them, and the next run refuses to start until they are cleared.
+/results/downstream_gesture_tiebreak_frames/
+
+# Written only when a source-audit check fails, so a failing run cannot overwrite the artifact.
+/results/reproducibility_audit.failed.json
+
+# Progress of identity_audit and null_shuffle; renamed to the artifact when a run finishes.
+/results/*.partial.json

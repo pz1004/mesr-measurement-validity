@@ -16,27 +16,50 @@ Two corrections to the boundary as originally planned, both forced by the built 
    `accept()` takes the toolkit storage. Verified against cuke-emlb's own
    `eval_denoisor.py`, which is the authoritative usage.
 2. Kept events are recovered by an ordered subsequence merge, not by a set of `(t, x, y)`
-   keys. Measured on `DND21/1hz_hotel-bar`: `generateEvents()` returns an exact ordered
-   subsequence of the input (198,550/198,550 matched, indices strictly increasing), while
-   the same recording contains 54 groups of events sharing a `(t, x, y)` coordinate that a
-   set could not disambiguate. The merge is exact and recovers indices, which a set cannot.
+   keys, and the merge runs one *packet* at a time. `generateEvents()` returns an ordered
+   subsequence of its input (measured on `DND21/1hz_hotel-bar`: 198,550/198,550 matched,
+   indices strictly increasing), but an output event carries only its values, and inputs
+   hold identical events, the same `(t, x, y, p)` more than once: 7,122 groups in the
+   capped DND21 inputs, 7 of them holding both a signal and a noise event, and 4.66
+   million in DVS Gesture's test clips. A merge over the whole stream gives a kept copy to
+   the earliest identical event, which need not be the one the filter kept.
+
+   Each filter is therefore fed its input in consecutive packets that never hold two
+   identical events (`_packets`), and the merge runs within a packet, where every output
+   event matches exactly one input event. Packets change no decision. The bindings
+   instantiate dv-processing's `EventFilterBase` on dv-toolkit's `EventStorage`:
+   `accept()` appends to the buffer (dv-toolkit's `AddressableStorage::add`) and refuses a
+   packet older than the last one processed, and `generateEvents()` calls the filter's
+   `retain()` once per buffered event in arrival order and clears the buffer. Each of the
+   six filters keeps its state in members that persist across calls, overrides neither
+   method, and never reads the buffer from `retain()`. That needs the input sorted by time
+   and `accept()` and `generateEvents()` to alternate, which `_decisions` does.
+   `identity_audit` checks the consequence on the corpora: the packet output equals the
+   one-pass output, event for event.
 
 Cost at 897,000 events: 0.63 s to fill the storage (`push_back` is per-event from Python,
 0.69 us/event, and the toolkit exposes no bulk constructor), 0.03 s to denoise, 0.11 s to
-merge. Budget ~0.8 s per (method, recording) at the 1 M cap.
+merge. The storage is filled once and each packet is a slice of it; a packet costs 9-14 us
+on top, which is nothing on DND21 (3,936 packets over ten recordings) and about a minute
+per filter on DVS Gesture's test clips (4.67 million packets). Budget ~0.8 s per
+(method, recording) at the 1 M cap.
 """
 
 from __future__ import annotations
 
 import sys
 from pathlib import Path
-from typing import List
+from typing import List, Tuple
 
 import numpy as np
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 CUKE = PROJECT_ROOT / "cuke-emlb"
 
+#: Each of these decides event by event in `retain()`, which is what makes feeding it packets
+#: exact (module docstring, item 2). EDnCNN and MLPF override `generateEvents()` and decide
+#: over batches of the buffer, so packets would change their decisions; they are not run
+#: here, since their weights are not released, and `_decisions` must not be used for them.
 CLASSICAL = ("dwf", "evflow", "knoise", "red", "ts", "ynoise")
 
 #: Not a denoiser. A label-driven upper bound, available only on labeled recordings, kept
@@ -99,7 +122,7 @@ def available_methods() -> List[str]:
 
     methods = ["raw"]
     try:
-        sys.path.insert(0, str(CUKE))
+        _cuke_first()
         import dv_toolkit  # noqa: F401
         methods.extend(CLASSICAL)
     except ImportError:
@@ -107,6 +130,16 @@ def available_methods() -> List[str]:
     if _native3d_available():
         methods.extend(NATIVE3D_METHODS)
     return methods
+
+
+def _cuke_first() -> None:
+    """Put the cuke-emlb checkout first on `sys.path`, without adding it again each call."""
+
+    path = str(CUKE)
+    if sys.path[:1] != [path]:
+        if path in sys.path:
+            sys.path.remove(path)
+        sys.path.insert(0, path)
 
 
 def _native3d_available() -> bool:
@@ -236,7 +269,7 @@ def _edformer_native_scores(recording) -> np.ndarray:
 def _to_storage(events: np.ndarray):
     """Copy an `[t, x, y, p]` int64 array into a `dv_toolkit.EventStorage`."""
 
-    sys.path.insert(0, str(CUKE))
+    _cuke_first()
     import dv_toolkit as kit
 
     storage = kit.EventStorage()
@@ -249,10 +282,12 @@ def _to_storage(events: np.ndarray):
 def _kept_indices(events: np.ndarray, kept: np.ndarray) -> np.ndarray:
     """Indices of `kept` within `events`, by ordered subsequence merge.
 
-    `generateEvents()` preserves input order and returns a subsequence, so a single
-    forward scan recovers the exact indices even when several events share a `(t, x, y)`
-    coordinate. Any failure to consume every kept event means that assumption broke, and
-    the caller must hear about it rather than silently scoring the wrong events.
+    `generateEvents()` preserves input order and returns a subsequence, so a single forward
+    scan finds where each kept event sits. That is exact only when no two events of
+    `events` are identical: of several identical events the scan takes the earliest still
+    free, whichever copy the filter kept, so `_decisions` calls it on packets without them.
+    Any failure to consume every kept event means the order assumption broke, and the
+    caller must hear about it rather than silently scoring the wrong events.
     """
 
     source = list(zip(events[:, 0].tolist(), events[:, 1].tolist(),
@@ -276,19 +311,63 @@ def _kept_indices(events: np.ndarray, kept: np.ndarray) -> np.ndarray:
     return indices
 
 
+def _packets(events: np.ndarray) -> List[Tuple[int, int]]:
+    """Consecutive `[start, stop)` ranges of `events`, none holding two identical events.
+
+    A range is cut just before an event whose `(t, x, y, p)` already occurs in it. Each range
+    therefore runs as far as it can, which gives the fewest ranges, and a stream without
+    identical events is one range.
+    """
+
+    if len(events) == 0:
+        return []
+    order = np.lexsort(events.T[::-1])                    # by t, x, y, p; stable within ties
+    ordered = events[order]
+    repeat = np.all(ordered[1:] == ordered[:-1], axis=1)
+    # `previous[i]`: the latest earlier input index holding the same event as `i`, else -1.
+    previous = np.full(len(events), -1, dtype=np.int64)
+    previous[order[1:][repeat]] = order[:-1][repeat]
+
+    packets: List[Tuple[int, int]] = []
+    start = 0
+    for index in np.flatnonzero(previous >= 0).tolist():
+        if previous[index] >= start:
+            packets.append((start, index))
+            start = index
+    packets.append((start, len(events)))
+    return packets
+
+
+def _decisions(model, events: np.ndarray, storage) -> np.ndarray:
+    """Indices of the input events `model` keeps, fed to it one packet at a time.
+
+    `storage` holds `events` in the toolkit's form, and each packet is a slice of it, so
+    nothing is copied. Within a packet no two events are identical, so the ordered merge
+    attributes every kept event to the input event it came from.
+    """
+
+    found = []
+    for start, stop in _packets(events):
+        packet = storage.slice(start, stop - start)
+        if packet.size() != stop - start:
+            raise RuntimeError(f"slice({start}, {stop - start}) returned {packet.size()} "
+                               "events; packets would not line up with the input")
+        model.accept(packet)
+        kept = model.generateEvents().numpy()
+        if len(kept):
+            found.append(start + _kept_indices(events[start:stop], kept))
+    return np.concatenate(found) if found else np.empty(0, dtype=np.int64)
+
+
 def _classical_scores(name: str, recording) -> np.ndarray:
     """Run a cuke-emlb denoiser and convert its keep/drop decision to a 2-level score."""
 
-    sys.path.insert(0, str(CUKE))
+    _cuke_first()
     from configs import denoisors
 
     model = getattr(denoisors, name)((recording.width, recording.height), {})
-    model.accept(_to_storage(recording.events))
-    kept = model.generateEvents().numpy()
-
     scores = np.ones(len(recording.events), dtype=np.float32)
-    if len(kept):
-        scores[_kept_indices(recording.events, kept)] = 0.0
+    scores[_decisions(model, recording.events, _to_storage(recording.events))] = 0.0
     return scores
 
 

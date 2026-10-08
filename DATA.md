@@ -20,7 +20,7 @@ takes an explicit `root=` argument, so nothing is hard-coded beyond these defaul
 
 | Name | Resolution | Labels | Real/synthetic | Used for | Expected path |
 |---|---|---|---|---|---|
-| **DND21** | 346×260 | per-event | synthetic injection, 1–10 Hz/px | retention & slice studies, oracle test | `ECCV2024_datasets/AUC_test/{1,3,5,7,10}hz/*.txt` |
+| **DND21** | 346×260 | per-event | v2e noise at 1–10 Hz/px added to one recorded and one simulated base sequence | retention & slice studies, oracle test | `ECCV2024_datasets/AUC_test/{1,3,5,7,10}hz/*.txt` |
 | **ED24** | 346×260 | per-event | synthetic, 41 levels × 100 scenes | reader only; no experiment in this paper | `ECCV2024_datasets/ED24/<Scene>/<Scene>_<level>.csv` |
 | **DVSCLEAN** | 1280×720 | per-event | simulated, 50 %/100 % | second labelled corpus; the null result | `DVSCLEAN/simulated_data/<seq>_{50,100}.hdf5` |
 | **E-MLB** | 346×260 | none | **real**, 4 ND levels × 2 lighting | the main benchmark, 96 recordings | `E-MLB/{D-END,N-END}/<Scene>/<Scene>-ND{00,04,16,64}-<rep>.aedat4` |
@@ -32,8 +32,14 @@ takes an explicit `root=` argument, so nothing is hard-coded beyond these defaul
 
 - **E-MLB** — Ding, Chen, Wang, Kang, Song, Cheng, Cao, *E-MLB: Multilevel Benchmark for
   Event-Based Camera Denoising*, IEEE TMM 26:65–76, 2024 (`ding2024emlb`).
-- **DND21** — distributed with Guo & Delbruck, *Low Cost and Latency Event Camera Background
-  Activity Denoising*, IEEE TPAMI, 2022 (`guo2023lowcost`).
+- **DND21** — base sequences from Guo & Delbruck, *Low Cost and Latency Event Camera
+  Background Activity Denoising*, IEEE TPAMI, 2022 (`guo2023lowcost`): *hotel-bar* is
+  recorded and *driving* is generated with v2e, as the
+  [dataset page](https://sites.google.com/view/dnd21/datasets) states. The labelled files read
+  here (`AUC_test/`) are EDformer's release (`jiang2024edformer`, §4.3), which adds
+  v2e-simulated noise at 1–10 Hz/px to both sequences and labels every added event 1;
+  `AUC_test/<rate>/v2e-args.txt` records the noise run. The signal events are the same at
+  every rate.
 - **DVSCLEAN, ED24, Pure_BA** — distributed with prior denoising work; cited in the manuscript.
 - **DVS Gesture** — Amir et al., *A Low Power, Fully Event-Based Gesture Recognition System*,
   CVPR 2017 (`amir2017gesture`).

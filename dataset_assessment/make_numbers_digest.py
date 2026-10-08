@@ -146,9 +146,10 @@ def _controlled_addition(out: Callable[[str], None]) -> None:
     """The one published calibration of ESR, reproduced on DND21's injected series.
 
     E-MLB validate ESR by adding known noise to a fixed stream and showing the score falls.
-    DND21 injects uniform noise into two real recordings at five rates, so the unfiltered
-    row of the benchmark is a controlled-addition series of the same kind. Reported because a
-    validation result that holds belongs in the record beside the four that do not.
+    DND21's two base sequences, hotel-bar (recorded) and driving (v2e), carry v2e noise at
+    five rates in EDformer's release, so the unfiltered row of the benchmark is a
+    controlled-addition series of the same kind. Reported because a validation result that
+    holds belongs in the record beside the four that do not.
     """
 
     payload = _load("benchmark_dnd21.json")

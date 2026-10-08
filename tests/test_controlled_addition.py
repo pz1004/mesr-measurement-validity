@@ -1,13 +1,13 @@
 """The one published calibration of ESR, and the limits of what it shows.
 
 E-MLB validate ESR by adding known noise to a fixed stream and reporting that the score
-falls. DND21 injects uniform noise into two real recordings at five rates, so the unfiltered
-row of `benchmark_dnd21.json` is a controlled-addition series of the same kind and the
-supplement quotes it as a reproduction.
+falls. DND21's two base sequences, hotel-bar (recorded) and driving (v2e), carry v2e noise at
+five rates in EDformer's release, so the unfiltered row of `benchmark_dnd21.json` is a
+controlled-addition series of the same kind and the supplement quotes it as a reproduction.
 
 These tests guard that quotation. They do **not** assert any mechanism: the paper offers none,
 because the obvious candidate is ruled out by `app:properties` -- ESR is not monotone in
-concentration, so "uniform noise dilutes concentration" does not explain the direction. A
+concentration, so "added noise dilutes concentration" does not explain the direction. A
 test asserting a mechanism here would be asserting something the paper cannot support.
 """
 

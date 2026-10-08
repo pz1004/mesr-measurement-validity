@@ -211,11 +211,17 @@ Every classical method lands strictly between 0 and 1, which is what Task 7 Step
    `accept()` takes the toolkit storage. Authoritative usage is `cuke-emlb/eval_denoisor.py`.
 2. **`generateEvents()` returns an ordered subsequence of the input**, and
    `.numpy()` exports it as a `(timestamp, x, y, polarity)` structured array. Recovering
-   which input events survived is therefore an O(n) forward merge, not a set lookup. This
-   matters: `DND21/1hz_hotel-bar` contains 54 groups of events sharing a `(t, x, y)`
-   coordinate that a `(t, x, y)` set cannot disambiguate, and a set cannot recover indices
-   at all. Measured on 897,000 events: 0.63 s to fill the storage, 0.03 s to denoise,
-   0.11 s to merge (198,550/198,550 matched, indices strictly increasing).
+   which input events survived is therefore an O(n) forward merge, not a set lookup: a
+   `(t, x, y)` set cannot recover indices at all (measured on 897,000 events: 0.63 s to fill
+   the storage, 0.03 s to denoise, 0.11 s to merge; 198,550/198,550 matched). The merge is
+   exact only where no two input events are identical, and inputs do repeat events
+   verbatim: the capped DND21 inputs hold 7,122 groups of identical `(t, x, y, p)` events,
+   7 of them holding both a signal and a noise event. Among identical events a merge over the whole
+   stream takes the earliest copy, whichever the filter kept. `denoisors._decisions`
+   therefore feeds each filter consecutive packets that never hold two identical events,
+   slices of one storage, and merges within each packet; the filters decide event by event
+   from state carried across calls, so packets change no decision (`identity_audit`
+   checks the output against a one-pass run on every input the experiments read).
 
 ## Caveats
 

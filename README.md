@@ -26,7 +26,7 @@ four retentions.
 | Specificity | A random subsampler and a block-prefix control on a common retention axis | **Fails as released.** Random removal raises MESR at 19/19 retentions on DVSD22 and Pure_BA, by up to +0.7786, under each of ten draws and with both streams scored over the same input span; it lowers MESR on E-MLB and DND21. With the busiest pixels removed: 5/19 and 0/19 |
 | Blank-sample response | Quota-adapted filters against the random subsampler at equal count, on a nominally blank capture | **Fails as released.** The best of six filters gains +1.35 against the subsampler's +0.05; with the busiest pixels removed, the lead falls from +1.1291 to +0.0111 on the 25 recordings evaluable both ways |
 | Influence quantities | Slice size swept from 10⁴ to 10⁵ events on a fixed output; retention swept at a fixed ranking (ROC AUC 0.93) | **Two undeclared.** The slice size moves MESR by 0.5267, over four times the widest gap between filters on the same DND21 recordings, and reorders filters on 9 of 10 recordings; the operating point moves it by 0.3029 |
-| Criterion validity | DVS Gesture: the task's released classifier, frozen, and three architectures trained under three seeds | **Counterexample.** With the released classifier (0.9792, its published accuracy), quota-adapted RED, first by MESR at every retention below 1, is the least accurate at three of four and trails the block-prefix control by 0.1181 at r = 0.6 on each of the six test subjects. For the trained classifiers the association depends on the architecture (MLP ρ = +0.87; CNNs +0.135 and +0.111) |
+| Criterion validity | DVS Gesture: the task's released classifier, frozen, and three architectures trained under three seeds | **Counterexample.** With the released classifier (0.9792, its published accuracy), quota-adapted RED, first by MESR at every retention below 1, is the least accurate at three of four and trails the block-prefix control by 0.1181 at r = 0.6 on each of the six test subjects, and stays least accurate there under each of ten random tie-breaks of the quota. For the trained classifiers the association depends on the architecture (MLP ρ = +0.88; CNNs +0.187 and +0.226) |
 | Published known-input check | Noise added to a fixed stream, re-run on DND21's injected series | **Reproduces.** MESR falls as injected noise rises |
 | Declared grid size | Cancellation proof, and one stream re-scored at four declared resolutions | **Invariant.** The pixel count K = W·H cancels; spread 2.1×10⁻¹⁴ |
 
@@ -56,21 +56,25 @@ events, so a filter that keeps half of them is scored over a window about twice 
 Whether that moves the score, and in which direction, depends on the stream. Under stationary
 Poisson rates it moves nothing, and concentrating a slice's counts raises ntss but lowers ℓn. On
 DVSD22 and Pure_BA random removal raises MESR, and removing the busiest 0.1% of occupied pixels
-first removes almost all of that gain; on E-MLB and DND21 it lowers MESR. The paper states its
-account of why, a stationary hot component set against a drifting one, as a hypothesis.
+first removes almost all of that gain; on E-MLB and DND21 it lowers MESR. Shuffling each
+recording's pixel and polarity marks over its own timestamps keeps every pixel's count and
+removes the effect in both directions, so it needs the order of events on scales longer than a
+slice. The paper states its account of why, a stationary hot component set against a drifting
+one, as a hypothesis.
 
 ## Quick start
 
 ```bash
 pip install -r requirements.txt
 python -m dataset_assessment.analyze            # rank_analysis.json + Figure 1
-python -m dataset_assessment.figures_protocol   # the two protocol figures the tests check
+python -m dataset_assessment.figures_protocol   # the protocol figures and the oracle scatter
 python -m pytest -q tests/                      # expect: no failures
 python -m dataset_assessment.audit              # expect: 10/10 claims verified from source
 ```
 
-None of these needs a corpus. Without the corpora, 352 tests pass and 12 skip: 8 read the
-corpora, 3 check the manuscript and 1 needs EDformer's score cache. `audit` reads the EDformer,
+None of these needs a corpus. Without the corpora, 393 tests pass and 14 skip: 8 read the
+corpora, 3 check the manuscript, 1 needs EDformer's score cache, 1 the cuke-emlb build and 1
+the audited checkouts. `audit` reads the EDformer,
 EDmamba and cuke-emlb sources at pinned commits, so it needs those checkouts. To regenerate
 everything from raw event data, see [`REPRODUCE.md`](REPRODUCE.md); to obtain the corpora, see
 [`DATA.md`](DATA.md).
@@ -79,10 +83,10 @@ everything from raw event data, see [`REPRODUCE.md`](REPRODUCE.md); to obtain th
 
 | Path | Contents |
 |---|---|
-| `dataset_assessment/` | The harness: the metric core, checked against E-MLB's reference implementation; readers for every corpus used; the denoiser adapter; the grid runner; and one module per analysis |
+| `dataset_assessment/` | The harness: the metric core, checked against E-MLB's reference implementation; readers for every corpus used; the denoiser adapter, which attributes each filter's kept events to its input exactly, even where the input repeats an event verbatim; the grid runner; and one module per analysis |
 | `dataset_assessment/sew7b/` | The released DVS Gesture classifier's network, its evaluator and the frame integrator, used by `downstream_gesture_frozen` (the checkpoint is third-party; see `DATA.md`) |
-| `tests/` | 364 tests, including the ESR closed-form hand case, the K-cancellation identity and the denoiser adapter's ordered-subsequence merge |
-| `results/` | 46 JSON artifacts, with `null_seeds/` (the subsampler under ten draws) and `cap_sensitivity/`; every reported number traces to one (`benchmark_emlb_native3d.json` belongs to a sibling project and backs none) |
+| `tests/` | 407 tests, including the ESR closed-form hand case, the K-cancellation identity and the denoiser adapter's packet-wise attribution of kept events |
+| `results/` | 49 JSON artifacts, with `null_seeds/` (the subsampler under ten draws) and `cap_sensitivity/`; every reported number traces to one (`benchmark_emlb_native3d.json` belongs to a sibling project and backs none) |
 | `reproduction/results/` | Our uncapped run of EDformer's released evaluation script, which verifies its published E-MLB table |
 | `BUILD_CUKE_EMLB.md` | How the six classical denoisers were built, with verbatim errors and the pinned-commit warning |
 | `REPRODUCE.md`, `DATA.md` | The command, wall time and environment for every artifact; where each corpus, baseline and checkpoint comes from |

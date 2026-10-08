@@ -1,23 +1,24 @@
 # Reproducing every artifact
 
 Run in the order below. Each stage writes JSON to `results/` and is independent of the
-later ones, so a failure never silently corrupts a downstream number. Wall times are the
-measured values from the run that produced the shipped artifacts, on 20 cores + one
-GTX 1660 SUPER.
+later ones, so a failure never silently corrupts a downstream number. Wall times were
+measured on 20 cores + one GTX 1660 SUPER. The shipped artifacts were last regenerated with
+several runs sharing that machine, so most record a longer `wall_seconds` than the time quoted
+here; the three marked "alongside other runs" quote what their artifacts record.
 
 ## Tier 0 — no dataset needed (~35 s total)
 
 ```bash
 pip install -r requirements.txt
 python -m dataset_assessment.analyze                # rank_analysis.json + results/figures/
-python -m dataset_assessment.figures_protocol       # the two protocol figures
-python -m pytest -q tests/                          # 364 passed with every checkout in place
+python -m dataset_assessment.figures_protocol       # the protocol figures and the oracle scatter
+python -m pytest -q tests/                          # 407 passed with every checkout in place
 python -m dataset_assessment.audit                  # 10/10 claims verified from source
 python -m dataset_assessment.make_numbers_digest > NUMBERS.md
 ```
 
 `analyze` needs `results/benchmark_*.json`, which ship with this repository; the figure tests
-read what it and `figures_protocol` draw, so run those first. Without the corpora, 12 tests
+read what it and `figures_protocol` draw, so run those first. Without the corpora, 14 tests
 skip and none fails. `audit` needs the `EDformer/`, `EDmamba/` and `cuke-emlb/` symlinks
 (source inspection only, nothing is executed) and writes `results/reproducibility_audit.json`.
 
@@ -46,6 +47,12 @@ and tests what E-MLB's neutral-density levels do to busiest-pixel share (App. J)
 Build first — **read `BUILD_CUKE_EMLB.md` before running this**, especially the
 pinned-commit warning. Without the build, `available_methods()` returns `['raw']` only and
 the grid is meaningless.
+
+Each filter's kept events are matched to the input packet by packet (*Which input event a filter
+kept*, below). Measured one filter at a time against a single pass, that adds 1.0 to 1.6 s per
+filter over DND21's 9.9 million capped events, the most repetitive of the five corpora, and 37 to
+52 s per filter over DVS Gesture's 288 test clips, except EvFlow, which runs 175 s faster in
+packets.
 
 ```bash
 python -m dataset_assessment.run_benchmark --dataset dnd21    --max-events 1000000 \
@@ -105,6 +112,22 @@ python -m dataset_assessment.native_oracle --dataset dnd21    --hot-pixel-remova
 python -m dataset_assessment.native_oracle --dataset dvsclean --hot-pixel-removal   #  612 s
 python -m dataset_assessment.native_emlb --workers 16                               #   37 s
 python -m dataset_assessment.paired_contrasts --dataset emlb --source native        # paired_contrasts_native.json
+```
+
+### Which input event a filter kept
+
+A classical filter returns the values of the events it keeps, `(t, x, y, p)`, and the inputs
+repeat events verbatim: 7,122 groups in the capped DND21 recordings, 7 of them holding both a
+signal and a noise event, none in DVSCLEAN, and 4.66 million in DVS Gesture's test clips. Among identical
+events an order-preserving match over the whole stream cannot tell which copy was kept, so
+`denoisors._decisions` feeds each filter consecutive packets that never hold two identical events
+and matches within each packet, where the match is exact. `identity_audit` counts the repeats on
+every corpus as the experiments read it and runs every filter on every input both ways: the
+packet route must return the one-pass output event for event (13,050 of 13,050 cells), and the
+artifact records what a whole-stream match would have attributed differently.
+
+```bash
+python -m dataset_assessment.identity_audit --workers 6   # results/identity_audit.json  8069 s (alongside other runs)
 ```
 
 ### Slice size on the filters' own outputs
@@ -178,6 +201,19 @@ frame that leaves neither an incomplete slice, under the same ten draws on all f
 python -m dataset_assessment.null_matched_span --workers 16   # results/null_matched_span.json  ~24 min
 ```
 
+### The null's gain on a shuffled stream
+
+`null_shuffle` permutes each recording's marks `(x, y, p)` within consecutive windows of k input
+events, keeping every timestamp and every pixel's count, and scores both label-blind controls on
+the result at the 19 retentions against the shuffled stream's own unfiltered MESR; k = 0
+reproduces the benchmark's curves, which the run asserts cell by cell. DVSD22, Pure_BA and
+DND21; seven windows from none to the whole stream; three shuffle seeds (App. A). It reads the
+benchmark artifacts, so run it after them.
+
+```bash
+python -m dataset_assessment.null_shuffle --workers 6   # results/null_shuffle.json  369 s (alongside other runs)
+```
+
 ### Matched-retention label quality
 
 Whether a filter that out-scores the label oracle on MESR actually selects events better.
@@ -218,22 +254,24 @@ shrinking sample at low retention visible.
 
 ### Paired contrasts on the E-MLB ranking
 
-What the E-MLB ranking table (`tab:emlb`) can carry. Every classical row is scored on the
-same recordings wherever both reach their own operating point, so the comparison is paired;
-this differences within each recording and bootstraps the scene clusters. Reads
-`results/benchmark_emlb.json`; a few seconds.
+Table IV's contrasts difference each pair of methods within the recordings both reach and
+bootstrap the scene clusters, on the filters' own outputs (`--source native`, under *The filters'
+own outputs* above): 14 of the 21 pairs separate without correction, 10 after a Bonferroni
+correction over all 21. Differencing within recordings avoids reading the overlap of two marginal
+intervals, which is invalid in both directions.
+
+The same contrasts in diagnostic form (App. G) read the quota-adapted curves at the grid point
+nearest each method's native retention. Only that form applies
+`protocol.native_point_is_eligible`, which drops the 526 of 2,688 cells of the seven methods with
+no eligible grid point (445 of the 2,304 classical-filter cells), all of them because the native
+retention lies below the recording's measurable floor. There 12 of the 21 pairs separate, 10
+after correction; the nine that do not all lie among the five middle methods (YNoise, EDformer,
+DWF, EvFlow, TS), of which only YNoise and DWF separate. Reads `results/benchmark_emlb.json`; a
+few seconds.
 
 ```bash
-python -m dataset_assessment.paired_contrasts --dataset emlb   # results/paired_contrasts.json
+python -m dataset_assessment.paired_contrasts --dataset emlb   # results/paired_contrasts.json (diagnostic form)
 ```
-
-Differencing within recordings avoids reading the overlap of two marginal intervals, which is
-invalid in both directions. 12 of the 21 pairs separate; the nine that do not all lie among the
-five middle methods (YNoise, EDformer, DWF, EvFlow, TS), of which only YNoise and DWF separate.
-Both this and Table IV apply
-`protocol.native_point_is_eligible`, which drops the 445 of 2304 E-MLB cells whose native
-retention is below the recording's measurable floor -- cells the sweep can only score at a
-retention the filter never chose.
 
 ### Is the swept curve at native the released filter?
 
@@ -250,9 +288,9 @@ python -m dataset_assessment.native_mask --dataset dnd21 --recordings 4
 
 ### How far off is the unused ESR variant?
 
-Not by orders of magnitude: the `/K` in `EventStructuralRatioV2` cancels most of its `1000`,
-and what remains is a size-3 median filter that erases isolated pixels. Needs the corpora;
-about a minute.
+By a factor that depends on the data, with no fixed size or sign: the `/K` in
+`EventStructuralRatioV2` cancels most of its `1000`, and what remains is a size-3 median filter
+that erases isolated pixels. Needs the corpora; about a minute.
 
 ```bash
 python -m dataset_assessment.esr_variant     # results/esr_variant.json
@@ -351,6 +389,19 @@ rounding near the firing threshold flips spikes and changes four unfiltered pred
 of them to wrong ones (0.968750); the released training script used half precision on other
 hardware.
 
+### Does the frozen verdict rest on the quota's tie-break?
+
+`downstream_tiebreak` re-selects the six filters at r = 0.6 with a random order inside each
+block's accepted and inside its rejected events, under ten seeds and the same block quotas, and
+evaluates them beside the two controls with the frozen classifier, its gate and its subject
+bootstrap; the arrival-order reference is read from `downstream_gesture_frozen.json`, whose
+SHA-256 the report records, so run it after that artifact. Frames go to a directory that must
+start empty, and only the files the run wrote are deleted.
+
+```bash
+python -m dataset_assessment.downstream_tiebreak   # results/downstream_gesture_tiebreak.json  2860 s (alongside other runs)
+```
+
 ### How much of the downstream verdict rests on RED
 
 RED holds the highest MESR at every partial retention of the frozen probe and alone produces
@@ -361,8 +412,9 @@ shipped artifacts rather than from the tables that print them.
 python -m dataset_assessment.red_sensitivity    # results/red_sensitivity.json  <1 s
 ```
 
-Reads `downstream_gesture.json` and `downstream_gesture_frozen.json`; reproduces the published
-`+0.135` (trained 2D CNN, 40 conditions) and `+0.036` (frozen, within retention) exactly.
+Reads `downstream_gesture.json` and `downstream_gesture_frozen.json`; reproduces the paper's
+`+0.187` (trained 2D CNN, 40 conditions) and `+0.04` (frozen, within retention; `+0.044` before
+rounding).
 
 To recompute the statistics after changing how a summary is scoped or defined, without
 retraining anything:
@@ -435,7 +487,8 @@ checked against `cuke-emlb/python/src/utils/metric.py::EventStructuralRatio._cal
 Every random draw is seeded. `random_null`'s ranking uses `RANDOM_NULL_SEED = 20260726`
 (`--null-seed` overrides it; `results/null_seeds/` and `null_matched_span` use
 20260726–20260735); the random control on E-MLB's native outputs uses `CONTROL_SEED = 20260917`
-(`native_emlb`); the trained classifiers use `SEEDS = 20260726/7/8` with
+(`native_emlb`); the mark shuffle uses `SHUFFLE_SEEDS = 20261016–20261018` (`null_shuffle`) and
+the random tie-break `TIEBREAK_SEEDS = 20261006–20261015` (`downstream_tiebreak`); the trained classifiers use `SEEDS = 20260726/7/8` with
 `cudnn.deterministic = True`; EDformer keeps its released seed (230086), and the frozen
 classifier's evaluator seeds its run and its subject bootstrap from 1024. Bootstrap intervals
 draw from generators seeded with 20260726 (`analyze.py`, `measure_metric_deps.py`; 10,000

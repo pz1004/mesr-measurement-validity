@@ -90,6 +90,67 @@
       "mean_spread_across_caps": 0.032309705622096174
     }
   },
+  "means_over_all_recordings": {
+    "recordings": 384,
+    "by_method": {
+      "dwf": {
+        "mean_by_cap": {
+          "500000": 0.11083797930780075,
+          "1000000": 0.11167373759106973
+        },
+        "spread_across_caps": 0.0008357582832689836,
+        "spread_in_units_of_scale": 0.09084329165967213
+      },
+      "evflow": {
+        "mean_by_cap": {
+          "500000": 0.0010137533379920005,
+          "1000000": 0.023130023096175224
+        },
+        "spread_across_caps": 0.022116269758183222,
+        "spread_in_units_of_scale": 2.4039423650199154
+      },
+      "knoise": {
+        "mean_by_cap": {
+          "500000": 0.053702348963264,
+          "1000000": 0.04984551469967369
+        },
+        "spread_across_caps": 0.0038568342635903127,
+        "spread_in_units_of_scale": 0.4192211156076427
+      },
+      "raw": {
+        "mean_by_cap": {
+          "500000": 0.0,
+          "1000000": 0.0
+        },
+        "spread_across_caps": 0.0,
+        "spread_in_units_of_scale": 0.0
+      },
+      "red": {
+        "mean_by_cap": {
+          "500000": 0.6101501358423346,
+          "1000000": 0.8852243824104747
+        },
+        "spread_across_caps": 0.27507424656814017,
+        "spread_in_units_of_scale": 29.899374626971756
+      },
+      "ts": {
+        "mean_by_cap": {
+          "500000": 0.08209917224800037,
+          "1000000": 0.1025160504315309
+        },
+        "spread_across_caps": 0.020416878183530537,
+        "spread_in_units_of_scale": 2.2192258895141888
+      },
+      "ynoise": {
+        "mean_by_cap": {
+          "500000": 0.18520453920115276,
+          "1000000": 0.21499004907152272
+        },
+        "spread_across_caps": 0.02978550987036996,
+        "spread_in_units_of_scale": 3.2375554206923867
+      }
+    }
+  },
   "at_fixed_retention": {
     "r=0.50": {
       "cells": 2304,

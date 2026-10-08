@@ -23,6 +23,8 @@
     1.0
   ],
   "max_events": 1000000,
+  "hot_pixel_removal": false,
+  "null_seed": 20260726,
   "records": [
     {
       "recording": "DVSCLEAN/MAH00446_50",
@@ -32,6 +34,7 @@
         720
       ],
       "events": 286887,
+      "hot_pixel_removal": null,
       "raw_mesr": 0.4906081581952761,
       "raw_decomposition": {
         "ntss": 1.3787126237541252e-05,
@@ -198,7 +201,7 @@
           "optimum_at_evaluable_floor": false,
           "raw_mesr": 0.4906081581952761,
           "delta_over_raw_at_r_star": 0.018898006872968665,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -1328,6 +1331,7 @@
         720
       ],
       "events": 382516,
+      "hot_pixel_removal": null,
       "raw_mesr": 0.37589456515601444,
       "raw_decomposition": {
         "ntss": 7.598031045479293e-06,
@@ -1494,7 +1498,7 @@
           "optimum_at_evaluable_floor": false,
           "raw_mesr": 0.37589456515601444,
           "delta_over_raw_at_r_star": 0.022380153277468007,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -2624,6 +2628,7 @@
         720
       ],
       "events": 277888,
+      "hot_pixel_removal": null,
       "raw_mesr": 0.4713491099763374,
       "raw_decomposition": {
         "ntss": 1.3142660310899251e-05,
@@ -2790,7 +2795,7 @@
           "optimum_at_evaluable_floor": false,
           "raw_mesr": 0.4713491099763374,
           "delta_over_raw_at_r_star": 0.008431814697398121,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -3920,6 +3925,7 @@
         720
       ],
       "events": 370518,
+      "hot_pixel_removal": null,
       "raw_mesr": 0.3520563106984071,
       "raw_decomposition": {
         "ntss": 7.071346822671867e-06,
@@ -4086,7 +4092,7 @@
           "optimum_at_evaluable_floor": false,
           "raw_mesr": 0.3520563106984071,
           "delta_over_raw_at_r_star": 0.022130219575429766,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -5216,6 +5222,7 @@
         720
       ],
       "events": 276240,
+      "hot_pixel_removal": null,
       "raw_mesr": 0.36304978382972475,
       "raw_decomposition": {
         "ntss": 1.2731535495627633e-05,
@@ -5382,7 +5389,7 @@
           "optimum_at_evaluable_floor": false,
           "raw_mesr": 0.36304978382972475,
           "delta_over_raw_at_r_star": 0.04059792589934752,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -6512,6 +6519,7 @@
         720
       ],
       "events": 368320,
+      "hot_pixel_removal": null,
       "raw_mesr": 0.2596101984319608,
       "raw_decomposition": {
         "ntss": 7.980266008866962e-06,
@@ -6678,7 +6686,7 @@
           "optimum_at_evaluable_floor": false,
           "raw_mesr": 0.2596101984319608,
           "delta_over_raw_at_r_star": 0.05561002136427878,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -7808,6 +7816,7 @@
         720
       ],
       "events": 277593,
+      "hot_pixel_removal": null,
       "raw_mesr": 0.3642415448529685,
       "raw_decomposition": {
         "ntss": 1.2191517495027613e-05,
@@ -7974,7 +7983,7 @@
           "optimum_at_evaluable_floor": false,
           "raw_mesr": 0.3642415448529685,
           "delta_over_raw_at_r_star": 0.02259326144768614,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -9104,6 +9113,7 @@
         720
       ],
       "events": 370124,
+      "hot_pixel_removal": null,
       "raw_mesr": 0.26574107780173867,
       "raw_decomposition": {
         "ntss": 7.562474304699045e-06,
@@ -9270,7 +9280,7 @@
           "optimum_at_evaluable_floor": false,
           "raw_mesr": 0.26574107780173867,
           "delta_over_raw_at_r_star": 0.03274473844048709,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -10400,6 +10410,7 @@
         720
       ],
       "events": 281151,
+      "hot_pixel_removal": null,
       "raw_mesr": 0.6635181003296321,
       "raw_decomposition": {
         "ntss": 3.312554862939876e-05,
@@ -10566,7 +10577,7 @@
           "optimum_at_evaluable_floor": false,
           "raw_mesr": 0.6635181003296321,
           "delta_over_raw_at_r_star": 0.0,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -11696,6 +11707,7 @@
         720
       ],
       "events": 374868,
+      "hot_pixel_removal": null,
       "raw_mesr": 0.5432625312335203,
       "raw_decomposition": {
         "ntss": 2.2642976988121827e-05,
@@ -11862,7 +11874,7 @@
           "optimum_at_evaluable_floor": false,
           "raw_mesr": 0.5432625312335203,
           "delta_over_raw_at_r_star": 0.0012272160103413698,
-          "native_retention": 0.0,
+          "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
@@ -12985,5 +12997,5 @@
       }
     }
   ],
-  "wall_seconds": 122.49424415593967
+  "wall_seconds": 215.1995623470284
 }

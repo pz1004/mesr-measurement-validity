@@ -140,7 +140,7 @@
         "blocks_reintroducing_rejects": 45,
         "block_accept_share": {
           "mean": 0.1857488458806818,
-          "sd": 0.06445635624368268,
+          "sd": 0.06445593759240485,
           "min": 0.0419921875,
           "max": 0.37060546875
         }
@@ -156,7 +156,7 @@
         "blocks_reintroducing_rejects": 54,
         "block_accept_share": {
           "mean": 0.1857488458806818,
-          "sd": 0.06445635624368268,
+          "sd": 0.06445593759240485,
           "min": 0.0419921875,
           "max": 0.37060546875
         }
@@ -180,7 +180,7 @@
         "blocks_reintroducing_rejects": 65,
         "block_accept_share": {
           "mean": 0.09662863991477273,
-          "sd": 0.08363812869149813,
+          "sd": 0.08363792526229975,
           "min": 0.0052734375,
           "max": 0.31318359375
         }
@@ -196,7 +196,7 @@
         "blocks_reintroducing_rejects": 65,
         "block_accept_share": {
           "mean": 0.09662863991477273,
-          "sd": 0.08363812869149813,
+          "sd": 0.08363792526229975,
           "min": 0.0052734375,
           "max": 0.31318359375
         }
@@ -220,7 +220,7 @@
         "blocks_reintroducing_rejects": 55,
         "block_accept_share": {
           "mean": 0.33453147194602273,
-          "sd": 0.0948973190903864,
+          "sd": 0.09489747668530014,
           "min": 0.094140625,
           "max": 0.5279296875
         }
@@ -236,7 +236,7 @@
         "blocks_reintroducing_rejects": 59,
         "block_accept_share": {
           "mean": 0.33453147194602273,
-          "sd": 0.0948973190903864,
+          "sd": 0.09489747668530014,
           "min": 0.094140625,
           "max": 0.5279296875
         }
@@ -620,7 +620,7 @@
         "blocks_reintroducing_rejects": 53,
         "block_accept_share": {
           "mean": 0.1103874362244898,
-          "sd": 0.03341608237272441,
+          "sd": 0.03341632990725764,
           "min": 0.0193359375,
           "max": 0.1822265625
         }
@@ -636,7 +636,7 @@
         "blocks_reintroducing_rejects": 43,
         "block_accept_share": {
           "mean": 0.1103874362244898,
-          "sd": 0.03341608237272441,
+          "sd": 0.03341632990725764,
           "min": 0.0193359375,
           "max": 0.1822265625
         }
@@ -700,7 +700,7 @@
         "blocks_reintroducing_rejects": 62,
         "block_accept_share": {
           "mean": 0.21737882653061225,
-          "sd": 0.06848186786070957,
+          "sd": 0.0684821577469901,
           "min": 0.12568359375,
           "max": 0.3478515625
         }
@@ -710,13 +710,13 @@
         "n_blocks": 98,
         "native_kept": 218144,
         "swept_kept": 200000,
-        "symmetric_difference": 56306,
-        "symmetric_difference_share": 0.25811390641044446,
-        "predicted_by_block_identity": 56306,
+        "symmetric_difference": 56308,
+        "symmetric_difference_share": 0.2581230746662755,
+        "predicted_by_block_identity": 56308,
         "blocks_reintroducing_rejects": 47,
         "block_accept_share": {
           "mean": 0.21737882653061225,
-          "sd": 0.06848186786070957,
+          "sd": 0.0684821577469901,
           "min": 0.12568359375,
           "max": 0.3478515625
         }
@@ -963,7 +963,7 @@
       }
     }
   ],
-  "wall_seconds": 33.57337252399884,
+  "wall_seconds": 112.95185996592045,
   "summary": {
     "cells": 24,
     "eligible": 22,

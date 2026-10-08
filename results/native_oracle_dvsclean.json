@@ -1,6 +1,8 @@
 {
   "dataset": "dvsclean",
   "max_events": 1000000,
+  "hot_pixel_removal": false,
+  "removals": [],
   "signal_events": 1866346,
   "noise_events": 1399759,
   "cells": [
@@ -921,7 +923,7 @@
       "reason": "native output is shorter than one complete slice"
     }
   ],
-  "wall_seconds": 79.22862023295602,
+  "wall_seconds": 128.17321473604534,
   "summary": {
     "cells": 26,
     "unevaluable": 34,

@@ -8,7 +8,8 @@ On-disk formats, all confirmed against the files on this machine (see
 `plan/dataset_assessment_notes.md`, section F-FORMATS):
 
 DND21      `ECCV2024_datasets/AUC_test/<rate>/<scene>.txt` - whitespace text WITH a header
-           row `timestamp x y polarity label`; label 1 = noise; 346x260; synthetic injection.
+           row `timestamp x y polarity label`; label 1 = noise; 346x260. EDformer's release:
+           v2e noise added to DND21's hotel-bar (recorded) and driving (v2e) sequences.
 ED24       `ECCV2024_datasets/ED24/<Scene>/<Scene>_<level>.csv` - same five whitespace
            columns and header; 100 scenes x 41 levels; 346x260; synthetic injection.
 DVSCLEAN   `DVSCLEAN/simulated_data/<seq>_<level>.hdf5` - arrays live under an `events`

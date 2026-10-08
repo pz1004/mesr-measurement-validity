@@ -1,6 +1,6 @@
-"""The two figures that show the protocol working, rather than the metric failing.
+"""The figures that show the protocol working, and the native-output reversal they rest on.
 
-Both are deliberately *not* in `analyze.figures`. That function is reachable only by running
+All three are deliberately *not* in `analyze.figures`. That function is reachable only by running
 `python -m dataset_assessment.analyze`, which re-runs the whole ranking aggregation and
 rewrites `results/rank_analysis.json` as a side effect; redrawing a figure must not be able to
 rewrite an artifact the paper cites. Everything here reads the released JSON and writes only
@@ -17,6 +17,10 @@ protocol items 1 and 4 exist to stop.
 `fig_rank_instability` answers "which method leads": the ranking at each method's own operating
 point against the rankings on AUC_r and on the metric-oracle r*, per corpus. Four of five
 corpora disagree somewhere, which is \\S\\ref{sec:ranks}'s claim and had no exhibit.
+
+`fig_native_oracle` shows the size of \\S\\ref{sec:oracle}'s reversals, not only their count:
+each filter's own scored output against its matched label oracle, the retained-purity
+difference against the MESR difference, as released and with the busiest pixels removed.
 """
 
 from __future__ import annotations
@@ -51,6 +55,9 @@ RANK_LABELS = ("nearest\ngrid", "$\\mathrm{AUC}_r$", "$r^\\star$")
 #: retention, not the native output), printed under the column it belongs to.
 RANK_RHO = (None, "spearman_auc_vs_native", "spearman_protocol_vs_native")
 RANK_DATASETS = ("dnd21", "dvsclean", "emlb", "dvsd22", "pure_ba")
+ORACLE_INCHES = (3.45, 2.0)
+#: The two labelled corpora: marker and colour per corpus; fill tells the two inputs apart.
+ORACLE_CORPORA = (("dnd21", "o", "#1f4e79", "DND21"), ("dvsclean", "^", "#b8541f", "DVSCLEAN"))
 
 
 def delta_over_raw_curve(dataset: str, method: str) -> Dict[float, float]:
@@ -214,6 +221,90 @@ def rank_instability(path: Path, datasets: Sequence[str] = RANK_DATASETS) -> Pat
     return path
 
 
+def native_oracle_points(dataset: str, hot_pixel_removal: bool = False) -> List[Dict]:
+    """Per evaluable cell: retained purity and MESR, the filter's minus its matched oracle's.
+
+    Purity is the signal share of the `m` events MESR scores, the same count on both sides, so
+    the difference is `(TP_filter - TP_oracle) / m`, never positive by the oracle's dominance.
+    """
+
+    suffix = "_hotpixel" if hot_pixel_removal else ""
+    payload = json.loads((RESULTS / f"native_oracle_{dataset}{suffix}.json").read_text())
+    return [{"recording": cell["recording"], "method": cell["method"],
+             "purity": (cell["tp_scored"] - cell["oracle_tp_scored"]) / cell["scored"],
+             "mesr": cell["mesr"] - cell["oracle_mesr"],
+             "reversal": bool(cell["label_class"] == "strict" and cell["mesr_win"])}
+            for cell in payload["cells"]]
+
+
+def native_oracle_view(path: Path) -> Path:
+    """Each filter's own output against its matched oracle: purity lost against MESR gained."""
+
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.lines import Line2D
+
+    matplotlib.rcParams.update({"pdf.fonttype": 42, "font.size": 6.0})
+    try:
+        figure, axis = plt.subplots(figsize=ORACLE_INCHES)
+        counts = {}
+        lowest, highest, bottom = 0.0, 0.0, 0.0
+        for removal in (False, True):
+            reversals = cells = 0
+            for dataset, marker, color, _label in ORACLE_CORPORA:
+                points = native_oracle_points(dataset, removal)
+                x = [p["purity"] for p in points]
+                y = [p["mesr"] for p in points]
+                axis.scatter(x, y, marker=marker, s=8 if removal else 9, linewidths=0.6,
+                             facecolors="none" if removal else color, edgecolors=color,
+                             alpha=0.9, zorder=3 if removal else 2)
+                reversals += sum(p["reversal"] for p in points)
+                cells += len(points)
+                lowest, highest = min(lowest, min(x)), max(highest, max(y))
+                bottom = min(bottom, min(y))
+            counts[removal] = (reversals, cells)
+
+        # The reversal quadrant: less purity than the oracle, higher MESR. Right of zero no
+        # cell can lie, so the shading stops there.
+        left, top = lowest * 1.05, highest * 1.22  # headroom for the count, above every cell
+        axis.fill_between([left, 0.0], 0.0, top, color="#999999", alpha=0.13, linewidth=0,
+                          zorder=0)
+        axis.axhline(0.0, color="#000000", linewidth=0.6, dashes=(3.0, 1.6), zorder=1)
+        axis.set_xlim(left, -lowest * 0.04)
+        # Room under the lowest point for a one-row legend, so it covers no cell.
+        axis.set_ylim(bottom - 0.16 * (top - bottom), top)
+        axis.set_xlabel("retained purity, filter minus oracle")
+        axis.set_ylabel("MESR, filter minus oracle")
+        (released, n_released), (removed, n_removed) = counts[False], counts[True]
+        axis.annotate(f"higher MESR with less signal than the oracle:\n{released}/{n_released} "
+                      f"as released, {removed}/{n_removed} with the busiest pixels removed",
+                      xy=(0.02, 0.97), xycoords="axes fraction", fontsize=5.2, ha="left",
+                      va="top", color="#333333", linespacing=1.3)
+        handles = [Line2D([], [], marker=marker, linestyle="none", markersize=3.6,
+                          markerfacecolor=color, markeredgecolor=color, label=label)
+                   for _dataset, marker, color, label in ORACLE_CORPORA]
+        handles += [Line2D([], [], marker="o", linestyle="none", markersize=3.6,
+                           markerfacecolor="#555555", markeredgecolor="#555555",
+                           label="as released"),
+                    Line2D([], [], marker="o", linestyle="none", markersize=3.6,
+                           markerfacecolor="none", markeredgecolor="#555555",
+                           label="busiest 0.1% removed")]
+        axis.legend(handles=handles, loc="lower center", ncol=4, fontsize=5.0, frameon=False,
+                    handletextpad=0.1, columnspacing=0.9, borderaxespad=0.15)
+        axis.tick_params(labelsize=5.4, length=2, pad=1.5)
+        for side in ("top", "right"):
+            axis.spines[side].set_visible(False)
+        figure.subplots_adjust(left=0.13, right=0.985, top=0.985, bottom=0.17)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        figure.savefig(path)
+        plt.close(figure)
+    finally:
+        matplotlib.rcdefaults()
+    logger.info("wrote %s", path)
+    return path
+
+
 def main() -> List[Path]:
     logging.basicConfig(level=logging.INFO, format="%(message)s")
     # matplotlib subsets its fonts through fontTools, which narrates every glyph at INFO.
@@ -222,6 +313,7 @@ def main() -> List[Path]:
     written = [
         protocol_view(FIGURES / "fig_protocol_view.pdf"),
         rank_instability(FIGURES / "fig_rank_instability.pdf"),
+        native_oracle_view(FIGURES / "fig_native_oracle.pdf"),
     ]
     for path in written:
         print(path)

@@ -291,7 +291,7 @@ def _cnn2d_spearman() -> dict:
 
 
 def test_collapsing_the_duplicated_endpoint_raises_the_partial_correlation():
-    """App. K quotes the 2D CNN's partial correlation on the full grid (+0.290) and on the 33
+    """App. L quotes the 2D CNN's partial correlation on the full grid (+0.290) and on the 33
     distinct inputs (+0.379). Collapsing the duplicated endpoint raises it, since eight tied
     copies of one input pulled the pooled value toward zero. The paper draws no significance
     verdict from either: the conditions share test streams and seeds, so each coefficient
@@ -307,7 +307,7 @@ def test_collapsing_the_duplicated_endpoint_raises_the_partial_correlation():
 
 
 def test_the_across_seed_mean_exceeds_every_seed_estimate():
-    """App. K's reading of the 2D CNN's within-retention mean: averaging accuracies over the
+    """App. L's reading of the 2D CNN's within-retention mean: averaging accuracies over the
     three seeds before correlating gives a larger mean rho than any one seed does, which is
     what averaging produces when it attenuates seed variation. Scoped to the 2D CNN, as the
     paper scopes it; the 3D CNN does not show it."""

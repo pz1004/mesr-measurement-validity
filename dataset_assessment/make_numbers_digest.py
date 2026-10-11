@@ -409,15 +409,15 @@ def _benchmark(out: Callable[[str], None]) -> None:
                     f"({interval['resampling_unit']}; coarser than the classical rows)")
             error = reference.get("reproduction_error")
             if error:
-                # The paper quotes the SPAN, not the bounds, in the abstract, S5.1 and
-                # Appendix A. Printing only the bounds left the quoted number derived at
+                # The paper quotes the SPAN, not the bounds, in its reproduction limits and
+                # the EDformer appendix. Printing only the bounds left the quoted number derived at
                 # writing time rather than generated -- which the S1 traceability claim
                 # says never happens.
                 out(f"  - reproduction vs published table: mean {error['mean']:+.4f}, "
                     f"per-cell range {error['min']:+.4f} to {error['max']:+.4f} "
                     f"over {error['n_cells']} cells -- quote the range beside the mean")
                 out(f"  - **per-cell error span {error['max'] - error['min']:.4f}** "
-                    f"(the figure quoted in the abstract, S5.1 and Appendix A; "
+                    f"(the figure quoted in the reproduction limits and the EDformer appendix; "
                     f"{error['max'] - error['min']:.4f} > 0.0092, the gap the table claims)")
             sets = reference.get("recordings")
             if sets:
@@ -742,6 +742,18 @@ def _common_support(out: Callable[[str], None]) -> None:
             a = v[name]
             out(f"  - AUC_r ({name}) vs native: rho={a['spearman']:+.3f} "
                 f"tau={a['kendall']:+.3f} rankings differ={a['differ']}")
+        # The block-prefix control's place in each AUC_r column, and how close the method
+        # above it is: Table S6's "sixth ... within 0.002 of EvFlow" reads this line.
+        places = []
+        for name in ("own_range", "common_grid", "common_cohort"):
+            order, auc = v[name]["rank_a"], r["mean_auc"][name]
+            if "raw" in order:
+                i = order.index("raw")
+                above = (f", {auc[order[i - 1]] - auc['raw']:.4f} below {order[i - 1]}"
+                         if i else "")
+                places.append(f"{name} {i + 1}/{len(order)}{above}")
+        if places:
+            out("  - block-prefix control (raw) by AUC_r: " + "; ".join(places))
         cov = r["coverage"]["recordings_at_r"]
         lo = min(cov, key=float)
         out(f"  - n(r): {cov[lo]} recordings at r={lo}, {cov['1.00']} at r=1.00")
@@ -816,7 +828,7 @@ def _regime_and_audit(out: Callable[[str], None]) -> None:
             f"real {row['real_mean']:.4f} (n={row['real_n']}) p={row['p_value']:.2e} "
             f"rb={row['rank_biserial']:+.3f} separates={row['separates']}")
 
-    # Appendix C quotes per-corpus means to explain the asymmetry, so they belong here.
+    # The regime appendix quotes per-corpus means to explain the asymmetry, so they belong here.
     # Two of them (DVSD22, Pure_BA) were quoted in the paper with no digest line at all.
     out("\n### S7 per-corpus means")
     for corpus, row in sorted(regimes["per_corpus"].items()):
@@ -1125,7 +1137,7 @@ def _native_emlb(out: Callable[[str], None]) -> None:
             out(f"  - {method}: no evaluable cell ({row['unevaluable']} unevaluable)")
             continue
         d, n, s = row["delta_over_raw"], row["null_delta_over_raw"], row["filter_minus_null"]
-        if method in CLASSICAL:        # App F quotes the six filters' correlation only
+        if method in CLASSICAL:        # the diagnostic-form appendix quotes the six filters' correlation only
             rows.append((row["native_retention_mean"], d["mean"]))
         extra = ""
         if "unevaluable_native_retention_mean" in row:
@@ -1150,6 +1162,35 @@ def _native_emlb(out: Callable[[str], None]) -> None:
         out(f"  - {pair['a']} - {pair['b']}: {pair['mean_difference']:+.4f} "
             f"[{pair['lo']:+.4f}, {pair['hi']:+.4f}], n={pair['n_recordings']}, holds on "
             f"{pair['share_a_above_b']:.0%} -> {flag}{fam}")
+
+
+def _repeatability(out: Callable[[str], None]) -> None:
+    """§VI-E and the repeatability appendix: E-MLB's three repetitions per (scene, ND) condition.
+
+    Every value here was quoted before the digest carried it; the per-level medians and the
+    repetition draws are now computed by `emlb_repeatability.summarise` itself.
+    """
+
+    payload = _load("emlb_repeatability.json")
+    summary = payload["summary"]
+    spread, draws, worst = summary["spread"], summary["repetition_draws"], summary["worst_cell"]
+    lighting: Dict[str, set] = {}
+    for record in payload["records"]:
+        lighting.setdefault(record["cell"].split("/")[1], set()).add(record["cell"])
+    out("\n## S6-D E-MLB repeatability (`results/emlb_repeatability.json`)\n")
+    out(f"- {summary['cells']} conditions, {summary['repetition_readings']} unfiltered readings "
+        f"({', '.join(f'{k} {len(v)}' for k, v in sorted(lighting.items()))})")
+    out(f"- spread over repetitions: median **{spread['median']:.4f}**, mean "
+        f"**{spread['mean']:.4f}**, max **{spread['max']:.4f}** ({worst['cell']}: "
+        + ", ".join(f"{v:.4f}" for v in worst["mesr"]) + ")")
+    out(f"- pooled within-condition sd **{summary['repeatability_sd']:.4f}**")
+    out("- median spread by ND level: " + ", ".join(
+        f"{k} {v:.4f}" for k, v in summary["median_spread_by_nd_level"].items()))
+    out("- median spread by lighting: " + ", ".join(
+        f"{k} {v:.4f}" for k, v in summary["median_spread_by_lighting"].items()))
+    out(f"- the {draws['cells']}-condition mean over {draws['draws']:,} draws of each "
+        f"condition's repetition (seed {draws['seed']}): sd **{draws['sd']:.4f}**, central "
+        f"95% width (2.5th to 97.5th percentile) **{draws['central_95_width']:.4f}**")
 
 
 def _downstream_frozen(out: Callable[[str], None]) -> None:
@@ -1427,6 +1468,7 @@ def main() -> None:
     _hotpixel_contrast(out)
     _paired_contrasts(out)
     _native_emlb(out)
+    _repeatability(out)
     _common_support(out)
     _regime_and_audit(out)
     _nd_levels(out)

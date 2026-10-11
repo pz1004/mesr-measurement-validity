@@ -40,7 +40,7 @@ python -m dataset_assessment.nd_levels              # results/nd_levels.json  (<
 ```
 
 `profile_datasets` reads all five corpora at a 300,000-event cap; `nd_levels` reads its output
-and tests what E-MLB's neutral-density levels do to busiest-pixel share (App. J).
+and tests what E-MLB's neutral-density levels do to busiest-pixel share (App. K).
 
 ## Tier 2 — the benchmark grid (needs the classical denoisers built)
 
@@ -158,7 +158,9 @@ python -m dataset_assessment.edformer --cap 0 --out results/edformer_emlb_uncapp
 
 E-MLB records every (scene, ND) cell three times under nominally identical conditions; every
 other run here reads the first, as the published tables do. This scores all three and reports
-the within-cell spread — a Type A repeatability for the statistic (App. H).
+the within-cell spread — a Type A repeatability for the statistic (App. I) — with its median
+per ND level and per lighting set, and how far the corpus mean moves over 20,000 seeded draws
+of which repetition each cell contributes.
 
 ```bash
 python -m dataset_assessment.emlb_repeatability --workers 16   # results/emlb_repeatability.json  ~81 s
@@ -260,7 +262,7 @@ own outputs* above): 14 of the 21 pairs separate without correction, 10 after a 
 correction over all 21. Differencing within recordings avoids reading the overlap of two marginal
 intervals, which is invalid in both directions.
 
-The same contrasts in diagnostic form (App. G) read the quota-adapted curves at the grid point
+The same contrasts in diagnostic form (App. H) read the quota-adapted curves at the grid point
 nearest each method's native retention. Only that form applies
 `protocol.native_point_is_eligible`, which drops the 526 of 2,688 cells of the seven methods with
 no eligible grid point (445 of the 2,304 classical-filter cells), all of them because the native

@@ -32,7 +32,7 @@ from typing import Dict, List, Sequence
 
 import numpy as np
 
-from .analyze import CURVE_CORPUS_NAME, FIGURES, RESULTS, _curve_style
+from .analyze import CURVE_CORPUS_NAME, FIGURES, RESULTS, _curve_style, display_name
 
 logger = logging.getLogger(__name__)
 
@@ -190,7 +190,7 @@ def rank_instability(path: Path, datasets: Sequence[str] = RANK_DATASETS) -> Pat
             # both sides of it and collide with the lines arriving from either direction.
             for side in (0, last):
                 for rank, method in enumerate(orders[side], start=1):
-                    axis.annotate(method, xy=(side, rank), fontsize=4.6,
+                    axis.annotate(display_name(method), xy=(side, rank), fontsize=4.6,
                                   ha="left" if side else "right",
                                   va="center", xytext=(6 if side else -6, 0),
                                   textcoords="offset points",

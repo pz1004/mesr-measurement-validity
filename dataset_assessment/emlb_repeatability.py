@@ -34,7 +34,7 @@ import time
 from collections import defaultdict
 from multiprocessing import Pool
 from pathlib import Path
-from typing import Dict, List, Sequence
+from typing import Callable, Dict, List, Sequence
 
 import numpy as np
 
@@ -48,11 +48,50 @@ REPS = (1, 2, 3)
 #: EDformer vs. EDmamba on E-MLB, as published. The gap a reader is asked to resolve.
 PUBLISHED_GAP = 0.0092
 
+#: Draws of which repetition each complete cell contributes to the corpus mean, and their
+#: seed. The paper quotes the resulting sd and central 95% width; both are generated here.
+AGGREGATE_DRAWS = 20_000
+AGGREGATE_SEED = 20260726
+
 
 def cell_of(recording: str) -> str:
     """The (part, scene, ND) cell a repetition belongs to: its name without the `-<rep>`."""
 
     return recording.rsplit("-", 1)[0]
+
+
+def nd_level_of(cell: str) -> str:
+    """The neutral-density level of a cell, e.g. `ND00`, from its name's last field."""
+
+    return cell.rsplit("-", 1)[-1]
+
+
+def lighting_of(cell: str) -> str:
+    """The lighting set of a cell, `D-END` (daytime) or `N-END` (night), from its path."""
+
+    return cell.split("/")[1]
+
+
+def repetition_draws(cells: Sequence[Dict], draws: int = AGGREGATE_DRAWS,
+                     seed: int = AGGREGATE_SEED) -> Dict:
+    """How much the corpus mean moves with which repetition each cell contributes.
+
+    Each draw picks one repetition per cell independently and averages over cells. Only
+    cells with every repetition present enter, so all draws average the same cells.
+    """
+
+    full = max((len(c["mesr"]) for c in cells), default=0)
+    readings = np.array([c["mesr"] for c in cells if len(c["mesr"]) == full], dtype=float)
+    if readings.size == 0:
+        return {"draws": 0, "cells": 0}
+    rng = np.random.default_rng(seed)
+    picks = rng.integers(0, full, size=(draws, readings.shape[0]))
+    means = readings[np.arange(readings.shape[0]), picks].mean(axis=1)
+    low, high = np.percentile(means, [2.5, 97.5])
+    return {"draws": draws, "seed": seed, "cells": int(readings.shape[0]),
+            "first_repetition_mean": float(readings[:, 0].mean()),
+            "sd": float(means.std(ddof=1)),
+            "central_95_width": float(high - low)}
 
 
 def _one(rec) -> Dict:
@@ -91,6 +130,12 @@ def summarise(records: Sequence[Dict], gap: float = PUBLISHED_GAP) -> Dict:
     pooled = float(np.sqrt(np.mean(sds ** 2))) if len(sds) else float("nan")
     worst = max(cells, key=lambda c: c["spread"]) if cells else None
 
+    def median_spread_by(key: Callable[[str], str]) -> Dict[str, float]:
+        groups: Dict[str, List[float]] = defaultdict(list)
+        for c, spread in zip(cells, spreads):
+            groups[key(str(c["cell"]))].append(float(spread))
+        return {name: float(np.median(values)) for name, values in sorted(groups.items())}
+
     return {"cells": len(cells),
             "incomplete_cells": incomplete,
             "repetition_readings": int(len(records)),
@@ -101,6 +146,9 @@ def summarise(records: Sequence[Dict], gap: float = PUBLISHED_GAP) -> Dict:
             "cells_exceeding_gap": int((spreads > gap).sum()),
             "fraction_exceeding_gap": float((spreads > gap).mean()),
             "median_spread_in_gaps": float(np.median(spreads) / gap),
+            "median_spread_by_nd_level": median_spread_by(nd_level_of),
+            "median_spread_by_lighting": median_spread_by(lighting_of),
+            "repetition_draws": repetition_draws(cells),
             "worst_cell": worst}
 
 
@@ -138,6 +186,10 @@ def main() -> None:
           f"{summary['cells_exceeding_gap']}/{summary['cells']} "
           f"({100 * summary['fraction_exceeding_gap']:.1f}%)")
     print(f"  median spread is {summary['median_spread_in_gaps']:.1f}x that gap")
+    draws = summary["repetition_draws"]
+    if draws.get("draws"):
+        print(f"  corpus mean over {draws['draws']} draws of the repetition per cell: "
+              f"sd {draws['sd']:.4f}, central 95% width {draws['central_95_width']:.4f}")
     if summary["worst_cell"]:
         w = summary["worst_cell"]
         print(f"  worst cell: {w['cell']} spread {w['spread']:.4f}")

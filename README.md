@@ -73,7 +73,7 @@ python -m pytest -q tests/                      # expect: no failures
 python -m dataset_assessment.audit              # expect: 10/10 claims verified from source
 ```
 
-None of these needs a corpus. Without the corpora, 393 tests pass and 14 skip: 8 read the
+None of these needs a corpus. Without the corpora, 395 tests pass and 14 skip: 8 read the
 corpora, 3 check the manuscript, 1 needs EDformer's score cache, 1 the cuke-emlb build and 1
 the audited checkouts. `audit` reads the EDformer,
 EDmamba and cuke-emlb sources at pinned commits, so it needs those checkouts. To regenerate
@@ -86,7 +86,7 @@ everything from raw event data, see [`REPRODUCE.md`](REPRODUCE.md); to obtain th
 |---|---|
 | `dataset_assessment/` | The harness: the metric core, checked against E-MLB's reference implementation; readers for every corpus used; the denoiser adapter, which attributes each filter's kept events to its input exactly, even where the input repeats an event verbatim; the grid runner; and one module per analysis |
 | `dataset_assessment/sew7b/` | The released DVS Gesture classifier's network, its evaluator and the frame integrator, used by `downstream_gesture_frozen` (the checkpoint is third-party; see `DATA.md`) |
-| `tests/` | 407 tests, including the ESR closed-form hand case, the K-cancellation identity and the denoiser adapter's packet-wise attribution of kept events |
+| `tests/` | 409 tests, including the ESR closed-form hand case, the K-cancellation identity and the denoiser adapter's packet-wise attribution of kept events |
 | `results/` | 49 JSON artifacts, with `null_seeds/` (the subsampler under ten draws) and `cap_sensitivity/`; every reported number traces to one (`benchmark_emlb_native3d.json` belongs to a sibling project and backs none) |
 | `reproduction/results/` | Our uncapped run of EDformer's released evaluation script, which verifies its published E-MLB table |
 | `BUILD_CUKE_EMLB.md` | How the six classical denoisers were built, with verbatim errors and the pinned-commit warning |

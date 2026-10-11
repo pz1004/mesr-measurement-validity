@@ -626,6 +626,18 @@ CURVE_STYLE: Dict[str, Dict] = {
 #: Nulls and oracle first so the legend leads with them.
 CURVE_ORDER = ["raw", "random_null", "label_oracle"]
 
+#: Printed name per method, where it differs from the key. `raw` is the block-prefix
+#: control, a thinned selection below r = 1, while the "Raw" of Delta-over-Raw is the
+#: unfiltered input; printed as `raw`, the one reads as the other, so the figures print
+#: `prefix`. The key, the CLI and every artifact keep `raw`.
+DISPLAY_NAME: Dict[str, str] = {"raw": "prefix"}
+
+
+def display_name(method: str) -> str:
+    """The label a figure prints for `method`."""
+
+    return DISPLAY_NAME.get(method, method)
+
 
 #: Corpus names as the paper prints them; the JSON keys are lowercase slugs.
 CURVE_CORPUS_NAME = {"dnd21": "DND21", "dvsclean": "DVSCLEAN", "emlb": "E-MLB",
@@ -799,7 +811,8 @@ def figures(report: Dict) -> List[Path]:
 
         ordered_handles = ([m for m in CURVE_ORDER if m in handles]
                            + sorted(m for m in handles if m not in CURVE_ORDER))
-        fig.legend([handles[m] for m in ordered_handles], ordered_handles,
+        fig.legend([handles[m] for m in ordered_handles],
+                   [display_name(m) for m in ordered_handles],
                    loc="upper center", bbox_to_anchor=(0.5, 1.005),
                    ncol=len(ordered_handles), fontsize=5.4, frameon=False,
                    handlelength=1.9, handletextpad=0.4, columnspacing=1.1)

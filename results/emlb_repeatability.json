@@ -6920,7 +6920,7 @@
       "mesr": 0.5885892727284389
     }
   ],
-  "wall_seconds": 81.43565523100551,
+  "wall_seconds": 89.24564384995028,
   "summary": {
     "cells": 384,
     "incomplete_cells": [],
@@ -6936,6 +6936,24 @@
     "cells_exceeding_gap": 333,
     "fraction_exceeding_gap": 0.8671875,
     "median_spread_in_gaps": 3.338679666864553,
+    "median_spread_by_nd_level": {
+      "ND00": 0.030352070533074593,
+      "ND04": 0.03323535348917267,
+      "ND16": 0.03138280324877907,
+      "ND64": 0.02596910418477233
+    },
+    "median_spread_by_lighting": {
+      "D-END": 0.03119260961910636,
+      "N-END": 0.029761917052909925
+    },
+    "repetition_draws": {
+      "draws": 20000,
+      "seed": 20260726,
+      "cells": 384,
+      "first_repetition_mean": 0.8197446297848575,
+      "sd": 0.001613383160289922,
+      "central_95_width": 0.006343639153146952
+    },
     "worst_cell": {
       "cell": "E-MLB/N-END/Car_Night-ND00",
       "repetitions": 3,

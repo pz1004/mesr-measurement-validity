@@ -429,6 +429,14 @@ def edformer_reference() -> Dict:
     A cell mean follows the released aggregation, a mean over the recordings that have a
     score. Where EDformer keeps less than one 30,000-event slice the recording has no MESR
     at all; `evaluable` counts the ones that do, and it is not 48 everywhere.
+
+    `delta_over_raw` is paired: the unfiltered mean it subtracts, `raw_mesr_paired`, is
+    taken over those same evaluable recordings. The released script averages its unfiltered
+    stream over every recording (`raw_mesr`, kept because the vendored per-cell table is
+    checked against it), and subtracting that from a mean over a subset would put a change
+    of cohort inside a filtering contrast. `mean_delta_over_raw` weights the eight cells
+    equally, as the published table summarises by cell; `pooled_delta_over_raw` averages
+    the per-recording differences instead.
     """
 
     path = RESULTS / "edformer_emlb_uncapped.json"
@@ -443,19 +451,22 @@ def edformer_reference() -> Dict:
         _, part, base = row["recording"].split("/")
         grouped.setdefault((part, "ND" + re.search(r"ND(\d\d)", base).group(1)),
                            []).append(row)
-    cells, deltas, retentions = [], [], []
+    cells, deltas, retentions, per_recording = [], [], [], []
     for (part, level), rows in sorted(grouped.items()):
-        scored = [r["edformer_mesr"] for r in rows if np.isfinite(r["edformer_mesr"])]
-        filtered = float(np.mean(scored))
+        scored_rows = [r for r in rows if np.isfinite(r["edformer_mesr"])]
+        filtered = float(np.mean([r["edformer_mesr"] for r in scored_rows]))
         raw = float(np.mean([r["raw_mesr"] for r in rows]))
+        raw_paired = float(np.mean([r["raw_mesr"] for r in scored_rows]))
         retention = float(np.mean([r["retention"] for r in rows]))
         cells.append({"part": part, "nd": level, "raw_mesr": raw,
-                      "edformer_mesr": filtered, "delta_over_raw": filtered - raw,
+                      "raw_mesr_paired": raw_paired,
+                      "edformer_mesr": filtered, "delta_over_raw": filtered - raw_paired,
                       "mean_retention": retention, "recordings": len(rows),
-                      "evaluable": len(scored),
+                      "evaluable": len(scored_rows),
                       "paper_edformer": published[part][level]})
-        deltas.append(filtered - raw)
+        deltas.append(filtered - raw_paired)
         retentions.append(retention)
+        per_recording += [r["edformer_mesr"] - r["raw_mesr"] for r in scored_rows]
     errors = [c["edformer_mesr"] - c["paper_edformer"] for c in cells]
     return {
         "source": "results/edformer_emlb_uncapped.json",
@@ -465,7 +476,12 @@ def edformer_reference() -> Dict:
         "reason_not_sweepable": ("the threshold is hard-coded in the released evaluation "
                                  "script, so no MESR@r curve can be produced from it"),
         "cells": cells,
+        "delta_note": ("delta_over_raw = edformer_mesr - raw_mesr_paired, both over the evaluable "
+                       "recordings of a cell; raw_mesr averages every recording, as the "
+                       "released script does, so it is not the subtrahend"),
         "mean_delta_over_raw": float(np.mean(deltas)),
+        "pooled_delta_over_raw": {"mean": float(np.mean(per_recording)),
+                                  "n": len(per_recording)},
         # Bootstrapped over the 8 (lighting, ND) cells, not over recordings, so that this
         # interval stays comparable with the published table it is checked against. The
         # recording-level interval for EDformer is in results/native_emlb.json, where the

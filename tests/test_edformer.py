@@ -15,6 +15,7 @@ cached per-event sigmoid. What must hold, without torch:
 
 import hashlib
 import json
+import re
 
 import numpy as np
 import pytest
@@ -131,3 +132,42 @@ def test_uncapped_run_reproduces_the_vendored_per_cell_table():
         assert abs(cell["mean_retention"] - theirs["mean_retention"]) < 1e-6
         assert cell["recordings"] == theirs["sequences"]
         assert cell["evaluable"] <= cell["recordings"]
+
+
+def test_uncapped_delta_over_raw_is_paired_within_each_cell():
+    """app:edformer's delta compares EDformer with the unfiltered stream on the same recordings.
+
+    The released script averages the unfiltered stream over every recording of a cell but
+    EDformer only over those whose kept stream holds a complete slice. Differencing those two
+    means would put a change of cohort inside the filtering contrast, so the unfiltered side
+    is re-averaged over the evaluable recordings and the delta is their mean difference.
+    """
+
+    from dataset_assessment.analyze import edformer_reference
+    from dataset_assessment.esr import SLICE
+
+    reference = edformer_reference()
+    if not reference:
+        pytest.skip("uncapped run not present")
+    records = _load("edformer_emlb_uncapped.json")["records"]
+    # A recording has a score exactly when its kept stream holds one complete slice.
+    assert all((r["kept"] >= SLICE) == bool(np.isfinite(r["edformer_mesr"])) for r in records)
+    pooled = []
+    for cell in reference["cells"]:
+        rows = [r for r in records if r["recording"].split("/")[1] == cell["part"]
+                and "ND" + re.search(r"ND(\d\d)", r["recording"].split("/")[2]).group(1)
+                == cell["nd"]]
+        scored = [r for r in rows if np.isfinite(r["edformer_mesr"])]
+        assert (len(rows), len(scored)) == (cell["recordings"], cell["evaluable"])
+        differences = [r["edformer_mesr"] - r["raw_mesr"] for r in scored]
+        assert cell["delta_over_raw"] == pytest.approx(np.mean(differences), abs=1e-12)
+        assert cell["raw_mesr_paired"] == pytest.approx(
+            np.mean([r["raw_mesr"] for r in scored]), abs=1e-12)
+        pooled += differences
+    # Not vacuous: where the cohorts differ, the paired and the all-recordings unfiltered
+    # means differ, which is exactly where the old and the new deltas part.
+    assert any(abs(c["raw_mesr_paired"] - c["raw_mesr"]) > 1e-6 for c in reference["cells"])
+    assert reference["mean_delta_over_raw"] == pytest.approx(
+        np.mean([c["delta_over_raw"] for c in reference["cells"]]), abs=1e-12)
+    assert reference["pooled_delta_over_raw"]["n"] == len(pooled)
+    assert reference["pooled_delta_over_raw"]["mean"] == pytest.approx(np.mean(pooled), abs=1e-12)

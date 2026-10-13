@@ -38,3 +38,49 @@ def test_means_match_the_headline_count(dataset):
         assert mine["n_positive_mean"] == headline[null]["n_retentions_with_positive_mean"]
         for point in mine["profile"]:
             assert point["mean"] == pytest.approx(theirs[point["r"]])
+
+
+@pytest.mark.parametrize("dataset", ["dnd21", "dvsclean", "emlb", "dvsd22", "pure_ba"])
+def test_scene_means_recombine_into_the_stored_fixed_retention_mean(dataset):
+    """The digest's per-scene means must read the deltas the stored headline mean reads.
+
+    They split Table III's grid-point mean by scene; weighted by recordings they must give it
+    back, over the same recordings and the same number of scenes the interval resamples.
+    """
+
+    from dataset_assessment.make_numbers_digest import _scene_means
+
+    path = RESULTS / f"benchmark_{dataset}.json"
+    if not path.exists():
+        pytest.skip("benchmark results not present")
+    records = json.loads(path.read_text())["records"]
+    stored = json.loads((RESULTS / "rank_analysis.json").read_text())[dataset]
+    for null in ("raw", "random_null"):
+        best = stored["null_gain_fixed_retention"][null]["best_fixed"]
+        means = _scene_means(records, null, best["r"])
+        assert len(means) == best["cluster_ci"]["n_clusters"]
+        assert sum(n for _, n in means.values()) == best["n"]
+        pooled = sum(mean * n for mean, n in means.values()) / best["n"]
+        assert pooled == pytest.approx(best["mean"], abs=1e-12)
+
+
+def test_dnd21_scene_interval_spans_its_two_base_sequences():
+    """DND21's scene interval resamples two base sequences, so its ends are their two means.
+
+    With two scenes a bootstrap draw repeats one scene with probability 1/4, above the 2.5%
+    tail, so the percentile ends are those means exactly. The supplement reports them for
+    that reason: the interval describes the two sequences, not a population of scenes.
+    """
+
+    from dataset_assessment.make_numbers_digest import _scene_means
+
+    path = RESULTS / "benchmark_dnd21.json"
+    if not path.exists():
+        pytest.skip("benchmark results not present")
+    best = json.loads((RESULTS / "rank_analysis.json").read_text())["dnd21"][
+        "null_gain_fixed_retention"]["random_null"]["best_fixed"]
+    means = _scene_means(json.loads(path.read_text())["records"], "random_null", best["r"])
+    assert sorted(means) == ["DND21/driving", "DND21/hotel-bar"]
+    lo, hi = sorted(mean for mean, _ in means.values())
+    assert best["cluster_ci"]["lo"] == pytest.approx(lo, abs=1e-12)
+    assert best["cluster_ci"]["hi"] == pytest.approx(hi, abs=1e-12)

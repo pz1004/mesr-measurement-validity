@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Callable, Dict, List
+from typing import Callable, Dict, List, Tuple
 
 import numpy as np
 
@@ -27,6 +27,30 @@ def _load(name: str) -> Dict:
 def _cells(dataset: str) -> List[Dict]:
     return [row for record in _load(f"benchmark_{dataset}.json")["records"]
             for row in record["methods"].values() if "r_star" in row]
+
+
+def _scene_means(records: List[Dict], method: str, r: float) -> Dict[str, Tuple[float, int]]:
+    """A null's mean Delta-over-Raw per scene at one retention: the units a scene interval
+    resamples, read the way `analyze.null_gain_at_fixed_retention` reads them.
+
+    On a corpus with two scenes the percentile interval over scenes can only span their two
+    means, so printing the means says what that interval describes.
+    """
+
+    from .analyze import scene_of
+
+    per_scene: Dict[str, List[float]] = {}
+    for record in records:
+        row = record["methods"].get(method)
+        if row is None or "error" in row or "raw_mesr" not in row:
+            continue
+        for point in row["curve"]:
+            if (point.get("evaluable") and np.isfinite(point["mesr"])
+                    and float(point["r"]) == r):
+                per_scene.setdefault(scene_of(record["recording"]), []).append(
+                    float(point["mesr"] - row["raw_mesr"]))
+    return {scene: (float(np.mean(values)), len(values))
+            for scene, values in per_scene.items()}
 
 
 def _benchmark_scale(out: Callable[[str], None]) -> None:
@@ -218,6 +242,15 @@ def _nulls(out: Callable[[str], None]) -> None:
                 f"**cluster CI over {cluster['n_clusters']} independent scenes: "
                 f"[{cluster['lo']:+.4f}, {cluster['hi']:+.4f}]** "
                 f"excludes_zero={cluster['excludes_zero']}")
+            # The means themselves are what the paper quotes where it names scenes. With two
+            # or three scenes the percentile ends are the extreme means, since every draw can
+            # repeat one scene with probability (1/k)^k >= 0.025; with four or five the
+            # interval lies strictly inside their range.
+            if cluster["n_clusters"] <= 5:
+                means = _scene_means(records, method, best["r"])
+                out(f"    - per scene at r={best['r']:.2f}: " + ", ".join(
+                    f"{scene} {mean:+.4f} (n={n})"
+                    for scene, (mean, n) in sorted(means.items())))
         # The criterion forbids a rise beyond sampling variation, which a sign count does not
         # test: the scene interval at every retention below 1 (`results/null_intervals.json`).
         per_r = _load("null_intervals.json")[dataset]
@@ -230,6 +263,17 @@ def _nulls(out: Callable[[str], None]) -> None:
                 f"{row['n_above_zero']}/{row['n_retentions_below_one']}** "
                 f"(Bonferroni {row['n_above_zero_bonferroni']}), below zero at "
                 f"{row['n_below_zero']}{misses}")
+            # The specificity verdict is read from the Bonferroni-corrected intervals, so where
+            # they clear zero, and by how much, is printed for the paper to quote.
+            hits = [p for p in row["profile"]
+                    if p["r"] < 1.0 and p["lo_bonferroni"] > 0]
+            if hits:
+                out(f"    - Bonferroni-corrected interval above zero at "
+                    f"r={[p['r'] for p in hits]}: mean "
+                    f"{min(p['mean'] for p in hits):+.4f} to "
+                    f"{max(p['mean'] for p in hits):+.4f}, corrected lower bound "
+                    f"{min(p['lo_bonferroni'] for p in hits):+.4f} to "
+                    f"{max(p['lo_bonferroni'] for p in hits):+.4f}")
     out("- EDformer vs EDmamba as published on E-MLB: 1.00588 vs 1.01513 -> gap 0.0092")
 
     out("\n## S3.5 floor-pinned optima")
@@ -386,7 +430,8 @@ def _benchmark(out: Callable[[str], None]) -> None:
         reference = entry.get("edformer_reference")
         if reference:
             out(f"- EDformer: mean delta-over-raw "
-                f"**{reference['mean_delta_over_raw']:.4f}**, "
+                f"**{reference['mean_delta_over_raw']:.4f}** (paired within each cell, the "
+                f"{len(reference.get('cells') or [])} cells weighted equally), "
                 f"retention {reference['retention_range'][0]:.4f}-"
                 f"{reference['retention_range'][1]:.4f}, "
                 f"sweepable={reference['sweepable']}")
@@ -403,6 +448,21 @@ def _benchmark(out: Callable[[str], None]) -> None:
                 out(f"  - recordings per cell with a score: {span[0]} to {span[1]} of "
                     + ", ".join(f"{c['part']}/{c['nd']} {c['evaluable']}/{c['recordings']}"
                                 for c in cells))
+                # app:edformer's table, cell by cell. Its unfiltered column is taken over the
+                # same recordings as EDformer's, so each delta is a paired contrast; the
+                # released script's all-recordings unfiltered mean is printed beside it only
+                # so the difference between the two cohorts stays visible.
+                for c in cells:
+                    out(f"  - {c['part']}/{c['nd']}: n={c['evaluable']}/{c['recordings']}, "
+                        f"reproduced {c['edformer_mesr']:.4f} (published "
+                        f"{c['paper_edformer']:.3f}), unfiltered over the same n "
+                        f"{c['raw_mesr_paired']:.4f} (all {c['recordings']}: "
+                        f"{c['raw_mesr']:.4f}), **delta-over-raw {c['delta_over_raw']:+.4f}**, "
+                        f"retention {c['mean_retention']:.3f} over all {c['recordings']}")
+            pooled = reference.get("pooled_delta_over_raw")
+            if pooled:
+                out(f"  - pooled over the {pooled['n']} recordings with a score, rather than "
+                    f"cell by cell: delta-over-raw **{pooled['mean']:+.4f}**")
             interval = reference.get("delta_over_raw_ci")
             if interval:
                 out(f"  - EDformer CI [{interval['lo']:+.4f},{interval['hi']:+.4f}] "
@@ -939,7 +999,8 @@ def _downstream(out: Callable[[str], None]) -> None:
     partial = stats.get("partial_given_retention")
     if partial:
         out(f"- **partial rho(MESR, accuracy | retention) = {partial['rho']:+.3f} "
-            f"p={partial['p']:.3f} n={partial['n']}**  <- primary within-condition test")
+            f"p={partial['p']:.3f} n={partial['n']}**  <- full grid, the r = 1 "
+            "endpoint once per method (the weighting check)")
     distinct = stats.get("partial_given_retention_distinct")
     if distinct:
         # Same test on the distinct-input sample: the r = 1 endpoint enters the pooled grid

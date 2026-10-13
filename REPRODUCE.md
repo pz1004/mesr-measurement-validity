@@ -12,7 +12,7 @@ here; the three marked "alongside other runs" quote what their artifacts record.
 pip install -r requirements.txt
 python -m dataset_assessment.analyze                # rank_analysis.json + results/figures/
 python -m dataset_assessment.figures_protocol       # the protocol figures and the oracle scatter
-python -m pytest -q tests/                          # 407 passed with every checkout in place
+python -m pytest -q tests/                          # 416 passed with every checkout in place
 python -m dataset_assessment.audit                  # 10/10 claims verified from source
 python -m dataset_assessment.make_numbers_digest > NUMBERS.md
 ```
@@ -99,11 +99,11 @@ python -m dataset_assessment.hotpixel_contrast   # results/hotpixel_contrast.jso
 
 ### The filters' own outputs
 
-The label-quality test and the E-MLB table read each filter's native output, not a quota near
-it. `native_oracle` scores every filter against a label oracle matched to it per block on the
-two labelled corpora, as released and with the busiest pixels removed; `native_emlb` applies
-protocol item 1 to E-MLB; `paired_contrasts --source native` differences its rows within
-recordings.
+The direct test of retained-purity ordering and the E-MLB table read each filter's native
+output, not a quota near it. `native_oracle` scores every filter against a label oracle matched
+to it per block on the two labelled corpora, as released and with the busiest pixels removed;
+`native_emlb` applies protocol item 1 to E-MLB; `paired_contrasts --source native` differences
+its rows within recordings.
 
 ```bash
 python -m dataset_assessment.native_oracle --dataset dnd21                          #   69 s
@@ -154,11 +154,11 @@ python -m dataset_assessment.native_emlb --methods edformer_native --merge
 python -m dataset_assessment.edformer --cap 0 --out results/edformer_emlb_uncapped.json   # 22478 s
 ```
 
-### MESR repeatability across E-MLB's repetitions
+### MESR across E-MLB's repeated acquisitions
 
 E-MLB records every (scene, ND) cell three times under nominally identical conditions; every
 other run here reads the first, as the published tables do. This scores all three and reports
-the within-cell spread — a Type A repeatability for the statistic (App. I) — with its median
+the within-cell spread — a Type A evaluation of how the unfiltered statistic varies across repeated acquisitions (App. I) — with its median
 per ND level and per lighting set, and how far the corpus mean moves over 20,000 seeded draws
 of which repetition each cell contributes.
 
@@ -414,9 +414,9 @@ shipped artifacts rather than from the tables that print them.
 python -m dataset_assessment.red_sensitivity    # results/red_sensitivity.json  <1 s
 ```
 
-Reads `downstream_gesture.json` and `downstream_gesture_frozen.json`; reproduces the paper's
-`+0.187` (trained 2D CNN, 40 conditions) and `+0.04` (frozen, within retention; `+0.044` before
-rounding).
+Reads `downstream_gesture.json` and `downstream_gesture_frozen.json`; reproduces `+0.187`
+(trained 2D CNN, all 40 conditions, App. L) and the paper's `+0.04` (frozen, within retention;
+`+0.044` before rounding).
 
 To recompute the statistics after changing how a summary is scoped or defined, without
 retraining anything:

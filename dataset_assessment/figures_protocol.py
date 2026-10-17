@@ -84,7 +84,11 @@ def delta_over_raw_curve(dataset: str, method: str) -> Dict[float, float]:
 
 
 def _scalar_at_native(dataset: str) -> Dict[str, float]:
-    """Delta-over-Raw at each method's own operating point, as Table~IV reports it."""
+    """Delta-over-Raw at the grid point nearest each method's native retention.
+
+    These are quota-adapted values, the nearest-grid reading of Fig. 4 (unrestricted cohort),
+    not native-output scores of the kind Table IV reports for E-MLB; the caption says so.
+    """
 
     report = json.loads((RESULTS / "rank_analysis.json").read_text())
     return report[dataset]["delta_over_raw_at_native"]

@@ -12,7 +12,7 @@ here; the three marked "alongside other runs" quote what their artifacts record.
 pip install -r requirements.txt
 python -m dataset_assessment.analyze                # rank_analysis.json + results/figures/
 python -m dataset_assessment.figures_protocol       # the protocol figures and the oracle scatter
-python -m pytest -q tests/                          # 416 passed with every checkout in place
+python -m pytest -q tests/                          # 435 passed with every checkout in place
 python -m dataset_assessment.audit                  # 10/10 claims verified from source
 python -m dataset_assessment.make_numbers_digest > NUMBERS.md
 ```
@@ -37,10 +37,11 @@ asserted equal to `common_support.coverage`.
 python -m dataset_assessment.measure_metric_deps    # results/metric_dependencies.json
 python -m dataset_assessment.profile_datasets       # results/noise_regimes.json  (211 s)
 python -m dataset_assessment.nd_levels              # results/nd_levels.json  (<1 s)
+python -m dataset_assessment.provenance             # results/corpus_provenance.json  (4 s)
 ```
 
 `profile_datasets` reads all five corpora at a 300,000-event cap; `nd_levels` reads its output
-and tests what E-MLB's neutral-density levels do to busiest-pixel share (App. K).
+and tests what E-MLB's neutral-density levels do to busiest-pixel share (App. K). `provenance` reads file headers only: the recorded module and any configuration of every E-MLB and Pure_BA AEDAT-4 file, and the camera's own DVS filter settings and jAER's host-side filter chain, with each filter's enabled flag, that every DVSD22 jAER header embeds (App. N).
 
 ## Tier 2 — the benchmark grid (needs the classical denoisers built)
 
@@ -99,7 +100,7 @@ python -m dataset_assessment.hotpixel_contrast   # results/hotpixel_contrast.jso
 
 ### The filters' own outputs
 
-The direct test of retained-purity ordering and the E-MLB table read each filter's native
+The direct test of event-label dominance and the E-MLB table read each filter's native
 output, not a quota near it. `native_oracle` scores every filter against a label oracle matched
 to it per block on the two labelled corpora, as released and with the busiest pixels removed;
 `native_emlb` applies protocol item 1 to E-MLB; `paired_contrasts --source native` differences
@@ -402,6 +403,15 @@ start empty, and only the files the run wrote are deleted.
 
 ```bash
 python -m dataset_assessment.downstream_tiebreak   # results/downstream_gesture_tiebreak.json  2860 s (alongside other runs)
+```
+
+### The frozen classifier on the events MESR scores
+
+MESR reads only the complete slices of a retained stream, 91.4-96.4% of what the frozen classifier receives. `downstream_matched_events` hands the classifier exactly the scored prefix, the first 30,000 x floor(k / 30,000) of the k events each procedure retains, at r = 0.4, 0.5, 0.6 and 0.8, on the clips that hold a complete slice (287 at r = 0.4, 288 elsewhere). It passes the frozen run's gate first, asserts that every condition's MESR equals the value `downstream_gesture_frozen.json` stores, and re-evaluates the full-stream RED condition at r = 0.6, which must return the stored predictions clip for clip; the full-stream accuracy on each cohort is read from `downstream_gesture_frozen_evaluation.json`. Frames go to a directory that must start empty, and only the files the run wrote are deleted.
+
+```bash
+python -m dataset_assessment.downstream_matched_events --smoke   # the gate alone
+python -m dataset_assessment.downstream_matched_events           # results/downstream_matched_events.json  3776 s
 ```
 
 ### How much of the downstream verdict rests on RED

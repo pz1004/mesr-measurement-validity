@@ -90,7 +90,7 @@ def test_the_artifact_reproduces_the_benchmark_means():
     if not OUT.exists():
         pytest.skip("null_matched_span.json not present")
     corpora = json.loads(OUT.read_text())["corpora"]
-    published = {("dvsd22", 0.05): 0.7786, ("pure_ba", 0.2): 0.0684}
+    published = {("dvsd22", 0.05): 0.7839, ("pure_ba", 0.2): 0.0684}
     for (dataset, r), value in published.items():
         if dataset not in corpora:
             continue

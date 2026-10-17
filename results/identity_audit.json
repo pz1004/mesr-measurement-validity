@@ -102,7 +102,7 @@
           "mixed_groups": 2
         }
       ],
-      "wall_seconds": 97.53272083192132,
+      "wall_seconds": 163.08697307808325,
       "routes": {
         "cells": 60,
         "one_pass_equal": 60,
@@ -749,7 +749,7 @@
           "mixed_groups": 2
         }
       ],
-      "wall_seconds": 100.33243416505866,
+      "wall_seconds": 167.13792749796994,
       "routes": {
         "cells": 60,
         "one_pass_equal": 60,
@@ -1396,7 +1396,7 @@
           "mixed_groups": 0
         }
       ],
-      "wall_seconds": 93.58918586501386,
+      "wall_seconds": 273.8620257501025,
       "routes": {
         "cells": 60,
         "one_pass_equal": 60,
@@ -2043,7 +2043,7 @@
           "mixed_groups": 0
         }
       ],
-      "wall_seconds": 96.05620730097871,
+      "wall_seconds": 208.75938173406757,
       "routes": {
         "cells": 60,
         "one_pass_equal": 60,
@@ -4624,7 +4624,7 @@
           "largest": 3
         }
       ],
-      "wall_seconds": 1208.4435380230425,
+      "wall_seconds": 4962.546283025993,
       "routes": {
         "cells": 1728,
         "one_pass_equal": 1728,
@@ -24884,7 +24884,7 @@
           "largest": 3
         }
       ],
-      "wall_seconds": 947.3437392279739,
+      "wall_seconds": 3925.5586357009597,
       "routes": {
         "cells": 8460,
         "one_pass_equal": 8460,
@@ -75750,7 +75750,7 @@
           "largest": 2
         }
       ],
-      "wall_seconds": 875.6754923650296,
+      "wall_seconds": 1022.271161002107,
       "routes": {
         "cells": 72,
         "one_pass_equal": 72,
@@ -75834,37 +75834,37 @@
         {
           "recording": "DVSD22/HDD/2x30Hz_a",
           "method": "dwf",
-          "kept": 608371,
+          "kept": 608277,
           "moved": 1
         },
         {
           "recording": "DVSD22/HDD/2x30Hz_a",
           "method": "evflow",
-          "kept": 109326,
+          "kept": 109302,
           "moved": 1
         },
         {
           "recording": "DVSD22/HDD/2x30Hz_a",
           "method": "knoise",
-          "kept": 179609,
+          "kept": 179565,
           "moved": 0
         },
         {
           "recording": "DVSD22/HDD/2x30Hz_a",
           "method": "red",
-          "kept": 348521,
+          "kept": 349258,
           "moved": 2
         },
         {
           "recording": "DVSD22/HDD/2x30Hz_a",
           "method": "ts",
-          "kept": 487778,
+          "kept": 487695,
           "moved": 0
         },
         {
           "recording": "DVSD22/HDD/2x30Hz_a",
           "method": "ynoise",
-          "kept": 549199,
+          "kept": 549111,
           "moved": 1
         },
         {
@@ -76534,7 +76534,7 @@
           "mixed_groups": 0
         }
       ],
-      "wall_seconds": 2305.2449702320155,
+      "wall_seconds": 6107.239619441098,
       "routes": {
         "cells": 246,
         "one_pass_equal": 246,
@@ -81461,7 +81461,7 @@
           "largest": 2
         }
       ],
-      "wall_seconds": 2345.0673499719705,
+      "wall_seconds": 4649.824310300872,
       "routes": {
         "cells": 2304,
         "one_pass_equal": 2304,
@@ -95297,5 +95297,5 @@
       ]
     }
   },
-  "wall_seconds": 8069.385892382008
+  "wall_seconds": 21480.345741429133
 }

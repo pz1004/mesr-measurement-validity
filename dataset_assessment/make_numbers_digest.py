@@ -144,17 +144,24 @@ def _metric_dependencies(out: Callable[[str], None]) -> None:
     _by_base_scene(out, slices, "slice-size")
     out(f"- monotone increasing on {slices['monotone_increasing_share']:.0%} of recordings")
     # Same-corpus scale for the verdict: the same ten DND21 recordings, each filter on its own
-    # output (first 10^6 events), paired where both filters are scored.
+    # output (first 10^6 events), paired where both filters are scored. The headline ratio is
+    # taken against the spread measured on that same 10^6-event support, not against the
+    # whole-stream sweep, so both sides of the comparison come from one event cohort.
     from .native_oracle import widest_filter_gap
 
     gap = widest_filter_gap(_load("native_oracle_dnd21.json")["cells"])
+    s = _load("slice_ranking_dnd21.json")["summary"]
+    matched = s["unfiltered_spread_mean"]
     mean = slices["spread_over_recordings"]["mean"]
     out(f"- same-corpus scale (`results/native_oracle_dnd21.json`): widest paired gap between "
         f"two filters' own outputs **{gap['gap']:.4f}** ({gap['a']} over {gap['b']}, "
-        f"n={gap['n_recordings']}); slice-size spread = **{mean / gap['gap']:.2f}x** that")
+        f"n={gap['n_recordings']})")
+    out(f"  - matched, both on the first 10^6 events: slice-size spread **{matched:.4f}** = "
+        f"**{matched / gap['gap']:.2f}x** the gap -- the comparison the paper quotes")
+    out(f"  - whole-stream spread for reference: {mean:.4f} ({mean / gap['gap']:.2f}x), "
+        f"a different event cohort from the gap")
     # Does the convention reorder filters, or shift them together? Each filter's own output
     # at every slice size, on the same first 10^6 events.
-    s = _load("slice_ranking_dnd21.json")["summary"]
     out(f"- filters' own outputs across slice sizes (`results/slice_ranking_dnd21.json`): "
         f"**{s['recordings_reordered']}/{s['ranked_recordings']}** recordings reordered against "
         f"30k, top filter changes on {s['recordings_top_changed']}; Kendall tau min "
@@ -1277,6 +1284,11 @@ def _downstream_frozen(out: Callable[[str], None]) -> None:
         f"{round(gate['top1'] * gate['samples'])}")
     out("- MESR's share of the classified stream: " + ", ".join(
         f"r={s['retention']}: {s['scored_share']:.1%}" for s in payload["scored_share"]))
+    out("- clips holding a complete slice, over which each MESR mean is taken (accuracy uses "
+        f"all {gate['samples']}): " + ", ".join(
+            f"r={c['retention']}: {c['evaluable_test_samples']}" for c in sorted(
+                payload["conditions"], key=lambda c: c["retention"])
+            if c["method"] in ("raw", "all")))
     grid: Dict[float, Dict[str, Dict]] = {}
     for cell in payload["conditions"]:
         grid.setdefault(float(cell["retention"]), {})[cell["method"]] = cell
@@ -1311,6 +1323,149 @@ def _downstream_frozen(out: Callable[[str], None]) -> None:
     trained = red["trained_cnn2d"]
     out(f"- 2D CNN pooled Spearman with red {trained['with_red']['pooled']['rho']:+.3f}, "
         f"without red **{trained['without_red']['pooled']['rho']:+.3f}**")
+
+
+def _matched_events(out: Callable[[str], None]) -> None:
+    """S8.2c: the frozen classifier handed exactly the events MESR scores."""
+
+    path = RESULTS / "downstream_matched_events.json"
+    out("\n## S8.2c the released classifier on the events MESR scores "
+        "(`results/downstream_matched_events.json`)\n")
+    if not path.exists():
+        out("- not run")
+        return
+    payload = json.loads(path.read_text())
+    if not payload.get("complete"):
+        out("- incomplete run: the report is rewritten after each retention, so re-run to finish")
+        return
+    frozen = {(row["method"], row["retention"]): row
+              for row in _load("downstream_gesture_frozen.json")["conditions"]}
+    worst = max(abs(row["mesr"] - frozen[(row["method"], row["retention"])]["mesr"])
+                for row in payload["rows"])
+    rep = payload["reproduction"]
+    out(f"- gate {payload['gate']['top1']:.4f} ({payload['gate']['samples']} clips, "
+        f"reproduced={payload['gate']['reproduced']}); the full-stream {rep['condition']} "
+        f"re-evaluated: top1 {rep['top1']:.4f} against the stored {rep['stored_top1']:.4f}, "
+        f"predictions identical={rep['identical_predictions']}")
+    out(f"- each condition's MESR on its scored prefix equals the frozen run's stored value "
+        f"(largest difference {worst:.1e})")
+    summary = payload["summary"]
+    for tag, cell in summary["per_retention"].items():
+        cohort = payload["cohorts"][tag]
+        rows = {r["method"]: r for r in payload["rows"] if f"{r['retention']:g}" == tag}
+        full = payload["full_stream_accuracy"][tag]
+        out(f"- r={tag}, {cohort['clips']} clips"
+            + (f" (excluded: {', '.join(cohort['excluded'])})" if cohort["excluded"] else "")
+            + ": accuracy on the scored events / on the full stream, same clips: " + ", ".join(
+                f"{m} {rows[m]['accuracy']:.4f}/{full[m]:.4f}" for m in sorted(rows)))
+        c = cell["red_minus_control"]
+        lo, hi = c["accuracy_delta_95ci"]
+        out(f"  - red minus raw (block-prefix control): **{c['accuracy_delta']:+.4f}** "
+            f"[{lo:+.4f}, {hi:+.4f}]; red lower on **{c['subjects_red_lower']}/"
+            f"{c['subjects']}** subjects, tied on {c['subjects_tied']}")
+        out(f"  - least accurate: {', '.join(cell['least_accurate'])}; most accurate: "
+            f"{', '.join(cell['most_accurate'])}; first by MESR: "
+            f"{', '.join(cell['first_by_mesr'])}; within-retention Spearman "
+            f"{cell['rho_mesr_accuracy']:+.2f}")
+    least = summary["red_least_accurate_at"]
+    out(f"- red least accurate of the eight on its scored events at r = "
+        f"**{', '.join(least) or 'none'}** ({len(least)} of {len(summary['per_retention'])}; "
+        f"alone at {', '.join(summary['red_least_accurate_alone_at']) or 'none'}); mean "
+        f"within-retention Spearman **{summary['mean_rho_mesr_accuracy']:+.2f}**")
+    # The RED-excluded reading, as S8.2b gives it for the classified stream.
+    from scipy.stats import spearmanr
+
+    without_red = []
+    for tag in summary["per_retention"]:
+        rest = sorted((r for r in payload["rows"]
+                       if f"{r['retention']:g}" == tag and r["method"] != "red"),
+                      key=lambda r: r["method"])
+        rho = float(spearmanr([r["mesr"] for r in rest], [r["accuracy"] for r in rest])[0])
+        without_red.append(rho)
+        first = max(rest, key=lambda r: r["mesr"])
+        lowest = min(r["accuracy"] for r in rest)
+        out(f"- without red, r={tag}: Spearman {rho:+.2f}; first by MESR {first['method']} "
+            f"({first['accuracy']:.4f}), least accurate "
+            f"{', '.join(r['method'] for r in rest if r['accuracy'] == lowest)}; MESR-first "
+            f"least accurate={first['accuracy'] == lowest}")
+    out(f"- without red, mean within-retention Spearman **{np.mean(without_red):+.2f}**")
+
+
+def _provenance(out: Callable[[str], None]) -> None:
+    """S2-N: what the real corpora's file headers record about filtering before release."""
+
+    path = RESULTS / "corpus_provenance.json"
+    out("\n## S2-N corpus provenance from the file headers (`results/corpus_provenance.json`)\n")
+    if not path.exists():
+        out("- not run")
+        return
+    payload = json.loads(path.read_text())
+    for corpus in ("E-MLB", "Pure_BA"):
+        b = payload[corpus]
+        out(f"- {corpus}: {b['files']} {b['format']} files; every output from "
+            f"`{'`, `'.join(sorted(b['original_module_names']))}` in "
+            f"**{b['files_whose_outputs_all_come_from_capture']}/{b['files']}**; header keys "
+            f"beyond the output description: {b['other_keys'] or 'none'}; cameras "
+            f"{', '.join(sorted(b['cameras']))}")
+    d = payload["DVSD22"]
+    out(f"- DVSD22: {d['files']} {d['format']} files ({d['used_here']} used here, the rest "
+        f"calibration clips); chip {', '.join(d['chips'])}; interface "
+        f"{', '.join(d['hardware_interfaces'])}")
+    for key, values in d["device_filters"].items():
+        out(f"  - {key}: " + ", ".join(f"{v} in {n}/{d['files']}" for v, n in values.items()))
+    host = d.get("host_filter_chain")
+    if host is None:
+        return
+    out(f"- DVSD22 jAER filter chain: stored in "
+        f"**{d['files'] - host['files_without_stored_chain']}/{d['files']}** headers")
+    for chain in host["chains"]:
+        where = ", ".join(f"{n} from `{s}`" for s, n in chain["sessions"].items())
+        out(f"  - {len(chain['filters'])} filters in {chain['files']} files ({where}): "
+            + ", ".join(chain["filters"]))
+    running = ", ".join(f"{k} in {n}" for k, n in host["enabled_in_chain"].items()) or "none"
+    out(f"  - enabled in the chain: **{running}**; no chain filter enabled in "
+        f"{host['files_with_no_enabled_filter_in_chain']} files")
+    per_file = ", ".join(f"{k} in {n} files"
+                         for k, n in host["enabled_outside_chain_per_file"].items())
+    out(f"  - flagged enabled outside the chain (never run): {per_file}; "
+        f"{len(host['enabled_outside_chain'])} classes in all")
+
+
+def _null_draws(out: Callable[[str], None]) -> None:
+    """S3.4b: the null's draw, and how closely the two label-blind controls agree.
+
+    Agreement is read at each corpus's Table III grid point, the retention below 1 that
+    maximises the random subsampler's corpus mean, which is where Table III prints both.
+    """
+
+    ranks = _load("rank_analysis.json")
+    out("\n## S3.4b the null's draw and the two controls' agreement "
+        "(`results/null_seed_sensitivity.json`, `results/rank_analysis.json`)\n")
+    for corpus in CORPORA:
+        gains = ranks[corpus]["null_gain_fixed_retention"]
+        null = {p["r"]: p["mean"] for p in gains["random_null"]["profile"] if p["r"] < 1.0}
+        prefix = {p["r"]: p["mean"] for p in gains["raw"]["profile"] if p["r"] < 1.0}
+        r = max(null, key=lambda k: null[k])
+        out(f"- {corpus}: at Table III's r={r:g}, random_null {null[r]:+.4f} and prefix "
+            f"{prefix[r]:+.4f} differ by **{abs(null[r] - prefix[r]):.4f}**")
+    for corpus, c in _load("null_seed_sensitivity.json")["corpora"].items():
+        rows = c["by_retention"]
+        first, rest = rows[0], rows[1:]
+        worst = max(rest, key=lambda b: b["sd"])
+        count = c["positive_mean_count"]
+        out(f"- {corpus}, {count['n']} draws: positive mean at {count['min']:.0f} to "
+            f"{count['max']:.0f} of {c['n_retentions_below_one']} retentions; across-draw sd "
+            f"**{first['sd']:.4f}** at r={first['r']:g} and at most **{worst['sd']:.4f}** "
+            f"(r={worst['r']:g}) at the other {len(rest)}")
+        lead = c.get("blank_lead")
+        if lead:
+            leads = [s["lead"] for s in lead["per_seed"]]
+            best = sorted({s["best_filter"] for s in lead["per_seed"]})
+            out(f"  - blank lead at r={lead['retention']:g}: **{min(leads):+.4f} to "
+                f"{max(leads):+.4f}**, sd {float(np.std(leads, ddof=1)):.4f}; best filter "
+                f"{', '.join(best)} under every draw" if len(best) == 1 else
+                f"  - blank lead at r={lead['retention']:g}: {min(leads):+.4f} to "
+                f"{max(leads):+.4f}; best filters {', '.join(best)}")
 
 
 def _blank_levels(out: Callable[[str], None]) -> None:
@@ -1515,9 +1670,11 @@ def main() -> None:
         "claim in")
     out("the draft that cannot be found below has no artifact behind it.\n")
     _benchmark_scale(out)
+    _provenance(out)
     _metric_dependencies(out)
     _controlled_addition(out)
     _nulls(out)
+    _null_draws(out)
     _benchmark(out)
     _scale(out)
     _blank_signature(out)
@@ -1538,6 +1695,7 @@ def main() -> None:
     _paired_seeds(out)
     _downstream_frozen(out)
     _tiebreak(out)
+    _matched_events(out)
     _blank_levels(out)
     _null_matched_span(out)
 

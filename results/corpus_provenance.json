@@ -1,0 +1,155 @@
+{
+  "DVSD22": {
+    "chips": {
+      "eu.seebetter.ini.chips.davis.Davis346blue": 14
+    },
+    "device_filters": {
+      "FilterBackgroundActivity": {
+        "false": 14
+      },
+      "FilterBackgroundActivityDeltaTime": {
+        "80": 14
+      },
+      "FilterPolarityFlatten": {
+        "false": 14
+      },
+      "FilterPolaritySuppress": {
+        "false": 14
+      },
+      "FilterPolaritySuppressType": {
+        "false": 14
+      },
+      "FilterRefractoryPeriod": {
+        "false": 14
+      },
+      "FilterRefractoryPeriodTime": {
+        "2": 14
+      },
+      "FilterRowOnlyEvents": {
+        "true": 14
+      },
+      "FilterSkipEvents": {
+        "false": 14
+      },
+      "FilterSkipEventsEvery": {
+        "1": 14
+      }
+    },
+    "files": 14,
+    "format": "AEDAT-2 (jAER)",
+    "hardware_interfaces": {
+      "DAVIS BLUE 346 00826002": 14
+    },
+    "host_filter_chain": {
+      "chains": [
+        {
+          "files": 12,
+          "filters": [
+            "ApsDvsEventFilter",
+            "RotateFilter",
+            "XYTypeFilter",
+            "HotPixelFilter",
+            "BackgroundActivityFilter",
+            "RefractoryFilter",
+            "CellStatsProber",
+            "RectangularClusterTracker",
+            "Info",
+            "Steadicam",
+            "RoShamBoCNN",
+            "FoosballCNNBallTracker",
+            "BandpassIIREventFilter",
+            "NoiseTesterFilter",
+            "MedianTracker",
+            "Oscilloscope",
+            "Speedometer"
+          ],
+          "sessions": {
+            "19.07.2021 - Darkroom, HDD": 12
+          }
+        },
+        {
+          "files": 2,
+          "filters": [
+            "RotateFilter",
+            "XYTypeFilter",
+            "HotPixelFilter",
+            "BackgroundActivityFilter",
+            "RefractoryFilter",
+            "CellStatsProber",
+            "Steadicam",
+            "RoShamBoCNN",
+            "Info",
+            "JaerAviWriter"
+          ],
+          "sessions": {
+            "23.09.2021 - Staircase, IV drip kit": 2
+          }
+        }
+      ],
+      "enabled_in_chain": {
+        "Speedometer": 12
+      },
+      "enabled_outside_chain": {
+        "ATCFpgaConfig": 14,
+        "AbstractAviWriter": 14,
+        "AerCorrFilter": 14,
+        "ApsEventFilter": 14,
+        "BandpassEventFilter": 14,
+        "BandpassIIRFirstOrderEventFilter": 14,
+        "BrightonFish3DTracker": 14,
+        "CalibrationVicon": 14,
+        "DataLogger": 14,
+        "DavisDeepLearnCnnProcessor": 14,
+        "DavisTextOutputWriter": 14,
+        "EdgeConstructor": 14,
+        "EpipolarRectification": 14,
+        "EvolutionaryThrottleController": 14,
+        "FaceDetectionAPS": 14,
+        "HumanVsComputerThrottleController": 14,
+        "ProbFPNCorrectionFilter": 14,
+        "RectangularClusterTrackerWithUDPClusterOutput": 14,
+        "RotateFilter2": 14,
+        "ServoArm": 14,
+        "SimpleSpeedController": 14,
+        "SlowResponse": 14,
+        "SpatioTemporalFusion": 14,
+        "Speedometer": 2,
+        "TimeLapse": 14,
+        "TimestampCalibrator": 14,
+        "ZebrafishLoggedData": 14,
+        "ZebrafishLoggedData2": 14,
+        "ZebrafishMedianTracker": 12
+      },
+      "enabled_outside_chain_per_file": {
+        "28": 14
+      },
+      "files_with_no_enabled_filter_in_chain": 2,
+      "files_without_stored_chain": 0
+    },
+    "used_here": 12
+  },
+  "E-MLB": {
+    "cameras": {
+      "DAVIS346_00000391": 1152
+    },
+    "files": 1152,
+    "files_whose_outputs_all_come_from_capture": 1152,
+    "format": "AEDAT-4 (DV)",
+    "original_module_names": {
+      "capture": 4608
+    },
+    "other_keys": {}
+  },
+  "Pure_BA": {
+    "cameras": {
+      "DAVIS346_00000546": 41
+    },
+    "files": 41,
+    "files_whose_outputs_all_come_from_capture": 41,
+    "format": "AEDAT-4 (DV)",
+    "original_module_names": {
+      "capture": 164
+    },
+    "other_keys": {}
+  }
+}

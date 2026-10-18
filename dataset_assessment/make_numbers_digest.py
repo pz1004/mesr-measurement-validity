@@ -123,6 +123,7 @@ def _metric_dependencies(out: Callable[[str], None]) -> None:
         f"(single recording, kept for continuity with the stored curve)")
     _spread_over_recordings(out, retention, "retention")
     _by_base_scene(out, retention, "retention")
+    _edformer_operating_point(out)
 
     resolution = payload["resolution_dependence"]
     out("\n## S3.1 declared-resolution invariance")
@@ -1166,6 +1167,58 @@ def _native_oracle(out: Callable[[str], None]) -> None:
                         f"{float(np.median(tolerance)):.4f}")
 
 
+def _edformer_operating_point(out: Callable[[str], None]) -> None:
+    """S3.2's sweep repeated with EDformer's own per-event scores in place of synthetic ones.
+
+    Same whole DND21 recordings, grid and block quota; only the score vector changes."""
+
+    if not (RESULTS / "edformer_operating_point.json").exists():
+        return
+    op = _load("edformer_operating_point.json")
+    s, auc = op["spread_over_recordings"], op["roc_auc"]
+    released = [r["released_retention"] for r in op["rows"]]
+    out(f"- **with EDformer's own scores** (`results/edformer_operating_point.json`), same "
+        f"whole recordings and grid: spread mean **{s['mean']:.4f}** [{s['lo']:.4f}, "
+        f"{s['hi']:.4f}] sd={s['sd']:.4f} min={s['min']:.4f} max={s['max']:.4f}, n={s['n']}")
+    out(f"  - as a multiple of the 0.0092 published gap: **{s['mean'] / 0.0092:.0f}x**")
+    out("  - by base sequence: " + ", ".join(
+        f"{b} {v['mean']:.4f} (n={v['n']}, {v['min']:.4f} to {v['max']:.4f})"
+        for b, v in op["spread_by_base"].items()))
+    out(f"  - EDformer ROC AUC over the events it scores: mean {auc['mean']:.4f} "
+        f"({auc['min']:.4f} to {auc['max']:.4f}); its released threshold keeps "
+        f"r = {min(released):.3f} to {max(released):.3f}")
+
+
+def _edformer_native_oracle(out: Callable[[str], None]) -> None:
+    """S5-A's construction on EDformer's own output, at its released threshold."""
+
+    for dataset in ("dnd21", "dvsclean"):
+        name = f"native_oracle_{dataset}_edformer.json"
+        if not (RESULTS / name).exists():
+            continue
+        payload = _load(name)
+        s, cells = payload["summary"], payload["cells"]
+        reversals = [c for c in cells if c["mesr_win"] and c["oracle_tp_scored"] > c["tp_scored"]]
+        native = [c["native_retention"] for c in cells] + \
+                 [u["native_retention"] for u in payload["unevaluable"]]
+        out(f"- {dataset} edformer, released threshold, own output (`results/{name}`): "
+            f"**{s['reversals']}/{s['cells']} evaluable cells reverse**, strict "
+            f"{s['eligible_strict']}, ties {s['tie']}, impossible {s['impossible']}, "
+            f"unevaluable {s['unevaluable']}; native retention {min(native):.4f} to "
+            f"{max(native):.4f}")
+        if reversals:
+            margins = sorted(c["mesr"] - c["oracle_mesr"] for c in reversals)
+            deficits = sorted((c["oracle_tp_scored"] - c["tp_scored"]) / c["scored"]
+                              for c in reversals)
+            out(f"  - among reversals: MESR margin {margins[0]:+.4f} to {margins[-1]:+.4f}, "
+                f"median {float(np.median(margins)):+.4f}; retained-purity deficit "
+                f"{deficits[0]:.4f} to {deficits[-1]:.4f}")
+        for c in cells:
+            if not c["mesr_win"]:
+                out(f"  - not reversed: {c['recording']}, MESR {c['mesr']:.4f} vs oracle "
+                    f"{c['oracle_mesr']:.4f}, signal {c['tp_scored']} vs {c['oracle_tp_scored']}")
+
+
 def _hotpixel_contrast(out: Callable[[str], None]) -> None:
     """S5-B and S5-C with the busiest 0.1% of pixels removed first, on one cohort per side.
 
@@ -1697,6 +1750,7 @@ def main() -> None:
     _esr_properties(out)
     _identity_audit(out)
     _native_oracle(out)
+    _edformer_native_oracle(out)
     _null_shuffle(out)
     _hotpixel_contrast(out)
     _paired_contrasts(out)

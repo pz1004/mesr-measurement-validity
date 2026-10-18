@@ -171,3 +171,16 @@ def test_uncapped_delta_over_raw_is_paired_within_each_cell():
         np.mean([c["delta_over_raw"] for c in reference["cells"]]), abs=1e-12)
     assert reference["pooled_delta_over_raw"]["n"] == len(pooled)
     assert reference["pooled_delta_over_raw"]["mean"] == pytest.approx(np.mean(pooled), abs=1e-12)
+
+
+def test_cache_paths_are_per_corpus_and_emlb_is_unchanged(tmp_path, monkeypatch):
+    # E-MLB's cache predates the labelled corpora; its path must be the one it always had.
+    monkeypatch.setattr(edformer, "CACHE", tmp_path)
+    emlb = edformer.cache_path("E-MLB/D-END/Architecture-ND00-1", 1_000_000)
+    assert emlb == tmp_path / "emlb_cap1000000" / "E-MLB__D-END__Architecture-ND00-1.npy"
+    assert edformer.cache_path("DND21/1hz_hotel-bar", 1_000_000).parent.name == "dnd21_cap1000000"
+    assert edformer.cache_path("DND21/1hz_hotel-bar", 0).parent.name == "dnd21_cap0"
+    assert edformer.cache_path("DVSCLEAN/MAH00446_50", 1_000_000).parent.name == \
+        "dvsclean_cap1000000"
+    assert {edformer.corpus_of(n) for n in ("E-MLB/x", "DND21/x", "DVSCLEAN/x")} == \
+        set(edformer.CORPORA)

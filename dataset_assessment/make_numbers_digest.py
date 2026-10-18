@@ -1148,7 +1148,22 @@ def _native_oracle(out: Callable[[str], None]) -> None:
                 if c["recording"] == "DND21/10hz_hotel-bar" and c["method"] == "knoise":
                     out(f"  - knoise on 10hz_hotel-bar: {c['tp_scored']} signal / "
                         f"{c['fp_scored']} noise of {c['scored']} scored, MESR "
-                        f"{c['mesr']:.4f} vs oracle {c['oracle_mesr']:.4f}")
+                        f"{c['mesr']:.4f} vs oracle {c['oracle_mesr']:.4f}; tolerates a "
+                        f"mislabelled-signal share up to "
+                        f"{1 - c['tp_scored'] / c['oracle_tp_scored']:.4f}")
+            if dataset == "dnd21" and not suffix:
+                # The labels err one way: an injected event is noise, but a recorded base
+                # sequence's own background activity is labelled signal. Granting that a filter
+                # removed all of it, a reversal survives unless it makes up more than
+                # 1 - TP_f / TP_o of the oracle's labelled signal (both sides hold the same
+                # count, so FP_f - FP_o = TP_o - TP_f).
+                for base in ("hotel-bar", "driving"):
+                    on = [c for c in cells if c["recording"].endswith(base)]
+                    rev = [c for c in reversals if c["recording"].endswith(base)]
+                    tolerance = sorted(1 - c["tp_scored"] / c["oracle_tp_scored"] for c in rev)
+                    out(f"  - {base}: {len(rev)}/{len(on)} reverse; mislabelled-signal share "
+                        f"the reversals tolerate: min {tolerance[0]:.4f}, median "
+                        f"{float(np.median(tolerance)):.4f}")
 
 
 def _hotpixel_contrast(out: Callable[[str], None]) -> None:

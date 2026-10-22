@@ -44,7 +44,9 @@ VIEW_DATASET = "dvsd22"
 VIEW_METHODS = ("dwf", "evflow", "knoise", "red", "ts", "ynoise")
 #: Drawn at print size and included with `width=\\linewidth`, so no type is downscaled.
 VIEW_INCHES = (3.45, 1.55)
-RANK_INCHES = (7.17, 2.05)
+#: 1.93 in: the 6 pt method names need more than the old 1.62 in, and at 2.05 in the float
+#: overran its supplement page by 6.8 pt.
+RANK_INCHES = (7.17, 1.93)
 #: The three summaries \\S\\ref{sec:ranks} contrasts: each method's own operating point, the
 #: oracle-free AUC_r the protocol recommends, and the metric-oracle r*. All three are needed:
 #: on E-MLB the first two agree and only r* inverts the order, which is that subsection's

@@ -53,7 +53,7 @@ takes an explicit `root=` argument, so nothing is hard-coded beyond these defaul
 
   **Do not read the name as a member of the DND denoising family.** This is a drop-metrology
   release with **no per-event noise labels**, and its source paper applies **no denoising or
-  noise filtering of any kind** to the recordings. That is exactly why we use it — a second
+  noise filtering of any kind** to the recordings, and its jAER file headers record the camera's own background-activity, refractory-period, polarity and event-skipping filters as off, and its filter for row-only events as on, and every event-altering filter in jAER's own filter chain as off, in all 14 files (`results/corpus_provenance.json`). That is exactly why we use it — a second
   real 346×260 corpus whose acquisition choices were made with no denoising benchmark in view.
   The directory was named `DND22/` until 2026-09-07; older working notes use that path and
   the placeholder corpus name `DROPLETS22`.

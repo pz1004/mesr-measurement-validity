@@ -1,8 +1,8 @@
 """Figure 1 has a page budget and a data contract; both are asserted here.
 
 The figure carries three things the prose depends on -- the mean curve, an interval, and
-`n(r)` -- and it has to carry them inside a float whose height is fixed by the ten-page
-limit. Neither constraint is visible from reading `analyze.figures`, so both are pinned.
+`n(r)` -- and it has to carry them inside a float whose height is fixed by the article's
+page budget. Neither constraint is visible from reading `analyze.figures`, so both are pinned.
 """
 
 from __future__ import annotations
@@ -79,9 +79,10 @@ def test_n_of_r_is_a_property_of_the_recording_not_the_method():
 
 
 def test_figure_fits_the_float_budget():
-    """The float is 101.2 pt: this graphic plus a three-line caption plus IEEEtran's caption
-    skip. Growing the graphic silently pushes the article to eleven pages at $265 a page, so
-    the size is asserted rather than trusted."""
+    """The float is this graphic plus its caption plus IEEEtran's caption skip. The graphic
+    grew 8.6 pt, to 72 pt, so that no label prints below 6 pt, and the caption gave up a line
+    to pay for it. Growing it further silently adds an overlength page at $265, so the size
+    is asserted rather than trusted."""
 
     assert FIGURE.exists(), "run `python -m dataset_assessment.analyze` first"
     boxes = re.findall(rb"/MediaBox\s*\[([^\]]*)\]", FIGURE.read_bytes())
@@ -91,7 +92,7 @@ def test_figure_fits_the_float_budget():
     assert height == pytest.approx(CURVE_FIG_INCHES[1] * 72, abs=0.5)
     # Included at `width=\linewidth` in a two-column IEEEtran figure*, which is 516 pt.
     assert width == pytest.approx(516.0, abs=1.0)
-    assert height <= 64.0
+    assert height <= 72.5
 
 
 def test_curve_style_draws_no_markers_and_scales_line_weight():

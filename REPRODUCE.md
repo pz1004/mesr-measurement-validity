@@ -12,7 +12,7 @@ here; the three marked "alongside other runs" quote what their artifacts record.
 pip install -r requirements.txt
 python -m dataset_assessment.analyze                # rank_analysis.json + results/figures/
 python -m dataset_assessment.figures_protocol       # the protocol figures and the oracle scatter
-python -m pytest -q tests/                          # 407 passed with every checkout in place
+python -m pytest -q tests/                          # 444 passed with every checkout in place
 python -m dataset_assessment.audit                  # 10/10 claims verified from source
 python -m dataset_assessment.make_numbers_digest > NUMBERS.md
 ```
@@ -23,11 +23,12 @@ skip and none fails. `audit` needs the `EDformer/`, `EDmamba/` and `cuke-emlb/` 
 (source inspection only, nothing is executed) and writes `results/reproducibility_audit.json`.
 
 `analyze` also writes **Figure 1** (`results/figures/fig_retention_curves.pdf`). It is drawn
-at the size it is printed at -- 516 x 63 pt, the full text width of a two-column IEEEtran
-`figure*` -- and included with `width=\linewidth`, so nothing downscales the type. The float
-it sits in is capped at 101.2 pt, which is that graphic plus a three-line caption; the cap is
-asserted in `tests/test_figures.py::test_figure_fits_the_float_budget`, because growing the
-figure silently costs a page at $265. Bands are `cluster_bootstrap_delta_ci` at 2,000 draws
+at the size it is printed at -- 516 x 72 pt, the full text width of a two-column IEEEtran
+`figure*` -- and included with `width=\linewidth`, so nothing downscales the type; no label in
+any figure prints below 6 pt (`tests/test_figure_legibility.py`). The float it sits in is that
+graphic plus its caption, which gave up a line when the graphic grew to fit the larger type;
+the graphic's height is asserted in `tests/test_figures.py::test_figure_fits_the_float_budget`,
+because growing the figure silently costs a page at $265. Bands are `cluster_bootstrap_delta_ci` at 2,000 draws
 on the same seed as the reported intervals, and the strip under each panel is `n(r)`,
 asserted equal to `common_support.coverage`.
 
@@ -37,10 +38,11 @@ asserted equal to `common_support.coverage`.
 python -m dataset_assessment.measure_metric_deps    # results/metric_dependencies.json
 python -m dataset_assessment.profile_datasets       # results/noise_regimes.json  (211 s)
 python -m dataset_assessment.nd_levels              # results/nd_levels.json  (<1 s)
+python -m dataset_assessment.provenance             # results/corpus_provenance.json  (4 s)
 ```
 
 `profile_datasets` reads all five corpora at a 300,000-event cap; `nd_levels` reads its output
-and tests what E-MLB's neutral-density levels do to busiest-pixel share (App. K).
+and tests what E-MLB's neutral-density levels do to busiest-pixel share (App. K). `provenance` reads file headers only: the recorded module and any configuration of every E-MLB and Pure_BA AEDAT-4 file, and the camera's own DVS filter settings and jAER's host-side filter chain, with each filter's enabled flag, that every DVSD22 jAER header embeds (App. N).
 
 ## Tier 2 — the benchmark grid (needs the classical denoisers built)
 
@@ -99,11 +101,11 @@ python -m dataset_assessment.hotpixel_contrast   # results/hotpixel_contrast.jso
 
 ### The filters' own outputs
 
-The label-quality test and the E-MLB table read each filter's native output, not a quota near
-it. `native_oracle` scores every filter against a label oracle matched to it per block on the
-two labelled corpora, as released and with the busiest pixels removed; `native_emlb` applies
-protocol item 1 to E-MLB; `paired_contrasts --source native` differences its rows within
-recordings.
+The direct test of event-label dominance and the E-MLB table read each filter's native
+output, not a quota near it. `native_oracle` scores every filter against a label oracle matched
+to it per block on the two labelled corpora, as released and with the busiest pixels removed;
+`native_emlb` applies protocol item 1 to E-MLB; `paired_contrasts --source native` differences
+its rows within recordings.
 
 ```bash
 python -m dataset_assessment.native_oracle --dataset dnd21                          #   69 s
@@ -154,11 +156,11 @@ python -m dataset_assessment.native_emlb --methods edformer_native --merge
 python -m dataset_assessment.edformer --cap 0 --out results/edformer_emlb_uncapped.json   # 22478 s
 ```
 
-### MESR repeatability across E-MLB's repetitions
+### MESR across E-MLB's repeated acquisitions
 
 E-MLB records every (scene, ND) cell three times under nominally identical conditions; every
 other run here reads the first, as the published tables do. This scores all three and reports
-the within-cell spread — a Type A repeatability for the statistic (App. I) — with its median
+the within-cell spread — a Type A evaluation of how the unfiltered statistic varies across repeated acquisitions (App. I) — with its median
 per ND level and per lighting set, and how far the corpus mean moves over 20,000 seeded draws
 of which repetition each cell contributes.
 
@@ -404,6 +406,15 @@ start empty, and only the files the run wrote are deleted.
 python -m dataset_assessment.downstream_tiebreak   # results/downstream_gesture_tiebreak.json  2860 s (alongside other runs)
 ```
 
+### The frozen classifier on the events MESR scores
+
+MESR reads only the complete slices of a retained stream, 91.4-96.4% of what the frozen classifier receives. `downstream_matched_events` hands the classifier exactly the scored prefix, the first 30,000 x floor(k / 30,000) of the k events each procedure retains, at r = 0.4, 0.5, 0.6 and 0.8, on the clips that hold a complete slice (287 at r = 0.4, 288 elsewhere). It passes the frozen run's gate first, asserts that every condition's MESR equals the value `downstream_gesture_frozen.json` stores, and re-evaluates the full-stream RED condition at r = 0.6, which must return the stored predictions clip for clip; the full-stream accuracy on each cohort is read from `downstream_gesture_frozen_evaluation.json`. Frames go to a directory that must start empty, and only the files the run wrote are deleted.
+
+```bash
+python -m dataset_assessment.downstream_matched_events --smoke   # the gate alone
+python -m dataset_assessment.downstream_matched_events           # results/downstream_matched_events.json  3776 s
+```
+
 ### How much of the downstream verdict rests on RED
 
 RED holds the highest MESR at every partial retention of the frozen probe and alone produces
@@ -414,9 +425,9 @@ shipped artifacts rather than from the tables that print them.
 python -m dataset_assessment.red_sensitivity    # results/red_sensitivity.json  <1 s
 ```
 
-Reads `downstream_gesture.json` and `downstream_gesture_frozen.json`; reproduces the paper's
-`+0.187` (trained 2D CNN, 40 conditions) and `+0.04` (frozen, within retention; `+0.044` before
-rounding).
+Reads `downstream_gesture.json` and `downstream_gesture_frozen.json`; reproduces `+0.187`
+(trained 2D CNN, all 40 conditions, App. L) and the paper's `+0.04` (frozen, within retention;
+`+0.044` before rounding).
 
 To recompute the statistics after changing how a summary is scoped or defined, without
 retraining anything:

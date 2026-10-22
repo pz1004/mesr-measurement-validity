@@ -1,0 +1,83 @@
+{
+  "what": "EDformer sigmoid scores on the whole dnd21 inputs",
+  "corpus": "dnd21",
+  "cap": 0,
+  "seq_len": 4096,
+  "threshold": 0.005,
+  "seed": 230086,
+  "tail_score": 2.0,
+  "cache": "cache/edformer/dnd21_cap0",
+  "records": [
+    {
+      "recording": "DND21/1hz_hotel-bar",
+      "events": 897351,
+      "scored": 897024,
+      "kept": 187177,
+      "sha256": "17b91c857d895d6deb606de1fc53e785848a61028633043880970a171f1b6322"
+    },
+    {
+      "recording": "DND21/1hz_driving",
+      "events": 3081599,
+      "scored": 3080192,
+      "kept": 1004270,
+      "sha256": "00adc5670cc5d20b7fce884eede11eeef33aa034fc35719c7f55264efa848474"
+    },
+    {
+      "recording": "DND21/3hz_hotel-bar",
+      "events": 1617304,
+      "scored": 1613824,
+      "kept": 107389,
+      "sha256": "08581843dc60d229cb76b10af40afdb6206e2602976075e753338aee27599898"
+    },
+    {
+      "recording": "DND21/3hz_driving",
+      "events": 3777023,
+      "scored": 3776512,
+      "kept": 716339,
+      "sha256": "c472dab253cfbf3e2009152e71bff9afc45fb1f2bd06746925843d9c140d113b"
+    },
+    {
+      "recording": "DND21/5hz_hotel-bar",
+      "events": 2345084,
+      "scored": 2342912,
+      "kept": 81975,
+      "sha256": "ecb48269d3a94dd977ba194e384644c0cf6ee8a7031933c674a4702334a64c5b"
+    },
+    {
+      "recording": "DND21/5hz_driving",
+      "events": 4478144,
+      "scored": 4476928,
+      "kept": 611785,
+      "sha256": "58a819cf8389cd926126b05eb849e2e3fa556dfc8de27dffe45581ecdd3a6380"
+    },
+    {
+      "recording": "DND21/7hz_hotel-bar",
+      "events": 3062381,
+      "scored": 3059712,
+      "kept": 63827,
+      "sha256": "1738980524c8bc3501a42a173e9c72fe33d6aeb3f28608b6943730dab585bc10"
+    },
+    {
+      "recording": "DND21/7hz_driving",
+      "events": 5169768,
+      "scored": 5169152,
+      "kept": 492892,
+      "sha256": "5b372e727286473087714fdac959242d5a5a442a9df110883384fc1403553e50"
+    },
+    {
+      "recording": "DND21/10hz_hotel-bar",
+      "events": 4148092,
+      "scored": 4145152,
+      "kept": 47958,
+      "sha256": "df87a58737cfd35064a2b26e5adaee9094dea6f8c0dedaebfc532bd10b0cec37"
+    },
+    {
+      "recording": "DND21/10hz_driving",
+      "events": 6218745,
+      "scored": 6217728,
+      "kept": 439534,
+      "sha256": "ac101556cfe89c67c444a17b2d32c7768278dd86d09e173d7b27b9d60a76ef98"
+    }
+  ],
+  "wall_seconds": 674.649164064991
+}

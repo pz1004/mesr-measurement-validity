@@ -44,7 +44,7 @@ VIEW_DATASET = "dvsd22"
 VIEW_METHODS = ("dwf", "evflow", "knoise", "red", "ts", "ynoise")
 #: Drawn at print size and included with `width=\\linewidth`, so no type is downscaled.
 VIEW_INCHES = (3.45, 1.55)
-RANK_INCHES = (7.17, 1.62)
+RANK_INCHES = (7.17, 2.05)
 #: The three summaries \\S\\ref{sec:ranks} contrasts: each method's own operating point, the
 #: oracle-free AUC_r the protocol recommends, and the metric-oracle r*. All three are needed:
 #: on E-MLB the first two agree and only r* inverts the order, which is that subsection's
@@ -84,7 +84,11 @@ def delta_over_raw_curve(dataset: str, method: str) -> Dict[float, float]:
 
 
 def _scalar_at_native(dataset: str) -> Dict[str, float]:
-    """Delta-over-Raw at each method's own operating point, as Table~IV reports it."""
+    """Delta-over-Raw at the grid point nearest each method's native retention.
+
+    These are quota-adapted values, the nearest-grid reading of Fig. 4 (unrestricted cohort),
+    not native-output scores of the kind Table IV reports for E-MLB; the caption says so.
+    """
 
     report = json.loads((RESULTS / "rank_analysis.json").read_text())
     return report[dataset]["delta_over_raw_at_native"]
@@ -97,7 +101,7 @@ def protocol_view(path: Path) -> Path:
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    matplotlib.rcParams.update({"pdf.fonttype": 42, "font.size": 6.0})
+    matplotlib.rcParams.update({"pdf.fonttype": 42, "font.size": 6.5})
     try:
         scalars = _scalar_at_native(VIEW_DATASET)
         null = delta_over_raw_curve(VIEW_DATASET, "random_null")
@@ -113,7 +117,7 @@ def protocol_view(path: Path) -> Path:
         left.set_xticks(range(len(VIEW_METHODS)))
         left.set_xticklabels([m.upper() for m in VIEW_METHODS], rotation=90)
         left.set_ylabel(r"$\Delta$-over-Raw")
-        left.set_title("as published:\none scalar per method", fontsize=6.0, pad=3)
+        left.set_title("as published:\none scalar per method", fontsize=6.5, pad=3)
         left.margins(x=0.12)
 
         grid = sorted(r for r in null if r < 1.0)
@@ -124,11 +128,11 @@ def protocol_view(path: Path) -> Path:
         right.axhline(0.0, color="#000000", linewidth=0.6, dashes=(3.0, 1.6))
         right.invert_xaxis()
         right.set_xlabel("retention $r$")
-        right.set_title("under the protocol:\nthe null on the same axis", fontsize=6.0, pad=3)
+        right.set_title("under the protocol:\nthe null on the same axis", fontsize=6.5, pad=3)
 
         for axis in (left, right):
             axis.axhspan(low, high, color="#999999", alpha=0.18, linewidth=0)
-            axis.tick_params(labelsize=5.4, length=2, pad=1.5)
+            axis.tick_params(labelsize=6.0, length=2, pad=1.5)
             for side in ("top", "right"):
                 axis.spines[side].set_visible(False)
 
@@ -138,19 +142,19 @@ def protocol_view(path: Path) -> Path:
         gaining = sum(1 for r in grid if null[r] > 0)
         right.annotate(f"$\\Delta > 0$ at ${gaining}/{len(grid)}$ retentions",
                        xy=(0.03, 0.88), xycoords="axes fraction",
-                       fontsize=5.4, ha="left", va="top", color="#d62728")
+                       fontsize=6.0, ha="left", va="top", color="#d62728")
         exits = [r for r in grid if null[r] > high]
         if exits:
             clear = max(exits)
             right.annotate(f"clears every filter\nonly at $r={clear:g}$",
                            # the axis is inverted, so the smallest r sits at the right edge
                            xy=(clear, null[clear]), xytext=(-5, -11),
-                           textcoords="offset points", fontsize=5.0, ha="right",
+                           textcoords="offset points", fontsize=6.0, ha="right",
                            va="top", color="#555555",
                            arrowprops={"arrowstyle": "-", "linewidth": 0.4,
                                        "color": "#555555", "shrinkA": 0.5, "shrinkB": 1.5})
-        right.annotate("shaded: the six filters' span", xy=(0.03, 0.22),
-                       xycoords="axes fraction", fontsize=5.4, ha="left", color="#555555")
+        right.annotate("shaded: the six filters' span", xy=(0.03, 0.30),
+                       xycoords="axes fraction", fontsize=6.0, ha="left", color="#555555")
 
         figure.subplots_adjust(left=0.135, right=0.995, top=0.80, bottom=0.30)
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -190,7 +194,7 @@ def rank_instability(path: Path, datasets: Sequence[str] = RANK_DATASETS) -> Pat
             # both sides of it and collide with the lines arriving from either direction.
             for side in (0, last):
                 for rank, method in enumerate(orders[side], start=1):
-                    axis.annotate(display_name(method), xy=(side, rank), fontsize=4.6,
+                    axis.annotate(display_name(method), xy=(side, rank), fontsize=6.0,
                                   ha="left" if side else "right",
                                   va="center", xytext=(6 if side else -6, 0),
                                   textcoords="offset points",
@@ -199,19 +203,19 @@ def rank_instability(path: Path, datasets: Sequence[str] = RANK_DATASETS) -> Pat
             # fit across a fifth of a two-column float without overprinting each other.
             rhos = " / ".join("%.3f" % report[dataset][key] for key in RANK_RHO if key)
             axis.set_title(f"{CURVE_CORPUS_NAME[dataset]}\n" + r"$\rho$ " + rhos,
-                           fontsize=5.6, pad=2, linespacing=1.5,
+                           fontsize=6.5, pad=2, linespacing=1.5,
                            fontweight="bold" if moved else "normal")
             axis.set_xticks(range(len(orders)))
-            axis.set_xticklabels(RANK_LABELS, fontsize=5.0)
-            axis.set_xlim(-0.75, last + 0.75)
+            axis.set_xticklabels(RANK_LABELS, fontsize=6.0)
+            axis.set_xlim(-0.6, last + 0.6)
             axis.invert_yaxis()
             axis.set_yticks([])
             axis.tick_params(length=0, pad=1.5)
             for side in ("top", "right", "left"):
                 axis.spines[side].set_visible(False)
 
-        np.atleast_1d(axes)[0].set_ylabel("rank", fontsize=5.6)
-        figure.subplots_adjust(left=0.030, right=0.952, top=0.76, bottom=0.13, wspace=0.34)
+        np.atleast_1d(axes)[0].set_ylabel("rank", fontsize=6.5)
+        figure.subplots_adjust(left=0.048, right=0.955, top=0.80, bottom=0.11, wspace=0.42)
         path.parent.mkdir(parents=True, exist_ok=True)
         figure.savefig(path)
         plt.close(figure)
@@ -245,7 +249,7 @@ def native_oracle_view(path: Path) -> Path:
     import matplotlib.pyplot as plt
     from matplotlib.lines import Line2D
 
-    matplotlib.rcParams.update({"pdf.fonttype": 42, "font.size": 6.0})
+    matplotlib.rcParams.update({"pdf.fonttype": 42, "font.size": 6.5})
     try:
         figure, axis = plt.subplots(figsize=ORACLE_INCHES)
         counts = {}
@@ -272,14 +276,14 @@ def native_oracle_view(path: Path) -> Path:
                           zorder=0)
         axis.axhline(0.0, color="#000000", linewidth=0.6, dashes=(3.0, 1.6), zorder=1)
         axis.set_xlim(left, -lowest * 0.04)
-        # Room under the lowest point for a one-row legend, so it covers no cell.
-        axis.set_ylim(bottom - 0.16 * (top - bottom), top)
+        # Room under the lowest point for a two-row legend, so it covers no cell.
+        axis.set_ylim(bottom - 0.26 * (top - bottom), top)
         axis.set_xlabel("retained purity, filter minus oracle")
         axis.set_ylabel("MESR, filter minus oracle")
         (released, n_released), (removed, n_removed) = counts[False], counts[True]
         axis.annotate(f"higher MESR with less signal than the oracle:\n{released}/{n_released} "
                       f"as released, {removed}/{n_removed} with the busiest pixels removed",
-                      xy=(0.02, 0.97), xycoords="axes fraction", fontsize=5.2, ha="left",
+                      xy=(0.02, 0.97), xycoords="axes fraction", fontsize=6.0, ha="left",
                       va="top", color="#333333", linespacing=1.3)
         handles = [Line2D([], [], marker=marker, linestyle="none", markersize=3.6,
                           markerfacecolor=color, markeredgecolor=color, label=label)
@@ -290,9 +294,9 @@ def native_oracle_view(path: Path) -> Path:
                     Line2D([], [], marker="o", linestyle="none", markersize=3.6,
                            markerfacecolor="none", markeredgecolor="#555555",
                            label="busiest 0.1% removed")]
-        axis.legend(handles=handles, loc="lower center", ncol=4, fontsize=5.0, frameon=False,
+        axis.legend(handles=handles, loc="lower center", ncol=2, fontsize=6.0, frameon=False,
                     handletextpad=0.1, columnspacing=0.9, borderaxespad=0.15)
-        axis.tick_params(labelsize=5.4, length=2, pad=1.5)
+        axis.tick_params(labelsize=6.0, length=2, pad=1.5)
         for side in ("top", "right"):
             axis.spines[side].set_visible(False)
         figure.subplots_adjust(left=0.13, right=0.985, top=0.985, bottom=0.17)

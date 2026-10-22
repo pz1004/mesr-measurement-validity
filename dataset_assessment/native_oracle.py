@@ -283,11 +283,17 @@ def main() -> None:
     parser.add_argument("--out", type=Path, default=None)
     parser.add_argument("--hot-pixel-removal", action="store_true",
                         help="remove the busiest 0.1%% of occupied pixels from the input first")
+    parser.add_argument("--methods", nargs="+", default=list(CLASSICAL),
+                        help="methods to score on their own outputs (default: the six "
+                             "classical filters); `edformer_native` reads edformer.py's cache")
     args = parser.parse_args()
 
     result = measure(args.dataset, max_recordings=args.max_recordings,
-                     hot_pixel_removal=args.hot_pixel_removal)
+                     methods=args.methods, hot_pixel_removal=args.hot_pixel_removal)
     suffix = "_hotpixel" if args.hot_pixel_removal else ""
+    # A run over other methods writes beside the classical one rather than over it.
+    if list(args.methods) != list(CLASSICAL):
+        suffix += "_" + "_".join(m.replace("_native", "") for m in args.methods)
     out = args.out or OUT_DIR / f"native_oracle_{args.dataset}{suffix}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(result, indent=2, default=float) + "\n")

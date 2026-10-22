@@ -357,10 +357,10 @@
       ],
       "events": 1000000,
       "hot_pixel_removal": null,
-      "raw_mesr": 1.442117081068424,
+      "raw_mesr": 1.4421686664702915,
       "raw_decomposition": {
-        "ntss": 0.0018702667866706667,
-        "ln": 4064.913865747594,
+        "ntss": 0.001869791215262731,
+        "ln": 4065.963581643487,
         "occupied_px": 4917,
         "n_events": 30000
       },
@@ -372,136 +372,136 @@
             260
           ],
           "r_star": 0.05,
-          "mesr_star": 2.283060496360763,
-          "auc_over_r": 1.5017936848667977,
+          "mesr_star": 2.3192575185628064,
+          "auc_over_r": 1.5029433112220205,
           "evaluable_range": [
             0.05,
             1.0
           ],
           "optimum_at_evaluable_floor": true,
-          "raw_mesr": 1.442117081068424,
-          "delta_over_raw_at_r_star": 0.840943415292339,
+          "raw_mesr": 1.4421686664702915,
+          "delta_over_raw_at_r_star": 0.8770888520925149,
           "native_retention": NaN,
           "is_oracle": false,
           "is_null": true,
           "curve": [
             {
               "r": 0.05,
-              "mesr": 2.283060496360763,
+              "mesr": 2.3192575185628064,
               "kept_events": 50000,
               "evaluable": true
             },
             {
               "r": 0.1,
-              "mesr": 1.6510662486619132,
+              "mesr": 1.654441279653768,
               "kept_events": 100000,
               "evaluable": true
             },
             {
               "r": 0.15,
-              "mesr": 1.4613744303460134,
+              "mesr": 1.4581981708818779,
               "kept_events": 150000,
               "evaluable": true
             },
             {
               "r": 0.2,
-              "mesr": 1.57650021505037,
+              "mesr": 1.5676399580019436,
               "kept_events": 200000,
               "evaluable": true
             },
             {
               "r": 0.25,
-              "mesr": 1.5421492801259105,
+              "mesr": 1.5364022721019324,
               "kept_events": 250000,
               "evaluable": true
             },
             {
               "r": 0.3,
-              "mesr": 1.4554531519821903,
+              "mesr": 1.4565812497013435,
               "kept_events": 300000,
               "evaluable": true
             },
             {
               "r": 0.35,
-              "mesr": 1.517375103284025,
+              "mesr": 1.5176183001028916,
               "kept_events": 350000,
               "evaluable": true
             },
             {
               "r": 0.4,
-              "mesr": 1.48024908407762,
+              "mesr": 1.4812193669514606,
               "kept_events": 400000,
               "evaluable": true
             },
             {
               "r": 0.45,
-              "mesr": 1.4403490004239132,
+              "mesr": 1.4425701407111642,
               "kept_events": 450000,
               "evaluable": true
             },
             {
               "r": 0.5,
-              "mesr": 1.4976264945846407,
+              "mesr": 1.4998383626620644,
               "kept_events": 500000,
               "evaluable": true
             },
             {
               "r": 0.55,
-              "mesr": 1.4608238267795828,
+              "mesr": 1.4633756773515083,
               "kept_events": 550000,
               "evaluable": true
             },
             {
               "r": 0.6,
-              "mesr": 1.4454280448377248,
+              "mesr": 1.448126454386999,
               "kept_events": 600000,
               "evaluable": true
             },
             {
               "r": 0.65,
-              "mesr": 1.4669049397931275,
+              "mesr": 1.4683601268640647,
               "kept_events": 650000,
               "evaluable": true
             },
             {
               "r": 0.7,
-              "mesr": 1.4606816190821692,
+              "mesr": 1.4626074629903143,
               "kept_events": 700000,
               "evaluable": true
             },
             {
               "r": 0.75,
-              "mesr": 1.4444645235682785,
+              "mesr": 1.4455862213676536,
               "kept_events": 750000,
               "evaluable": true
             },
             {
               "r": 0.8,
-              "mesr": 1.4502045278959235,
+              "mesr": 1.450978806488568,
               "kept_events": 800000,
               "evaluable": true
             },
             {
               "r": 0.85,
-              "mesr": 1.4500198150287142,
+              "mesr": 1.4511629563389052,
               "kept_events": 850000,
               "evaluable": true
             },
             {
               "r": 0.9,
-              "mesr": 1.4333862046010724,
+              "mesr": 1.433143440707623,
               "kept_events": 900000,
               "evaluable": true
             },
             {
               "r": 0.95,
-              "mesr": 1.437434713631375,
+              "mesr": 1.437359573437757,
               "kept_events": 950000,
               "evaluable": true
             },
             {
               "r": 1.0,
-              "mesr": 1.442117081068424,
+              "mesr": 1.4421686664702915,
               "kept_events": 1000000,
               "evaluable": true
             }
@@ -1959,5 +1959,5 @@
       }
     }
   ],
-  "wall_seconds": 20.231727959006093
+  "wall_seconds": 84.62466129707173
 }

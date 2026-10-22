@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Callable, Dict, List
+from typing import Callable, Dict, List, Tuple
 
 import numpy as np
 
@@ -27,6 +27,30 @@ def _load(name: str) -> Dict:
 def _cells(dataset: str) -> List[Dict]:
     return [row for record in _load(f"benchmark_{dataset}.json")["records"]
             for row in record["methods"].values() if "r_star" in row]
+
+
+def _scene_means(records: List[Dict], method: str, r: float) -> Dict[str, Tuple[float, int]]:
+    """A null's mean Delta-over-Raw per scene at one retention: the units a scene interval
+    resamples, read the way `analyze.null_gain_at_fixed_retention` reads them.
+
+    On a corpus with two scenes the percentile interval over scenes can only span their two
+    means, so printing the means says what that interval describes.
+    """
+
+    from .analyze import scene_of
+
+    per_scene: Dict[str, List[float]] = {}
+    for record in records:
+        row = record["methods"].get(method)
+        if row is None or "error" in row or "raw_mesr" not in row:
+            continue
+        for point in row["curve"]:
+            if (point.get("evaluable") and np.isfinite(point["mesr"])
+                    and float(point["r"]) == r):
+                per_scene.setdefault(scene_of(record["recording"]), []).append(
+                    float(point["mesr"] - row["raw_mesr"]))
+    return {scene: (float(np.mean(values)), len(values))
+            for scene, values in per_scene.items()}
 
 
 def _benchmark_scale(out: Callable[[str], None]) -> None:
@@ -99,6 +123,7 @@ def _metric_dependencies(out: Callable[[str], None]) -> None:
         f"(single recording, kept for continuity with the stored curve)")
     _spread_over_recordings(out, retention, "retention")
     _by_base_scene(out, retention, "retention")
+    _edformer_operating_point(out)
 
     resolution = payload["resolution_dependence"]
     out("\n## S3.1 declared-resolution invariance")
@@ -120,17 +145,24 @@ def _metric_dependencies(out: Callable[[str], None]) -> None:
     _by_base_scene(out, slices, "slice-size")
     out(f"- monotone increasing on {slices['monotone_increasing_share']:.0%} of recordings")
     # Same-corpus scale for the verdict: the same ten DND21 recordings, each filter on its own
-    # output (first 10^6 events), paired where both filters are scored.
+    # output (first 10^6 events), paired where both filters are scored. The headline ratio is
+    # taken against the spread measured on that same 10^6-event support, not against the
+    # whole-stream sweep, so both sides of the comparison come from one event cohort.
     from .native_oracle import widest_filter_gap
 
     gap = widest_filter_gap(_load("native_oracle_dnd21.json")["cells"])
+    s = _load("slice_ranking_dnd21.json")["summary"]
+    matched = s["unfiltered_spread_mean"]
     mean = slices["spread_over_recordings"]["mean"]
     out(f"- same-corpus scale (`results/native_oracle_dnd21.json`): widest paired gap between "
         f"two filters' own outputs **{gap['gap']:.4f}** ({gap['a']} over {gap['b']}, "
-        f"n={gap['n_recordings']}); slice-size spread = **{mean / gap['gap']:.2f}x** that")
+        f"n={gap['n_recordings']})")
+    out(f"  - matched, both on the first 10^6 events: slice-size spread **{matched:.4f}** = "
+        f"**{matched / gap['gap']:.2f}x** the gap -- the comparison the paper quotes")
+    out(f"  - whole-stream spread for reference: {mean:.4f} ({mean / gap['gap']:.2f}x), "
+        f"a different event cohort from the gap")
     # Does the convention reorder filters, or shift them together? Each filter's own output
     # at every slice size, on the same first 10^6 events.
-    s = _load("slice_ranking_dnd21.json")["summary"]
     out(f"- filters' own outputs across slice sizes (`results/slice_ranking_dnd21.json`): "
         f"**{s['recordings_reordered']}/{s['ranked_recordings']}** recordings reordered against "
         f"30k, top filter changes on {s['recordings_top_changed']}; Kendall tau min "
@@ -218,6 +250,15 @@ def _nulls(out: Callable[[str], None]) -> None:
                 f"**cluster CI over {cluster['n_clusters']} independent scenes: "
                 f"[{cluster['lo']:+.4f}, {cluster['hi']:+.4f}]** "
                 f"excludes_zero={cluster['excludes_zero']}")
+            # The means themselves are what the paper quotes where it names scenes. With two
+            # or three scenes the percentile ends are the extreme means, since every draw can
+            # repeat one scene with probability (1/k)^k >= 0.025; with four or five the
+            # interval lies strictly inside their range.
+            if cluster["n_clusters"] <= 5:
+                means = _scene_means(records, method, best["r"])
+                out(f"    - per scene at r={best['r']:.2f}: " + ", ".join(
+                    f"{scene} {mean:+.4f} (n={n})"
+                    for scene, (mean, n) in sorted(means.items())))
         # The criterion forbids a rise beyond sampling variation, which a sign count does not
         # test: the scene interval at every retention below 1 (`results/null_intervals.json`).
         per_r = _load("null_intervals.json")[dataset]
@@ -230,6 +271,17 @@ def _nulls(out: Callable[[str], None]) -> None:
                 f"{row['n_above_zero']}/{row['n_retentions_below_one']}** "
                 f"(Bonferroni {row['n_above_zero_bonferroni']}), below zero at "
                 f"{row['n_below_zero']}{misses}")
+            # The specificity verdict is read from the Bonferroni-corrected intervals, so where
+            # they clear zero, and by how much, is printed for the paper to quote.
+            hits = [p for p in row["profile"]
+                    if p["r"] < 1.0 and p["lo_bonferroni"] > 0]
+            if hits:
+                out(f"    - Bonferroni-corrected interval above zero at "
+                    f"r={[p['r'] for p in hits]}: mean "
+                    f"{min(p['mean'] for p in hits):+.4f} to "
+                    f"{max(p['mean'] for p in hits):+.4f}, corrected lower bound "
+                    f"{min(p['lo_bonferroni'] for p in hits):+.4f} to "
+                    f"{max(p['lo_bonferroni'] for p in hits):+.4f}")
     out("- EDformer vs EDmamba as published on E-MLB: 1.00588 vs 1.01513 -> gap 0.0092")
 
     out("\n## S3.5 floor-pinned optima")
@@ -386,7 +438,8 @@ def _benchmark(out: Callable[[str], None]) -> None:
         reference = entry.get("edformer_reference")
         if reference:
             out(f"- EDformer: mean delta-over-raw "
-                f"**{reference['mean_delta_over_raw']:.4f}**, "
+                f"**{reference['mean_delta_over_raw']:.4f}** (paired within each cell, the "
+                f"{len(reference.get('cells') or [])} cells weighted equally), "
                 f"retention {reference['retention_range'][0]:.4f}-"
                 f"{reference['retention_range'][1]:.4f}, "
                 f"sweepable={reference['sweepable']}")
@@ -403,6 +456,21 @@ def _benchmark(out: Callable[[str], None]) -> None:
                 out(f"  - recordings per cell with a score: {span[0]} to {span[1]} of "
                     + ", ".join(f"{c['part']}/{c['nd']} {c['evaluable']}/{c['recordings']}"
                                 for c in cells))
+                # app:edformer's table, cell by cell. Its unfiltered column is taken over the
+                # same recordings as EDformer's, so each delta is a paired contrast; the
+                # released script's all-recordings unfiltered mean is printed beside it only
+                # so the difference between the two cohorts stays visible.
+                for c in cells:
+                    out(f"  - {c['part']}/{c['nd']}: n={c['evaluable']}/{c['recordings']}, "
+                        f"reproduced {c['edformer_mesr']:.4f} (published "
+                        f"{c['paper_edformer']:.3f}), unfiltered over the same n "
+                        f"{c['raw_mesr_paired']:.4f} (all {c['recordings']}: "
+                        f"{c['raw_mesr']:.4f}), **delta-over-raw {c['delta_over_raw']:+.4f}**, "
+                        f"retention {c['mean_retention']:.3f} over all {c['recordings']}")
+            pooled = reference.get("pooled_delta_over_raw")
+            if pooled:
+                out(f"  - pooled over the {pooled['n']} recordings with a score, rather than "
+                    f"cell by cell: delta-over-raw **{pooled['mean']:+.4f}**")
             interval = reference.get("delta_over_raw_ci")
             if interval:
                 out(f"  - EDformer CI [{interval['lo']:+.4f},{interval['hi']:+.4f}] "
@@ -939,7 +1007,8 @@ def _downstream(out: Callable[[str], None]) -> None:
     partial = stats.get("partial_given_retention")
     if partial:
         out(f"- **partial rho(MESR, accuracy | retention) = {partial['rho']:+.3f} "
-            f"p={partial['p']:.3f} n={partial['n']}**  <- primary within-condition test")
+            f"p={partial['p']:.3f} n={partial['n']}**  <- full grid, the r = 1 "
+            "endpoint once per method (the weighting check)")
     distinct = stats.get("partial_given_retention_distinct")
     if distinct:
         # Same test on the distinct-input sample: the r = 1 endpoint enters the pooled grid
@@ -1080,7 +1149,74 @@ def _native_oracle(out: Callable[[str], None]) -> None:
                 if c["recording"] == "DND21/10hz_hotel-bar" and c["method"] == "knoise":
                     out(f"  - knoise on 10hz_hotel-bar: {c['tp_scored']} signal / "
                         f"{c['fp_scored']} noise of {c['scored']} scored, MESR "
-                        f"{c['mesr']:.4f} vs oracle {c['oracle_mesr']:.4f}")
+                        f"{c['mesr']:.4f} vs oracle {c['oracle_mesr']:.4f}; tolerates a "
+                        f"mislabelled-signal share up to "
+                        f"{1 - c['tp_scored'] / c['oracle_tp_scored']:.4f}")
+            if dataset == "dnd21" and not suffix:
+                # The labels err one way: an injected event is noise, but a recorded base
+                # sequence's own background activity is labelled signal. Granting that a filter
+                # removed all of it, a reversal survives unless it makes up more than
+                # 1 - TP_f / TP_o of the oracle's labelled signal (both sides hold the same
+                # count, so FP_f - FP_o = TP_o - TP_f).
+                for base in ("hotel-bar", "driving"):
+                    on = [c for c in cells if c["recording"].endswith(base)]
+                    rev = [c for c in reversals if c["recording"].endswith(base)]
+                    tolerance = sorted(1 - c["tp_scored"] / c["oracle_tp_scored"] for c in rev)
+                    out(f"  - {base}: {len(rev)}/{len(on)} reverse; mislabelled-signal share "
+                        f"the reversals tolerate: min {tolerance[0]:.4f}, median "
+                        f"{float(np.median(tolerance)):.4f}")
+
+
+def _edformer_operating_point(out: Callable[[str], None]) -> None:
+    """S3.2's sweep repeated with EDformer's own per-event scores in place of synthetic ones.
+
+    Same whole DND21 recordings, grid and block quota; only the score vector changes."""
+
+    if not (RESULTS / "edformer_operating_point.json").exists():
+        return
+    op = _load("edformer_operating_point.json")
+    s, auc = op["spread_over_recordings"], op["roc_auc"]
+    released = [r["released_retention"] for r in op["rows"]]
+    out(f"- **with EDformer's own scores** (`results/edformer_operating_point.json`), same "
+        f"whole recordings and grid: spread mean **{s['mean']:.4f}** [{s['lo']:.4f}, "
+        f"{s['hi']:.4f}] sd={s['sd']:.4f} min={s['min']:.4f} max={s['max']:.4f}, n={s['n']}")
+    out(f"  - as a multiple of the 0.0092 published gap: **{s['mean'] / 0.0092:.0f}x**")
+    out("  - by base sequence: " + ", ".join(
+        f"{b} {v['mean']:.4f} (n={v['n']}, {v['min']:.4f} to {v['max']:.4f})"
+        for b, v in op["spread_by_base"].items()))
+    out(f"  - EDformer ROC AUC over the events it scores: mean {auc['mean']:.4f} "
+        f"({auc['min']:.4f} to {auc['max']:.4f}); its released threshold keeps "
+        f"r = {min(released):.3f} to {max(released):.3f}")
+
+
+def _edformer_native_oracle(out: Callable[[str], None]) -> None:
+    """S5-A's construction on EDformer's own output, at its released threshold."""
+
+    for dataset in ("dnd21", "dvsclean"):
+        name = f"native_oracle_{dataset}_edformer.json"
+        if not (RESULTS / name).exists():
+            continue
+        payload = _load(name)
+        s, cells = payload["summary"], payload["cells"]
+        reversals = [c for c in cells if c["mesr_win"] and c["oracle_tp_scored"] > c["tp_scored"]]
+        native = [c["native_retention"] for c in cells] + \
+                 [u["native_retention"] for u in payload["unevaluable"]]
+        out(f"- {dataset} edformer, released threshold, own output (`results/{name}`): "
+            f"**{s['reversals']}/{s['cells']} evaluable cells reverse**, strict "
+            f"{s['eligible_strict']}, ties {s['tie']}, impossible {s['impossible']}, "
+            f"unevaluable {s['unevaluable']}; native retention {min(native):.4f} to "
+            f"{max(native):.4f}")
+        if reversals:
+            margins = sorted(c["mesr"] - c["oracle_mesr"] for c in reversals)
+            deficits = sorted((c["oracle_tp_scored"] - c["tp_scored"]) / c["scored"]
+                              for c in reversals)
+            out(f"  - among reversals: MESR margin {margins[0]:+.4f} to {margins[-1]:+.4f}, "
+                f"median {float(np.median(margins)):+.4f}; retained-purity deficit "
+                f"{deficits[0]:.4f} to {deficits[-1]:.4f}")
+        for c in cells:
+            if not c["mesr_win"]:
+                out(f"  - not reversed: {c['recording']}, MESR {c['mesr']:.4f} vs oracle "
+                    f"{c['oracle_mesr']:.4f}, signal {c['tp_scored']} vs {c['oracle_tp_scored']}")
 
 
 def _hotpixel_contrast(out: Callable[[str], None]) -> None:
@@ -1216,6 +1352,11 @@ def _downstream_frozen(out: Callable[[str], None]) -> None:
         f"{round(gate['top1'] * gate['samples'])}")
     out("- MESR's share of the classified stream: " + ", ".join(
         f"r={s['retention']}: {s['scored_share']:.1%}" for s in payload["scored_share"]))
+    out("- clips holding a complete slice, over which each MESR mean is taken (accuracy uses "
+        f"all {gate['samples']}): " + ", ".join(
+            f"r={c['retention']}: {c['evaluable_test_samples']}" for c in sorted(
+                payload["conditions"], key=lambda c: c["retention"])
+            if c["method"] in ("raw", "all")))
     grid: Dict[float, Dict[str, Dict]] = {}
     for cell in payload["conditions"]:
         grid.setdefault(float(cell["retention"]), {})[cell["method"]] = cell
@@ -1250,6 +1391,149 @@ def _downstream_frozen(out: Callable[[str], None]) -> None:
     trained = red["trained_cnn2d"]
     out(f"- 2D CNN pooled Spearman with red {trained['with_red']['pooled']['rho']:+.3f}, "
         f"without red **{trained['without_red']['pooled']['rho']:+.3f}**")
+
+
+def _matched_events(out: Callable[[str], None]) -> None:
+    """S8.2c: the frozen classifier handed exactly the events MESR scores."""
+
+    path = RESULTS / "downstream_matched_events.json"
+    out("\n## S8.2c the released classifier on the events MESR scores "
+        "(`results/downstream_matched_events.json`)\n")
+    if not path.exists():
+        out("- not run")
+        return
+    payload = json.loads(path.read_text())
+    if not payload.get("complete"):
+        out("- incomplete run: the report is rewritten after each retention, so re-run to finish")
+        return
+    frozen = {(row["method"], row["retention"]): row
+              for row in _load("downstream_gesture_frozen.json")["conditions"]}
+    worst = max(abs(row["mesr"] - frozen[(row["method"], row["retention"])]["mesr"])
+                for row in payload["rows"])
+    rep = payload["reproduction"]
+    out(f"- gate {payload['gate']['top1']:.4f} ({payload['gate']['samples']} clips, "
+        f"reproduced={payload['gate']['reproduced']}); the full-stream {rep['condition']} "
+        f"re-evaluated: top1 {rep['top1']:.4f} against the stored {rep['stored_top1']:.4f}, "
+        f"predictions identical={rep['identical_predictions']}")
+    out(f"- each condition's MESR on its scored prefix equals the frozen run's stored value "
+        f"(largest difference {worst:.1e})")
+    summary = payload["summary"]
+    for tag, cell in summary["per_retention"].items():
+        cohort = payload["cohorts"][tag]
+        rows = {r["method"]: r for r in payload["rows"] if f"{r['retention']:g}" == tag}
+        full = payload["full_stream_accuracy"][tag]
+        out(f"- r={tag}, {cohort['clips']} clips"
+            + (f" (excluded: {', '.join(cohort['excluded'])})" if cohort["excluded"] else "")
+            + ": accuracy on the scored events / on the full stream, same clips: " + ", ".join(
+                f"{m} {rows[m]['accuracy']:.4f}/{full[m]:.4f}" for m in sorted(rows)))
+        c = cell["red_minus_control"]
+        lo, hi = c["accuracy_delta_95ci"]
+        out(f"  - red minus raw (block-prefix control): **{c['accuracy_delta']:+.4f}** "
+            f"[{lo:+.4f}, {hi:+.4f}]; red lower on **{c['subjects_red_lower']}/"
+            f"{c['subjects']}** subjects, tied on {c['subjects_tied']}")
+        out(f"  - least accurate: {', '.join(cell['least_accurate'])}; most accurate: "
+            f"{', '.join(cell['most_accurate'])}; first by MESR: "
+            f"{', '.join(cell['first_by_mesr'])}; within-retention Spearman "
+            f"{cell['rho_mesr_accuracy']:+.2f}")
+    least = summary["red_least_accurate_at"]
+    out(f"- red least accurate of the eight on its scored events at r = "
+        f"**{', '.join(least) or 'none'}** ({len(least)} of {len(summary['per_retention'])}; "
+        f"alone at {', '.join(summary['red_least_accurate_alone_at']) or 'none'}); mean "
+        f"within-retention Spearman **{summary['mean_rho_mesr_accuracy']:+.2f}**")
+    # The RED-excluded reading, as S8.2b gives it for the classified stream.
+    from scipy.stats import spearmanr
+
+    without_red = []
+    for tag in summary["per_retention"]:
+        rest = sorted((r for r in payload["rows"]
+                       if f"{r['retention']:g}" == tag and r["method"] != "red"),
+                      key=lambda r: r["method"])
+        rho = float(spearmanr([r["mesr"] for r in rest], [r["accuracy"] for r in rest])[0])
+        without_red.append(rho)
+        first = max(rest, key=lambda r: r["mesr"])
+        lowest = min(r["accuracy"] for r in rest)
+        out(f"- without red, r={tag}: Spearman {rho:+.2f}; first by MESR {first['method']} "
+            f"({first['accuracy']:.4f}), least accurate "
+            f"{', '.join(r['method'] for r in rest if r['accuracy'] == lowest)}; MESR-first "
+            f"least accurate={first['accuracy'] == lowest}")
+    out(f"- without red, mean within-retention Spearman **{np.mean(without_red):+.2f}**")
+
+
+def _provenance(out: Callable[[str], None]) -> None:
+    """S2-N: what the real corpora's file headers record about filtering before release."""
+
+    path = RESULTS / "corpus_provenance.json"
+    out("\n## S2-N corpus provenance from the file headers (`results/corpus_provenance.json`)\n")
+    if not path.exists():
+        out("- not run")
+        return
+    payload = json.loads(path.read_text())
+    for corpus in ("E-MLB", "Pure_BA"):
+        b = payload[corpus]
+        out(f"- {corpus}: {b['files']} {b['format']} files; every output from "
+            f"`{'`, `'.join(sorted(b['original_module_names']))}` in "
+            f"**{b['files_whose_outputs_all_come_from_capture']}/{b['files']}**; header keys "
+            f"beyond the output description: {b['other_keys'] or 'none'}; cameras "
+            f"{', '.join(sorted(b['cameras']))}")
+    d = payload["DVSD22"]
+    out(f"- DVSD22: {d['files']} {d['format']} files ({d['used_here']} used here, the rest "
+        f"calibration clips); chip {', '.join(d['chips'])}; interface "
+        f"{', '.join(d['hardware_interfaces'])}")
+    for key, values in d["device_filters"].items():
+        out(f"  - {key}: " + ", ".join(f"{v} in {n}/{d['files']}" for v, n in values.items()))
+    host = d.get("host_filter_chain")
+    if host is None:
+        return
+    out(f"- DVSD22 jAER filter chain: stored in "
+        f"**{d['files'] - host['files_without_stored_chain']}/{d['files']}** headers")
+    for chain in host["chains"]:
+        where = ", ".join(f"{n} from `{s}`" for s, n in chain["sessions"].items())
+        out(f"  - {len(chain['filters'])} filters in {chain['files']} files ({where}): "
+            + ", ".join(chain["filters"]))
+    running = ", ".join(f"{k} in {n}" for k, n in host["enabled_in_chain"].items()) or "none"
+    out(f"  - enabled in the chain: **{running}**; no chain filter enabled in "
+        f"{host['files_with_no_enabled_filter_in_chain']} files")
+    per_file = ", ".join(f"{k} in {n} files"
+                         for k, n in host["enabled_outside_chain_per_file"].items())
+    out(f"  - flagged enabled outside the chain (never run): {per_file}; "
+        f"{len(host['enabled_outside_chain'])} classes in all")
+
+
+def _null_draws(out: Callable[[str], None]) -> None:
+    """S3.4b: the null's draw, and how closely the two label-blind controls agree.
+
+    Agreement is read at each corpus's Table III grid point, the retention below 1 that
+    maximises the random subsampler's corpus mean, which is where Table III prints both.
+    """
+
+    ranks = _load("rank_analysis.json")
+    out("\n## S3.4b the null's draw and the two controls' agreement "
+        "(`results/null_seed_sensitivity.json`, `results/rank_analysis.json`)\n")
+    for corpus in CORPORA:
+        gains = ranks[corpus]["null_gain_fixed_retention"]
+        null = {p["r"]: p["mean"] for p in gains["random_null"]["profile"] if p["r"] < 1.0}
+        prefix = {p["r"]: p["mean"] for p in gains["raw"]["profile"] if p["r"] < 1.0}
+        r = max(null, key=lambda k: null[k])
+        out(f"- {corpus}: at Table III's r={r:g}, random_null {null[r]:+.4f} and prefix "
+            f"{prefix[r]:+.4f} differ by **{abs(null[r] - prefix[r]):.4f}**")
+    for corpus, c in _load("null_seed_sensitivity.json")["corpora"].items():
+        rows = c["by_retention"]
+        first, rest = rows[0], rows[1:]
+        worst = max(rest, key=lambda b: b["sd"])
+        count = c["positive_mean_count"]
+        out(f"- {corpus}, {count['n']} draws: positive mean at {count['min']:.0f} to "
+            f"{count['max']:.0f} of {c['n_retentions_below_one']} retentions; across-draw sd "
+            f"**{first['sd']:.4f}** at r={first['r']:g} and at most **{worst['sd']:.4f}** "
+            f"(r={worst['r']:g}) at the other {len(rest)}")
+        lead = c.get("blank_lead")
+        if lead:
+            leads = [s["lead"] for s in lead["per_seed"]]
+            best = sorted({s["best_filter"] for s in lead["per_seed"]})
+            out(f"  - blank lead at r={lead['retention']:g}: **{min(leads):+.4f} to "
+                f"{max(leads):+.4f}**, sd {float(np.std(leads, ddof=1)):.4f}; best filter "
+                f"{', '.join(best)} under every draw" if len(best) == 1 else
+                f"  - blank lead at r={lead['retention']:g}: {min(leads):+.4f} to "
+                f"{max(leads):+.4f}; best filters {', '.join(best)}")
 
 
 def _blank_levels(out: Callable[[str], None]) -> None:
@@ -1454,9 +1738,11 @@ def main() -> None:
         "claim in")
     out("the draft that cannot be found below has no artifact behind it.\n")
     _benchmark_scale(out)
+    _provenance(out)
     _metric_dependencies(out)
     _controlled_addition(out)
     _nulls(out)
+    _null_draws(out)
     _benchmark(out)
     _scale(out)
     _blank_signature(out)
@@ -1464,6 +1750,7 @@ def main() -> None:
     _esr_properties(out)
     _identity_audit(out)
     _native_oracle(out)
+    _edformer_native_oracle(out)
     _null_shuffle(out)
     _hotpixel_contrast(out)
     _paired_contrasts(out)
@@ -1477,6 +1764,7 @@ def main() -> None:
     _paired_seeds(out)
     _downstream_frozen(out)
     _tiebreak(out)
+    _matched_events(out)
     _blank_levels(out)
     _null_matched_span(out)
 

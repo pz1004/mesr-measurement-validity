@@ -53,6 +53,10 @@ EMLB_ND = ("ND00", "ND04", "ND16", "ND64")
 AEDAT2_X_SHIFT, AEDAT2_X_MASK = 12, 0x003FF000
 AEDAT2_Y_SHIFT, AEDAT2_Y_MASK = 22, 0x7FC00000
 AEDAT2_POL_SHIFT = 11
+#: The line jAER writes after its last header line. The first event can begin with the byte
+#: `#` (it does in DVSD22's 2x30Hz_a recording), so where this line exists it, and not the
+#: first line lacking a `#`, ends the header.
+AEDAT2_HEADER_END = b"#End Of ASCII Header"
 
 
 @dataclass(frozen=True)
@@ -204,7 +208,8 @@ def read_aedat2(path: Path, max_events: Optional[int] = None) -> np.ndarray:
 
     AEDAT-2.0 is a `#`-commented ASCII header followed by big-endian
     `(int32 address, int32 timestamp)` pairs at 1 us resolution. dv-processing reads
-    AEDAT-4 only, hence this parser.
+    AEDAT-4 only, hence this parser. The header ends at jAER's `#End Of ASCII Header` line
+    where there is one, since an event may begin with the byte `#`.
 
     Words whose decoded coordinates fall outside the sensor (APS samples, IMU words,
     external-input markers on recordings that captured them) are dropped; on the DVSD22
@@ -219,6 +224,8 @@ def read_aedat2(path: Path, max_events: Optional[int] = None) -> np.ndarray:
                 handle.seek(offset)
                 break
             offset = handle.tell()
+            if line.startswith(AEDAT2_HEADER_END):
+                break
         words = np.fromfile(handle, dtype=">u4")
 
     words = words[: (len(words) // 2) * 2]

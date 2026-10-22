@@ -177,5 +177,5 @@
     "emlb_rate_friedman_p": 5.9269748019425776e-05,
     "caveat": "Does not account for DVSCLEAN, which is low on rate and on concentration."
   },
-  "wall_seconds": 0.279495623006369
+  "wall_seconds": 1.316200494999066
 }

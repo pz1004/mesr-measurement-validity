@@ -25,8 +25,14 @@ torch-free and reads the cached scores through `denoisors`. Two modes:
     python -m dataset_assessment.edformer --cap 1000000
     # the released protocol, uncapped: per-cell MESR comparable with the published table
     python -m dataset_assessment.edformer --cap 0 --out results/edformer_emlb_uncapped.json
+    # the labelled corpora: scores for the native-oracle test (capped, as `native_oracle`
+    # caps its input) and for the operating-point sweep (cap 0 = whole recordings)
+    python -m dataset_assessment.edformer --corpus dnd21 --cap 1000000
+    python -m dataset_assessment.edformer --corpus dnd21 --cap 0
 
-`--only NAME` restricts either mode to recordings whose name contains NAME.
+`--only NAME` restricts either mode to recordings whose name contains NAME. Each corpus caches
+under its own directory, named from the recording-name prefix, so E-MLB's cache path is the one
+it always had.
 """
 
 from __future__ import annotations
@@ -55,12 +61,32 @@ SEED = 230086                     # eval_mesr.setup_seed's default
 TAIL_SCORE = 2.0
 
 
-def cache_dir(cap: int) -> Path:
-    return CACHE / f"emlb_cap{cap}"
+#: Corpora this module can score. `emlb` keeps its released-protocol uncapped mode as well.
+CORPORA = ("emlb", "dnd21", "dvsclean")
+
+
+def corpus_of(name: str) -> str:
+    """The cache directory a recording belongs to: 'E-MLB/...' -> 'emlb', 'DND21/...' -> 'dnd21'."""
+
+    return name.split("/", 1)[0].lower().replace("-", "")
+
+
+def cache_dir(cap: int, corpus: str = "emlb") -> Path:
+    return CACHE / f"{corpus}_cap{cap}"
 
 
 def cache_path(name: str, cap: int) -> Path:
-    return cache_dir(cap) / (name.replace("/", "__") + ".npy")
+    return cache_dir(cap, corpus_of(name)) / (name.replace("/", "__") + ".npy")
+
+
+def _recordings(corpus: str, cap: int):
+    """The recordings of `corpus`, read as every other method reads them."""
+
+    if corpus == "emlb":
+        return iter_emlb(max_events=cap)
+    from .readers import iter_dnd21, iter_dvsclean
+
+    return {"dnd21": iter_dnd21, "dvsclean": iter_dvsclean}[corpus]()
 
 
 def keep_mask(scores: np.ndarray) -> np.ndarray:
@@ -117,26 +143,33 @@ def _sha(array: np.ndarray) -> str:
     return hashlib.sha256(np.ascontiguousarray(array).tobytes()).hexdigest()
 
 
-def run_capped(cap: int, only: Optional[str], out: Path) -> Dict:
-    """Cache every recording's scores and write a manifest of what was cached."""
+def run_capped(cap: int, only: Optional[str], out: Path, corpus: str = "emlb") -> Dict:
+    """Cache every recording's scores and write a manifest of what was cached.
+
+    The input is the recording's first `cap` events, exactly as `native_oracle.prepare` caps
+    it, or the whole recording when `cap` is 0 (labelled corpora only). EDformer normalises
+    timestamps over its input, so scores are tied to that input and cached per cap.
+    """
 
     model = load_model()
-    cache_dir(cap).mkdir(parents=True, exist_ok=True)
+    cache_dir(cap, corpus).mkdir(parents=True, exist_ok=True)
     rows: List[Dict] = []
     started = time.perf_counter()
-    for index, rec in enumerate(iter_emlb(max_events=cap)):
+    for index, rec in enumerate(_recordings(corpus, cap)):
         if only and only not in rec.name:
             continue
-        events = rec.events[:cap]
+        events = rec.events[:cap] if cap > 0 else rec.events
         scores = score_events(model, events)
         np.save(cache_path(rec.name, cap), scores)
         kept = keep_mask(scores)
         rows.append({"recording": rec.name, "events": int(len(events)),
                      "scored": int((scores != TAIL_SCORE).sum()),
                      "kept": int(kept.sum()), "sha256": _sha(scores)})
-        payload = {"what": "EDformer sigmoid scores on the capped E-MLB inputs",
-                   "cap": cap, "seq_len": SEQ_LEN, "threshold": THRESHOLD, "seed": SEED,
-                   "tail_score": TAIL_SCORE, "cache": str(cache_dir(cap).relative_to(PROJECT_ROOT)),
+        payload = {"what": f"EDformer sigmoid scores on the {'capped' if cap else 'whole'} "
+                           f"{corpus} inputs",
+                   "corpus": corpus, "cap": cap, "seq_len": SEQ_LEN, "threshold": THRESHOLD,
+                   "seed": SEED, "tail_score": TAIL_SCORE,
+                   "cache": str(cache_dir(cap, corpus).relative_to(PROJECT_ROOT)),
                    "records": rows, "wall_seconds": time.perf_counter() - started}
         out.write_text(json.dumps(payload, indent=2) + "\n")
         print(f"[{index}] {rec.name}: {len(events)} events, kept {int(kept.sum())} "
@@ -177,11 +210,16 @@ def run_uncapped(only: Optional[str], out: Path) -> Dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--corpus", default="emlb", choices=CORPORA)
     parser.add_argument("--cap", type=int, default=1_000_000, help="0 = uncapped")
     parser.add_argument("--only", default=None)
     parser.add_argument("--out", type=Path, default=None)
     args = parser.parse_args()
-    if args.cap > 0:
+    if args.corpus != "emlb":
+        run_capped(args.cap, args.only,
+                   args.out or RESULTS / f"edformer_{args.corpus}_manifest_cap{args.cap}.json",
+                   corpus=args.corpus)
+    elif args.cap > 0:
         run_capped(args.cap, args.only,
                    args.out or RESULTS / "edformer_emlb_manifest.json")
     else:

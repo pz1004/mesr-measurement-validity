@@ -1,0 +1,1406 @@
+{
+  "what": "MESR spread over the retention sweep with EDformer's own per-event scores, on whole DND21 recordings (the sweep of measure_metric_deps, scores swapped)",
+  "retentions": [
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    1.0
+  ],
+  "rows": [
+    {
+      "recording": "DND21/1hz_hotel-bar",
+      "events": 897351,
+      "scored": 897024,
+      "roc_auc": 0.9928149154503086,
+      "released_retention": 0.20858838960451373,
+      "min_mesr": 1.0189984628002968,
+      "max_mesr": 1.2280281026557711,
+      "spread": 0.2090296398554743,
+      "argmin_r": 0.05,
+      "argmax_r": 0.8,
+      "evaluable_retentions": 20,
+      "curve": [
+        {
+          "r": 0.05,
+          "mesr": 1.0189984628002968,
+          "kept_events": 44868,
+          "evaluable": true
+        },
+        {
+          "r": 0.1,
+          "mesr": 1.0710746137430207,
+          "kept_events": 89735,
+          "evaluable": true
+        },
+        {
+          "r": 0.15,
+          "mesr": 1.1197559275688431,
+          "kept_events": 134603,
+          "evaluable": true
+        },
+        {
+          "r": 0.2,
+          "mesr": 1.1276356443134297,
+          "kept_events": 179470,
+          "evaluable": true
+        },
+        {
+          "r": 0.25,
+          "mesr": 1.1598183111083633,
+          "kept_events": 224338,
+          "evaluable": true
+        },
+        {
+          "r": 0.3,
+          "mesr": 1.1538367652415182,
+          "kept_events": 269205,
+          "evaluable": true
+        },
+        {
+          "r": 0.35,
+          "mesr": 1.1631526739469629,
+          "kept_events": 314073,
+          "evaluable": true
+        },
+        {
+          "r": 0.4,
+          "mesr": 1.145706833704322,
+          "kept_events": 358940,
+          "evaluable": true
+        },
+        {
+          "r": 0.45,
+          "mesr": 1.1678348506357636,
+          "kept_events": 403808,
+          "evaluable": true
+        },
+        {
+          "r": 0.5,
+          "mesr": 1.1700831123642847,
+          "kept_events": 448676,
+          "evaluable": true
+        },
+        {
+          "r": 0.55,
+          "mesr": 1.1837983607350426,
+          "kept_events": 493543,
+          "evaluable": true
+        },
+        {
+          "r": 0.6,
+          "mesr": 1.1866998008116076,
+          "kept_events": 538411,
+          "evaluable": true
+        },
+        {
+          "r": 0.65,
+          "mesr": 1.200763739316565,
+          "kept_events": 583278,
+          "evaluable": true
+        },
+        {
+          "r": 0.7,
+          "mesr": 1.2129919475991235,
+          "kept_events": 628146,
+          "evaluable": true
+        },
+        {
+          "r": 0.75,
+          "mesr": 1.2237295606782443,
+          "kept_events": 673013,
+          "evaluable": true
+        },
+        {
+          "r": 0.8,
+          "mesr": 1.2280281026557711,
+          "kept_events": 717881,
+          "evaluable": true
+        },
+        {
+          "r": 0.85,
+          "mesr": 1.2222097073348375,
+          "kept_events": 762748,
+          "evaluable": true
+        },
+        {
+          "r": 0.9,
+          "mesr": 1.208585970117467,
+          "kept_events": 807616,
+          "evaluable": true
+        },
+        {
+          "r": 0.95,
+          "mesr": 1.1947395126529712,
+          "kept_events": 852483,
+          "evaluable": true
+        },
+        {
+          "r": 1.0,
+          "mesr": 1.175420654517643,
+          "kept_events": 897351,
+          "evaluable": true
+        }
+      ]
+    },
+    {
+      "recording": "DND21/1hz_driving",
+      "events": 3081599,
+      "scored": 3080192,
+      "roc_auc": 0.9542104893052632,
+      "released_retention": 0.3258924993161018,
+      "min_mesr": 0.7835168743783788,
+      "max_mesr": 0.9266847300149369,
+      "spread": 0.1431678556365581,
+      "argmin_r": 1.0,
+      "argmax_r": 0.35,
+      "evaluable_retentions": 20,
+      "curve": [
+        {
+          "r": 0.05,
+          "mesr": 0.8732922422901295,
+          "kept_events": 154080,
+          "evaluable": true
+        },
+        {
+          "r": 0.1,
+          "mesr": 0.898470879716102,
+          "kept_events": 308160,
+          "evaluable": true
+        },
+        {
+          "r": 0.15,
+          "mesr": 0.9133868080946426,
+          "kept_events": 462240,
+          "evaluable": true
+        },
+        {
+          "r": 0.2,
+          "mesr": 0.9235265971125994,
+          "kept_events": 616320,
+          "evaluable": true
+        },
+        {
+          "r": 0.25,
+          "mesr": 0.9238652938932493,
+          "kept_events": 770400,
+          "evaluable": true
+        },
+        {
+          "r": 0.3,
+          "mesr": 0.9260529217085626,
+          "kept_events": 924480,
+          "evaluable": true
+        },
+        {
+          "r": 0.35,
+          "mesr": 0.9266847300149369,
+          "kept_events": 1078560,
+          "evaluable": true
+        },
+        {
+          "r": 0.4,
+          "mesr": 0.9184341933265979,
+          "kept_events": 1232640,
+          "evaluable": true
+        },
+        {
+          "r": 0.45,
+          "mesr": 0.9174249289309684,
+          "kept_events": 1386720,
+          "evaluable": true
+        },
+        {
+          "r": 0.5,
+          "mesr": 0.9110203894215039,
+          "kept_events": 1540800,
+          "evaluable": true
+        },
+        {
+          "r": 0.55,
+          "mesr": 0.9053370131206185,
+          "kept_events": 1694879,
+          "evaluable": true
+        },
+        {
+          "r": 0.6,
+          "mesr": 0.8954499017044316,
+          "kept_events": 1848959,
+          "evaluable": true
+        },
+        {
+          "r": 0.65,
+          "mesr": 0.8886724386764164,
+          "kept_events": 2003039,
+          "evaluable": true
+        },
+        {
+          "r": 0.7,
+          "mesr": 0.8780609313528135,
+          "kept_events": 2157119,
+          "evaluable": true
+        },
+        {
+          "r": 0.75,
+          "mesr": 0.8646156584688883,
+          "kept_events": 2311199,
+          "evaluable": true
+        },
+        {
+          "r": 0.8,
+          "mesr": 0.8518775390180322,
+          "kept_events": 2465279,
+          "evaluable": true
+        },
+        {
+          "r": 0.85,
+          "mesr": 0.8376099155206509,
+          "kept_events": 2619359,
+          "evaluable": true
+        },
+        {
+          "r": 0.9,
+          "mesr": 0.8202495723686826,
+          "kept_events": 2773439,
+          "evaluable": true
+        },
+        {
+          "r": 0.95,
+          "mesr": 0.8028077174665845,
+          "kept_events": 2927519,
+          "evaluable": true
+        },
+        {
+          "r": 1.0,
+          "mesr": 0.7835168743783788,
+          "kept_events": 3081599,
+          "evaluable": true
+        }
+      ]
+    },
+    {
+      "recording": "DND21/3hz_hotel-bar",
+      "events": 1617304,
+      "scored": 1613824,
+      "roc_auc": 0.9890605909667821,
+      "released_retention": 0.06640000890370641,
+      "min_mesr": 0.9014446356260362,
+      "max_mesr": 1.2117138775116905,
+      "spread": 0.3102692418856543,
+      "argmin_r": 1.0,
+      "argmax_r": 0.35,
+      "evaluable_retentions": 20,
+      "curve": [
+        {
+          "r": 0.05,
+          "mesr": 1.0364316047231743,
+          "kept_events": 80865,
+          "evaluable": true
+        },
+        {
+          "r": 0.1,
+          "mesr": 1.1155815228060446,
+          "kept_events": 161730,
+          "evaluable": true
+        },
+        {
+          "r": 0.15,
+          "mesr": 1.154501723624826,
+          "kept_events": 242596,
+          "evaluable": true
+        },
+        {
+          "r": 0.2,
+          "mesr": 1.1646615734202055,
+          "kept_events": 323461,
+          "evaluable": true
+        },
+        {
+          "r": 0.25,
+          "mesr": 1.1701093491755403,
+          "kept_events": 404326,
+          "evaluable": true
+        },
+        {
+          "r": 0.3,
+          "mesr": 1.1993187950338302,
+          "kept_events": 485191,
+          "evaluable": true
+        },
+        {
+          "r": 0.35,
+          "mesr": 1.2117138775116905,
+          "kept_events": 566056,
+          "evaluable": true
+        },
+        {
+          "r": 0.4,
+          "mesr": 1.2010758128371373,
+          "kept_events": 646922,
+          "evaluable": true
+        },
+        {
+          "r": 0.45,
+          "mesr": 1.2065667233001405,
+          "kept_events": 727787,
+          "evaluable": true
+        },
+        {
+          "r": 0.5,
+          "mesr": 1.1909981082512506,
+          "kept_events": 808652,
+          "evaluable": true
+        },
+        {
+          "r": 0.55,
+          "mesr": 1.173956621212725,
+          "kept_events": 889517,
+          "evaluable": true
+        },
+        {
+          "r": 0.6,
+          "mesr": 1.1396502165638007,
+          "kept_events": 970382,
+          "evaluable": true
+        },
+        {
+          "r": 0.65,
+          "mesr": 1.1066550903208408,
+          "kept_events": 1051248,
+          "evaluable": true
+        },
+        {
+          "r": 0.7,
+          "mesr": 1.0754148429058359,
+          "kept_events": 1132113,
+          "evaluable": true
+        },
+        {
+          "r": 0.75,
+          "mesr": 1.0431733411915964,
+          "kept_events": 1212978,
+          "evaluable": true
+        },
+        {
+          "r": 0.8,
+          "mesr": 1.0084025675721335,
+          "kept_events": 1293843,
+          "evaluable": true
+        },
+        {
+          "r": 0.85,
+          "mesr": 0.9817865382992554,
+          "kept_events": 1374708,
+          "evaluable": true
+        },
+        {
+          "r": 0.9,
+          "mesr": 0.9516107138366561,
+          "kept_events": 1455574,
+          "evaluable": true
+        },
+        {
+          "r": 0.95,
+          "mesr": 0.9255001464351109,
+          "kept_events": 1536439,
+          "evaluable": true
+        },
+        {
+          "r": 1.0,
+          "mesr": 0.9014446356260362,
+          "kept_events": 1617304,
+          "evaluable": true
+        }
+      ]
+    },
+    {
+      "recording": "DND21/3hz_driving",
+      "events": 3777023,
+      "scored": 3776512,
+      "roc_auc": 0.9471369861487752,
+      "released_retention": 0.18965703941966994,
+      "min_mesr": 0.7189339401504892,
+      "max_mesr": 0.9431719846410183,
+      "spread": 0.2242380444905291,
+      "argmin_r": 1.0,
+      "argmax_r": 0.25,
+      "evaluable_retentions": 20,
+      "curve": [
+        {
+          "r": 0.05,
+          "mesr": 0.8992254076627376,
+          "kept_events": 188851,
+          "evaluable": true
+        },
+        {
+          "r": 0.1,
+          "mesr": 0.9348764456969506,
+          "kept_events": 377702,
+          "evaluable": true
+        },
+        {
+          "r": 0.15,
+          "mesr": 0.9365143888864734,
+          "kept_events": 566553,
+          "evaluable": true
+        },
+        {
+          "r": 0.2,
+          "mesr": 0.9369208449504618,
+          "kept_events": 755405,
+          "evaluable": true
+        },
+        {
+          "r": 0.25,
+          "mesr": 0.9431719846410183,
+          "kept_events": 944256,
+          "evaluable": true
+        },
+        {
+          "r": 0.3,
+          "mesr": 0.9376533825148347,
+          "kept_events": 1133107,
+          "evaluable": true
+        },
+        {
+          "r": 0.35,
+          "mesr": 0.929530070977327,
+          "kept_events": 1321958,
+          "evaluable": true
+        },
+        {
+          "r": 0.4,
+          "mesr": 0.9208491264402043,
+          "kept_events": 1510809,
+          "evaluable": true
+        },
+        {
+          "r": 0.45,
+          "mesr": 0.9111836905948938,
+          "kept_events": 1699660,
+          "evaluable": true
+        },
+        {
+          "r": 0.5,
+          "mesr": 0.8995740363505326,
+          "kept_events": 1888512,
+          "evaluable": true
+        },
+        {
+          "r": 0.55,
+          "mesr": 0.8865940562291338,
+          "kept_events": 2077363,
+          "evaluable": true
+        },
+        {
+          "r": 0.6,
+          "mesr": 0.8715002600667255,
+          "kept_events": 2266214,
+          "evaluable": true
+        },
+        {
+          "r": 0.65,
+          "mesr": 0.8551338560824676,
+          "kept_events": 2455065,
+          "evaluable": true
+        },
+        {
+          "r": 0.7,
+          "mesr": 0.8374835324173588,
+          "kept_events": 2643916,
+          "evaluable": true
+        },
+        {
+          "r": 0.75,
+          "mesr": 0.8184167814454639,
+          "kept_events": 2832767,
+          "evaluable": true
+        },
+        {
+          "r": 0.8,
+          "mesr": 0.8004918577976281,
+          "kept_events": 3021618,
+          "evaluable": true
+        },
+        {
+          "r": 0.85,
+          "mesr": 0.7795081954556005,
+          "kept_events": 3210470,
+          "evaluable": true
+        },
+        {
+          "r": 0.9,
+          "mesr": 0.7591585745520464,
+          "kept_events": 3399321,
+          "evaluable": true
+        },
+        {
+          "r": 0.95,
+          "mesr": 0.7395267402382358,
+          "kept_events": 3588172,
+          "evaluable": true
+        },
+        {
+          "r": 1.0,
+          "mesr": 0.7189339401504892,
+          "kept_events": 3777023,
+          "evaluable": true
+        }
+      ]
+    },
+    {
+      "recording": "DND21/5hz_hotel-bar",
+      "events": 2345084,
+      "scored": 2342912,
+      "roc_auc": 0.984499289325836,
+      "released_retention": 0.03495610391781275,
+      "min_mesr": 0.7512359588942936,
+      "max_mesr": 1.2115503745454816,
+      "spread": 0.460314415651188,
+      "argmin_r": 1.0,
+      "argmax_r": 0.25,
+      "evaluable_retentions": 20,
+      "curve": [
+        {
+          "r": 0.05,
+          "mesr": 1.0891439755833539,
+          "kept_events": 117254,
+          "evaluable": true
+        },
+        {
+          "r": 0.1,
+          "mesr": 1.1509359967134156,
+          "kept_events": 234508,
+          "evaluable": true
+        },
+        {
+          "r": 0.15,
+          "mesr": 1.1684375553000939,
+          "kept_events": 351763,
+          "evaluable": true
+        },
+        {
+          "r": 0.2,
+          "mesr": 1.2099443209931837,
+          "kept_events": 469017,
+          "evaluable": true
+        },
+        {
+          "r": 0.25,
+          "mesr": 1.2115503745454816,
+          "kept_events": 586271,
+          "evaluable": true
+        },
+        {
+          "r": 0.3,
+          "mesr": 1.2062584134347258,
+          "kept_events": 703525,
+          "evaluable": true
+        },
+        {
+          "r": 0.35,
+          "mesr": 1.1883408285940051,
+          "kept_events": 820779,
+          "evaluable": true
+        },
+        {
+          "r": 0.4,
+          "mesr": 1.1532508637616037,
+          "kept_events": 938034,
+          "evaluable": true
+        },
+        {
+          "r": 0.45,
+          "mesr": 1.1118106239863639,
+          "kept_events": 1055288,
+          "evaluable": true
+        },
+        {
+          "r": 0.5,
+          "mesr": 1.0656267565843485,
+          "kept_events": 1172542,
+          "evaluable": true
+        },
+        {
+          "r": 0.55,
+          "mesr": 1.025244282712258,
+          "kept_events": 1289796,
+          "evaluable": true
+        },
+        {
+          "r": 0.6,
+          "mesr": 0.9825883838616025,
+          "kept_events": 1407050,
+          "evaluable": true
+        },
+        {
+          "r": 0.65,
+          "mesr": 0.9426384815406914,
+          "kept_events": 1524305,
+          "evaluable": true
+        },
+        {
+          "r": 0.7,
+          "mesr": 0.9076905319371643,
+          "kept_events": 1641559,
+          "evaluable": true
+        },
+        {
+          "r": 0.75,
+          "mesr": 0.8740816026669004,
+          "kept_events": 1758813,
+          "evaluable": true
+        },
+        {
+          "r": 0.8,
+          "mesr": 0.8449016382646086,
+          "kept_events": 1876067,
+          "evaluable": true
+        },
+        {
+          "r": 0.85,
+          "mesr": 0.8175696388469277,
+          "kept_events": 1993321,
+          "evaluable": true
+        },
+        {
+          "r": 0.9,
+          "mesr": 0.7931390649184407,
+          "kept_events": 2110576,
+          "evaluable": true
+        },
+        {
+          "r": 0.95,
+          "mesr": 0.7705636489354324,
+          "kept_events": 2227830,
+          "evaluable": true
+        },
+        {
+          "r": 1.0,
+          "mesr": 0.7512359588942936,
+          "kept_events": 2345084,
+          "evaluable": true
+        }
+      ]
+    },
+    {
+      "recording": "DND21/5hz_driving",
+      "events": 4478144,
+      "scored": 4476928,
+      "roc_auc": 0.9424637734082636,
+      "released_retention": 0.13661574973917767,
+      "min_mesr": 0.6688034145895164,
+      "max_mesr": 0.9394629710432756,
+      "spread": 0.27065955645375916,
+      "argmin_r": 1.0,
+      "argmax_r": 0.15,
+      "evaluable_retentions": 20,
+      "curve": [
+        {
+          "r": 0.05,
+          "mesr": 0.9102475905580297,
+          "kept_events": 223907,
+          "evaluable": true
+        },
+        {
+          "r": 0.1,
+          "mesr": 0.9255435555515403,
+          "kept_events": 447814,
+          "evaluable": true
+        },
+        {
+          "r": 0.15,
+          "mesr": 0.9394629710432756,
+          "kept_events": 671722,
+          "evaluable": true
+        },
+        {
+          "r": 0.2,
+          "mesr": 0.9386687737539527,
+          "kept_events": 895629,
+          "evaluable": true
+        },
+        {
+          "r": 0.25,
+          "mesr": 0.9359573457039806,
+          "kept_events": 1119536,
+          "evaluable": true
+        },
+        {
+          "r": 0.3,
+          "mesr": 0.9314122388909237,
+          "kept_events": 1343443,
+          "evaluable": true
+        },
+        {
+          "r": 0.35,
+          "mesr": 0.9152778257351161,
+          "kept_events": 1567350,
+          "evaluable": true
+        },
+        {
+          "r": 0.4,
+          "mesr": 0.9022481356112126,
+          "kept_events": 1791258,
+          "evaluable": true
+        },
+        {
+          "r": 0.45,
+          "mesr": 0.8865891138159403,
+          "kept_events": 2015165,
+          "evaluable": true
+        },
+        {
+          "r": 0.5,
+          "mesr": 0.8697150821652329,
+          "kept_events": 2239072,
+          "evaluable": true
+        },
+        {
+          "r": 0.55,
+          "mesr": 0.852012671350401,
+          "kept_events": 2462979,
+          "evaluable": true
+        },
+        {
+          "r": 0.6,
+          "mesr": 0.8329786576783434,
+          "kept_events": 2686886,
+          "evaluable": true
+        },
+        {
+          "r": 0.65,
+          "mesr": 0.8115665837699554,
+          "kept_events": 2910794,
+          "evaluable": true
+        },
+        {
+          "r": 0.7,
+          "mesr": 0.7915480348410096,
+          "kept_events": 3134701,
+          "evaluable": true
+        },
+        {
+          "r": 0.75,
+          "mesr": 0.7710170423570352,
+          "kept_events": 3358608,
+          "evaluable": true
+        },
+        {
+          "r": 0.8,
+          "mesr": 0.7488541142330934,
+          "kept_events": 3582515,
+          "evaluable": true
+        },
+        {
+          "r": 0.85,
+          "mesr": 0.7280745961572113,
+          "kept_events": 3806422,
+          "evaluable": true
+        },
+        {
+          "r": 0.9,
+          "mesr": 0.7074325483853486,
+          "kept_events": 4030330,
+          "evaluable": true
+        },
+        {
+          "r": 0.95,
+          "mesr": 0.6885187675243892,
+          "kept_events": 4254237,
+          "evaluable": true
+        },
+        {
+          "r": 1.0,
+          "mesr": 0.6688034145895164,
+          "kept_events": 4478144,
+          "evaluable": true
+        }
+      ]
+    },
+    {
+      "recording": "DND21/7hz_hotel-bar",
+      "events": 3062381,
+      "scored": 3059712,
+      "roc_auc": 0.9792862551019985,
+      "released_retention": 0.020842279259177744,
+      "min_mesr": 0.6677958179460362,
+      "max_mesr": 1.2184087410638367,
+      "spread": 0.5506129231178005,
+      "argmin_r": 1.0,
+      "argmax_r": 0.2,
+      "evaluable_retentions": 20,
+      "curve": [
+        {
+          "r": 0.05,
+          "mesr": 1.126071915641298,
+          "kept_events": 153119,
+          "evaluable": true
+        },
+        {
+          "r": 0.1,
+          "mesr": 1.1815485975572035,
+          "kept_events": 306238,
+          "evaluable": true
+        },
+        {
+          "r": 0.15,
+          "mesr": 1.2151249673921798,
+          "kept_events": 459357,
+          "evaluable": true
+        },
+        {
+          "r": 0.2,
+          "mesr": 1.2184087410638367,
+          "kept_events": 612476,
+          "evaluable": true
+        },
+        {
+          "r": 0.25,
+          "mesr": 1.204685163105306,
+          "kept_events": 765595,
+          "evaluable": true
+        },
+        {
+          "r": 0.3,
+          "mesr": 1.1640665501176986,
+          "kept_events": 918714,
+          "evaluable": true
+        },
+        {
+          "r": 0.35,
+          "mesr": 1.113071218947143,
+          "kept_events": 1071833,
+          "evaluable": true
+        },
+        {
+          "r": 0.4,
+          "mesr": 1.0575669697307437,
+          "kept_events": 1224952,
+          "evaluable": true
+        },
+        {
+          "r": 0.45,
+          "mesr": 1.0044416498484334,
+          "kept_events": 1378071,
+          "evaluable": true
+        },
+        {
+          "r": 0.5,
+          "mesr": 0.9503439945940068,
+          "kept_events": 1531190,
+          "evaluable": true
+        },
+        {
+          "r": 0.55,
+          "mesr": 0.9057933255174595,
+          "kept_events": 1684310,
+          "evaluable": true
+        },
+        {
+          "r": 0.6,
+          "mesr": 0.8665657702382333,
+          "kept_events": 1837429,
+          "evaluable": true
+        },
+        {
+          "r": 0.65,
+          "mesr": 0.8306435472637275,
+          "kept_events": 1990548,
+          "evaluable": true
+        },
+        {
+          "r": 0.7,
+          "mesr": 0.7990609410527272,
+          "kept_events": 2143667,
+          "evaluable": true
+        },
+        {
+          "r": 0.75,
+          "mesr": 0.7707607026190874,
+          "kept_events": 2296786,
+          "evaluable": true
+        },
+        {
+          "r": 0.8,
+          "mesr": 0.745209801996685,
+          "kept_events": 2449905,
+          "evaluable": true
+        },
+        {
+          "r": 0.85,
+          "mesr": 0.7221646106699046,
+          "kept_events": 2603024,
+          "evaluable": true
+        },
+        {
+          "r": 0.9,
+          "mesr": 0.7022288337939036,
+          "kept_events": 2756143,
+          "evaluable": true
+        },
+        {
+          "r": 0.95,
+          "mesr": 0.6837860845997303,
+          "kept_events": 2909262,
+          "evaluable": true
+        },
+        {
+          "r": 1.0,
+          "mesr": 0.6677958179460362,
+          "kept_events": 3062381,
+          "evaluable": true
+        }
+      ]
+    },
+    {
+      "recording": "DND21/7hz_driving",
+      "events": 5169768,
+      "scored": 5169152,
+      "roc_auc": 0.9343677180198053,
+      "released_retention": 0.09534122227535162,
+      "min_mesr": 0.6311197279224376,
+      "max_mesr": 0.9497640338569038,
+      "spread": 0.31864430593446613,
+      "argmin_r": 1.0,
+      "argmax_r": 0.15,
+      "evaluable_retentions": 20,
+      "curve": [
+        {
+          "r": 0.05,
+          "mesr": 0.9425847753276386,
+          "kept_events": 258488,
+          "evaluable": true
+        },
+        {
+          "r": 0.1,
+          "mesr": 0.9418787152254036,
+          "kept_events": 516977,
+          "evaluable": true
+        },
+        {
+          "r": 0.15,
+          "mesr": 0.9497640338569038,
+          "kept_events": 775465,
+          "evaluable": true
+        },
+        {
+          "r": 0.2,
+          "mesr": 0.9481773250739136,
+          "kept_events": 1033954,
+          "evaluable": true
+        },
+        {
+          "r": 0.25,
+          "mesr": 0.9329660917350394,
+          "kept_events": 1292442,
+          "evaluable": true
+        },
+        {
+          "r": 0.3,
+          "mesr": 0.9192079906293085,
+          "kept_events": 1550930,
+          "evaluable": true
+        },
+        {
+          "r": 0.35,
+          "mesr": 0.9022674340547173,
+          "kept_events": 1809419,
+          "evaluable": true
+        },
+        {
+          "r": 0.4,
+          "mesr": 0.8843234663244466,
+          "kept_events": 2067907,
+          "evaluable": true
+        },
+        {
+          "r": 0.45,
+          "mesr": 0.8623556359260752,
+          "kept_events": 2326396,
+          "evaluable": true
+        },
+        {
+          "r": 0.5,
+          "mesr": 0.8406496595913712,
+          "kept_events": 2584884,
+          "evaluable": true
+        },
+        {
+          "r": 0.55,
+          "mesr": 0.8191463083551866,
+          "kept_events": 2843372,
+          "evaluable": true
+        },
+        {
+          "r": 0.6,
+          "mesr": 0.7966500478342242,
+          "kept_events": 3101861,
+          "evaluable": true
+        },
+        {
+          "r": 0.65,
+          "mesr": 0.7725410622285723,
+          "kept_events": 3360349,
+          "evaluable": true
+        },
+        {
+          "r": 0.7,
+          "mesr": 0.7511190580885566,
+          "kept_events": 3618838,
+          "evaluable": true
+        },
+        {
+          "r": 0.75,
+          "mesr": 0.7290118146187561,
+          "kept_events": 3877326,
+          "evaluable": true
+        },
+        {
+          "r": 0.8,
+          "mesr": 0.7077953195881918,
+          "kept_events": 4135814,
+          "evaluable": true
+        },
+        {
+          "r": 0.85,
+          "mesr": 0.6864664589531532,
+          "kept_events": 4394303,
+          "evaluable": true
+        },
+        {
+          "r": 0.9,
+          "mesr": 0.6667775514246099,
+          "kept_events": 4652791,
+          "evaluable": true
+        },
+        {
+          "r": 0.95,
+          "mesr": 0.6482635810668941,
+          "kept_events": 4911280,
+          "evaluable": true
+        },
+        {
+          "r": 1.0,
+          "mesr": 0.6311197279224376,
+          "kept_events": 5169768,
+          "evaluable": true
+        }
+      ]
+    },
+    {
+      "recording": "DND21/10hz_hotel-bar",
+      "events": 4148092,
+      "scored": 4145152,
+      "roc_auc": 0.9699145630505203,
+      "released_retention": 0.011561460064048724,
+      "min_mesr": 0.5944097006320028,
+      "max_mesr": 1.2254101649095444,
+      "spread": 0.6310004642775415,
+      "argmin_r": 1.0,
+      "argmax_r": 0.15,
+      "evaluable_retentions": 20,
+      "curve": [
+        {
+          "r": 0.05,
+          "mesr": 1.151932011409922,
+          "kept_events": 207405,
+          "evaluable": true
+        },
+        {
+          "r": 0.1,
+          "mesr": 1.222850788669947,
+          "kept_events": 414809,
+          "evaluable": true
+        },
+        {
+          "r": 0.15,
+          "mesr": 1.2254101649095444,
+          "kept_events": 622214,
+          "evaluable": true
+        },
+        {
+          "r": 0.2,
+          "mesr": 1.1922481586228637,
+          "kept_events": 829618,
+          "evaluable": true
+        },
+        {
+          "r": 0.25,
+          "mesr": 1.1269738500421744,
+          "kept_events": 1037023,
+          "evaluable": true
+        },
+        {
+          "r": 0.3,
+          "mesr": 1.0574897085565145,
+          "kept_events": 1244428,
+          "evaluable": true
+        },
+        {
+          "r": 0.35,
+          "mesr": 0.989653643419059,
+          "kept_events": 1451832,
+          "evaluable": true
+        },
+        {
+          "r": 0.4,
+          "mesr": 0.9282725023442457,
+          "kept_events": 1659237,
+          "evaluable": true
+        },
+        {
+          "r": 0.45,
+          "mesr": 0.875057229266035,
+          "kept_events": 1866641,
+          "evaluable": true
+        },
+        {
+          "r": 0.5,
+          "mesr": 0.8284650669335067,
+          "kept_events": 2074046,
+          "evaluable": true
+        },
+        {
+          "r": 0.55,
+          "mesr": 0.7889006454051608,
+          "kept_events": 2281451,
+          "evaluable": true
+        },
+        {
+          "r": 0.6,
+          "mesr": 0.7556181035497205,
+          "kept_events": 2488855,
+          "evaluable": true
+        },
+        {
+          "r": 0.65,
+          "mesr": 0.7252704045541621,
+          "kept_events": 2696260,
+          "evaluable": true
+        },
+        {
+          "r": 0.7,
+          "mesr": 0.6981769856984044,
+          "kept_events": 2903664,
+          "evaluable": true
+        },
+        {
+          "r": 0.75,
+          "mesr": 0.674625619699289,
+          "kept_events": 3111069,
+          "evaluable": true
+        },
+        {
+          "r": 0.8,
+          "mesr": 0.6541215404579329,
+          "kept_events": 3318474,
+          "evaluable": true
+        },
+        {
+          "r": 0.85,
+          "mesr": 0.635998455813406,
+          "kept_events": 3525878,
+          "evaluable": true
+        },
+        {
+          "r": 0.9,
+          "mesr": 0.6196759290811831,
+          "kept_events": 3733283,
+          "evaluable": true
+        },
+        {
+          "r": 0.95,
+          "mesr": 0.6053794041313986,
+          "kept_events": 3940687,
+          "evaluable": true
+        },
+        {
+          "r": 1.0,
+          "mesr": 0.5944097006320028,
+          "kept_events": 4148092,
+          "evaluable": true
+        }
+      ]
+    },
+    {
+      "recording": "DND21/10hz_driving",
+      "events": 6218745,
+      "scored": 6217728,
+      "roc_auc": 0.926237000075416,
+      "released_retention": 0.07067889099810332,
+      "min_mesr": 0.5882862554317799,
+      "max_mesr": 0.9497541145524382,
+      "spread": 0.36146785912065826,
+      "argmin_r": 1.0,
+      "argmax_r": 0.05,
+      "evaluable_retentions": 20,
+      "curve": [
+        {
+          "r": 0.05,
+          "mesr": 0.9497541145524382,
+          "kept_events": 310937,
+          "evaluable": true
+        },
+        {
+          "r": 0.1,
+          "mesr": 0.946149846299188,
+          "kept_events": 621874,
+          "evaluable": true
+        },
+        {
+          "r": 0.15,
+          "mesr": 0.9411539942949394,
+          "kept_events": 932812,
+          "evaluable": true
+        },
+        {
+          "r": 0.2,
+          "mesr": 0.9331167956559913,
+          "kept_events": 1243749,
+          "evaluable": true
+        },
+        {
+          "r": 0.25,
+          "mesr": 0.916587505415313,
+          "kept_events": 1554686,
+          "evaluable": true
+        },
+        {
+          "r": 0.3,
+          "mesr": 0.8896632633812508,
+          "kept_events": 1865624,
+          "evaluable": true
+        },
+        {
+          "r": 0.35,
+          "mesr": 0.8692345673684535,
+          "kept_events": 2176561,
+          "evaluable": true
+        },
+        {
+          "r": 0.4,
+          "mesr": 0.8445452769894541,
+          "kept_events": 2487498,
+          "evaluable": true
+        },
+        {
+          "r": 0.45,
+          "mesr": 0.8196722874758783,
+          "kept_events": 2798435,
+          "evaluable": true
+        },
+        {
+          "r": 0.5,
+          "mesr": 0.7954800741217936,
+          "kept_events": 3109372,
+          "evaluable": true
+        },
+        {
+          "r": 0.55,
+          "mesr": 0.7705450784567074,
+          "kept_events": 3420310,
+          "evaluable": true
+        },
+        {
+          "r": 0.6,
+          "mesr": 0.7465473439958117,
+          "kept_events": 3731247,
+          "evaluable": true
+        },
+        {
+          "r": 0.65,
+          "mesr": 0.722567885181852,
+          "kept_events": 4042184,
+          "evaluable": true
+        },
+        {
+          "r": 0.7,
+          "mesr": 0.6996261682886936,
+          "kept_events": 4353122,
+          "evaluable": true
+        },
+        {
+          "r": 0.75,
+          "mesr": 0.6784424219888748,
+          "kept_events": 4664059,
+          "evaluable": true
+        },
+        {
+          "r": 0.8,
+          "mesr": 0.6575627776843694,
+          "kept_events": 4974996,
+          "evaluable": true
+        },
+        {
+          "r": 0.85,
+          "mesr": 0.6382683304371518,
+          "kept_events": 5285933,
+          "evaluable": true
+        },
+        {
+          "r": 0.9,
+          "mesr": 0.6202561897207308,
+          "kept_events": 5596870,
+          "evaluable": true
+        },
+        {
+          "r": 0.95,
+          "mesr": 0.6035987462543421,
+          "kept_events": 5907808,
+          "evaluable": true
+        },
+        {
+          "r": 1.0,
+          "mesr": 0.5882862554317799,
+          "kept_events": 6218745,
+          "evaluable": true
+        }
+      ]
+    }
+  ],
+  "spread_over_recordings": {
+    "mean": 0.34794043064236296,
+    "sd": 0.15591665729112994,
+    "min": 0.1431678556365581,
+    "max": 0.6310004642775415,
+    "lo": 0.260595994805674,
+    "hi": 0.4412237953769864,
+    "n": 10,
+    "draws": 10000
+  },
+  "spread_by_base": {
+    "hotel-bar": {
+      "n": 5,
+      "mean": 0.43224533695753176,
+      "min": 0.2090296398554743,
+      "max": 0.6310004642775415
+    },
+    "driving": {
+      "n": 5,
+      "mean": 0.2636355243271941,
+      "min": 0.1431678556365581,
+      "max": 0.36146785912065826
+    }
+  },
+  "roc_auc": {
+    "mean": 0.9619991580852968,
+    "min": 0.926237000075416,
+    "max": 0.9928149154503086
+  }
+}

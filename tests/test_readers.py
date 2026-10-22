@@ -3,7 +3,7 @@ import pytest
 
 from dataset_assessment.readers import (
     PROJECT_ROOT, Recording, iter_dnd21, iter_dvsd22, iter_dvsclean, iter_ed24, iter_emlb,
-    iter_pure_ba_noise,
+    iter_pure_ba_noise, read_aedat2,
 )
 
 
@@ -106,3 +106,19 @@ def test_recording_is_immutable():
     rec = Recording(np.zeros((1, 4), dtype=np.int64), None, 1, 1, "toy", False)
     with pytest.raises(Exception):
         rec.width = 1
+
+
+def test_aedat2_header_ends_at_jaers_marker_when_the_first_event_starts_with_a_hash(tmp_path):
+    """jAER closes its header with `#End Of ASCII Header`. One DVSD22 recording's first event
+    begins with the byte `#`, and a reader that ends the header at the first line lacking
+    one skips that event's line: here, the first event, whose timestamp ends in a newline
+    byte."""
+
+    header = b"#!AER-DAT2.0\r\n# This is a raw AE data file\r\n#End Of ASCII Header\r\n"
+    events = [(0x23000000, 10), (0x00401000, 20), (0x00802000, 30)]   # (address, t)
+    payload = b"".join(a.to_bytes(4, "big") + t.to_bytes(4, "big") for a, t in events)
+    path = tmp_path / "first_event_starts_with_hash.aedat"
+    path.write_bytes(header + payload)
+    decoded = read_aedat2(path)
+    assert decoded[:, 0].tolist() == [10, 20, 30]
+    assert decoded[0, 2] == (0x23000000 >> 22) and decoded[0, 1] == 0

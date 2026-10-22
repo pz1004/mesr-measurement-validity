@@ -1,0 +1,83 @@
+{
+  "what": "EDformer sigmoid scores on the capped dvsclean inputs",
+  "corpus": "dvsclean",
+  "cap": 1000000,
+  "seq_len": 4096,
+  "threshold": 0.005,
+  "seed": 230086,
+  "tail_score": 2.0,
+  "cache": "cache/edformer/dvsclean_cap1000000",
+  "records": [
+    {
+      "recording": "DVSCLEAN/MAH00446_50",
+      "events": 286887,
+      "scored": 286720,
+      "kept": 121454,
+      "sha256": "7b095d6e555a7e9a690f74fceb62fd9bf1f69f6a26ea1541a40f2dcc2c4fd424"
+    },
+    {
+      "recording": "DVSCLEAN/MAH00446_100",
+      "events": 382516,
+      "scored": 380928,
+      "kept": 105135,
+      "sha256": "c45d86eeaeb5281c321c03959d5068f46d33bc47b33c50a23b4c38298565fed6"
+    },
+    {
+      "recording": "DVSCLEAN/MAH00454_50",
+      "events": 277888,
+      "scored": 274432,
+      "kept": 61622,
+      "sha256": "347c7e423b7fbfd64330ac26d749b3c9b1a2a9926de18027187024d43d7520a7"
+    },
+    {
+      "recording": "DVSCLEAN/MAH00454_100",
+      "events": 370518,
+      "scored": 368640,
+      "kept": 42493,
+      "sha256": "4a327cd0cc373526e39e67fa8f8bebcee69f2612290de0ef1f2f89c13d21cc41"
+    },
+    {
+      "recording": "DVSCLEAN/MAH00455_50",
+      "events": 276240,
+      "scored": 274432,
+      "kept": 27373,
+      "sha256": "2b94a1654a5e75763bc046d49b6fbe65705779a59bec64255099c152c1b11bd3"
+    },
+    {
+      "recording": "DVSCLEAN/MAH00455_100",
+      "events": 368320,
+      "scored": 364544,
+      "kept": 18638,
+      "sha256": "6e48b02e3b48b29dd312ac44053e0fe7320a4028b47e9a63aa1e7d6f7c07fad0"
+    },
+    {
+      "recording": "DVSCLEAN/MAH00456_50",
+      "events": 277593,
+      "scored": 274432,
+      "kept": 54720,
+      "sha256": "cd6524dc744380d4c7d5cc9b701912731a4387355394746a3d94b4e00c910349"
+    },
+    {
+      "recording": "DVSCLEAN/MAH00456_100",
+      "events": 370124,
+      "scored": 368640,
+      "kept": 34309,
+      "sha256": "f7a55d1d0c4375ebc507ad01b1e6bc35e2f7b1204d49f0a7b5f88ea7521a00dd"
+    },
+    {
+      "recording": "DVSCLEAN/MAH00465_50",
+      "events": 281151,
+      "scored": 278528,
+      "kept": 83742,
+      "sha256": "01aa8504a04a642db3c66c0b61715b0ab23eeecb3d84f966ff0cfabc2f09318e"
+    },
+    {
+      "recording": "DVSCLEAN/MAH00465_100",
+      "events": 374868,
+      "scored": 372736,
+      "kept": 65345,
+      "sha256": "5a7ac056b920e105198df6bfd58ad88ef7bb27464d4457476209476c46eaff26"
+    }
+  ],
+  "wall_seconds": 66.23647981201066
+}

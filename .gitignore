@@ -57,6 +57,10 @@ __pycache__/
 # them; a failed run leaves them, and the next run refuses to start until they are cleared.
 /results/downstream_gesture_tiebreak_frames/
 
+# The same, for the matched-event check: each retention's frames are deleted once it is
+# evaluated, its manifests, labels and evaluator output when the run finishes.
+/results/downstream_matched_events_frames/
+
 # Written only when a source-audit check fails, so a failing run cannot overwrite the artifact.
 /results/reproducibility_audit.failed.json
 

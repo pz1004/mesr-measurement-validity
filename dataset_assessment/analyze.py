@@ -429,6 +429,14 @@ def edformer_reference() -> Dict:
     A cell mean follows the released aggregation, a mean over the recordings that have a
     score. Where EDformer keeps less than one 30,000-event slice the recording has no MESR
     at all; `evaluable` counts the ones that do, and it is not 48 everywhere.
+
+    `delta_over_raw` is paired: the unfiltered mean it subtracts, `raw_mesr_paired`, is
+    taken over those same evaluable recordings. The released script averages its unfiltered
+    stream over every recording (`raw_mesr`, kept because the vendored per-cell table is
+    checked against it), and subtracting that from a mean over a subset would put a change
+    of cohort inside a filtering contrast. `mean_delta_over_raw` weights the eight cells
+    equally, as the published table summarises by cell; `pooled_delta_over_raw` averages
+    the per-recording differences instead.
     """
 
     path = RESULTS / "edformer_emlb_uncapped.json"
@@ -443,19 +451,22 @@ def edformer_reference() -> Dict:
         _, part, base = row["recording"].split("/")
         grouped.setdefault((part, "ND" + re.search(r"ND(\d\d)", base).group(1)),
                            []).append(row)
-    cells, deltas, retentions = [], [], []
+    cells, deltas, retentions, per_recording = [], [], [], []
     for (part, level), rows in sorted(grouped.items()):
-        scored = [r["edformer_mesr"] for r in rows if np.isfinite(r["edformer_mesr"])]
-        filtered = float(np.mean(scored))
+        scored_rows = [r for r in rows if np.isfinite(r["edformer_mesr"])]
+        filtered = float(np.mean([r["edformer_mesr"] for r in scored_rows]))
         raw = float(np.mean([r["raw_mesr"] for r in rows]))
+        raw_paired = float(np.mean([r["raw_mesr"] for r in scored_rows]))
         retention = float(np.mean([r["retention"] for r in rows]))
         cells.append({"part": part, "nd": level, "raw_mesr": raw,
-                      "edformer_mesr": filtered, "delta_over_raw": filtered - raw,
+                      "raw_mesr_paired": raw_paired,
+                      "edformer_mesr": filtered, "delta_over_raw": filtered - raw_paired,
                       "mean_retention": retention, "recordings": len(rows),
-                      "evaluable": len(scored),
+                      "evaluable": len(scored_rows),
                       "paper_edformer": published[part][level]})
-        deltas.append(filtered - raw)
+        deltas.append(filtered - raw_paired)
         retentions.append(retention)
+        per_recording += [r["edformer_mesr"] - r["raw_mesr"] for r in scored_rows]
     errors = [c["edformer_mesr"] - c["paper_edformer"] for c in cells]
     return {
         "source": "results/edformer_emlb_uncapped.json",
@@ -465,7 +476,12 @@ def edformer_reference() -> Dict:
         "reason_not_sweepable": ("the threshold is hard-coded in the released evaluation "
                                  "script, so no MESR@r curve can be produced from it"),
         "cells": cells,
+        "delta_note": ("delta_over_raw = edformer_mesr - raw_mesr_paired, both over the evaluable "
+                       "recordings of a cell; raw_mesr averages every recording, as the "
+                       "released script does, so it is not the subtrahend"),
         "mean_delta_over_raw": float(np.mean(deltas)),
+        "pooled_delta_over_raw": {"mean": float(np.mean(per_recording)),
+                                  "n": len(per_recording)},
         # Bootstrapped over the 8 (lighting, ND) cells, not over recordings, so that this
         # interval stays comparable with the published table it is checked against. The
         # recording-level interval for EDformer is in results/native_emlb.json, where the
@@ -648,10 +664,15 @@ CURVE_CORPUS_NAME = {"dnd21": "DND21", "dvsclean": "DVSCLEAN", "emlb": "E-MLB",
 #: 340.6 pt -- a 0.19x reduction that printed 10 pt tick labels at under 2 pt, which is the
 #: reason the panels were unreadable, more than the panel count was. The float may not grow,
 #: so the height here is fixed and the caption pays for what the panels gained.
-CURVE_FIG_INCHES = (7.17, 0.88)  # 516.2 x 63.4 pt: the float it sits in must total
-#: 101.2 pt, which is 63.4 pt of panels plus a three-line caption plus IEEEtran's
-#: caption skip. The old split was 54.5 pt of panels and a four-line caption; the
-#: caption gave up its prose colour key to the legend and the panels took the space.
+CURVE_FIG_INCHES = (7.17, 1.00)  # 516.2 x 72 pt. The graphic grew 8.6 pt from 63.4 pt so
+#: that no label prints below 6 pt, and the caption gave up a line to pay for it, so the
+#: float keeps its height. The split before that was 54.5 pt of panels and a four-line
+#: caption; the caption gave up its prose colour key to the legend and the panels took
+#: the space.
+#: The regime scatter sits in one column of the supplement. Drawn at that width, its type
+#: prints at the size set here; it was drawn 6 x 4 in and shrunk to 0.36, which put its
+#: 10 pt labels at about 3.6 pt.
+REGIME_FIG_INCHES = (3.45, 2.4)
 #: Line and marker weights are tuned for a panel 1.4 in wide; the stored widths suit a panel
 #: five times that. One scalar keeps the two in one place.
 CURVE_STYLE_SCALE = 0.45
@@ -729,7 +750,7 @@ def figures(report: Dict) -> List[Path]:
         # One legend for the whole figure, drawn once above the panels, replaces the five
         # identical per-panel legends that used to eat a corner of every axes -- and the
         # sentence of the caption that spelled the same key out in prose.
-        plt.rcParams.update({"font.size": 5.6, "axes.linewidth": 0.4,
+        plt.rcParams.update({"font.size": 6.5, "axes.linewidth": 0.4,
                              "xtick.major.width": 0.4, "ytick.major.width": 0.4,
                              "xtick.major.size": 1.5, "ytick.major.size": 1.5,
                              "xtick.major.pad": 1.2, "ytick.major.pad": 1.2,
@@ -738,8 +759,8 @@ def figures(report: Dict) -> List[Path]:
         # The lower strip carries n(r) and nothing else, so the curves keep their own scale
         # instead of sharing an axis with a count.
         cells = fig.add_gridspec(2, len(datasets), height_ratios=[6.2, 1.0],
-                                 left=0.031, right=0.997, top=0.845, bottom=0.145,
-                                 wspace=0.27, hspace=0.16)
+                                 left=0.034, right=0.997, top=0.835, bottom=0.15,
+                                 wspace=0.28, hspace=0.16)
         handles: Dict[str, object] = {}
         for column, dataset in enumerate(datasets):
             by_method = curves_by_recording(dataset)
@@ -769,7 +790,7 @@ def figures(report: Dict) -> List[Path]:
                                   linewidth=0, zorder=2)
             axis.text(0.035, 0.94, CURVE_CORPUS_NAME.get(dataset, dataset),
                       transform=axis.transAxes, ha="left", va="top",
-                      fontsize=6.0, fontweight="bold")
+                      fontsize=6.5, fontweight="bold")
             axis.grid(alpha=0.25, linewidth=0.3)
             axis.set_xlim(0, 1.02)
             axis.tick_params(labelbottom=False)
@@ -781,7 +802,7 @@ def figures(report: Dict) -> List[Path]:
             # so the left shoulder the name occupies is the only other clear corner.
             low, high = axis.get_ylim()
             axis.text(0.975, 0.94, f"span {high - low:.2f}", transform=axis.transAxes,
-                      ha="right", va="top", fontsize=4.8, color="#505050")
+                      ha="right", va="top", fontsize=6.0, color="#505050")
             # No axis labels: at five panels they are five copies of the caption's first
             # clause, and the height they cost is the height the panels need.
 
@@ -806,15 +827,15 @@ def figures(report: Dict) -> List[Path]:
             # metric from a shrinking sample; the axis is truncated, so both are printed.
             span = f"n {full}" if floor == full else f"n {floor}\u2013{full}"
             strip.text(0.99, 0.0, span, transform=strip.transAxes, ha="right",
-                       va="bottom", fontsize=4.8, color="#404040")
-            strip.tick_params(labelsize=5.0)
+                       va="bottom", fontsize=6.0, color="#404040")
+            strip.tick_params(labelsize=6.0)
 
         ordered_handles = ([m for m in CURVE_ORDER if m in handles]
                            + sorted(m for m in handles if m not in CURVE_ORDER))
         fig.legend([handles[m] for m in ordered_handles],
                    [display_name(m) for m in ordered_handles],
                    loc="upper center", bbox_to_anchor=(0.5, 1.005),
-                   ncol=len(ordered_handles), fontsize=5.4, frameon=False,
+                   ncol=len(ordered_handles), fontsize=6.5, frameon=False,
                    handlelength=1.9, handletextpad=0.4, columnspacing=1.1)
         path = FIGURES / "fig_retention_curves.pdf"
         fig.savefig(path)
@@ -825,22 +846,27 @@ def figures(report: Dict) -> List[Path]:
     regimes = RESULTS / "noise_regimes.json"
     if regimes.exists():
         payload = json.loads(regimes.read_text())
-        fig, axis = plt.subplots(figsize=(6, 4))
+        # TrueType rather than matplotlib's default Type 3, which IEEE's PDF checks reject.
+        plt.rcParams.update({"font.size": 7.0, "axes.linewidth": 0.5, "pdf.fonttype": 42})
+        fig, axis = plt.subplots(figsize=REGIME_FIG_INCHES)
         for synthetic, colour, label in ((True, "tab:red", "synthetic"),
                                          (False, "tab:blue", "real")):
             xs = [p["spatial_autocorr"] for p in payload["profiles"]
                   if p["synthetic"] is synthetic]
             ys = [p["local_global_coupling"] for p in payload["profiles"]
                   if p["synthetic"] is synthetic]
-            axis.scatter(xs, ys, c=colour, label=label, alpha=0.7, s=25)
-        axis.set_xlabel("neighbour occupancy (share of events with an occupied neighbour)")
-        axis.set_ylabel("local-global coupling (corr)")
-        axis.grid(alpha=0.3)
-        axis.legend()
-        fig.tight_layout()
+            axis.scatter(xs, ys, c=colour, label=label, alpha=0.7, s=6, linewidths=0)
+        # Short labels: the long forms overran a one-column canvas at this size, and the
+        # caption and Supplementary Appendix K define both statistics.
+        axis.set_xlabel("neighbour occupancy")
+        axis.set_ylabel("local–global coupling")
+        axis.grid(alpha=0.3, linewidth=0.4)
+        axis.legend(fontsize=6.5, frameon=False, handletextpad=0.2)
+        fig.tight_layout(pad=0.3)
         path = FIGURES / "fig_regime_separation.pdf"
         fig.savefig(path)
         plt.close(fig)
+        plt.rcdefaults()
         written.append(path)
 
     return written

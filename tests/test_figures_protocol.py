@@ -56,12 +56,12 @@ def test_rank_instability_fits_the_two_column_float():
 
 
 def test_the_null_curve_reproduces_the_peak_the_caption_prints():
-    """$+0.7786$ on DVSD22 is printed in Table~I, in the abstract's $85\\times$ and in this
-    figure's caption. All three must come from one computation."""
+    """$+0.7839$ on DVSD22 is printed in Table~I, Table~III and this figure's caption. All
+    three must come from one computation."""
 
     null = delta_over_raw_curve(VIEW_DATASET, "random_null")
     below_one = {r: v for r, v in null.items() if r < 1.0}
-    assert max(below_one.values()) == pytest.approx(0.7786, abs=5e-5)
+    assert max(below_one.values()) == pytest.approx(0.7839, abs=5e-5)
 
 
 def test_the_null_gains_at_every_evaluable_retention_on_dvsd22():

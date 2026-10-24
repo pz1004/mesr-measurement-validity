@@ -258,7 +258,7 @@ shrinking sample at low retention visible.
 
 ### Paired contrasts on the E-MLB ranking
 
-Table IV's contrasts difference each pair of methods within the recordings both reach and
+Table V's contrasts difference each pair of methods within the recordings both reach and
 bootstrap the scene clusters, on the filters' own outputs (`--source native`, under *The filters'
 own outputs* above): 14 of the 21 pairs separate without correction, 10 after a Bonferroni
 correction over all 21. Differencing within recordings avoids reading the overlap of two marginal

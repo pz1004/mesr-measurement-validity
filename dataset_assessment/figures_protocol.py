@@ -117,7 +117,7 @@ def protocol_view(path: Path) -> Path:
             left.plot([index], [scalars[method]], marker="o", markersize=3.2,
                       color=style["color"], linestyle="none")
         left.set_xticks(range(len(VIEW_METHODS)))
-        left.set_xticklabels([m.upper() for m in VIEW_METHODS], rotation=90)
+        left.set_xticklabels([display_name(m) for m in VIEW_METHODS], rotation=90)
         left.set_ylabel(r"$\Delta$-over-Raw")
         left.set_title("as published:\none scalar per method", fontsize=6.5, pad=3)
         left.margins(x=0.12)

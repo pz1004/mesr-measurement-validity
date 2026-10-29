@@ -645,14 +645,29 @@ CURVE_ORDER = ["raw", "random_null", "label_oracle"]
 #: Printed name per method, where it differs from the key. `raw` is the block-prefix
 #: control, a thinned selection below r = 1, while the "Raw" of Delta-over-Raw is the
 #: unfiltered input; printed as `raw`, the one reads as the other, so the figures print
-#: `prefix`. The key, the CLI and every artifact keep `raw`.
-DISPLAY_NAME: Dict[str, str] = {"raw": "prefix"}
+#: `prefix`. The key, the CLI and every artifact keep `raw`. Filters print as the paper
+#: names them (EvFlow, not `evflow`), since a reviewer reads the figure before the code.
+DISPLAY_NAME: Dict[str, str] = {"raw": "prefix", "dwf": "DWF", "evflow": "EvFlow",
+                                "knoise": "KNoise", "red": "RED", "ts": "TS",
+                                "ynoise": "YNoise", "edformer": "EDformer"}
+
+#: Figure 1 prints on page 3, before the text introduces the short labels, so its legend
+#: spells the controls out. Figures with less room keep `display_name`.
+LEGEND_NAME: Dict[str, str] = {"raw": "block-prefix control",
+                               "random_null": "random subsampler",
+                               "label_oracle": "label oracle"}
 
 
 def display_name(method: str) -> str:
     """The label a figure prints for `method`."""
 
     return DISPLAY_NAME.get(method, method)
+
+
+def legend_name(method: str) -> str:
+    """The label Figure 1's legend prints for `method`."""
+
+    return LEGEND_NAME.get(method, display_name(method))
 
 
 #: Corpus names as the paper prints them; the JSON keys are lowercase slugs.
@@ -833,7 +848,7 @@ def figures(report: Dict) -> List[Path]:
         ordered_handles = ([m for m in CURVE_ORDER if m in handles]
                            + sorted(m for m in handles if m not in CURVE_ORDER))
         fig.legend([handles[m] for m in ordered_handles],
-                   [display_name(m) for m in ordered_handles],
+                   [legend_name(m) for m in ordered_handles],
                    loc="upper center", bbox_to_anchor=(0.5, 1.005),
                    ncol=len(ordered_handles), fontsize=6.5, frameon=False,
                    handlelength=1.9, handletextpad=0.4, columnspacing=1.1)

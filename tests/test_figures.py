@@ -16,7 +16,8 @@ import pytest
 
 from dataset_assessment.analyze import (CURVE_BAND_SERIES, CURVE_FIG_INCHES, CURVE_ORDER,
                                         CURVE_STYLE, CURVE_STYLE_SCALE, RESULTS,
-                                        _curve_style, curves_by_recording, recordings_at_r)
+                                        _curve_style, curves_by_recording, legend_name,
+                                        recordings_at_r)
 from dataset_assessment.common_support import coverage
 
 DATASETS = ("dnd21", "dvsclean", "emlb", "dvsd22", "pure_ba")
@@ -118,3 +119,16 @@ def test_the_two_nulls_are_separable_where_they_coincide():
 def test_banded_series_are_the_ones_the_figure_argues_about():
     assert set(CURVE_BAND_SERIES) <= set(CURVE_ORDER)
     assert "random_null" in CURVE_BAND_SERIES and "raw" in CURVE_BAND_SERIES
+
+
+def test_legend_prints_paper_names_not_code_identifiers():
+    """Figure 1 prints on page 3, before the paper defines `prefix` or `random_null`, so a
+    reviewer would read a code key (`random_null`, `evflow`) as an unexplained label."""
+
+    drawn = {m for d in available() for m in curves_by_recording(d)}
+    if not drawn:
+        pytest.skip("no benchmark present")
+    for method in drawn:
+        label = legend_name(method)
+        assert "_" not in label, f"{method} prints as {label!r}"
+        assert label != method or not method.islower(), f"{method} prints its code key"

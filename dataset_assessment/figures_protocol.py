@@ -1,18 +1,16 @@
 """The figures that show the protocol working, and the native-output reversal they rest on.
 
-All three are deliberately *not* in `analyze.figures`. That function is reachable only by running
-`python -m dataset_assessment.analyze`, which re-runs the whole ranking aggregation and
-rewrites `results/rank_analysis.json` as a side effect; redrawing a figure must not be able to
-rewrite an artifact the paper cites. Everything here reads the released JSON and writes only
-PDFs.
+All three read released JSON and write only figure PDFs and PNG previews. The companion
+retention and regime figures can likewise be rendered by calling `analyze.figures` directly.
+Avoid the full `python -m dataset_assessment.analyze` entry point for a visual revision:
+it also re-runs ranking aggregation and rewrites `results/rank_analysis.json`.
 
     python -m dataset_assessment.figures_protocol
 
-`fig_protocol_view` answers "what does the protocol buy": the left panel is the scalar a
-published table prints, the right panel is what the same corpus looks like once the null is on
-the retention axis beside it. The readout drawn on it is the count of retentions at which the
-null gains, not the peak -- the peak is a selected point, and selecting one is the error
-protocol items 1 and 4 exist to stop.
+`fig_protocol_view` compares six computed quota-adapted single-point summaries with random
+subsampling across retention on the same corpus. Its fixed shaded range spans those six
+summaries; it is not an uncertainty band. The caption distinguishes the 19 positive means
+from the one retained fraction at which the random mean exceeds all six summaries.
 
 `fig_rank_instability` answers "which method leads": the ranking at each method's own operating
 point against the rankings on AUC_r and on the metric-oracle r*, per corpus. Four of five
@@ -36,30 +34,67 @@ from .analyze import CURVE_CORPUS_NAME, FIGURES, RESULTS, _curve_style, display_
 
 logger = logging.getLogger(__name__)
 
-#: The corpus the left/right contrast is drawn on. DVSD22 is real and unfiltered, is where the
-#: null gains most, and is one of the two corpora no published MESR table includes -- so the
-#: left panel is exactly the view the literature reports and the right is what it omits.
+#: The corpus for the two-panel comparison. The single-point summaries are computed from
+#: quota-adapted responses near native retention; they are not published DVSD22 measurements.
 VIEW_DATASET = "dvsd22"
-#: Filters only. `raw` is the reference Delta-over-Raw is taken against and is identically zero.
+#: Filters only. Delta subtracts the unfiltered input, not the prefix control at matching r.
 VIEW_METHODS = ("dwf", "evflow", "knoise", "red", "ts", "ynoise")
 #: Drawn at print size and included with `width=\\linewidth`, so no type is downscaled.
-VIEW_INCHES = (3.45, 1.55)
-#: 1.93 in: the 6 pt method names need more than the old 1.62 in, and at 2.05 in the float
-#: overran its supplement page by 6.8 pt.
-RANK_INCHES = (7.17, 1.93)
+VIEW_INCHES = (7.17, 2.30)
+#: Three corpus panels above two, with a sixth cell for definitions and the shared key.
+RANK_INCHES = (7.17, 3.75)
 #: The three summaries \\S\\ref{sec:ranks} contrasts: each method's own operating point, the
 #: oracle-free AUC_r the protocol recommends, and the metric-oracle r*. All three are needed:
 #: on E-MLB the first two agree and only r* inverts the order, which is that subsection's
 #: whole point, so a two-column figure would show E-MLB as the corpus with no problem.
 RANK_KEYS = ("rank_native", "rank_auc_over_r", "rank_protocol")
-RANK_LABELS = ("nearest\ngrid", "$\\mathrm{AUC}_r$", "$r^\\star$")
+RANK_LABELS = ("Nearest\ngrid", "Area over\nretention", "Maximum\nMESR")
 #: Spearman against the nearest-grid ranking (the quota-adapted point nearest each native
-#: retention, not the native output), printed under the column it belongs to.
+#: retention, not the native output), printed above the column it belongs to.
 RANK_RHO = (None, "spearman_auc_vs_native", "spearman_protocol_vs_native")
 RANK_DATASETS = ("dnd21", "dvsclean", "emlb", "dvsd22", "pure_ba")
-ORACLE_INCHES = (3.45, 2.0)
+ORACLE_INCHES = (3.45, 2.55)
 #: The two labelled corpora: marker and colour per corpus; fill tells the two inputs apart.
 ORACLE_CORPORA = (("dnd21", "o", "#1f4e79", "DND21"), ("dvsclean", "^", "#b8541f", "DVSCLEAN"))
+
+FIGURE_STYLE = {
+    "font.family": "STIXGeneral", "font.size": 8.0,
+    "mathtext.fontset": "stix", "mathtext.default": "it",
+    "axes.labelsize": 8.5, "axes.titlesize": 9.0, "axes.linewidth": 0.6,
+    "xtick.labelsize": 8.0, "ytick.labelsize": 8.0,
+    "xtick.major.width": 0.6, "ytick.major.width": 0.6,
+    "xtick.major.size": 2.5, "ytick.major.size": 2.5,
+    "xtick.major.pad": 2.0, "ytick.major.pad": 2.0,
+    "pdf.fonttype": 42, "ps.fonttype": 42,
+}
+
+
+def _axes_in_points(figure, x, y, width, height):
+    """Position axes in typographic points at the final publication dimensions."""
+    fw, fh = figure.get_size_inches() * 72
+    axis = figure.add_axes([x/fw, y/fh, width/fw, height/fh])
+    axis.spines[["top", "right"]].set_visible(False)
+    return axis
+
+
+def _figure_text(figure, x, y, label, **kwargs):
+    fw, fh = figure.get_size_inches() * 72
+    return figure.text(x/fw, y/fh, label, fontsize=kwargs.pop("fontsize", 8),
+                       ha=kwargs.pop("ha", "left"), va=kwargs.pop("va", "center"),
+                       **kwargs)
+
+
+def _save_figure(figure, path: Path) -> Path:
+    """Write the vector figure and a matching review preview, never an evidence artifact."""
+    import matplotlib.pyplot as plt
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with plt.rc_context(FIGURE_STYLE):
+        figure.savefig(path, facecolor="white")
+        figure.savefig(path.with_suffix(".png"), dpi=240, facecolor="white")
+    plt.close(figure)
+    logger.info("wrote %s", path)
+    return path
 
 
 def delta_over_raw_curve(dataset: str, method: str) -> Dict[float, float]:
@@ -96,135 +131,142 @@ def _scalar_at_native(dataset: str) -> Dict[str, float]:
     return report[dataset]["delta_over_raw_at_native"]
 
 
-def protocol_view(path: Path) -> Path:
-    """Left: the scalar a table prints. Right: the same corpus with the null on the axis."""
+def build_protocol_view():
+    """Build the fixed single-point range and random-control response without writing."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Patch
 
+    with plt.rc_context(FIGURE_STYLE):
+        scalars = _scalar_at_native(VIEW_DATASET)
+        null = delta_over_raw_curve(VIEW_DATASET, "random_null")
+        figure = plt.figure(figsize=VIEW_INCHES)
+        left = _axes_in_points(figure, 43, 52, 194, 82)
+        right = _axes_in_points(figure, 292, 52, 216, 82)
+        _figure_text(figure, 7, 155, "(a) Single-point summaries", fontsize=9, weight="bold")
+        _figure_text(figure, 274, 155, "(b) Random subsampling across retention",
+                     fontsize=9, weight="bold")
+
+        for index, method in enumerate(VIEW_METHODS):
+            point, = left.plot([index], [scalars[method]], marker="o", markersize=4.0,
+                               color=_curve_style(method)["color"], linestyle="none", zorder=4)
+            point.set_gid(f"protocol:{method}")
+        left.set_xticks(range(len(VIEW_METHODS)))
+        left.set_xticklabels([display_name(m) for m in VIEW_METHODS])
+        left.set_xlim(-0.55, len(VIEW_METHODS)-0.45)
+        left.set_ylabel("MESR change from\nunfiltered input", labelpad=5)
+
+        grid = sorted(r for r in null if r < 1.0)
+        low, high = min(scalars[m] for m in VIEW_METHODS), max(scalars[m] for m in VIEW_METHODS)
+        null_style = {**_curve_style("random_null"), "linewidth": 1.5}
+        curve, = right.plot(grid, [null[r] for r in grid], **null_style)
+        curve.set_gid("protocol:random_null")
+        right.set(xlim=(min(grid)-0.025, max(grid)+0.025),
+                  xticks=[0.05, 0.25, 0.50, 0.75, 0.95], xlabel="Retained fraction $r$")
+        right.set_xticklabels(["0.05", "0.25", "0.50", "0.75", "0.95"])
+        top = max(high, max(null[r] for r in grid)) + 0.06
+        for name, axis in (("summaries", left), ("retention", right)):
+            band = axis.axhspan(low, high, color="#D8DDE1", alpha=0.55, linewidth=0, zorder=0)
+            band.set_gid(f"protocol:fixed-range:{name}")
+            zero = axis.axhline(0, color="#555555", lw=0.7, ls=(0, (3, 2)), zorder=2)
+            zero.set_gid(f"protocol:zero:{name}")
+            axis.set(ylim=(-0.04, top), yticks=[0.0, 0.25, 0.50, 0.75])
+            axis.grid(axis="y", color="#E4E7EA", lw=0.45, zorder=1)
+            axis.tick_params(labelsize=8)
+        right.tick_params(labelleft=False)
+
+        band_key = Patch(facecolor="#D8DDE1", edgecolor="none", alpha=0.55,
+                         label="Fixed range of six filter summaries")
+        figure.legend([curve, band_key], ["Random subsampling", band_key.get_label()],
+                      loc="center", bbox_to_anchor=(0.5, 17/(VIEW_INCHES[1]*72)),
+                      ncol=2, fontsize=8, frameon=False, handlelength=2.1,
+                      handletextpad=0.55, columnspacing=1.7, borderpad=0)
+        _figure_text(figure, VIEW_INCHES[0]*36, 5,
+                     "Positive = higher MESR than unfiltered input.", ha="center", color="#555555")
+        figure.canvas.draw()
+    return figure
+
+
+def protocol_view(path: Path) -> Path:
+    """Render the two-column single-point and random-subsampling comparison."""
+    return _save_figure(build_protocol_view(), path)
+
+
+def build_rank_instability(datasets: Sequence[str] = RANK_DATASETS):
+    """Build all three recorded rank permutations, with a separate explanatory key."""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    matplotlib.rcParams.update({"pdf.fonttype": 42, "font.size": 6.5})
-    try:
-        scalars = _scalar_at_native(VIEW_DATASET)
-        null = delta_over_raw_curve(VIEW_DATASET, "random_null")
-        figure, (left, right) = plt.subplots(
-            1, 2, figsize=VIEW_INCHES, sharey=True,
-            gridspec_kw={"width_ratios": [1.0, 1.75], "wspace": 0.08},
+    with plt.rc_context(FIGURE_STYLE):
+        report = json.loads((RESULTS / "rank_analysis.json").read_text())
+        rows = max(2, (len(datasets)+3)//3)
+        figure = plt.figure(figsize=(RANK_INCHES[0], RANK_INCHES[1]*rows/2))
+        height = figure.get_size_inches()[1]*72
+        last = len(RANK_KEYS)-1
+        for panel, dataset in enumerate(datasets):
+            row, column = divmod(panel, 3)
+            x = 18+172*column
+            top = height-33-128*row
+            axis = _axes_in_points(figure, x, top-76, 150, 76)
+            axis.set_gid(f"rank-panel:{dataset}")
+            orders = [report[dataset][key] for key in RANK_KEYS]
+            for method in orders[0]:
+                positions = [order.index(method)+1 for order in orders]
+                shifted = len(set(positions)) > 1
+                line, = axis.plot(range(len(orders)), positions,
+                                  color=_curve_style(method)["color"],
+                                  linewidth=1.25 if shifted else 0.8,
+                                  alpha=1.0 if shifted else 0.65,
+                                  marker="o", markersize=3.0,
+                                  zorder=3 if shifted else 2)
+                line.set_gid(f"rank:{dataset}:{method}")
+            for side in (0, last):
+                for rank, method in enumerate(orders[side], start=1):
+                    axis.annotate(display_name(method), xy=(side, rank), fontsize=8,
+                                  ha="left" if side else "right", va="center",
+                                  xytext=(4 if side else -4, 0), textcoords="offset points",
+                                  color=_curve_style(method)["color"])
+            axis.set(xlim=(-0.85, last+0.85), ylim=(7.35, 0.65),
+                     xticks=range(len(RANK_KEYS)))
+            axis.set_xticklabels(RANK_LABELS, fontsize=8, linespacing=1.15)
+            axis.set_yticks(range(1, len(orders[0])+1) if column == 0 else [])
+            axis.tick_params(axis="both", length=0, pad=3, labelsize=8)
+            axis.spines[["top", "right", "left", "bottom"]].set_visible(False)
+            _figure_text(figure, x-5, top+24,
+                         f"({chr(97+panel)}) {CURVE_CORPUS_NAME[dataset]}",
+                         fontsize=9, weight="bold")
+            for side, rho_key in enumerate(RANK_RHO[1:], start=1):
+                label = axis.annotate(r"$\rho=%.3f$" % report[dataset][rho_key],
+                                      xy=(side, 1), xycoords=("data", "axes fraction"),
+                                      xytext=(0, 8), textcoords="offset points",
+                                      ha="center", va="center", fontsize=8)
+                label.set_gid(f"rank-rho:{dataset}:{rho_key}")
+
+        key_row, key_column = divmod(len(datasets), 3)
+        x = 18+172*key_column
+        top = height-33-128*key_row
+        _figure_text(figure, x-5, top+24, "Reading the rankings", fontsize=9, weight="bold")
+        notes = (
+            (8, "Nearest grid: point nearest"),
+            (-3, "native retention."),
+            (-18, r"Area: mean normalized area over $r$."),
+            (-33, "Maximum: mean post-hoc peak."),
+            (-48, "ρ: versus nearest-grid ranking."),
+            (-63, "Rank 1 = highest MESR."),
+            (-78, "prefix: earliest events per block."),
+            (-93, "Thicker paths: changing rank."),
         )
-
-        for index, method in enumerate(VIEW_METHODS):
-            style = _curve_style(method)
-            left.plot([index], [scalars[method]], marker="o", markersize=3.2,
-                      color=style["color"], linestyle="none")
-        left.set_xticks(range(len(VIEW_METHODS)))
-        left.set_xticklabels([display_name(m) for m in VIEW_METHODS], rotation=90)
-        left.set_ylabel(r"$\Delta$-over-Raw")
-        left.set_title("as published:\none scalar per method", fontsize=6.5, pad=3)
-        left.margins(x=0.12)
-
-        grid = sorted(r for r in null if r < 1.0)
-        # The span every filter occupies, carried across both panels. The point of the figure
-        # is where the right-hand curve sits relative to it, so it has to be visible on both.
-        low, high = min(scalars[m] for m in VIEW_METHODS), max(scalars[m] for m in VIEW_METHODS)
-        right.plot(grid, [null[r] for r in grid], **_curve_style("random_null"))
-        right.axhline(0.0, color="#000000", linewidth=0.6, dashes=(3.0, 1.6))
-        right.invert_xaxis()
-        right.set_xlabel("retention $r$")
-        right.set_title("under the protocol:\nthe null on the same axis", fontsize=6.5, pad=3)
-
-        for axis in (left, right):
-            axis.axhspan(low, high, color="#999999", alpha=0.18, linewidth=0)
-            axis.tick_params(labelsize=6.0, length=2, pad=1.5)
-            for side in ("top", "right"):
-                axis.spines[side].set_visible(False)
-
-        # The readout is the count, not the peak. The null clears the band at one retention
-        # out of nineteen, so a caption that led with the peak would be making the
-        # metric-oracle claim protocol items 1 and 4 tell everyone else not to make.
-        gaining = sum(1 for r in grid if null[r] > 0)
-        right.annotate(f"$\\Delta > 0$ at ${gaining}/{len(grid)}$ retentions",
-                       xy=(0.03, 0.88), xycoords="axes fraction",
-                       fontsize=6.0, ha="left", va="top", color="#d62728")
-        exits = [r for r in grid if null[r] > high]
-        if exits:
-            clear = max(exits)
-            right.annotate(f"clears every filter\nonly at $r={clear:g}$",
-                           # the axis is inverted, so the smallest r sits at the right edge
-                           xy=(clear, null[clear]), xytext=(-5, -11),
-                           textcoords="offset points", fontsize=6.0, ha="right",
-                           va="top", color="#555555",
-                           arrowprops={"arrowstyle": "-", "linewidth": 0.4,
-                                       "color": "#555555", "shrinkA": 0.5, "shrinkB": 1.5})
-        right.annotate("shaded: the six filters' span", xy=(0.03, 0.30),
-                       xycoords="axes fraction", fontsize=6.0, ha="left", color="#555555")
-
-        figure.subplots_adjust(left=0.135, right=0.995, top=0.80, bottom=0.30)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        figure.savefig(path)
-        plt.close(figure)
-    finally:
-        matplotlib.rcdefaults()
-    logger.info("wrote %s", path)
-    return path
+        for offset, note in notes:
+            _figure_text(figure, x-5, top+offset, note)
+        figure.canvas.draw()
+    return figure
 
 
 def rank_instability(path: Path, datasets: Sequence[str] = RANK_DATASETS) -> Path:
-    """The three summaries of one curve, ranked side by side, one panel per corpus."""
-
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-
-    matplotlib.rcParams.update({"pdf.fonttype": 42, "font.size": 6.0})
-    try:
-        report = json.loads((RESULTS / "rank_analysis.json").read_text())
-        figure, axes = plt.subplots(1, len(datasets), figsize=RANK_INCHES)
-
-        last = len(RANK_KEYS) - 1
-        for axis, dataset in zip(np.atleast_1d(axes), datasets):
-            orders = [report[dataset][key] for key in RANK_KEYS]
-            moved = any(order != orders[0] for order in orders[1:])
-            for method in orders[0]:
-                positions = [order.index(method) + 1 for order in orders]
-                style = _curve_style(method)
-                shifted = len(set(positions)) > 1
-                axis.plot(range(len(orders)), positions, color=style["color"],
-                          linewidth=1.4 if shifted else 0.6,
-                          alpha=1.0 if shifted else 0.35,
-                          marker="o", markersize=2.4, zorder=3 if shifted else 2)
-            # Only the outer columns carry names; labelling the middle one would put text on
-            # both sides of it and collide with the lines arriving from either direction.
-            for side in (0, last):
-                for rank, method in enumerate(orders[side], start=1):
-                    axis.annotate(display_name(method), xy=(side, rank), fontsize=6.0,
-                                  ha="left" if side else "right",
-                                  va="center", xytext=(6 if side else -6, 0),
-                                  textcoords="offset points",
-                                  color=_curve_style(method)["color"])
-            # Both correlations go in the title: three tick labels plus a rho apiece do not
-            # fit across a fifth of a two-column float without overprinting each other.
-            rhos = " / ".join("%.3f" % report[dataset][key] for key in RANK_RHO if key)
-            axis.set_title(f"{CURVE_CORPUS_NAME[dataset]}\n" + r"$\rho$ " + rhos,
-                           fontsize=6.5, pad=2, linespacing=1.5,
-                           fontweight="bold" if moved else "normal")
-            axis.set_xticks(range(len(orders)))
-            axis.set_xticklabels(RANK_LABELS, fontsize=6.0)
-            axis.set_xlim(-0.6, last + 0.6)
-            axis.invert_yaxis()
-            axis.set_yticks([])
-            axis.tick_params(length=0, pad=1.5)
-            for side in ("top", "right", "left"):
-                axis.spines[side].set_visible(False)
-
-        np.atleast_1d(axes)[0].set_ylabel("rank", fontsize=6.5)
-        figure.subplots_adjust(left=0.048, right=0.955, top=0.80, bottom=0.11, wspace=0.42)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        figure.savefig(path)
-        plt.close(figure)
-    finally:
-        matplotlib.rcdefaults()
-    logger.info("wrote %s", path)
-    return path
+    """Render the three summaries per corpus in a readable three-plus-two arrangement."""
+    return _save_figure(build_rank_instability(datasets), path)
 
 
 def native_oracle_points(dataset: str, hot_pixel_removal: bool = False) -> List[Dict]:
@@ -243,17 +285,16 @@ def native_oracle_points(dataset: str, hot_pixel_removal: bool = False) -> List[
             for cell in payload["cells"]]
 
 
-def native_oracle_view(path: Path) -> Path:
-    """Each filter's own output against its matched oracle: purity lost against MESR gained."""
-
+def build_native_oracle_view():
+    """Build the unchanged cell coordinates with separate dataset and preprocessing keys."""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from matplotlib.lines import Line2D
 
-    matplotlib.rcParams.update({"pdf.fonttype": 42, "font.size": 6.5})
-    try:
-        figure, axis = plt.subplots(figsize=ORACLE_INCHES)
+    with plt.rc_context(FIGURE_STYLE):
+        figure = plt.figure(figsize=ORACLE_INCHES)
+        axis = _axes_in_points(figure, 37, 60, 203, 105)
         counts = {}
         lowest, highest, bottom = 0.0, 0.0, 0.0
         for removal in (False, True):
@@ -262,53 +303,55 @@ def native_oracle_view(path: Path) -> Path:
                 points = native_oracle_points(dataset, removal)
                 x = [p["purity"] for p in points]
                 y = [p["mesr"] for p in points]
-                axis.scatter(x, y, marker=marker, s=8 if removal else 9, linewidths=0.6,
-                             facecolors="none" if removal else color, edgecolors=color,
-                             alpha=0.9, zorder=3 if removal else 2)
+                dots = axis.scatter(x, y, marker=marker, s=18 if removal else 12,
+                                    linewidths=0.75 if removal else 0.45,
+                                    facecolors="none" if removal else color, edgecolors=color,
+                                    alpha=0.95 if removal else 0.65,
+                                    zorder=4 if removal else 3)
+                dots.set_gid(f"oracle:{dataset}:{'removed' if removal else 'released'}")
                 reversals += sum(p["reversal"] for p in points)
                 cells += len(points)
                 lowest, highest = min(lowest, min(x)), max(highest, max(y))
                 bottom = min(bottom, min(y))
             counts[removal] = (reversals, cells)
 
-        # The reversal quadrant: less purity than the oracle, higher MESR. Right of zero no
-        # cell can lie, so the shading stops there.
-        left, top = lowest * 1.05, highest * 1.22  # headroom for the count, above every cell
-        axis.fill_between([left, 0.0], 0.0, top, color="#999999", alpha=0.13, linewidth=0,
-                          zorder=0)
-        axis.axhline(0.0, color="#000000", linewidth=0.6, dashes=(3.0, 1.6), zorder=1)
-        axis.set_xlim(left, -lowest * 0.04)
-        # Room under the lowest point for a two-row legend, so it covers no cell.
-        axis.set_ylim(bottom - 0.26 * (top - bottom), top)
-        axis.set_xlabel("retained purity, filter minus oracle")
-        axis.set_ylabel("MESR, filter minus oracle")
-        (released, n_released), (removed, n_removed) = counts[False], counts[True]
-        axis.annotate(f"higher MESR with less signal than the oracle:\n{released}/{n_released} "
-                      f"as released, {removed}/{n_removed} with the busiest pixels removed",
-                      xy=(0.02, 0.97), xycoords="axes fraction", fontsize=6.0, ha="left",
-                      va="top", color="#333333", linespacing=1.3)
-        handles = [Line2D([], [], marker=marker, linestyle="none", markersize=3.6,
-                          markerfacecolor=color, markeredgecolor=color, label=label)
-                   for _dataset, marker, color, label in ORACLE_CORPORA]
-        handles += [Line2D([], [], marker="o", linestyle="none", markersize=3.6,
-                           markerfacecolor="#555555", markeredgecolor="#555555",
-                           label="as released"),
-                    Line2D([], [], marker="o", linestyle="none", markersize=3.6,
-                           markerfacecolor="none", markeredgecolor="#555555",
-                           label="busiest 0.1% removed")]
-        axis.legend(handles=handles, loc="lower center", ncol=2, fontsize=6.0, frameon=False,
-                    handletextpad=0.1, columnspacing=0.9, borderaxespad=0.15)
-        axis.tick_params(labelsize=6.0, length=2, pad=1.5)
-        for side in ("top", "right"):
-            axis.spines[side].set_visible(False)
-        figure.subplots_adjust(left=0.13, right=0.985, top=0.985, bottom=0.17)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        figure.savefig(path)
-        plt.close(figure)
-    finally:
-        matplotlib.rcdefaults()
-    logger.info("wrote %s", path)
-    return path
+        left, top = lowest*1.05, highest+0.025
+        shade = axis.fill_between([left, 0.0], 0.0, top, color="#E7EBEE", alpha=0.65,
+                                  linewidth=0, zorder=0)
+        shade.set_gid("oracle:reversal-quadrant")
+        for name, line in (("y", axis.axhline(0, color="#555555", lw=0.7, ls=(0, (3, 2)), zorder=1)),
+                           ("x", axis.axvline(0, color="#555555", lw=0.7, ls=(0, (3, 2)), zorder=1))):
+            line.set_gid(f"oracle:zero:{name}")
+        axis.set(xlim=(left, -lowest*0.04), ylim=(bottom-0.018, top),
+                 xticks=[-0.25, -0.15, -0.05, 0.0], yticks=[0, 0.1, 0.2, 0.3],
+                 xlabel="Retained-purity difference", ylabel="MESR difference")
+        axis.set_xticklabels(["−0.25", "−0.15", "−0.05", "0.00"])
+        axis.tick_params(labelsize=8)
+        _figure_text(figure, 138.5, 174, "Filter − matched oracle", ha="center", fontsize=9,
+                     weight="bold")
+
+        corpus_handles = [Line2D([], [], marker=marker, linestyle="none", markersize=4,
+                                 markerfacecolor=color, markeredgecolor=color, label=label)
+                          for _dataset, marker, color, label in ORACLE_CORPORA]
+        figure.legend(handles=corpus_handles, loc="center", ncol=2, frameon=False,
+                      bbox_to_anchor=(0.5, 23/(ORACLE_INCHES[1]*72)), fontsize=8,
+                      handletextpad=0.5, columnspacing=1.7, borderpad=0)
+        state_handles = [Line2D([], [], marker="o", linestyle="none", markersize=3.5,
+                                markerfacecolor="#666666", markeredgecolor="#666666",
+                                label="As released"),
+                         Line2D([], [], marker="o", linestyle="none", markersize=4.2,
+                                markerfacecolor="none", markeredgecolor="#666666",
+                                label="Busiest pixels removed")]
+        figure.legend(handles=state_handles, loc="center", ncol=2, frameon=False,
+                      bbox_to_anchor=(0.5, 10/(ORACLE_INCHES[1]*72)), fontsize=8,
+                      handletextpad=0.5, columnspacing=1.2, borderpad=0)
+        figure.canvas.draw()
+    return figure
+
+
+def native_oracle_view(path: Path) -> Path:
+    """Render filter-minus-oracle cell differences without placing prose over observations."""
+    return _save_figure(build_native_oracle_view(), path)
 
 
 def main() -> List[Path]:

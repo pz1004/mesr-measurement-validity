@@ -1,8 +1,8 @@
-"""Figure 1 has a page budget and a data contract; both are asserted here.
+"""Figure 1 has a printed layout and a data contract; both are asserted here.
 
 The figure carries three things the prose depends on -- the mean curve, an interval, and
-`n(r)` -- and it has to carry them inside a float whose height is fixed by the article's
-page budget. Neither constraint is visible from reading `analyze.figures`, so both are pinned.
+`n(r)` -- within the enlarged two-column layout approved for readable eight-point labels.
+Both the evidence and the printed dimensions are checked.
 """
 
 from __future__ import annotations
@@ -79,13 +79,14 @@ def test_n_of_r_is_a_property_of_the_recording_not_the_method():
                     f"{dataset}/{recording}: {method} has a different evaluable grid")
 
 
-def test_figure_fits_the_float_budget():
-    """The float is this graphic plus its caption plus IEEEtran's caption skip. The graphic
-    grew 8.6 pt, to 72 pt, so that no label prints below 6 pt, and the caption gave up a line
-    to pay for it. Growing it further silently adds an overlength page at $265, so the size
-    is asserted rather than trusted."""
+def test_figure_fits_the_revised_float_layout():
+    """The revision deliberately enlarges the original one-inch figure for legibility.
 
-    assert FIGURE.exists(), "run `python -m dataset_assessment.analyze` first"
+    Page fit is checked in the compiled documents; shrinking type to recover the former
+    height is not an acceptable substitute for the approved enlarged layout.
+    """
+
+    assert FIGURE.exists(), "render the retention figure first"
     boxes = re.findall(rb"/MediaBox\s*\[([^\]]*)\]", FIGURE.read_bytes())
     assert boxes, "no /MediaBox in the figure PDF"
     width, height = [float(v) for v in boxes[0].split()[2:4]]
@@ -93,7 +94,7 @@ def test_figure_fits_the_float_budget():
     assert height == pytest.approx(CURVE_FIG_INCHES[1] * 72, abs=0.5)
     # Included at `width=\linewidth` in a two-column IEEEtran figure*, which is 516 pt.
     assert width == pytest.approx(516.0, abs=1.0)
-    assert height <= 72.5
+    assert 144.0 <= height <= 158.5
 
 
 def test_curve_style_draws_no_markers_and_scales_line_weight():

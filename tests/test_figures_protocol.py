@@ -36,15 +36,14 @@ def media_box(path: Path) -> tuple:
     return tuple(float(v) for v in boxes[0].split()[2:4])
 
 
-def test_protocol_view_fits_one_column():
-    """Drawn at print size and included at `width=\\linewidth` in a single IEEEtran column,
-    which is 252 pt. Drawing it wider would downscale the type below legibility."""
+def test_protocol_view_fits_two_columns():
+    """The revised comparison uses a wide float, without downscaling its labels."""
 
     assert VIEW_PDF.exists(), REGENERATE
     width, height = media_box(VIEW_PDF)
     assert width == pytest.approx(VIEW_INCHES[0] * 72, abs=0.5)
     assert height == pytest.approx(VIEW_INCHES[1] * 72, abs=0.5)
-    assert width <= 252.0, "wider than an IEEEtran column"
+    assert width == pytest.approx(516.0, abs=1.0)
 
 
 def test_rank_instability_fits_the_two_column_float():

@@ -12,7 +12,8 @@ here; the three marked "alongside other runs" quote what their artifacts record.
 pip install -r requirements.txt
 python -m dataset_assessment.analyze                # rank_analysis.json + results/figures/
 python -m dataset_assessment.figures_protocol       # the protocol figures and the oracle scatter
-python -m pytest -q tests/                          # 444 passed with every checkout in place
+python -m dataset_assessment.figure_measurement_chain  # Figure 2, the measurement chain
+python -m pytest -q tests/                          # 446 passed with every checkout in place
 python -m dataset_assessment.audit                  # 10/10 claims verified from source
 python -m dataset_assessment.make_numbers_digest > NUMBERS.md
 ```
@@ -23,12 +24,12 @@ skip and none fails. `audit` needs the `EDformer/`, `EDmamba/` and `cuke-emlb/` 
 (source inspection only, nothing is executed) and writes `results/reproducibility_audit.json`.
 
 `analyze` also writes **Figure 1** (`results/figures/fig_retention_curves.pdf`). It is drawn
-at the size it is printed at -- 516 x 72 pt, the full text width of a two-column IEEEtran
+at the size it is printed at -- 516 x 155 pt, the full text width of a two-column IEEEtran
 `figure*` -- and included with `width=\linewidth`, so nothing downscales the type; no label in
-any figure prints below 6 pt (`tests/test_figure_legibility.py`). The float it sits in is that
-graphic plus its caption, which gave up a line when the graphic grew to fit the larger type;
-the graphic's height is asserted in `tests/test_figures.py::test_figure_fits_the_float_budget`,
-because growing the figure silently costs a page at $265. Bands are `cluster_bootstrap_delta_ci` at 2,000 draws
+any figure prints below 8 pt (`tests/test_figure_legibility.py`). The 2026-10-29 redesign
+enlarged it for legibility, which adds a page to the article; the graphic's size is asserted in
+`tests/test_figures.py::test_figure_fits_the_revised_float_layout`, so a further change is a
+decision rather than drift. Bands are `cluster_bootstrap_delta_ci` at 2,000 draws
 on the same seed as the reported intervals, and the strip under each panel is `n(r)`,
 asserted equal to `common_support.coverage`.
 

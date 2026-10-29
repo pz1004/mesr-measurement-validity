@@ -1,4 +1,4 @@
-"""Every figure prints its text at 6 pt or more, this paper's floor.
+"""Every revised figure prints base text at 8 pt or more and within the page.
 
 The figures are drawn at print size and included at `width=\\linewidth`, so the size set in
 code is the size on paper. Two failure modes are pinned: type set too small in code, and a
@@ -8,7 +8,10 @@ canvas wider than the column it is printed in, which LaTeX shrinks along with it
 from __future__ import annotations
 
 import re
+from pathlib import Path
+import subprocess
 from typing import Callable, List
+import xml.etree.ElementTree as ET
 
 import matplotlib
 matplotlib.use("Agg")
@@ -17,9 +20,26 @@ import matplotlib.text  # noqa: E402
 import pytest  # noqa: E402
 
 from dataset_assessment import analyze, figures_protocol  # noqa: E402
+from dataset_assessment.figure_measurement_chain import measurement_chain  # noqa: E402
 
-MIN_PT = 6.0
+MIN_PT = 8.0
 REGIME = analyze.FIGURES / "fig_regime_separation.pdf"
+
+
+def pdf_text_bounds_errors(path: Path) -> List[str]:
+    """Inspect exported words, including ticks that extend outside the canvas."""
+    xml = subprocess.run(["pdftotext", "-bbox", str(path), "-"],
+                         check=True, capture_output=True, text=True).stdout
+    errors = []
+    for page in ET.fromstring(xml).findall(".//{*}page"):
+        width, height = float(page.attrib["width"]), float(page.attrib["height"])
+        for word in page.findall(".//{*}word"):
+            a = word.attrib
+            if (float(a["xMin"]) < -.5 or float(a["yMin"]) < -.5
+                    or float(a["xMax"]) > width + .5
+                    or float(a["yMax"]) > height + .5):
+                errors.append(f"{path.name}: clipped text {word.text!r}")
+    return errors
 
 
 @pytest.fixture
@@ -35,6 +55,8 @@ def printed_sizes(monkeypatch) -> List[float]:
         result = original(self, *args, **kwargs)
         sizes.extend(text.get_fontsize() for text in self.findobj(matplotlib.text.Text)
                      if text.get_visible() and text.get_text().strip())
+        if args and Path(args[0]).suffix.lower() == ".pdf":
+            assert pdf_text_bounds_errors(Path(args[0])) == []
         return result
 
     monkeypatch.setattr(matplotlib.figure.Figure, "savefig", recording_savefig)
@@ -43,14 +65,15 @@ def printed_sizes(monkeypatch) -> List[float]:
 
 @pytest.mark.parametrize("draw", [figures_protocol.protocol_view,
                                   figures_protocol.rank_instability,
-                                  figures_protocol.native_oracle_view])
-def test_protocol_figures_print_no_text_below_six_points(
+                                  figures_protocol.native_oracle_view,
+                                  measurement_chain])
+def test_protocol_figures_print_no_text_below_eight_points(
         draw: Callable, printed_sizes: List[float], tmp_path) -> None:
     draw(tmp_path / "figure.pdf")
     assert printed_sizes and min(printed_sizes) >= MIN_PT
 
 
-def test_curve_and_regime_figures_print_no_text_below_six_points(
+def test_curve_and_regime_figures_print_no_text_below_eight_points(
         printed_sizes: List[float], tmp_path, monkeypatch) -> None:
     monkeypatch.setattr(analyze, "FIGURES", tmp_path)
     report = {d: {"rows": [True]} for d in analyze.DATASETS
@@ -63,7 +86,7 @@ def test_regime_figure_is_drawn_at_column_width() -> None:
     """Drawn at print size so the floor above holds on paper. It was 432 pt wide and printed
     at 0.62 of a column, which shrank its 10 pt labels to about 3.6 pt."""
 
-    assert REGIME.exists(), "run `python -m dataset_assessment.analyze` first"
+    assert REGIME.exists(), "render the curve and regime figures first"
     boxes = re.findall(rb"/MediaBox\s*\[([^\]]*)\]", REGIME.read_bytes())
     assert boxes, "no /MediaBox in the figure PDF"
     width = float(boxes[0].split()[2])

@@ -629,13 +629,16 @@ CURVE_STYLE: Dict[str, Dict] = {
     # they very nearly coincide and whichever was drawn second used to hide the other.
     "random_null":  {"color": "#d62728", "dashes": (1.2, 1.2), "linewidth": 2.2,
                      "zorder": 5},
-    "label_oracle": {"color": "#2ca02c", "linestyle": ":",  "linewidth": 2.2, "zorder": 5},
-    "dwf":          {"color": "#1f77b4"},
-    "evflow":       {"color": "#ff7f0e"},
-    "knoise":       {"color": "#8c564b"},
-    "red":          {"color": "#9467bd"},
-    "ts":           {"color": "#e377c2"},
-    "ynoise":       {"color": "#7f7f7f"},
+    "label_oracle": {"color": "#2ca02c", "dashes": (3.0, 1.6, .8, 1.6),
+                     "linewidth": 2.2, "zorder": 5},
+    # Distinct patterns keep individual filter curves identifiable in grayscale.
+    # Short repeat lengths survive the narrow panels and the shared legend keys.
+    "dwf":          {"color": "#1f77b4", "linestyle": "-"},
+    "evflow":       {"color": "#ff7f0e", "dashes": (7.0, 2.0)},
+    "knoise":       {"color": "#8c564b", "dashes": (2.5, 2.0)},
+    "red":          {"color": "#9467bd", "dashes": (6.0, 2.0, 1.0, 2.0)},
+    "ts":           {"color": "#e377c2", "dashes": (6.0, 2.0, 1.0, 2.0, 1.0, 2.0)},
+    "ynoise":       {"color": "#7f7f7f", "dashes": (6.0, 2.0, 2.5, 2.0)},
     "native3d":       {"color": "#17becf"},
     "native3d_gated": {"color": "#bcbd22"},
 }
@@ -674,23 +677,13 @@ def legend_name(method: str) -> str:
 CURVE_CORPUS_NAME = {"dnd21": "DND21", "dvsclean": "DVSCLEAN", "emlb": "E-MLB",
                      "dvsd22": "DVSD22", "pure_ba": "Pure_BA", "ed24": "ED24"}
 
-#: Figure 1 is drawn at the size it is printed at and included with `width=\\linewidth`, so
-#: nothing downscales the type. The previous version was drawn 25 in wide and included at
-#: 340.6 pt -- a 0.19x reduction that printed 10 pt tick labels at under 2 pt, which is the
-#: reason the panels were unreadable, more than the panel count was. The float may not grow,
-#: so the height here is fixed and the caption pays for what the panels gained.
-CURVE_FIG_INCHES = (7.17, 1.00)  # 516.2 x 72 pt. The graphic grew 8.6 pt from 63.4 pt so
-#: that no label prints below 6 pt, and the caption gave up a line to pay for it, so the
-#: float keeps its height. The split before that was 54.5 pt of panels and a four-line
-#: caption; the caption gave up its prose colour key to the legend and the panels took
-#: the space.
-#: The regime scatter sits in one column of the supplement. Drawn at that width, its type
-#: prints at the size set here; it was drawn 6 x 4 in and shrunk to 0.36, which put its
-#: 10 pt labels at about 3.6 pt.
-REGIME_FIG_INCHES = (3.45, 2.4)
+#: Publication-size canvases; captions and manuscript pagination accommodate the
+#: additional height rather than reducing the eight-point figure typography.
+CURVE_FIG_INCHES = (7.17, 2.15)
+REGIME_FIG_INCHES = (3.45, 2.5)
 #: Line and marker weights are tuned for a panel 1.4 in wide; the stored widths suit a panel
 #: five times that. One scalar keeps the two in one place.
-CURVE_STYLE_SCALE = 0.45
+CURVE_STYLE_SCALE = 0.55
 #: Bands resample scene clusters, the unit Table II reports on, not recordings. 2,000 draws
 #: rather than the 10,000 used for reported numbers: this band is eyeballed, and E-MLB's 96
 #: clusters make resampling the slowest step in the figure.
@@ -751,7 +744,11 @@ def recordings_at_r(by_method: Dict[str, Dict[str, Dict[float, float]]]) -> Dict
 
 
 def figures(report: Dict) -> List[Path]:
-    """MESR@r curves per dataset, plus the null-vs-raw control panel."""
+    """Render retention curves and recording characteristics from released JSON.
+
+    This function writes only figure PDFs and PNG previews. Calling it directly
+    avoids the ranking aggregation and evidence writes performed by ``main``.
+    """
 
     import matplotlib
     matplotlib.use("Agg")
@@ -762,26 +759,26 @@ def figures(report: Dict) -> List[Path]:
 
     datasets = [d for d in report if report[d].get("rows")]
     if datasets:
-        # One legend for the whole figure, drawn once above the panels, replaces the five
-        # identical per-panel legends that used to eat a corner of every axes -- and the
-        # sentence of the caption that spelled the same key out in prose.
-        plt.rcParams.update({"font.size": 6.5, "axes.linewidth": 0.4,
-                             "xtick.major.width": 0.4, "ytick.major.width": 0.4,
-                             "xtick.major.size": 1.5, "ytick.major.size": 1.5,
-                             "xtick.major.pad": 1.2, "ytick.major.pad": 1.2,
-                             "axes.labelpad": 1.5, "pdf.fonttype": 42})
+        plt.rcParams.update({"font.family": "STIXGeneral", "mathtext.fontset": "stix",
+                             "mathtext.default": "it",
+                             "font.size": 8, "axes.linewidth": .5,
+                             "xtick.major.width": .5, "ytick.major.width": .5,
+                             "xtick.major.size": 2, "ytick.major.size": 2,
+                             "xtick.major.pad": 2, "ytick.major.pad": 2,
+                             "axes.labelpad": 3, "pdf.fonttype": 42, "ps.fonttype": 42})
         fig = plt.figure(figsize=CURVE_FIG_INCHES)
         # The lower strip carries n(r) and nothing else, so the curves keep their own scale
         # instead of sharing an axis with a count.
-        cells = fig.add_gridspec(2, len(datasets), height_ratios=[6.2, 1.0],
-                                 left=0.034, right=0.997, top=0.835, bottom=0.15,
-                                 wspace=0.28, hspace=0.16)
+        cells = fig.add_gridspec(2, len(datasets), height_ratios=[5.0, 1.2],
+                                 left=.072, right=.982, top=.705, bottom=.24,
+                                 wspace=.36, hspace=.18)
         handles: Dict[str, object] = {}
         for column, dataset in enumerate(datasets):
             by_method = curves_by_recording(dataset)
             ordered = ([m for m in CURVE_ORDER if m in by_method]
                        + sorted(m for m in by_method if m not in CURVE_ORDER))
             axis = fig.add_subplot(cells[0, column])
+            axis.set_gid(f"retention:{dataset}")
             for method in ordered:
                 per_recording = by_method[method]
                 grid = sorted({r for points in per_recording.values() for r in points})
@@ -789,6 +786,7 @@ def figures(report: Dict) -> List[Path]:
                         for r in grid]
                 line, = axis.plot(grid, mean,
                                   **_curve_style(method, CURVE_STYLE_SCALE))
+                line.set_gid(f"curve:{dataset}:{method}")
                 handles.setdefault(method, line)
                 if method not in CURVE_BAND_SERIES:
                     continue
@@ -801,35 +799,31 @@ def figures(report: Dict) -> List[Path]:
                                                       draws=CURVE_BAND_DRAWS)
                     lo.append(band["lo"] if np.isfinite(band["lo"]) else centre)
                     hi.append(band["hi"] if np.isfinite(band["hi"]) else centre)
-                axis.fill_between(grid, lo, hi, color=line.get_color(), alpha=0.20,
-                                  linewidth=0, zorder=2)
-            axis.text(0.035, 0.94, CURVE_CORPUS_NAME.get(dataset, dataset),
-                      transform=axis.transAxes, ha="left", va="top",
-                      fontsize=6.5, fontweight="bold")
-            axis.grid(alpha=0.25, linewidth=0.3)
-            axis.set_xlim(0, 1.02)
+                band_artist = axis.fill_between(grid, lo, hi, color=line.get_color(), alpha=.16,
+                                                linewidth=0, zorder=2)
+                band_artist.set_gid(f"band:{dataset}:{method}")
+            axis.set_title(f"({chr(97+column)}) {CURVE_CORPUS_NAME.get(dataset, dataset)}",
+                           fontsize=9, fontweight="bold", pad=5)
+            axis.grid(color="#E2E5E7", linewidth=.4)
+            axis.set_xlim(0, 1.025)
             axis.tick_params(labelbottom=False)
-            # The panels' vertical scales differ by >30x (0.50 on DVSCLEAN against 15.47 on
-            # Pure_BA), so a slope reads across them but a height does not. Printing each span
-            # states that where the eye would otherwise compare the panels directly. Read
-            # after set_xlim so autoscaling has settled.
-            # Top-right, not under the name: every panel's curves sit low or converge right,
-            # so the left shoulder the name occupies is the only other clear corner.
-            low, high = axis.get_ylim()
-            axis.text(0.975, 0.94, f"span {high - low:.2f}", transform=axis.transAxes,
-                      ha="right", va="top", fontsize=6.0, color="#505050")
-            # No axis labels: at five panels they are five copies of the caption's first
-            # clause, and the height they cost is the height the panels need.
+            axis.set_axisbelow(True)
+            for spine in ("top", "right"):
+                axis.spines[spine].set_visible(False)
+            for spine in ("left", "bottom"):
+                axis.spines[spine].set_color("#7D858B")
 
             counts = recordings_at_r(by_method)
             strip = fig.add_subplot(cells[1, column], sharex=axis)
+            strip.set_gid(f"coverage:{dataset}")
             full, floor = max(counts.values()), min(counts.values())
             # Filled from zero this reads as a solid slab, because n(r) sits at its ceiling
             # over most of the axis. A step line on a tight scale shows where it drops, and
             # the dotted rule marks the full cohort so a flat trace is legibly flat.
-            strip.axhline(full, color="#909090", linewidth=0.3, linestyle=":")
+            strip.axhline(full, color="#92999F", linewidth=.5, linestyle=":",
+                          gid=f"cohort_maximum:{dataset}")
             strip.step(list(counts), list(counts.values()), where="mid",
-                       color="#404040", linewidth=0.6)
+                       color="#404040", linewidth=.8, gid=f"cohort:{dataset}")
             # Asymmetric on purpose: it seats the trace near the top of a strip five points
             # tall, which is the only place the count annotation can sit without the line
             # striking through it on the corpora where n(r) never moves.
@@ -840,20 +834,30 @@ def figures(report: Dict) -> List[Path]:
                 strip.spines[spine].set_visible(False)
             # The floor and the ceiling of n(r) are what a reader needs to tell a rising
             # metric from a shrinking sample; the axis is truncated, so both are printed.
-            span = f"n {full}" if floor == full else f"n {floor}\u2013{full}"
+            span = f"{full}" if floor == full else f"{floor}\u2013{full}"
             strip.text(0.99, 0.0, span, transform=strip.transAxes, ha="right",
-                       va="bottom", fontsize=6.0, color="#404040")
-            strip.tick_params(labelsize=6.0)
+                       va="bottom", fontsize=8, color="#404040")
+            strip.set_xticks([0, .5, 1])
+            strip.set_xticklabels(["0", "0.5", "1"])
+            strip.tick_params(labelsize=8)
+            strip.spines["bottom"].set_color("#7D858B")
 
         ordered_handles = ([m for m in CURVE_ORDER if m in handles]
                            + sorted(m for m in handles if m not in CURVE_ORDER))
-        fig.legend([handles[m] for m in ordered_handles],
-                   [legend_name(m) for m in ordered_handles],
-                   loc="upper center", bbox_to_anchor=(0.5, 1.005),
-                   ncol=len(ordered_handles), fontsize=6.5, frameon=False,
-                   handlelength=1.9, handletextpad=0.4, columnspacing=1.1)
+        for methods, top in (([m for m in CURVE_ORDER if m in handles], .990),
+                             ([m for m in ordered_handles if m not in CURVE_ORDER], .912)):
+            fig.legend([handles[m] for m in methods], [legend_name(m) for m in methods],
+                       loc="upper center", bbox_to_anchor=(.53, top), ncol=len(methods),
+                       fontsize=8, frameon=False, handlelength=2.5, handletextpad=.45,
+                       columnspacing=1.6, borderpad=0, borderaxespad=.3)
+        fig.text(.016, .51, "Mean Event Structural Ratio (MESR)", rotation=90,
+                 ha="center", va="center", fontsize=8)
+        fig.text(.53, .125, r"Evaluable recordings $n(r)$  ·  dotted: maximum evaluable cohort",
+                 ha="center", va="center", fontsize=8, color="#50575C")
+        fig.text(.53, .043, r"Retained fraction $r$", ha="center", va="center", fontsize=8)
         path = FIGURES / "fig_retention_curves.pdf"
         fig.savefig(path)
+        fig.savefig(path.with_suffix(".png"), dpi=200)
         plt.close(fig)
         plt.rcdefaults()
         written.append(path)
@@ -861,25 +865,40 @@ def figures(report: Dict) -> List[Path]:
     regimes = RESULTS / "noise_regimes.json"
     if regimes.exists():
         payload = json.loads(regimes.read_text())
-        # TrueType rather than matplotlib's default Type 3, which IEEE's PDF checks reject.
-        plt.rcParams.update({"font.size": 7.0, "axes.linewidth": 0.5, "pdf.fonttype": 42})
+        plt.rcParams.update({"font.family": "STIXGeneral", "mathtext.fontset": "stix",
+                             "mathtext.default": "it",
+                             "font.size": 8, "axes.linewidth": .5,
+                             "pdf.fonttype": 42, "ps.fonttype": 42})
         fig, axis = plt.subplots(figsize=REGIME_FIG_INCHES)
-        for synthetic, colour, label in ((True, "tab:red", "synthetic"),
-                                         (False, "tab:blue", "real")):
-            xs = [p["spatial_autocorr"] for p in payload["profiles"]
-                  if p["synthetic"] is synthetic]
-            ys = [p["local_global_coupling"] for p in payload["profiles"]
-                  if p["synthetic"] is synthetic]
-            axis.scatter(xs, ys, c=colour, label=label, alpha=0.7, s=6, linewidths=0)
-        # Short labels: the long forms overran a one-column canvas at this size, and the
-        # caption and Supplementary Appendix K define both statistics.
-        axis.set_xlabel("neighbour occupancy")
-        axis.set_ylabel("local–global coupling")
-        axis.grid(alpha=0.3, linewidth=0.4)
-        axis.legend(fontsize=6.5, frameon=False, handletextpad=0.2)
-        fig.tight_layout(pad=0.3)
+        for synthetic, key, label in ((False, "recorded", "Recorded corpora"),
+                                      (True, "synthetic", "Injected-noise corpora")):
+            points = [p for p in payload["profiles"] if p["synthetic"] is synthetic
+                      and np.isfinite(p["spatial_autocorr"]) and np.isfinite(p["local_global_coupling"])]
+            xs = [p["spatial_autocorr"] for p in points]
+            ys = [p["local_global_coupling"] for p in points]
+            axis.scatter(xs, ys, label=f"{label} ($n={len(points)}$)",
+                         marker="^" if synthetic else "o", s=24 if synthetic else 12,
+                         facecolors="white" if synthetic else "#507F9F",
+                         edgecolors="#B46B3E" if synthetic else "none",
+                         linewidths=.85 if synthetic else 0, alpha=1 if synthetic else .5,
+                         zorder=3 if synthetic else 2, gid=f"regime:{key}")
+        axis.set(xlabel="Mean neighbour occupancy", ylabel="Correlation with\nwindow event count",
+                 xlim=(-.025, 1.025), ylim=(-1.06, 1.06),
+                 xticks=[0, .25, .5, .75, 1], yticks=[-1, -.5, 0, .5, 1])
+        axis.grid(color="#E2E5E7", linewidth=.4)
+        axis.set_axisbelow(True)
+        axis.tick_params(labelsize=8, length=2.5, width=.5, pad=3)
+        for spine in ("top", "right"):
+            axis.spines[spine].set_visible(False)
+        for spine in ("left", "bottom"):
+            axis.spines[spine].set_color("#7D858B")
+        handles, labels = axis.get_legend_handles_labels()
+        fig.legend(handles, labels, loc="upper left", bbox_to_anchor=(.18, .99),
+                   fontsize=8, frameon=False, handletextpad=.4, labelspacing=.35, borderpad=0)
+        fig.subplots_adjust(left=.20, right=.97, bottom=.19, top=.79)
         path = FIGURES / "fig_regime_separation.pdf"
         fig.savefig(path)
+        fig.savefig(path.with_suffix(".png"), dpi=200)
         plt.close(fig)
         plt.rcdefaults()
         written.append(path)
